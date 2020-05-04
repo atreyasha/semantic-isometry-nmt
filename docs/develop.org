@@ -15,8 +15,7 @@
 ****** generate paraphrases for WMT 17 data using previous steps
 
 **** Code and documentation
-***** TODO convert all processes to makefile for ease
-***** TODO add pipeline to download WMT 17 training data
+***** TODO add easy script for downloading google drive files
 ***** add documentation/acknowledgments to datasets and code, refactor major code used in SCPN to make it cleaner and better
 ***** add citations in readme as per general standard
 
@@ -33,4 +32,7 @@
 *** Completed
 ***** DONE set up WMT 17 dev/test data and basic repo
       CLOSED: [2020-04-29 Wed 15:57]
-      
+***** DONE convert all processes to makefile for ease
+      CLOSED: [2020-05-04 Mon 15:31]
+***** DONE add pipeline to download WMT 17 training data      
+      CLOSED: [2020-05-04 Mon 15:37]

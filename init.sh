@@ -1,11 +1,5 @@
 #!/bin/bash
 
-read -rep "create pre-commit hook for updating python dependencies? (y/n): " ans
-if [ $ans == "y" ]; then
-  # move pre-commit hook into local .git folder for activation
-  cp ./hooks/pre-commit.sample ./.git/hooks/pre-commit
-fi
-
 read -rep "download and deploy WMT 2017 en-de dev/test dataset(s) [2.3 MB]? (y/n): " ans
 if [ $ans == "y" ]; then
   # download WMT datasets

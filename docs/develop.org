@@ -1,9 +1,28 @@
 *** To-do's
-**** SCPN framework
-***** TODO port SCPN code from python2 to python3 and ensure it works, if not re-train model for python 3 -> priority is for generate_paraphrases.py first to check if the saved models can work, might need to port other linking files as well
+
+**** Paraphrasing
+***** Automated frameworks
+****** 1. SCPN [torch] -> written in python2.7 and buggy, but some examples work
+****** 2. Pair-it [tensorflow] -> written in python3, has potential to work but requires refactoring
+****** TODO 3. SGCP [torch] -> written in python3, generate paraphrases given exemplar sentence form
+****** test how SGCP works, memory consumption on single GPU, check if it can be tweaked for own purposes
+****** generate paraphrases for WMT 17 data using previous steps
+****** check if it is possible to make complete combined framework for adversarial generation
+
+***** Rules-based approaches
+****** consider other ways of generating paraphrases -> perhaps rules based approaches employing logical rules
+****** look into semantic web senses and how these could be used given world knowledge
+****** generate paraphrases for WMT 17 data using previous steps
+
+**** Code and documentation
+***** TODO convert all processes to makefile for ease
+***** TODO add pipeline to download WMT 17 training data
+***** add documentation/acknowledgments to datasets and code, refactor major code used in SCPN to make it cleaner and better
+***** add citations in readme as per general standard
+
+**** Syntax-parsers
 ***** download stanford parser into repo and use this on WMT 17 data
 ***** generate parses for WMT17 dev/test, check quality and think of how to extend this utility to other SOTA parsers
-***** generate paraphrases for WMT 17 data using previous steps
 
 **** SOTA NMT models
 ***** TODO download SOTA models from fairseq, start testing paraphrased samples on it and manually check out differences in results, see if this idea makes sense on a large scale
@@ -11,14 +30,7 @@
 ***** after manual checks, start thinking of semantic similarity measures on the target end, also possibly on the source side although we can assume that the SCPN makes quite good paraphrases
 ***** set up English and German SOTA parsers on local system
 
-**** Rules-based approaches
-***** TODO consider other ways of generating paraphrases -> perhaps rules based approaches employing logical rules
-***** check if application of logic affects NMT models
-
-**** Documentation
-***** add documentation/acknowledgments to datasets and code, refactor major code used in SCPN to make it cleaner and better
-***** add citations in readme as per general standard
-
 *** Completed
 ***** DONE set up WMT 17 dev/test data and basic repo
       CLOSED: [2020-04-29 Wed 15:57]
+      

@@ -10,7 +10,7 @@
         2.  2\. Pair-it \[tensorflow\] -\> written in python3, has
             potential to work but requires refactoring
 
-        3.  [TODO]{.todo .TODO} 3. SGCP \[torch\] -\> written in
+        3.  **TODO** 3. SGCP \[torch\] -\> written in
             python3, generate paraphrases given exemplar sentence form
 
         4.  test how SGCP works, memory consumption on single GPU, check
@@ -33,7 +33,7 @@
 
 2.  Code and documentation
 
-    1.  [TODO]{.todo .TODO} add easy script for downloading google drive
+    1.  **TODO** add easy script for downloading google drive
         files
 
     2.  add documentation/acknowledgments to datasets and code, refactor
@@ -50,7 +50,7 @@
 
 4.  SOTA NMT models
 
-    1.  [TODO]{.todo .TODO} download SOTA models from fairseq, start
+    1.  **TODO** download SOTA models from fairseq, start
         testing paraphrased samples on it and manually check out
         differences in results, see if this idea makes sense on a large
         scale
@@ -67,8 +67,8 @@
 
 ### Completed
 
-1.  [DONE]{.done .DONE} set up WMT 17 dev/test data and basic repo
+1.  **DONE** set up WMT 17 dev/test data and basic repo
 
-2.  [DONE]{.done .DONE} convert all processes to makefile for ease
+2.  **DONE** convert all processes to makefile for ease
 
-3.  [DONE]{.done .DONE} add pipeline to download WMT 17 training data
+3.  **DONE** add pipeline to download WMT 17 training data

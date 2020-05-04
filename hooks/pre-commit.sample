@@ -22,7 +22,7 @@ if [ -f ./docs/develop.org ]; then
   # convert todos.org to todos.md
   pandoc -f org -t markdown -o ./docs/develop.md ./docs/develop.org
   # replace TODOs cleanly
-  sed -i 's/\[(.*)\]{(.*)}/**\1**/g' ./docs/develop.md
+  sed -i -r 's/\[(.*)\]{(.*)}/**\1**/g' ./docs/develop.md
   # add requirements.txt to stage for commit
   git add ./docs/develop.md
 fi

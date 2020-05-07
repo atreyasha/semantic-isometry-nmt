@@ -4,22 +4,24 @@
 
     1.  Automated frameworks
 
-        1.  1\. SCPN \[torch\] -\> written in python2.7 and buggy, but
-            some examples work
+        1.  **TODO** SGCP \[torch\] -\> written in python3,
+            generate paraphrases given exemplar sentence form
 
-        2.  2\. Pair-it \[tensorflow\] -\> written in python3, has
-            potential to work but requires refactoring
-
-        3.  **TODO** 3. SGCP \[torch\] -\> written in
-            python3, generate paraphrases given exemplar sentence form
-
-        4.  test how SGCP works, memory consumption on single GPU, check
+        2.  test how SGCP works, memory consumption on single GPU, check
             if it can be tweaked for own purposes
 
-        5.  generate paraphrases for WMT 17 data using previous steps
+        3.  generate paraphrases for WMT 17 data using previous steps
 
-        6.  check if it is possible to make complete combined framework
+        4.  check if it is possible to make complete combined framework
             for adversarial generation
+
+        5.  Possible back-up options:
+
+            1.  SCPN \[torch\] -\> written in python2.7 and buggy, but
+                some examples work
+
+            2.  Pair-it \[tensorflow\] -\> written in python3, has
+                potential to work but requires refactoring
 
     2.  Rules-based approaches
 
@@ -33,8 +35,8 @@
 
 2.  Code and documentation
 
-    1.  **TODO** add easy script for downloading google drive
-        files
+    1.  **TODO** add easy script for downloading one-drive
+        files, add gitignores
 
     2.  add documentation/acknowledgments to datasets and code, refactor
         major code used in SCPN to make it cleaner and better

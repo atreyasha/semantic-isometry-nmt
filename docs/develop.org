@@ -2,12 +2,14 @@
 
 **** Paraphrasing
 ***** Automated frameworks
-****** 1. SCPN [torch] -> written in python2.7 and buggy, but some examples work
-****** 2. Pair-it [tensorflow] -> written in python3, has potential to work but requires refactoring
-****** TODO 3. SGCP [torch] -> written in python3, generate paraphrases given exemplar sentence form
+****** TODO SGCP [torch] -> written in python3, generate paraphrases given exemplar sentence form
 ****** test how SGCP works, memory consumption on single GPU, check if it can be tweaked for own purposes
 ****** generate paraphrases for WMT 17 data using previous steps
 ****** check if it is possible to make complete combined framework for adversarial generation
+****** Possible back-up options:
+******* SCPN [torch] -> written in python2.7 and buggy, but some examples work
+******* Pair-it [tensorflow] -> written in python3, has potential to work but requires refactoring
+
 
 ***** Rules-based approaches
 ****** consider other ways of generating paraphrases -> perhaps rules based approaches employing logical rules
@@ -15,7 +17,7 @@
 ****** generate paraphrases for WMT 17 data using previous steps
 
 **** Code and documentation
-***** TODO add easy script for downloading google drive files
+***** TODO add easy script for downloading one-drive files, add gitignores
 ***** add documentation/acknowledgments to datasets and code, refactor major code used in SCPN to make it cleaner and better
 ***** add citations in readme as per general standard
 

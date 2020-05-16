@@ -1,71 +1,87 @@
 ### To-do\'s
 
-1.  Paraphrasing
+1.  Code, documentation and outlook
 
-    1.  Automated frameworks
+    1.  **TODO** set up data downloading for all wmt sets
+        with SacreBLEU, set up all data for given git submodules such as
+        SGCP and SOW-REAP
 
-        1.  **TODO** SGCP \[torch\] -\> written in python3,
-            generate paraphrases given exemplar sentence form
+    2.  **TODO** make table with all metrics, or use several
+        language pairs to test this, pre-process data as per pre-trained
+        model
 
-        2.  test how SGCP works, memory consumption on single GPU, check
-            if it can be tweaked for own purposes
+    3.  **TODO** handle virtual environment in remote system
+        better
 
-        3.  generate paraphrases for WMT 17 data using previous steps
+    4.  **TODO** build reproducible pipeline to construct
+        quick paraphrases for custom data, and then to evalute results
+        to find most vulnerable syntax forms
 
-        4.  check if it is possible to make complete combined framework
-            for adversarial generation
+    5.  consider building readme and project using python -m framework
 
-        5.  Possible back-up options:
+    6.  add relevant gitignores
 
-            1.  SCPN \[torch\] -\> written in python2.7 and buggy, but
-                some examples work
-
-            2.  Pair-it \[tensorflow\] -\> written in python3, has
-                potential to work but requires refactoring
-
-    2.  Rules-based approaches
-
-        1.  consider other ways of generating paraphrases -\> perhaps
-            rules based approaches employing logical rules
-
-        2.  look into semantic web senses and how these could be used
-            given world knowledge
-
-        3.  generate paraphrases for WMT 17 data using previous steps
-
-2.  Code and documentation
-
-    1.  **TODO** add easy script for downloading one-drive
-        files, add gitignores
-
-    2.  add documentation/acknowledgments to datasets and code, refactor
+    7.  add documentation/acknowledgments to datasets and code, refactor
         major code used in SCPN to make it cleaner and better
 
-    3.  add citations in readme as per general standard
+    8.  add citations in readme as per general standard
 
-3.  Syntax-parsers
+2.  Paraphrase generation
 
-    1.  download stanford parser into repo and use this on WMT 17 data
+    1.  **TODO** use viable frameworks to construct
+        paraphrase construction pipeline for various syntax forms on WMT
 
-    2.  generate parses for WMT17 dev/test, check quality and think of
-        how to extend this utility to other SOTA parsers
+    2.  **TODO** test on WMT 17 dev/test first, then run
+        paraphrases on all WMT datasets
 
-4.  SOTA NMT models
+    3.  Viable frameworks
 
-    1.  **TODO** download SOTA models from fairseq, start
-        testing paraphrased samples on it and manually check out
-        differences in results, see if this idea makes sense on a large
-        scale
+        1.  SOW-REAP \[torch, python3, average-documented\] -\> generate
+            paraphrases without exemplar sentence form, worth trying out
 
-    2.  look for models that worked on WMT 17 en-de dataset and work
-        from there
+        2.  SGCP \[torch, python3, well-documented\] -\> generate
+            paraphrases given exemplar sentence form, limitation is that
+            exemplar sentence is a hard dependency
 
-    3.  after manual checks, start thinking of semantic similarity
-        measures on the target end, also possibly on the source side
-        although we can assume that the SCPN makes quite good
-        paraphrases
+            1.  viable-idea: remove exemplar sentence and replace with
+                syntax form
 
-    4.  set up English and German SOTA parsers on local system
+            2.  future-idea: end-to-end paraphrase generation with
+                adversarial goal, but unrealistic given time-frame and
+                support
+
+    4.  Legacy frameworks
+
+        1.  SCPN \[torch, python2.7, poorly documented\] -\> buggy, but
+            some examples work
+
+        2.  Pair-it \[tensorflow, python3, poorly documented\] -\> has
+            potential to work but requires major refactoring
+
+3.  SOTA NMT models
+
+    1.  download SOTA models from fairseq, start testing paraphrased
+        samples on it and manually check out differences in results, see
+        if this idea makes sense on a large scale
+
+    2.  look for models that worked on WMT en-de datasets and work from
+        there
+
+4.  Semantic similarity metrics
+
+    1.  think of useful semantic similarity metrics to make comparisons
+
+    2.  perhaps modified BLEU, METEOR, CCG semantics lambda calculus
+
+    3.  or NN technique using sentence BERT and other encoders -\> more
+        quantitative and continuous, can apply Michel et al. 2019
+        techniques for robustness comparisons
+
+5.  Downstream data augmentation
+
+    1.  Data augmentation with source paraphrase and same target without
+        paraphrase -\> would this be beneficial, would it regularize or
+        would it make convergence more difficult
 
 ### Completed
 

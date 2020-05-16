@@ -1,3 +1,3 @@
-## Syntax-Level Paraphrasing Adversarial Attacks
+## Robustness of NMT models to syntax-level paraphrases
 
-:snail:
+:snail: Currently under development, check our development [log](./docs/develop.md) for further information.

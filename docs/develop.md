@@ -2,14 +2,14 @@
 
 1.  Code and documentation
 
-    1.  **TODO** add relevant gitignores
-
-    2.  **TODO** set up data downloading for all wmt sets
+    1.  **TODO** set up data downloading for all wmt sets
         with SacreBLEU
 
-    3.  **TODO** handle virtual environment in remote system
+    2.  **TODO** handle virtual environment in remote system
         better -\> maybe with poetry or with venvs -\> either way keep
         it clean and simple
+
+    3.  add relevant gitignores
 
     4.  consider building readme and project using python -m framework
 

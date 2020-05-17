@@ -1,9 +1,9 @@
 *** To-do's
 
 **** Code and documentation
-***** TODO add relevant gitignores
 ***** TODO set up data downloading for all wmt sets with SacreBLEU
 ***** TODO handle virtual environment in remote system better -> maybe with poetry or with venvs -> either way keep it clean and simple
+***** add relevant gitignores
 ***** consider building readme and project using python -m framework
 ***** add documentation/acknowledgments to datasets and code, refactor major code used in SCPN to make it cleaner and better
 ***** add citations in readme as per general standard

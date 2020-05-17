@@ -2,21 +2,18 @@
 
 1.  Code and documentation
 
-    1.  **TODO** set up data downloading for all wmt sets
-        with SacreBLEU
-
-    2.  **TODO** handle virtual environment in remote system
+    1.  **TODO** handle virtual environment in remote system
         better -\> maybe with poetry or with venvs -\> either way keep
         it clean and simple
 
-    3.  add relevant gitignores
+    2.  consider building readme and project using python -m framework
 
-    4.  consider building readme and project using python -m framework
-
-    5.  add documentation/acknowledgments to datasets and code, refactor
+    3.  add documentation/acknowledgments to datasets and code, refactor
         major code used in SCPN to make it cleaner and better
 
-    6.  add citations in readme as per general standard
+    4.  add citations in readme as per general standard
+
+    5.  add relevant gitignores
 
 2.  Paraphrase generation
 
@@ -103,3 +100,6 @@
 2.  **DONE** convert all processes to makefile for ease
 
 3.  **DONE** add pipeline to download WMT 17 training data
+
+4.  **DONE** set up data downloading for all wmt sets with
+    SacreBLEU

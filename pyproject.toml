@@ -48,6 +48,7 @@ subword-nmt = "^0.3.7"
 ipdb = "^0.13.2"
 nltk = "3.4.5"
 pillow = "6.2.2"
+sacrebleu = "^1.4.9"
 
 [tool.poetry.dev-dependencies]
 

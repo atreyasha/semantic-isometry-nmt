@@ -1,5 +1,6 @@
-GIT_HOOKS = ./.git/hooks
+SHELL = /bin/bash
 WMT = ./data/wmt
+GIT_HOOKS = ./.git/hooks
 SGCP_DATA = ./data/sgcp
 SGCP_MODELS = ./models/sgcp
 

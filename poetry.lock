@@ -399,13 +399,13 @@ description = "Natural Language Toolkit"
 name = "nltk"
 optional = false
 python-versions = "*"
-version = "3.4.4"
+version = "3.4.5"
 
 [package.dependencies]
 six = "*"
 
 [package.extras]
-all = ["twython", "gensim", "python-crfsuite", "numpy", "scipy", "scikit-learn", "requests", "matplotlib", "pyparsing"]
+all = ["pyparsing", "scikit-learn", "python-crfsuite", "matplotlib", "scipy", "gensim", "requests", "twython", "numpy"]
 corenlp = ["requests"]
 machine_learning = ["gensim", "numpy", "python-crfsuite", "scikit-learn", "scipy"]
 plot = ["matplotlib"]
@@ -745,7 +745,7 @@ version = "1.2.0"
 six = "*"
 
 [metadata]
-content-hash = "eea04670b69eb026cd1873b3b4493905651e5c244f69876aa586e1f636e9a97a"
+content-hash = "7fb7a768dc5a6ea73ac4aeed93629ea45d7d73f66d4f1a95f879c1dbc0b5c836"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -978,8 +978,8 @@ netifaces = [
     {file = "netifaces-0.10.9.tar.gz", hash = "sha256:2dee9ffdd16292878336a58d04a20f0ffe95555465fee7c9bd23b3490ef2abf3"},
 ]
 nltk = [
-    {file = "nltk-3.4.4.win32.exe", hash = "sha256:9819cbcaf38289a7f167cb9ef2f487f0c38f92b6866a8b1e63345b8d211f7709"},
-    {file = "nltk-3.4.4.zip", hash = "sha256:764c20a5f8532a681c261af3c7d1a54768a35df6f3603df75e615cbd34e47cb5"},
+    {file = "nltk-3.4.5.win32.exe", hash = "sha256:a08bdb4b8a1c13de16743068d9eb61c8c71c2e5d642e8e08205c528035843f82"},
+    {file = "nltk-3.4.5.zip", hash = "sha256:bed45551259aa2101381bbdd5df37d44ca2669c5c3dad72439fa459b29137d94"},
 ]
 numpy = [
     {file = "numpy-1.17.0-cp35-cp35m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl", hash = "sha256:910d2272403c2ea8a52d9159827dc9f7c27fb4b263749dca884e2e4a8af3b302"},

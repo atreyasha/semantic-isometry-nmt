@@ -1,37 +1,19 @@
-* Qns to discuss
-
-BERT, RoBERTa for detecting paraphrases
-
-Maximize similarity metric, use paraphrase of maximum as exemplar, use pos-tags of sentence, embed and cluser universal sentence encoder 
-
-QQPos is likely to be a better model, check quality of paraphrases, BERT score for quality of paraphrases
-
-Multireference BLEU score, use multiple paraphrases and check for best BLEU score -> maybe talk to Rico about this
-
-Data augmentation -> find best paraphrases using bleu and generated exemplars, find best translated paraphrases using bleu as well, use best results for augmentation, consider multi-reference bleu
-
-Use similarity metric on paraphrase and translation, check this metric
-
-Perhaps ignore SOW-REAP for now and do it only in case SGCP does not work
-
-Make some basic progress till weekly meetings to show Mathias
-
 *** To-do's
 
-**** Current
-***** TODO set up data downloading for all wmt sets with SacreBLEU
-***** TODO build reproducible pipeline to construct quick paraphrases for custom data, and then to evalute results to find most vulnerable syntax forms
-***** TODO use viable frameworks to construct paraphrase construction pipeline for various syntax forms on WMT
-***** TODO test on WMT 17 dev/test first, then run paraphrases on all WMT datasets
-
 **** Code and documentation
-***** TODO handle virtual environment in remote system better
+***** TODO add relevant gitignores
+***** TODO set up data downloading for all wmt sets with SacreBLEU
+***** TODO handle virtual environment in remote system better -> maybe with poetry or with venvs -> either way keep it clean and simple
 ***** consider building readme and project using python -m framework
-***** add relevant gitignores
 ***** add documentation/acknowledgments to datasets and code, refactor major code used in SCPN to make it cleaner and better
 ***** add citations in readme as per general standard
 
 **** Paraphrase generation
+***** embed and cluser using universal sentence encoder -> use separate clusters for exemplar utility, make diverse collection and evaluate using metric or other NN
+***** maximize similarity metric on both sides, use paraphrase of maximum as exemplar, use pos-tags of sentence
+***** QQPos is likely to be a better model, check quality of paraphrases, BERT score for quality of paraphrases
+***** BERT, RoBERTa for detecting paraphrases
+
 ***** Viable frameworks
 ****** SGCP [torch, python3, well-documented] -> generate paraphrases given exemplar sentence form, limitation is that exemplar sentence is a hard dependency
 ******* viable-idea: remove exemplar sentence and replace with syntax form
@@ -47,13 +29,16 @@ Make some basic progress till weekly meetings to show Mathias
 ***** look for models that worked on WMT en-de datasets and work from there
 
 **** Semantic similarity metrics
+***** multireference BLEU score, use multiple paraphrases and check for best BLEU score
 ***** make table with all metrics, or use several language pairs to test this, pre-process data as per pre-trained model
 ***** think of useful semantic similarity metrics to make comparisons
 ***** perhaps modified BLEU, METEOR, CCG semantics lambda calculus
 ***** or NN technique using sentence BERT and other encoders -> more quantitative and continuous, can apply Michel et al. 2019 techniques for robustness comparisons
 
 **** Downstream data augmentation
-***** Data augmentation with source paraphrase and same target without paraphrase -> would this be beneficial, would it regularize or would it make convergence more difficult
+***** dual approach -> either look for paraphrase source and target pair which are closest to gold ones and augment data with these -> is safer to train with and can possibly improve overall translation quality
+***** otherwise, find paraphrase which is close on source side but problematic on target side and augment these with gold target -> acts as a regularizing anchor and possibly adds some stability -> need to check semantics
+***** this would be future work, but presentation of work depends on how this is envisioned
 
 *** Completed
 ***** DONE set up WMT 17 dev/test data and basic repo

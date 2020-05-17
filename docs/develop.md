@@ -17,19 +17,22 @@
 
 2.  Paraphrase generation
 
-    1.  embed and cluser using universal sentence encoder -\> use
-        separate clusters for exemplar utility, make diverse collection
-        and evaluate using metric or other NN
+    1.  **TODO** convert wmt datasets into format pipe-able
+        into SGCP
 
-    2.  maximize similarity metric on both sides, use paraphrase of
+    2.  **TODO** embed and cluser using universal sentence
+        encoder -\> use separate clusters for exemplar utility, make
+        diverse collection and evaluate using metric or other NN
+
+    3.  maximize similarity metric on both sides, use paraphrase of
         maximum as exemplar, use pos-tags of sentence
 
-    3.  QQPos is likely to be a better model, check quality of
+    4.  QQPos is likely to be a better model, check quality of
         paraphrases, BERT score for quality of paraphrases
 
-    4.  BERT, RoBERTa for detecting paraphrases
+    5.  BERT, RoBERTa for detecting paraphrases
 
-    5.  Viable frameworks
+    6.  Viable frameworks
 
         1.  SGCP \[torch, python3, well-documented\] -\> generate
             paraphrases given exemplar sentence form, limitation is that
@@ -42,7 +45,7 @@
                 adversarial goal, but unrealistic given time-frame and
                 support
 
-    6.  Legacy frameworks
+    7.  Legacy frameworks
 
         1.  SOW-REAP \[torch, python3, average-documented\] -\> generate
             paraphrases without exemplar sentence form, worth trying out

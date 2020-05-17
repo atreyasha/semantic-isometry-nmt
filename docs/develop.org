@@ -8,7 +8,8 @@
 ***** add relevant gitignores
 
 **** Paraphrase generation
-***** embed and cluser using universal sentence encoder -> use separate clusters for exemplar utility, make diverse collection and evaluate using metric or other NN
+***** TODO convert wmt datasets into format pipe-able into SGCP
+***** TODO embed and cluser using universal sentence encoder -> use separate clusters for exemplar utility, make diverse collection and evaluate using metric or other NN
 ***** maximize similarity metric on both sides, use paraphrase of maximum as exemplar, use pos-tags of sentence
 ***** QQPos is likely to be a better model, check quality of paraphrases, BERT score for quality of paraphrases
 ***** BERT, RoBERTa for detecting paraphrases

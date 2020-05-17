@@ -10,7 +10,7 @@ $(GIT_HOOKS)/pre-commit: ./hooks/pre-commit.sample
 hook: $(GIT_HOOKS)/pre-commit
 
 .PHONY: download_wmt_08_19_test
-download_wmt_all:
+download_wmt_08_19_test:
   # make directories
 	mkdir -p $(WMT)
   # download necessary WMT files

@@ -7,16 +7,16 @@
 #
 # To enable this hook, rename this file to "pre-commit".
 
-# test_pipreqs=$(command -v pipreqs)
-# test_poetry=$(command -v poetry)
-#
-# if [ -f "./poetry.lock" ] && [ -n "$test_poetry" ]; then
-  # poetry export -f requirements.txt --without-hashes -o requirements.txt
-  # git add "requirements.txt"
-# elif [ ! -f "./poetry.lock" ] && [ -n "$test_pipreqs" ]; then
-  # pipreqs --force .
-  # git add "requirements.txt"
-# fi
+test_pipreqs=$(command -v pipreqs)
+test_poetry=$(command -v poetry)
+
+if [ -f "./poetry.lock" ] && [ -n "$test_poetry" ]; then
+	poetry export -f requirements.txt --without-hashes -o requirements.txt
+	git add "requirements.txt"
+elif [ ! -f "./poetry.lock" ] && [ -n "$test_pipreqs" ]; then
+	pipreqs --force .
+	git add "requirements.txt"
+fi
 
 if [ -f ./docs/develop.org ]; then
   # convert todos.org to todos.md

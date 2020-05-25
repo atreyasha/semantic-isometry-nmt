@@ -1,38 +1,39 @@
 ### To-do\'s
 
-1.  Code and documentation
+1.  Paraphrase generation
 
-    1.  **TODO** handle virtual environment in remote system
-        better -\> maybe with poetry or with venvs -\> either way keep
-        it clean and simple
+    1.  **TODO** embed and cluser using universal sentence
+        encoder (eg. BERT or LASER) -\> use separate clusters for
+        exemplar utility, make diverse collection and evaluate using
+        metric or other NN
 
-    2.  consider building readme and project using python -m framework
+    2.  **TODO** find other sentence with maximum similarity
+        and use that as exemplar, use paraphrase of best as exemplar,
+        use pos-tags of sentence
 
-    3.  add documentation/acknowledgments to datasets and code, refactor
-        major code used in SCPN to make it cleaner and better
+    3.  **TODO** convert wmt datasets with derived exemplars
+        into format pipe-able into SGCP -\> needed before paraphrasing
 
-    4.  add citations in readme as per general standard
+    4.  **TODO** perhaps do paraphrasing also for WMT
+        training data in order to get new datasets that could be used
+        for future augmentation
 
-    5.  add relevant gitignores
+    5.  try constructing exemplar sentences by hand to check if it works
+        -\> check if it works
 
-2.  Paraphrase generation
+    6.  QQPos is likely to be a better model
 
-    1.  **TODO** convert wmt datasets into format pipe-able
-        into SGCP
+    7.  BERT score, BERT, RoBERTa for detecting paraphrases and quality
 
-    2.  **TODO** embed and cluser using universal sentence
-        encoder -\> use separate clusters for exemplar utility, make
-        diverse collection and evaluate using metric or other NN
+    8.  look into new libraries provided by Mathias -\> how could this
+        possibly help our research -\> only seq2sick is provided
 
-    3.  maximize similarity metric on both sides, use paraphrase of
-        maximum as exemplar, use pos-tags of sentence
+    9.  clustering is done by meaning and not syntax -\> or try
+        difference via standard parse -\> or random
 
-    4.  QQPos is likely to be a better model, check quality of
-        paraphrases, BERT score for quality of paraphrases
+    10. provision of syntax directly instead of exemplar sentence
 
-    5.  BERT, RoBERTa for detecting paraphrases
-
-    6.  Viable frameworks
+    11. Viable frameworks
 
         1.  SGCP \[torch, python3, well-documented\] -\> generate
             paraphrases given exemplar sentence form, limitation is that
@@ -45,7 +46,7 @@
                 adversarial goal, but unrealistic given time-frame and
                 support
 
-    7.  Legacy frameworks
+    12. Legacy frameworks
 
         1.  SOW-REAP \[torch, python3, average-documented\] -\> generate
             paraphrases without exemplar sentence form, worth trying out
@@ -55,6 +56,31 @@
 
         3.  Pair-it \[tensorflow, python3, poorly documented\] -\> has
             potential to work but requires major refactoring
+
+2.  Code and documentation
+
+    1.  **TODO** add wmt workflow to download training data
+        as well
+
+    2.  **TODO** need to add build workflow for SGCP and also
+        symlinking relevant data directly there -\> possibly consider
+        git-submodules
+
+    3.  **TODO** clarify exact meaning of wmt dev set vs test
+        set
+
+    4.  **TODO** handle virtual environment in remote system
+        better -\> maybe with poetry or with venvs -\> either way keep
+        it clean and simple
+
+    5.  consider building readme and project using python -m framework
+
+    6.  add documentation/acknowledgments to datasets and code, refactor
+        major code used in SCPN to make it cleaner and better
+
+    7.  add citations in readme as per general standard
+
+    8.  add relevant gitignores
 
 3.  SOTA NMT models
 
@@ -81,7 +107,11 @@
         quantitative and continuous, can apply Michel et al. 2019
         techniques for robustness comparisons
 
-5.  Downstream data augmentation
+    6.  Semantic parsing to graph, wordnet concepts connecting,
+        framenet, frame semantic parsing, brown clusters, AMR parsing,
+        IWCS workshop for discussions
+
+5.  Downstream data augmenttion
 
     1.  dual approach -\> either look for paraphrase source and target
         pair which are closest to gold ones and augment data with these
@@ -95,6 +125,27 @@
 
     3.  this would be future work, but presentation of work depends on
         how this is envisioned
+
+    4.  Zipf\'s law should apply to syntax chunks, bias might still be
+        present
+
+    5.  anchor might still be useful, look for similar syntax on the
+        target side that can be substituted -\> maybe some kind of
+        imitation to make augmented pairs
+
+    6.  consider contributing paraphrases to data augmentation libraries
+        from research
+
+    7.  augmentation might still be useful in any case, even if the
+        anchor is different
+
+    8.  noise is not problematic since there is already noise present in
+        normal training data
+
+    9.  meaning preserving + adversarial outcome -\> then useful
+
+    10. augmentation is important if adversarial attack is successful,
+        maybe syntax real-life frequency has effect
 
 ### Completed
 

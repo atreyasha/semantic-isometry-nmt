@@ -23,10 +23,10 @@
 ****** Pair-it [tensorflow, python3, poorly documented] -> has potential to work but requires major refactoring
 
 **** Code and documentation
-***** TODO add wmt workflow to download training data as well
-***** TODO need to add build workflow for SGCP and also symlinking relevant data directly there -> possibly consider git-submodules
+***** TODO need to add build workflow for SGCP and also symlinking relevant data directly there -> possibly consider git-submodules -> need to add another workflow to ensure it is initialized properly
 ***** TODO clarify exact meaning of wmt dev set vs test set
 ***** TODO handle virtual environment in remote system better -> maybe with poetry or with venvs -> either way keep it clean and simple
+***** TODO add wmt workflow to download training data as well
 ***** consider building readme and project using python -m framework
 ***** add documentation/acknowledgments to datasets and code, refactor major code used in SCPN to make it cleaner and better
 ***** add citations in readme as per general standard

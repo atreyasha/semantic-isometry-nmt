@@ -59,19 +59,20 @@
 
 2.  Code and documentation
 
-    1.  **TODO** add wmt workflow to download training data
-        as well
-
-    2.  **TODO** need to add build workflow for SGCP and also
+    1.  **TODO** need to add build workflow for SGCP and also
         symlinking relevant data directly there -\> possibly consider
-        git-submodules
+        git-submodules -\> need to add another workflow to ensure it is
+        initialized properly
 
-    3.  **TODO** clarify exact meaning of wmt dev set vs test
+    2.  **TODO** clarify exact meaning of wmt dev set vs test
         set
 
-    4.  **TODO** handle virtual environment in remote system
+    3.  **TODO** handle virtual environment in remote system
         better -\> maybe with poetry or with venvs -\> either way keep
         it clean and simple
+
+    4.  **TODO** add wmt workflow to download training data
+        as well
 
     5.  consider building readme and project using python -m framework
 

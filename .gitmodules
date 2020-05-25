@@ -1,0 +1,3 @@
+[submodule "SGCP"]
+	path = SGCP
+	url = https://github.com/malllabiisc/SGCP.git

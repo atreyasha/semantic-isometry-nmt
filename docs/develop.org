@@ -1,0 +1,108 @@
+*** To-do's
+
+**** Paraphrase data selection and analysis workflow
+***** TODO use paws-x for learning good paraphrase distinction -> use simple model or other consider more complex multilingual models
+***** TODO normalize all input properly and keep normalization scheme saved
+***** TODO develop SVC with cosine similarity and vector difference to find some optimum thresholds for paraphrase vs. not -> do quick run with scikit-learn and test on German paraphrases -> look into using generators to make this more memory efficient
+***** TODO if SVC with various kernels does not perform in the high 90s, can consider using a permutation invariant neural network for this purpose
+***** TODO use dataset generator to keep everything memory efficient -> save files in hd5 format with compression
+***** TODO check whether all features are necessary or whether some abstraction is sufficient
+
+**** Code and documentation
+***** TODO rebuild repository workflow with new structure -> push to github and make things clean again
+***** TODO add a pylinter for formatting as pre-commit hook -> think of standards to abide by -> auto-PEP8
+***** TODO clean up reading articles/papers and make things neater overall
+***** consider building readme and project using python -m framework
+***** log out random seeds for full reproducability
+***** add citations in readme as per general standard
+***** add relevant gitignores
+***** add documentation/acknowledgments to datasets and code, and how to handle submodules
+***** add failsafe to ensure submodules are all loaded -> with some phony checkouts
+***** clarify exact meaning of wmt dev set vs test set
+***** re-review dependencies and remove unnecessary ones upon next check
+
+***** better to work with human-curated data than back-translated ones due to many errors -> consider PAWS and PAWS-X
+***** maybe use pre-trained paraphrase detector here if that helps
+***** important to keep things within LASER for multi-lingual features
+***** could not find other technique which used PAWS-X in combination with LASER
+***** look into nli adversarial datasets -> Nevin and Aatlantise
+
+**** Fairseq NMT models
+***** download SOTA models from fairseq, start testing paraphrased samples on it and manually check out differences in results, see if this idea makes sense on a large scale
+***** look for models that worked on WMT en-de datasets and work from there
+***** pre-process data as per pre-trained model
+     
+*** Completed
+***** DONE look into ParaBank2 and universal decompositional semantics -> not great paraphrases, no human curation
+      CLOSED: [2020-06-05 Fri 14:28]
+***** DONE look into Duolingo dataset for paraphrases -> no German target side
+      CLOSED: [2020-06-05 Fri 13:56]
+***** DONE add symbols for defaults in metavar default formatter, maybe add some other formatting tricks such as indents for defaults
+      CLOSED: [2020-06-02 Tue 17:55]
+***** DONE try installing java locally instead of root, if stanford parser is indeed necessary
+      CLOSED: [2020-05-29 Fri 15:23]
+***** DONE paraphrasing with SGCP -> very bad results on both original test and WMT data -> very sensitive to exemplar
+      CLOSED: [2020-05-28 Thu 18:14]
+***** DONE embed and cluser using universal sentence encoder (eg. BERT or LASER) -> use separate clusters for exemplar utility, make diverse collection and evaluate using metric or other NN
+      CLOSED: [2020-05-28 Thu 17:52]
+***** DONE find other sentence with maximum similarity and use that as exemplar, useparaphrase of best as exemplar, use pos-tags of sentence
+      CLOSED: [2020-05-28 Thu 17:52]
+***** DONE convert wmt datasets with derived exemplars into format pipe-able into SGCP -> needed before paraphrasing
+      CLOSED: [2020-05-28 Thu 17:52]
+***** DONE add workflow to download laser models with python -m laserembeddings download-models
+      CLOSED: [2020-05-28 Thu 17:49]
+***** DONE set up WMT 17 dev/test data and basic repo
+      CLOSED: [2020-04-29 Wed 15:57]
+***** DONE convert all processes to makefile for ease
+      CLOSED: [2020-05-04 Mon 15:31]
+***** DONE set up data downloading for all wmt sets with SacreBLEU
+      CLOSED: [2020-05-17 Sun 21:58]
+
+*** Downstream work
+**** Semantic similarity metrics
+***** make table with all metrics and various datasets
+***** possibly use several language pairs to test this
+***** multireference BLEU score, use multiple paraphrases and check for best BLEU score
+***** perhaps modified BLEU, METEOR, CCG semantics lambda calculus
+***** perhaps some combination of edit distance with wordnet metrics
+***** or NN technique using sentence BERT and other encoders -> more quantitative and continuous, can apply Michel et al. 2019 techniques for robustness comparisons
+***** semantic parsing to graph, role labelling, wordnet concepts connecting, framenet, frame semantic parsing, brown clusters, AMR parsing, IWCS workshop for discussions 
+
+**** Paraphrase generation
+***** Ideas for self-paraphrasing
+****** consider logical model for paraphrases, active to passive syntaxes and other logical frameworks -> use dependency parse on manual examples and check for logical process to create meaningful permutations
+****** permute-paraphrase using syntax-tree chunks and test paraphrses using a detect or LASER embeddings for agnosticism between source/target
+
+***** Viable pre-developed dynamic paraphrase-generation frameworks
+****** SOW-REAP [torch, python3, average-documented] -> generate paraphrases without exemplar sentence form, worth trying out
+******* refactor/extract out SOW model, shorten pipeline in sow to reduce computation and make input simpler
+******* make quick samples from SOW and hand-select good ones, test them manually on fairseq NMT system for en-de to probe robustness
+******* fork sow repo and clean code, remove bugs and make better documented with dep tracking and clearer instructions
+******* require nltk word tokenize before main processing
+
+****** SGCP [torch, python3, well-documented] -> generate paraphrases given exemplar sentence form, limitation is that exemplar sentence is a hard dependency, poor performance and not very semantically sound paraphrases
+******* ParaNMT is likely to be better than QQPos since latter was trained only on qns
+******* BERT score, BERT, RoBERTa for detecting paraphrases and quality
+******* hand-written exemplar for meaningful output
+******* remove exemplar sentence and replace with syntax form
+******* clustering is done by meaning and not syntax -> or try difference via standard parse -> or random
+******* provision of syntax directly instead of exemplar sentence
+******* fix bug in sgcp to write all outs on separate lines and to not compute any similarity
+******* change k means to find best number of clusters
+******* add various paraphrase generation styles for SGCP such as same cluster, other cluster and same as source
+******* require nltk word tokenize before main processing
+******* future-idea: end-to-end paraphrase generation with adversarial goal, but unrealistic given time-frame and support
+
+***** Legacy frameworks
+****** Pair-it [tensorflow, python3, poorly documented] -> has potential to work but requires major refactoring
+****** SCPN [torch, python2.7, poorly documented] -> buggy, but some examples work
+
+**** Data augmenttion
+***** either look for paraphrase source and target pair which are closest to gold ones and augment data with these -> is safer to train with and can possibly improve overall translation quality
+***** otherwise, find paraphrase which is close on source side but problematic on target side and augment these with gold target -> acts as a regularizing anchor and possibly adds some stability
+***** Zipf's law should apply to syntax chunks, bias might still be present
+***** anchor might still be useful, look for similar syntax on the target side that can be substituted -> maybe some kind of imitation to make augmented pairs 
+***** consider contributing paraphrases to data augmentation libraries from research
+***** noise is not problematic since there is already noise present in normal training data
+***** meaning preserving + adversarial outcome -> then useful
+***** augmentation is important if adversarial attack is successful, maybe syntax real-life frequency has effect

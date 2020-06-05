@@ -1,0 +1,186 @@
+[[package]]
+category = "main"
+description = "Composable command line interface toolkit"
+name = "click"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "7.1.2"
+
+[[package]]
+category = "main"
+description = "Clean single-source support for Python 3 and 2"
+name = "future"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+version = "0.18.2"
+
+[[package]]
+category = "main"
+description = "Lightweight pipelining: using Python functions as pipeline jobs."
+name = "joblib"
+optional = false
+python-versions = ">=3.6"
+version = "0.15.1"
+
+[[package]]
+category = "main"
+description = "Production-ready LASER multilingual embeddings"
+name = "laserembeddings"
+optional = false
+python-versions = ">=3.6,<4.0"
+version = "1.0.1"
+
+[package.dependencies]
+numpy = ">=1.15.4,<2.0.0"
+sacremoses = "0.0.35"
+subword-nmt = ">=0.3.6,<0.4.0"
+torch = ">=1.0.1.post2,<2.0.0"
+transliterate = "1.10.2"
+
+[package.extras]
+ja = ["mecab-python3 (>=0.996.3,<0.997.0)"]
+zh = ["jieba (>=0.42.1,<0.43.0)"]
+
+[[package]]
+category = "main"
+description = "NumPy is the fundamental package for array computing with Python."
+name = "numpy"
+optional = false
+python-versions = ">=3.5"
+version = "1.18.5"
+
+[[package]]
+category = "main"
+description = "SacreMoses"
+name = "sacremoses"
+optional = false
+python-versions = "*"
+version = "0.0.35"
+
+[package.dependencies]
+click = "*"
+joblib = "*"
+six = "*"
+tqdm = "*"
+
+[[package]]
+category = "main"
+description = "Python 2 and 3 compatibility utilities"
+name = "six"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+version = "1.15.0"
+
+[[package]]
+category = "main"
+description = "Unsupervised Word Segmentation for Neural Machine Translation and Text Generation"
+name = "subword-nmt"
+optional = false
+python-versions = "*"
+version = "0.3.7"
+
+[[package]]
+category = "main"
+description = "Tensors and Dynamic neural networks in Python with strong GPU acceleration"
+name = "torch"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "1.3.0"
+
+[package.dependencies]
+future = "*"
+numpy = "*"
+
+[[package]]
+category = "main"
+description = "Fast, Extensible Progress Meter"
+name = "tqdm"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*"
+version = "4.46.1"
+
+[package.extras]
+dev = ["py-make (>=0.1.0)", "twine", "argopt", "pydoc-markdown"]
+
+[[package]]
+category = "main"
+description = "Bi-directional transliterator for Python"
+name = "transliterate"
+optional = false
+python-versions = "*"
+version = "1.10.2"
+
+[package.dependencies]
+six = ">=1.1.0"
+
+[metadata]
+content-hash = "a8c1a2984e48af3212d21122926909265837db0740acd4c56a7ca704f1bc3e50"
+python-versions = "^3.6.10"
+
+[metadata.files]
+click = [
+    {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
+    {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
+]
+future = [
+    {file = "future-0.18.2.tar.gz", hash = "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"},
+]
+joblib = [
+    {file = "joblib-0.15.1-py3-none-any.whl", hash = "sha256:6825784ffda353cc8a1be573118085789e5b5d29401856b35b756645ab5aecb5"},
+    {file = "joblib-0.15.1.tar.gz", hash = "sha256:61e49189c84b3c5d99a969d314853f4d1d263316cc694bec17548ebaa9c47b6e"},
+]
+laserembeddings = [
+    {file = "laserembeddings-1.0.1-py3-none-any.whl", hash = "sha256:d8e6fd88e0c525b26cb85789a4cfbe5f5965edd6da530f4c548deb33ecd7542e"},
+    {file = "laserembeddings-1.0.1.tar.gz", hash = "sha256:93e953c7ec10a30295be53403b981c36d465339123c863b4353ac3c46ce9cf07"},
+]
+numpy = [
+    {file = "numpy-1.18.5-cp35-cp35m-macosx_10_9_intel.whl", hash = "sha256:e91d31b34fc7c2c8f756b4e902f901f856ae53a93399368d9a0dc7be17ed2ca0"},
+    {file = "numpy-1.18.5-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:7d42ab8cedd175b5ebcb39b5208b25ba104842489ed59fbb29356f671ac93583"},
+    {file = "numpy-1.18.5-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:a78e438db8ec26d5d9d0e584b27ef25c7afa5a182d1bf4d05e313d2d6d515271"},
+    {file = "numpy-1.18.5-cp35-cp35m-win32.whl", hash = "sha256:a87f59508c2b7ceb8631c20630118cc546f1f815e034193dc72390db038a5cb3"},
+    {file = "numpy-1.18.5-cp35-cp35m-win_amd64.whl", hash = "sha256:965df25449305092b23d5145b9bdaeb0149b6e41a77a7d728b1644b3c99277c1"},
+    {file = "numpy-1.18.5-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:ac792b385d81151bae2a5a8adb2b88261ceb4976dbfaaad9ce3a200e036753dc"},
+    {file = "numpy-1.18.5-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:ef627986941b5edd1ed74ba89ca43196ed197f1a206a3f18cc9faf2fb84fd675"},
+    {file = "numpy-1.18.5-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:f718a7949d1c4f622ff548c572e0c03440b49b9531ff00e4ed5738b459f011e8"},
+    {file = "numpy-1.18.5-cp36-cp36m-win32.whl", hash = "sha256:4064f53d4cce69e9ac613256dc2162e56f20a4e2d2086b1956dd2fcf77b7fac5"},
+    {file = "numpy-1.18.5-cp36-cp36m-win_amd64.whl", hash = "sha256:b03b2c0badeb606d1232e5f78852c102c0a7989d3a534b3129e7856a52f3d161"},
+    {file = "numpy-1.18.5-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:a7acefddf994af1aeba05bbbafe4ba983a187079f125146dc5859e6d817df824"},
+    {file = "numpy-1.18.5-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:cd49930af1d1e49a812d987c2620ee63965b619257bd76eaaa95870ca08837cf"},
+    {file = "numpy-1.18.5-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:b39321f1a74d1f9183bf1638a745b4fd6fe80efbb1f6b32b932a588b4bc7695f"},
+    {file = "numpy-1.18.5-cp37-cp37m-win32.whl", hash = "sha256:cae14a01a159b1ed91a324722d746523ec757357260c6804d11d6147a9e53e3f"},
+    {file = "numpy-1.18.5-cp37-cp37m-win_amd64.whl", hash = "sha256:0172304e7d8d40e9e49553901903dc5f5a49a703363ed756796f5808a06fc233"},
+    {file = "numpy-1.18.5-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:e15b382603c58f24265c9c931c9a45eebf44fe2e6b4eaedbb0d025ab3255228b"},
+    {file = "numpy-1.18.5-cp38-cp38-manylinux1_i686.whl", hash = "sha256:3676abe3d621fc467c4c1469ee11e395c82b2d6b5463a9454e37fe9da07cd0d7"},
+    {file = "numpy-1.18.5-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:4674f7d27a6c1c52a4d1aa5f0881f1eff840d2206989bae6acb1c7668c02ebfb"},
+    {file = "numpy-1.18.5-cp38-cp38-win32.whl", hash = "sha256:9c9d6531bc1886454f44aa8f809268bc481295cf9740827254f53c30104f074a"},
+    {file = "numpy-1.18.5-cp38-cp38-win_amd64.whl", hash = "sha256:3dd6823d3e04b5f223e3e265b4a1eae15f104f4366edd409e5a5e413a98f911f"},
+    {file = "numpy-1.18.5.zip", hash = "sha256:34e96e9dae65c4839bd80012023aadd6ee2ccb73ce7fdf3074c62f301e63120b"},
+]
+sacremoses = [
+    {file = "sacremoses-0.0.35.tar.gz", hash = "sha256:1e84da95cbdbfc8bbc148c0feb5a4737c5d9757071b79e8c1129e449410e410a"},
+]
+six = [
+    {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
+    {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
+]
+subword-nmt = [
+    {file = "subword_nmt-0.3.7-py2.py3-none-any.whl", hash = "sha256:a2d92eed5dea55f2b1c9b21225a57b3ae7009ce8a1fa4d2e3f01ab11435c28c9"},
+]
+torch = [
+    {file = "torch-1.3.0-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:7499fbc00ebbb04b6a6cc77ba7055b3b93460da87139dd8aeb357c5446a44cf8"},
+    {file = "torch-1.3.0-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:93e3542d57d413d4bbd75f34ce06b7a2840da3a258e3ce20c751b31a6c24189f"},
+    {file = "torch-1.3.0-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:aec5245b459427bd4acea092bacbd6794bebaf65488caf931833a76cfbf9c5fa"},
+    {file = "torch-1.3.0-cp35-none-macosx_10_6_x86_64.whl", hash = "sha256:edf07e00bb7271406cec50630d7e17f89221eeea9bd6abab885f710d31758691"},
+    {file = "torch-1.3.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:2d07d9db5cf43d152c17caf13428c10ab8c8fbf9c3bd503cfc46222cbfd1bb1c"},
+    {file = "torch-1.3.0-cp36-none-macosx_10_7_x86_64.whl", hash = "sha256:3b3ef18d03d8bc2ffccef1b3d2a156aa6f3235ed76d1c93cf3711c48055c79ce"},
+    {file = "torch-1.3.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:d460039d0d6c9e3e70b76bf9594c4ac364a287f125d22e10a6e9e1198887422c"},
+    {file = "torch-1.3.0-cp37-none-macosx_10_9_x86_64.whl", hash = "sha256:b33884ff0ca101ea6a3415e946b85f98253ee32401c6d863cc5fc6d5bb02d81c"},
+]
+tqdm = [
+    {file = "tqdm-4.46.1-py2.py3-none-any.whl", hash = "sha256:07c06493f1403c1380b630ae3dcbe5ae62abcf369a93bbc052502279f189ab8c"},
+    {file = "tqdm-4.46.1.tar.gz", hash = "sha256:cd140979c2bebd2311dfb14781d8f19bd5a9debb92dcab9f6ef899c987fcf71f"},
+]
+transliterate = [
+    {file = "transliterate-1.10.2-py2.py3-none-any.whl", hash = "sha256:010a5021bf6021689c4fade0985f3f7b3db1f2f16a48a09a56797f171c08ed42"},
+    {file = "transliterate-1.10.2.tar.gz", hash = "sha256:bc608e0d48e687db9c2b1d7ea7c381afe0d1849cad216087d8e03d8d06a57c85"},
+]

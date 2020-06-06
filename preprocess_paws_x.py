@@ -91,10 +91,10 @@ def create_hdf5_datasets(file_obj: h5py.File,
 
     Returns:
       dset_vec (h5py.Dataset): Pointer to hdf5 dataset for raw embeddings
-      dset_cosim_norm: Pointer to hdf5 dataset for cosine similarities and
-      vector difference norms
-      dset_labels: Pointer to hdf5 dataset for target labels
-      dset_ids: Pointer to hdf5 dataset for data id's
+      dset_cosim_norm (h5py.Dataset): Pointer to hdf5 dataset for cosine
+      similarities and vector difference norms
+      dset_labels (h5py.Dataset): Pointer to hdf5 dataset for target labels
+      dset_ids (h5py.Dataset): Pointer to hdf5 dataset for data id's
     """
     # make generic datasets
     dset_vec = file_obj.create_dataset("embeddings",

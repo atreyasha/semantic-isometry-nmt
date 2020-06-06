@@ -148,21 +148,21 @@ def main() -> None:
     input_files = glob(input_glob)
     laser = Laser()
     for counter, input_file in enumerate(input_files):
+        logger.info("Handling target %d/%d: %s",
+                    counter+1, len(input_files), input_file)
         with open(input_file,"r") as f:
             # offset by 1 in case of extra terminal newline symbol
             num_lines = sum(1 for line in f) - 1
         total_batches = int(np.ceil(num_lines/batch_size))
-        logger.info("Handling target %d/%d: %s",
-                    counter+1, len(input_files), input_file)
         lang = os.path.basename(os.path.dirname(input_file))
         data = data_generator(input_file, batch_size)
-        first_batch = True
         # open hdf5 files to write into
         with h5py.File((os.path.splitext(input_file)[0] +
                         ".hdf5"), 'w') as raw:
             (dset_vec, dset_cn,
              dset_labels, dset_ids) = create_hdf5_datasets(raw, batch_size)
             # initialize batch counter
+            first_batch = True
             sub_counter = 0
             for batch in data:
                 logger.info("Batch %d/%d", sub_counter+1, total_batches)

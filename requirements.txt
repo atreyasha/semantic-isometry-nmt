@@ -8,8 +8,10 @@ h5py==2.10.0
 ipython==7.15.0
 ipython-genutils==0.2.0
 jedi==0.17.0
+jieba==0.42.1
 joblib==0.15.1
 laserembeddings==1.0.1
+mecab-python3==0.996.5; sys_platform != "win32"
 numpy==1.18.5
 parso==0.7.0
 pexpect==4.8.0; sys_platform != "win32"

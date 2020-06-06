@@ -33,13 +33,10 @@ def data_generator(file_path: str, batch_size: int = 1000,
     """
     with codecs.open(file_path, "r", encoding="utf-8") as f:
         collection = []
-        first = True
         for line in f:
             if drop_first:
-                if first:
-                    first = False
-                    drop_first = False
-                    continue
+                drop_first = False
+                continue
             split_line = line.strip().split("\t")
             assert len(split_line) == 4
             collection.append(split_line)

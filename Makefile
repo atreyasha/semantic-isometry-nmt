@@ -13,8 +13,8 @@ hook: $(GIT_HOOKS)/pre-commit
 download_laser:
 	python3 -m laserembeddings download-models
 
-.PHONY: download_paws_X
-download_paws_X:
+.PHONY: download_paws_x
+download_paws_x:
 	wget -N -P $(DATA) "https://storage.googleapis.com/paws/pawsx/x-final.tar.gz"
 	tar -zxvf $(DATA)/x-final.tar.gz -C $(DATA)
 	mkdir -p $(DATA)/x-final/misc

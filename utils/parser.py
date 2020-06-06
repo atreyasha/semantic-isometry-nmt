@@ -19,7 +19,7 @@ def parse_arguments(subtype: str) -> Namespace:
     parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
     parser.add_argument("--input-glob",
                         type=str,
-                        default="./data/x-final/*/*.tsv",
+                        default="./data/x-final/de/*.tsv",
                         help="glob for finding input file(s)")
     if subtype == "train":
         parser.add_argument("--random-seed",

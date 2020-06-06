@@ -19,6 +19,18 @@ logging.config.fileConfig('./utils/resources/logging.conf',
 
 def data_generator(file_path: str, batch_size: int = 1000,
                    drop_first: bool = True) -> List[List[str]]:
+    """
+    Generator which outputs lines in batches
+
+    Args:
+      file_path (str): path to file
+      batch_size (int): number of data instances in each batch
+      drop_first (bool): drop first row given it is a header
+
+    Returns:
+      collection (List[List[str]]): parsed textual data with
+      newline symbols removed and split at tab symbols
+    """
     with codecs.open(file_path, "r", encoding="utf-8") as f:
         collection = []
         first = True
@@ -41,6 +53,21 @@ def data_generator(file_path: str, batch_size: int = 1000,
 def convert_2_feature_arrays(sentences: List[str],
                              laser: Laser,
                              lang: str) -> Tuple[np.ndarray]:
+    """
+    Converts input sentences into Laser embeddings and
+    computes additional features
+
+    Args:
+      sentences (List[str]): List containing sentences to embed, paired
+      sentences should be adjacent to one another
+      laser (Laser): instantiated Laser model object
+      lang (str): language identification code
+
+    Returns:
+      embeddings (np.ndarray): column stacked embeddings for paired sentences
+      cosim_norm (np.ndarray): column stacked cosine similarities and norm
+      differences between relevant sentence pairs
+    """
     embeddings = laser.embed_sentences(sentences, lang=lang)
     evens = embeddings[0::2]
     odds = embeddings[1::2]
@@ -55,12 +82,26 @@ def convert_2_feature_arrays(sentences: List[str],
 
 def create_hdf5_datasets(file_obj: h5py.File,
                          batch_size: int) -> Tuple[h5py.Dataset]:
+    """
+    Function creates hdf5 datasets for a provided file
+
+    Args:
+      file_obj (h5py.File): Opened hdf5 file where datasets will be created
+      batch_size (int): Batch size with which to incrementally write
+
+    Returns:
+      dset_vec (h5py.Dataset): Pointer to hdf5 dataset for raw embeddings
+      dset_cosim_norm: Pointer to hdf5 dataset for cosine similarities and
+      vector difference norms
+      dset_labels: Pointer to hdf5 dataset for target labels
+      dset_ids: Pointer to hdf5 dataset for data id's
+    """
     # make generic datasets
     dset_vec = file_obj.create_dataset("embeddings",
-                                           shape=(batch_size, 2048),
-                                           maxshape=(None, 2048),
-                                           compression="gzip",
-                                           dtype="float32")
+                                       shape=(batch_size, 2048),
+                                       maxshape=(None, 2048),
+                                       compression="gzip",
+                                       dtype="float32")
     dset_cosim_norm = file_obj.create_dataset("cosim_norm",
                                               shape=(batch_size, 2),
                                               maxshape=(None, 2),
@@ -81,12 +122,23 @@ def create_hdf5_datasets(file_obj: h5py.File,
 
 def extend_hdf5_dataset(dset: h5py.Dataset,
                         data: np.ndarray) -> None:
+    """
+    Function that extends a hdf5 dataset and adds new data
+
+    Args:
+      dset (h5py.Dataset): Dataset to extend
+      data (np.ndarray): Numpy data to add in dset
+    """
     # extend existing dataset with new data
     dset.resize(dset.shape[0]+data.shape[0], axis=0)
     dset[-data.shape[0]:] = data
 
 
 def main() -> None:
+    """
+    Function that streams input data, transforms it to Laser-based
+    features and finally saves it into hdf5 files
+    """
     # get arguments from parser
     args = parse_arguments(subtype="pre_process")
     # set verbosity

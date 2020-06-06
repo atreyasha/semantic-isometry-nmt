@@ -8,6 +8,10 @@
 ***** TODO use dataset generator to keep everything memory efficient -> save files in hd5 format with compression
 ***** TODO check whether all features are necessary or whether some abstraction is sufficient
 ***** TODO provide readme to hdf5 files with different index meanings
+***** train one model per language -> can keep separate normalization with this, normalization should be a modelling step and not necessarily earlier
+***** transform basic data first and can convert to normalizations per model instead of during pre-processing
+***** consider float32 vs float64 for cosine similarity and diff-norms
+***** build custom data generators for large raw data if used
 
 ***** compare performance with or without English and other languages to see if this differs
 ***** compare performance with other pre-trained paraphrase detector

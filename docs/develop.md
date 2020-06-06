@@ -28,23 +28,34 @@
     7.  **TODO** provide readme to hdf5 files with different
         index meanings
 
-    8.  compare performance with or without English and other languages
+    8.  train one model per language -\> can keep separate normalization
+        with this, normalization should be a modelling step and not
+        necessarily earlier
+
+    9.  transform basic data first and can convert to normalizations per
+        model instead of during pre-processing
+
+    10. consider float32 vs float64 for cosine similarity and diff-norms
+
+    11. build custom data generators for large raw data if used
+
+    12. compare performance with or without English and other languages
         to see if this differs
 
-    9.  compare performance with other pre-trained paraphrase detector
+    13. compare performance with other pre-trained paraphrase detector
 
-    10. possible to extend to other languages to check performance with
+    14. possible to extend to other languages to check performance with
         LASER embeddings
 
-    11. better to work with human-curated data than back-translated ones
+    15. better to work with human-curated data than back-translated ones
         due to many errors -\> consider PAWS and PAWS-X
 
-    12. important to keep things within LASER for multi-lingual features
+    16. important to keep things within LASER for multi-lingual features
 
-    13. could not find other technique which used PAWS-X in combination
+    17. could not find other technique which used PAWS-X in combination
         with LASER
 
-    14. look into nli adversarial datasets -\> Nevin and Aatlantise
+    18. look into nli adversarial datasets -\> Nevin and Aatlantise
 
 2.  Code and documentation
 

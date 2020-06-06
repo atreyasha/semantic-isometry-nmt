@@ -10,7 +10,6 @@ import numpy as np
 import h5py
 import codecs
 import os
-import csv
 import logging
 import logging.config
 logging.config.fileConfig('./utils/resources/logging.conf',
@@ -155,37 +154,36 @@ def main() -> None:
         data = data_generator(input_file, batch_size)
         first_batch = True
         # open hdf5 files to write into
-        raw = h5py.File((os.path.splitext(input_file)[0] +
-                         ".hdf5"), 'w')
-        (dset_vec, dset_cn,
-         dset_labels, dset_ids) = create_hdf5_datasets(raw, batch_size)
-        # initialize batch counter
-        sub_counter = 0
-        for batch in data:
-            logger.info("Batch %d", sub_counter+1)
-            sentences = [sentence for data_instance in batch
-                         for sentence in [data_instance[1], data_instance[2]]]
-            ids = np.array([int(data_instance[0])
-                            for data_instance in batch], dtype="int32")
-            labels = np.array([int(data_instance[3])
-                               for data_instance in batch], dtype="int32")
-            embeddings, cosim_norm = convert_2_feature_arrays(sentences,
-                                                              laser,
-                                                              lang)
-            if first_batch:
-                dset_vec[:] = embeddings
-                dset_cn[:] = cosim_norm
-                dset_labels[:] = labels
-                dset_ids[:] = ids
-                first_batch = False
-            else:
-                extend_hdf5_dataset(dset_vec, embeddings)
-                extend_hdf5_dataset(dset_cn, cosim_norm)
-                extend_hdf5_dataset(dset_labels, labels)
-                extend_hdf5_dataset(dset_ids, ids)
-            # increment batch counter
-            sub_counter += 1
-        raw.close()
+        with h5py.File((os.path.splitext(input_file)[0] +
+                        ".hdf5"), 'w') as raw:
+            (dset_vec, dset_cn,
+             dset_labels, dset_ids) = create_hdf5_datasets(raw, batch_size)
+            # initialize batch counter
+            sub_counter = 0
+            for batch in data:
+                logger.info("Batch %d", sub_counter+1)
+                sentences = [sentence for data_instance in batch
+                             for sentence in [data_instance[1], data_instance[2]]]
+                ids = np.array([int(data_instance[0])
+                                for data_instance in batch], dtype="int32")
+                labels = np.array([int(data_instance[3])
+                                   for data_instance in batch], dtype="int32")
+                embeddings, cosim_norm = convert_2_feature_arrays(sentences,
+                                                                  laser,
+                                                                  lang)
+                if first_batch:
+                    dset_vec[:] = embeddings
+                    dset_cn[:] = cosim_norm
+                    dset_labels[:] = labels
+                    dset_ids[:] = ids
+                    first_batch = False
+                else:
+                    extend_hdf5_dataset(dset_vec, embeddings)
+                    extend_hdf5_dataset(dset_cn, cosim_norm)
+                    extend_hdf5_dataset(dset_labels, labels)
+                    extend_hdf5_dataset(dset_ids, ids)
+                # increment batch counter
+                sub_counter += 1
 
 
 if __name__ == "__main__":

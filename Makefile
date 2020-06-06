@@ -17,7 +17,3 @@ download_laser:
 download_paws_x:
 	wget -N -P $(DATA) "https://storage.googleapis.com/paws/pawsx/x-final.tar.gz"
 	tar -zxvf $(DATA)/x-final.tar.gz -C $(DATA)
-	mkdir -p $(DATA)/x-final/misc
-	mv $(DATA)/x-final/es $(DATA)/x-final/fr \
-		$(DATA)/x-final/ja $(DATA)/x-final/ko \
-		$(DATA)/x-final/zh $(DATA)/x-final/misc/

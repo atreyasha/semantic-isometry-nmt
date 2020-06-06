@@ -148,6 +148,10 @@ def main() -> None:
     input_files = glob(input_glob)
     laser = Laser()
     for counter, input_file in enumerate(input_files):
+        with open(input_file,"r") as f:
+            # offset by 1 in case of extra terminal newline symbol
+            num_lines = sum(1 for line in f) - 1
+        total_batches = int(np.ceil(num_lines/batch_size))
         logger.info("Handling target %d/%d: %s",
                     counter+1, len(input_files), input_file)
         lang = os.path.basename(os.path.dirname(input_file))
@@ -161,7 +165,7 @@ def main() -> None:
             # initialize batch counter
             sub_counter = 0
             for batch in data:
-                logger.info("Batch %d", sub_counter+1)
+                logger.info("Batch %d/%d", sub_counter+1, total_batches)
                 sentences = [sentence for data_instance in batch
                              for sentence in [data_instance[1], data_instance[2]]]
                 ids = np.array([int(data_instance[0])

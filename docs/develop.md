@@ -25,6 +25,27 @@
     6.  **TODO** check whether all features are necessary or
         whether some abstraction is sufficient
 
+    7.  **TODO** provide readme to hdf5 files with different
+        index meanings
+
+    8.  compare performance with or without English and other languages
+        to see if this differs
+
+    9.  compare performance with other pre-trained paraphrase detector
+
+    10. possible to extend to other languages to check performance with
+        LASER embeddings
+
+    11. better to work with human-curated data than back-translated ones
+        due to many errors -\> consider PAWS and PAWS-X
+
+    12. important to keep things within LASER for multi-lingual features
+
+    13. could not find other technique which used PAWS-X in combination
+        with LASER
+
+    14. look into nli adversarial datasets -\> Nevin and Aatlantise
+
 2.  Code and documentation
 
     1.  **TODO** rebuild repository workflow with new
@@ -54,18 +75,6 @@
 
     11. re-review dependencies and remove unnecessary ones upon next
         check
-
-    12. better to work with human-curated data than back-translated ones
-        due to many errors -\> consider PAWS and PAWS-X
-
-    13. maybe use pre-trained paraphrase detector here if that helps
-
-    14. important to keep things within LASER for multi-lingual features
-
-    15. could not find other technique which used PAWS-X in combination
-        with LASER
-
-    16. look into nli adversarial datasets -\> Nevin and Aatlantise
 
 3.  Fairseq NMT models
 

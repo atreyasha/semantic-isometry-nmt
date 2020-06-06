@@ -7,6 +7,15 @@
 ***** TODO if SVC with various kernels does not perform in the high 90s, can consider using a permutation invariant neural network for this purpose
 ***** TODO use dataset generator to keep everything memory efficient -> save files in hd5 format with compression
 ***** TODO check whether all features are necessary or whether some abstraction is sufficient
+***** TODO provide readme to hdf5 files with different index meanings
+
+***** compare performance with or without English and other languages to see if this differs
+***** compare performance with other pre-trained paraphrase detector
+***** possible to extend to other languages to check performance with LASER embeddings
+***** better to work with human-curated data than back-translated ones due to many errors -> consider PAWS and PAWS-X
+***** important to keep things within LASER for multi-lingual features
+***** could not find other technique which used PAWS-X in combination with LASER
+***** look into nli adversarial datasets -> Nevin and Aatlantise
 
 **** Code and documentation
 ***** TODO rebuild repository workflow with new structure -> push to github and make things clean again
@@ -20,12 +29,6 @@
 ***** add failsafe to ensure submodules are all loaded -> with some phony checkouts
 ***** clarify exact meaning of wmt dev set vs test set
 ***** re-review dependencies and remove unnecessary ones upon next check
-
-***** better to work with human-curated data than back-translated ones due to many errors -> consider PAWS and PAWS-X
-***** maybe use pre-trained paraphrase detector here if that helps
-***** important to keep things within LASER for multi-lingual features
-***** could not find other technique which used PAWS-X in combination with LASER
-***** look into nli adversarial datasets -> Nevin and Aatlantise
 
 **** Fairseq NMT models
 ***** download SOTA models from fairseq, start testing paraphrased samples on it and manually check out differences in results, see if this idea makes sense on a large scale

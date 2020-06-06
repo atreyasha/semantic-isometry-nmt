@@ -2,11 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-from argparse import Namespace
 from .arg_metav_formatter import arg_metav_formatter
 
 
-def parse_arguments(subtype: str) -> Namespace:
+def parse_arguments(subtype: str) -> argparse.Namespace:
     """
     Generic command-line parser which can be re-used across project
 
@@ -30,7 +29,7 @@ def parse_arguments(subtype: str) -> Namespace:
         parser.add_argument("--batch-size",
                             type=int,
                             default=1000,
-                            help="Batch or chunk size for piping data")
+                            help="Batch size for reading/writing data")
     parser.add_argument("--verbosity",
                         type=int,
                         default=1,

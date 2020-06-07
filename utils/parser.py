@@ -16,10 +16,11 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
       args (Namespace): Namespace object to be used in downstream functions
     """
     parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
-    parser.add_argument("--input-glob",
+    parser.add_argument("--input-lang",
                         type=str,
-                        default="./data/x-final/*/*.tsv",
-                        help="glob for finding input file(s)")
+                        default="de",
+                        choices = ["en","de","es","fr","ja","ko","zh","*"],
+                        help="Specify the input language for preprocessing")
     if subtype == "train":
         parser.add_argument("--random-seed",
                             type=int,

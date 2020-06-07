@@ -2,60 +2,47 @@
 
 1.  Paraphrase data selection and analysis workflow
 
-    1.  **TODO** use paws-x for learning good paraphrase
-        distinction -\> use simple model or other consider more complex
-        multilingual models
+    1.  **TODO** use pytorch NN -\> use full features instead
+        of truncating -\> think of interesting permutation invariant
+        architectures and maximize same values
 
-    2.  **TODO** normalize all input properly and keep
-        normalization scheme saved
+    2.  **TODO** save performance history of all models to
+        get nice comparisons, try using 1024 features plus cosine
+        similarity and norm diff to see if these help -\> include
+        variants
 
-    3.  **TODO** develop SVC with cosine similarity and
-        vector difference to find some optimum thresholds for paraphrase
-        vs. not -\> do quick run with scikit-learn and test on German
-        paraphrases -\> look into using generators to make this more
-        memory efficient
+    3.  **TODO** train one model per language -\> can keep
+        separate normalization with this, normalization should be a
+        modelling step and not necessarily earlier
 
-    4.  **TODO** if SVC with various kernels does not perform
-        in the high 90s, can consider using a permutation invariant
-        neural network for this purpose
+    4.  **TODO** transform basic data first and can convert
+        to normalizations per model instead of during pre-processing
 
-    5.  **TODO** use dataset generator to keep everything
-        memory efficient -\> save files in hd5 format with compression
+    5.  look for adaptive, random search in hyperparameters, and try out
+        NAS -\> perhaps use some pre-existing libraries
 
-    6.  **TODO** check whether all features are necessary or
-        whether some abstraction is sufficient
+    6.  build custom data generators for large raw data if used
 
-    7.  **TODO** provide readme to hdf5 files with different
-        index meanings
+    7.  consider float32 vs float64 for cosine similarity and diff-norms
 
-    8.  train one model per language -\> can keep separate normalization
-        with this, normalization should be a modelling step and not
-        necessarily earlier
+    8.  advantage is testing with light LASER model and only final
+        output instead of fine-tuning full model
 
-    9.  transform basic data first and can convert to normalizations per
-        model instead of during pre-processing
+    9.  compare performance with or without other languages to see if
+        this differs
 
-    10. consider float32 vs float64 for cosine similarity and diff-norms
+    10. compare performance with other pre-trained paraphrase detector
+        -\> such as fine-tuned multilingual BERT from PAWS-X paper
 
-    11. build custom data generators for large raw data if used
+    11. better to work with human-curated data than back-translated ones
+        due to many errors -\> advantage in PAWS and PAWS-X
 
-    12. compare performance with or without English and other languages
-        to see if this differs
-
-    13. compare performance with other pre-trained paraphrase detector
-
-    14. possible to extend to other languages to check performance with
-        LASER embeddings
-
-    15. better to work with human-curated data than back-translated ones
-        due to many errors -\> consider PAWS and PAWS-X
-
-    16. important to keep things within LASER for multi-lingual features
-
-    17. could not find other technique which used PAWS-X in combination
+    12. could not find other technique which used PAWS-X in combination
         with LASER
 
-    18. look into nli adversarial datasets -\> Nevin and Aatlantise
+    13. add failsafe to output maximum score in case same
+
+    14. look into nli adversarial datasets -\> Nevin and Aatlantise
 
 2.  Code and documentation
 
@@ -68,23 +55,25 @@
     3.  **TODO** clean up reading articles/papers and make
         things neater overall
 
-    4.  consider building readme and project using python -m framework
+    4.  provide readme to hdf5 files with different index meanings
 
-    5.  log out random seeds for full reproducability
+    5.  consider building readme and project using python -m framework
 
-    6.  add citations in readme as per general standard
+    6.  log out random seeds for full reproducability
 
-    7.  add relevant gitignores
+    7.  add citations in readme as per general standard
 
-    8.  add documentation/acknowledgments to datasets and code, and how
+    8.  add relevant gitignores
+
+    9.  add documentation/acknowledgments to datasets and code, and how
         to handle submodules
 
-    9.  add failsafe to ensure submodules are all loaded -\> with some
+    10. add failsafe to ensure submodules are all loaded -\> with some
         phony checkouts
 
-    10. clarify exact meaning of wmt dev set vs test set
+    11. clarify exact meaning of wmt dev set vs test set
 
-    11. re-review dependencies and remove unnecessary ones upon next
+    12. re-review dependencies and remove unnecessary ones upon next
         check
 
 3.  Fairseq NMT models

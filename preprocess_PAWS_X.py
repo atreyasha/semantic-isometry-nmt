@@ -171,6 +171,9 @@ def main() -> None:
             if "train" in input_file:
                 scaler_embeddings = StandardScaler()
                 scaler_cn = StandardScaler()
+                scalers = [scaler_embeddings, scaler_cn]
+            else:
+                scalers = None
             # open hdf5 files to write into
             with h5py.File((os.path.splitext(input_file)[0] +
                             ".hdf5"), 'w') as raw:
@@ -190,10 +193,6 @@ def main() -> None:
                     labels = np.array([int(data_instance[3])
                                        for data_instance in batch],
                                       dtype="int32")
-                    if "train" in input_file:
-                        scalers = [scaler_embeddings, scaler_cn]
-                    else:
-                        scalers = None
                     embeddings, cosim_norm = convert_2_feature_arrays(sentences,
                                                                       laser,
                                                                       lang,

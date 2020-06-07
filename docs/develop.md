@@ -11,12 +11,11 @@
         similarity and norm diff to see if these help -\> include
         variants
 
-    3.  **TODO** train one model per language -\> can keep
-        separate normalization with this, normalization should be a
-        modelling step and not necessarily earlier
+    3.  **TODO** build different combinations of models to
+        test
 
-    4.  **TODO** transform basic data first and can convert
-        to normalizations per model instead of during pre-processing
+    4.  can build custom scalers later on depending on training
+        configuration
 
     5.  look for adaptive, random search in hyperparameters, and try out
         NAS -\> perhaps use some pre-existing libraries

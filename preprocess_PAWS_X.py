@@ -61,7 +61,7 @@ def convert_2_feature_arrays(sentences: List[str],
       sentences should be adjacent to one another
       laser (Laser): instantiated Laser model object
       lang (str): language identification code
-      scaler (Union[None, List[StandardScaler]]): standard scalers to be partially
+      scalers (Union[None, List[StandardScaler]]): standard scalers to be partially
       fit on training data
 
     Returns:

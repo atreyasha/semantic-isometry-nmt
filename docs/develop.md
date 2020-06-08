@@ -1,5 +1,9 @@
 ### To-do\'s
 
+-   Manually test some test set paws-x data with nmt model
+-   Discuss idea with Mathias soon and inquire regarding laser vs other
+    model choices
+
 1.  Paraphrase data selection and analysis workflow
 
     1.  **TODO** use pytorch NN -\> use full features instead

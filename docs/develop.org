@@ -1,5 +1,8 @@
 *** To-do's
 
+- Manually test some test set paws-x data with nmt model
+- Discuss idea with Mathias soon and inquire regarding laser vs other model choices
+
 **** Paraphrase data selection and analysis workflow
 ***** TODO use pytorch NN -> use full features instead of truncating -> think of interesting permutation invariant architectures and maximize same values
 ***** TODO save performance history of all models to get nice comparisons, try using 1024 features plus cosine similarity and norm diff to see if these help -> include variants
@@ -110,4 +113,3 @@
 ***** noise is not problematic since there is already noise present in normal training data
 ***** meaning preserving + adversarial outcome -> then useful
 ***** augmentation is important if adversarial attack is successful, maybe syntax real-life frequency has effect
- 

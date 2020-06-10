@@ -1,9 +1,5 @@
 ### To-do\'s
 
--   Manually test some test set paws-x data with nmt model
--   Discuss idea with Mathias soon and inquire regarding laser vs other
-    model choices
-
 1.  Paraphrase data selection and analysis workflow
 
     1.  **TODO** use pytorch NN -\> use full features instead
@@ -18,39 +14,47 @@
     3.  **TODO** build different combinations of models to
         test
 
-    4.  can build custom scalers later on depending on training
+    4.  discuss idea with Mathias soon and inquire regarding laser vs
+        other model choices
+
+    5.  look into hdf5 parallel indexing and readin, check to ensure
+        that both vectors are being processed
+
+    6.  manually test some test set paws-x data with nmt model
+
+    7.  can build custom scalers later on depending on training
         configuration
 
-    5.  look for adaptive, random search in hyperparameters, and try out
+    8.  look for adaptive, random search in hyperparameters, and try out
         NAS -\> perhaps use some pre-existing libraries
 
-    6.  build custom data generators for large raw data if used
+    9.  build custom data generators for large raw data if used
 
-    7.  consider float32 vs float64 for cosine similarity and diff-norms
+    10. consider float32 vs float64 for cosine similarity and diff-norms
 
-    8.  advantage is testing with light LASER model and only final
+    11. advantage is testing with light LASER model and only final
         output instead of fine-tuning full model
 
-    9.  compare performance with or without other languages to see if
+    12. compare performance with or without other languages to see if
         this differs
 
-    10. compare performance with other pre-trained paraphrase detector
+    13. compare performance with other pre-trained paraphrase detector
         -\> such as fine-tuned multilingual BERT from PAWS-X paper
 
-    11. better to work with human-curated data than back-translated ones
+    14. better to work with human-curated data than back-translated ones
         due to many errors -\> advantage in PAWS and PAWS-X
 
-    12. could not find other technique which used PAWS-X in combination
+    15. could not find other technique which used PAWS-X in combination
         with LASER
 
-    13. add failsafe to output maximum score in case same
+    16. add failsafe to output maximum score in case same
 
-    14. look into nli adversarial datasets -\> Nevin and Aatlantise
+    17. look into nli adversarial datasets -\> Nevin and Aatlantise
 
 2.  Code and documentation
 
-    1.  **TODO** rebuild repository workflow with new
-        structure -\> push to github and make things clean again
+    1.  **TODO** add a deployed service on GitHub to build
+        and checkc sanity
 
     2.  **TODO** add a pylinter for formatting as pre-commit
         hook -\> think of standards to abide by -\> auto-PEP8

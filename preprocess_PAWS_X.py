@@ -164,9 +164,9 @@ def stream_laser_2_hdf5(input_glob: str, batch_size: int,
                 sentences = [sentence for data_instance in batch
                              for sentence in [data_instance[1],
                                               data_instance[2]]]
-                ids = np.array([int(data_instance[0])
+                ids = np.array([[int(data_instance[0])]
                                 for data_instance in batch], dtype="int32")
-                labels = np.array([int(data_instance[3])
+                labels = np.array([[int(data_instance[3])]
                                    for data_instance in batch], dtype="int32")
                 embeddings, cosim_norm = convert_2_feature_arrays(sentences,
                                                                   laser,

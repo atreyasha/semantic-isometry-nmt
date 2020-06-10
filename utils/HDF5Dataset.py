@@ -21,8 +21,8 @@ class HDF5Dataset(data.Dataset):
         super(HDF5Dataset, self).__init__()
         assert os.path.exists(file_path)
         self.h5_file = h5py.File(file_path, "r")
-        self.data = self.h5_file.get("embeddings")
-        self.target = self.h5_file.get("labels")
+        self.data = self.h5_file.get("embeddings")[:]
+        self.target = self.h5_file.get("labels")[:]
 
     def __getitem__(self, index):
         """ Get relevant data items with transformations """

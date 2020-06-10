@@ -29,8 +29,8 @@ class HDF5Dataset(data.Dataset):
         x = torch.from_numpy(self.data[index]).float()
         y = torch.from_numpy(self.target[index]).float()
         # transform x where possible
-        if self.transform is not None:
-            x = self.transform(x)
+        # if self.transform is not None:
+        #     x = self.transform(x)
         return (x, y)
 
     def __len__(self):

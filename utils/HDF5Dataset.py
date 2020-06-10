@@ -15,7 +15,7 @@ class HDF5Dataset(data.Dataset):
     class can only work with num_workers = 1 in DataLoaders
     """
 
-    def __init__(self, file_path, transform):
+    def __init__(self, file_path):
         """ Initialize dataset class """
         super(HDF5Dataset, self).__init__()
         assert os.path.exists(file_path)

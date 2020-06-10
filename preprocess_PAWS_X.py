@@ -104,12 +104,12 @@ def create_hdf5_datasets(file_obj: h5py.File,
                                               compression="gzip",
                                               dtype="float32")
     dset_labels = file_obj.create_dataset("labels",
-                                          shape=(batch_size,),
+                                          shape=(batch_size,1),
                                           maxshape=(None,),
                                           compression="gzip",
                                           dtype="int32")
     dset_ids = file_obj.create_dataset("ids",
-                                       shape=(batch_size,),
+                                       shape=(batch_size,1),
                                        maxshape=(None,),
                                        compression="gzip",
                                        dtype="int32")

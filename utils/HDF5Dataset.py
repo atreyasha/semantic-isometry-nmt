@@ -22,7 +22,6 @@ class HDF5Dataset(data.Dataset):
         self.h5_file = h5py.File(file_path, "r")
         self.data = self.h5_file.get("embeddings")
         self.target = self.h5_file.get("labels")
-        self.transform = transform
 
     def __getitem__(self, index):
         """ Get relevant data items with transformations """

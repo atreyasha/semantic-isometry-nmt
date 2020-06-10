@@ -14,42 +14,46 @@
     3.  **TODO** build different combinations of models to
         test
 
-    4.  discuss idea with Mathias soon and inquire regarding laser vs
+    4.  **TODO** add function for normalization within class
+        itself
+
+    5.  discuss idea with Mathias soon and inquire regarding laser vs
         other model choices
 
-    5.  look into hdf5 parallel indexing and readin, check to ensure
-        that both vectors are being processed
+    6.  look into hdf5 parallel indexing and readin, check to ensure
+        that both vectors are being processed -\> or how to close hdf5
+        files and if not closing them could result in problems
 
-    6.  manually test some test set paws-x data with nmt model
+    7.  manually test some test set paws-x data with nmt model
 
-    7.  can build custom scalers later on depending on training
+    8.  can build custom scalers later on depending on training
         configuration
 
-    8.  look for adaptive, random search in hyperparameters, and try out
+    9.  look for adaptive, random search in hyperparameters, and try out
         NAS -\> perhaps use some pre-existing libraries
 
-    9.  build custom data generators for large raw data if used
+    10. build custom data generators for large raw data if used
 
-    10. consider float32 vs float64 for cosine similarity and diff-norms
+    11. consider float32 vs float64 for cosine similarity and diff-norms
 
-    11. advantage is testing with light LASER model and only final
+    12. advantage is testing with light LASER model and only final
         output instead of fine-tuning full model
 
-    12. compare performance with or without other languages to see if
+    13. compare performance with or without other languages to see if
         this differs
 
-    13. compare performance with other pre-trained paraphrase detector
+    14. compare performance with other pre-trained paraphrase detector
         -\> such as fine-tuned multilingual BERT from PAWS-X paper
 
-    14. better to work with human-curated data than back-translated ones
+    15. better to work with human-curated data than back-translated ones
         due to many errors -\> advantage in PAWS and PAWS-X
 
-    15. could not find other technique which used PAWS-X in combination
+    16. could not find other technique which used PAWS-X in combination
         with LASER
 
-    16. add failsafe to output maximum score in case same
+    17. add failsafe to output maximum score in case same
 
-    17. look into nli adversarial datasets -\> Nevin and Aatlantise
+    18. look into nli adversarial datasets -\> Nevin and Aatlantise
 
 2.  Code and documentation
 
@@ -62,25 +66,28 @@
     3.  **TODO** clean up reading articles/papers and make
         things neater overall
 
-    4.  provide readme to hdf5 files with different index meanings
+    4.  **TODO** add documentation with typing to utils code
+        later on
 
-    5.  consider building readme and project using python -m framework
+    5.  provide readme to hdf5 files with different index meanings
 
-    6.  log out random seeds for full reproducability
+    6.  consider building readme and project using python -m framework
 
-    7.  add citations in readme as per general standard
+    7.  log out random seeds for full reproducability
 
-    8.  add relevant gitignores
+    8.  add citations in readme as per general standard
 
-    9.  add documentation/acknowledgments to datasets and code, and how
+    9.  add relevant gitignores
+
+    10. add documentation/acknowledgments to datasets and code, and how
         to handle submodules
 
-    10. add failsafe to ensure submodules are all loaded -\> with some
+    11. add failsafe to ensure submodules are all loaded -\> with some
         phony checkouts
 
-    11. clarify exact meaning of wmt dev set vs test set
+    12. clarify exact meaning of wmt dev set vs test set
 
-    12. re-review dependencies and remove unnecessary ones upon next
+    13. re-review dependencies and remove unnecessary ones upon next
         check
 
 3.  Fairseq NMT models

@@ -4,9 +4,10 @@
 ***** TODO use pytorch NN -> use full features instead of truncating -> think of interesting permutation invariant architectures and maximize same values
 ***** TODO save performance history of all models to get nice comparisons, try using 1024 features plus cosine similarity and norm diff to see if these help -> include variants
 ***** TODO build different combinations of models to test
+***** TODO add function for normalization within class itself
 
 ***** discuss idea with Mathias soon and inquire regarding laser vs other model choices
-***** look into hdf5 parallel indexing and readin, check to ensure that both vectors are being processed
+***** look into hdf5 parallel indexing and readin, check to ensure that both vectors are being processed -> or how to close hdf5 files and if not closing them could result in problems
 ***** manually test some test set paws-x data with nmt model
 ***** can build custom scalers later on depending on training configuration
 ***** look for adaptive, random search in hyperparameters, and try out NAS -> perhaps use some pre-existing libraries
@@ -24,6 +25,7 @@
 ***** TODO add a deployed service on GitHub to build and checkc sanity
 ***** TODO add a pylinter for formatting as pre-commit hook -> think of standards to abide by -> auto-PEP8
 ***** TODO clean up reading articles/papers and make things neater overall
+***** TODO add documentation with typing to utils code later on
 ***** provide readme to hdf5 files with different index meanings
 ***** consider building readme and project using python -m framework
 ***** log out random seeds for full reproducability

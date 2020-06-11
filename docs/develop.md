@@ -15,50 +15,54 @@
         test
 
     4.  **TODO** add function for normalization within class
-        itself
+        itself -\> or think of how to make normalization scheme portable
+        and not have it separate outside of model
 
-    5.  discuss idea with Mathias soon and inquire regarding laser vs
+    5.  think of alternative HDF5 big-data handling class aside from
+        full loader
+
+    6.  discuss idea with Mathias soon and inquire regarding laser vs
         other model choices
 
-    6.  look into hdf5 parallel indexing and readin, check to ensure
+    7.  look into hdf5 parallel indexing and readin, check to ensure
         that both vectors are being processed -\> or how to close hdf5
         files and if not closing them could result in problems
 
-    7.  manually test some test set paws-x data with nmt model
+    8.  manually test some test set paws-x data with nmt model
 
-    8.  can build custom scalers later on depending on training
+    9.  can build custom scalers later on depending on training
         configuration
 
-    9.  look for adaptive, random search in hyperparameters, and try out
+    10. look for adaptive, random search in hyperparameters, and try out
         NAS -\> perhaps use some pre-existing libraries
 
-    10. build custom data generators for large raw data if used
+    11. build custom data generators for large raw data if used
 
-    11. consider float32 vs float64 for cosine similarity and diff-norms
+    12. consider float32 vs float64 for cosine similarity and diff-norms
 
-    12. advantage is testing with light LASER model and only final
+    13. advantage is testing with light LASER model and only final
         output instead of fine-tuning full model
 
-    13. compare performance with or without other languages to see if
+    14. compare performance with or without other languages to see if
         this differs
 
-    14. compare performance with other pre-trained paraphrase detector
+    15. compare performance with other pre-trained paraphrase detector
         -\> such as fine-tuned multilingual BERT from PAWS-X paper
 
-    15. better to work with human-curated data than back-translated ones
+    16. better to work with human-curated data than back-translated ones
         due to many errors -\> advantage in PAWS and PAWS-X
 
-    16. could not find other technique which used PAWS-X in combination
+    17. could not find other technique which used PAWS-X in combination
         with LASER
 
-    17. add failsafe to output maximum score in case same
+    18. add failsafe to output maximum score in case same
 
-    18. look into nli adversarial datasets -\> Nevin and Aatlantise
+    19. look into nli adversarial datasets -\> Nevin and Aatlantise
 
 2.  Code and documentation
 
     1.  **TODO** add a deployed service on GitHub to build
-        and checkc sanity
+        and check sanity
 
     2.  **TODO** add a pylinter for formatting as pre-commit
         hook -\> think of standards to abide by -\> auto-PEP8

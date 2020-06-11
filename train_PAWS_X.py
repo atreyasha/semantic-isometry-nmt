@@ -2,21 +2,30 @@
 # -*- coding: utf-8 -*-
 
 import torch
-from utils.model_utils import Permutation_Invariant_MLP
-from utils.HDF5Dataset import HDF5Dataset
+from utils.Permutation_Invariant_MLP import Permutation_Invariant_MLP
+from utils.HDF5Dataset import HDF5Dataset_Full_Loader
 from torch.utils.data import DataLoader
 from pytorch_lightning import Trainer
 
-ds = HDF5Dataset("./data/x-final/de/translated_train.hdf5")
-train_dataloader = DataLoader(ds, batch_size = 256, shuffle = True, num_workers = 4)
+# initialize and fit train dataset
+train_ds = HDF5Dataset_Full_Loader("./data/x-final/de/translated_train.hdf5")
+train_ds.fit_scaler()
+train_ds.apply_scaler()
+# initialize and fit dev dataset
+dev_ds = HDF5Dataset_Full_Loader("./data/x-final/de/dev_2k.hdf5")
+dev_ds.apply_scaler(train_ds.scaler)
+# initialize three data loaders
+train_dataloader = DataLoader(train_ds, batch_size = 256, shuffle = True,
+                              num_workers = 4)
+dev_dataloader = DataLoader(dev_ds, batch_size = 256, num_workers = 4)
+
+# initialize model-specific aspects
 model = Permutation_Invariant_MLP()
-trainer = Trainer(max_epochs=100)
-trainer.fit(model, train_dataloader)
-# ds.close_hdf5()
+trainer = Trainer(gpus = 1)
+trainer.fit(model, train_dataloader, dev_dataloader)
 
 # Developments:
-# TODO add scaler initialization step -> can transform with torch normalizer
-# TODO add dropout and other optimizations here
-# TODO set up quick code and run grid-search for best models
-# TODO data loader is slow -> how could this be made faster
-# close all datasets at the end
+# TODO add gpus back
+# 1. figure out basic grid-search with hparams variable -> GS over LR and DR
+# 2. monitor accuracies and performances -> do it quickly
+# Note: model checkpointing and early stopping are already implemented

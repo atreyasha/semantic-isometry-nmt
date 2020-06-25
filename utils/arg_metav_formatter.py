@@ -12,7 +12,6 @@ class Metavar_Circum_Symbols(argparse.HelpFormatter):
     Only the name of this class is considered a public API. All the methods
     provided by the class are considered an implementation detail.
     """
-
     def _get_default_metavar_for_optional(self, action):
         """
         Function to return option metavariable type with circum-symbols
@@ -33,7 +32,6 @@ class Metavar_Indenter(argparse.HelpFormatter):
     Only the name of this class is considered a public API. All the methods
     provided by the class are considered an implementation detail.
     """
-
     def _format_action(self, action):
         """
         Function to define how actions are printed in help message

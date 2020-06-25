@@ -1,65 +1,101 @@
 ### To-do\'s
 
-1.  Paraphrase data selection and analysis workflow
+-   Produce basic translations, send these to Mathias for manual review
+    and decide whether further student evaluations are required
+-   Check human vs machine translated training, on different training
+    sets, read more about structure of paws-x and how it was
+    constructed, make basic translations and send to Mathias for manual
+    review
 
-    1.  **TODO** use pytorch NN -\> use full features instead
-        of truncating -\> think of interesting permutation invariant
-        architectures and maximize same values
+1.  Investigate semantics transfer during translation
 
-    2.  **TODO** save performance history of all models to
-        get nice comparisons, try using 1024 features plus cosine
-        similarity and norm diff to see if these help -\> include
-        variants
+    1.  **TODO** do a bleu score comparison of translations
+        and gold sentence paraphrases for surface level analysis
 
-    3.  **TODO** build different combinations of models to
-        test
+    2.  **TODO** utilize fairseq model(s) for translation
+        from English to German and then use test translations
 
-    4.  **TODO** add function for normalization within class
-        itself -\> or think of how to make normalization scheme portable
-        and not have it separate outside of model
+    3.  **TODO** use XLM-R model for predictions -\> predict
+        it on the test set in german, and the test set translated and
+        check the differences and where they coincide and where not -\>
+        will tell you where the model is bad and where not to trust it
+        -\> and where to trust it
 
-    5.  think of alternative HDF5 big-data handling class aside from
-        full loader
+    4.  expect very good results on translation and think of how to
+        analyze and interpret/explain them
 
-    6.  discuss idea with Mathias soon and inquire regarding laser vs
-        other model choices
+2.  Paraphrase data selection and analysis workflow
 
-    7.  look into hdf5 parallel indexing and readin, check to ensure
-        that both vectors are being processed -\> or how to close hdf5
-        files and if not closing them could result in problems
+    1.  Fine-tuning large X-models
 
-    8.  manually test some test set paws-x data with nmt model
+        1.  **TODO** refactor and improve xtreme code with
+            simpler repository -\> modify logging of models, combination
+            of languages, correct naming of training parameters and
+            files, make training process exhaustive and thorough, add
+            better metrics for monitoring performance including ROC-AUC
+            etc.
 
-    9.  can build custom scalers later on depending on training
-        configuration
+        2.  **TODO** train more model combinations, change
+            evaluation metrics on test set to only be at the end,
+            continue training for existing models or re-evaluate them on
+            the test dataset, make new model which learns from all data
+            instead of just one language, remove constant re-writing of
+            caches, add more information into each log file to make it
+            unique
 
-    10. look for adaptive, random search in hyperparameters, and try out
-        NAS -\> perhaps use some pre-existing libraries
+        3.  **TODO** change pre-processing from two
+            concatenated sentences to permutation invariant type -\>
+            check if it improves
 
-    11. build custom data generators for large raw data if used
+        4.  use both s3it and local cluster for simulataneous model
+            training
 
-    12. consider float32 vs float64 for cosine similarity and diff-norms
+        5.  data augmentation with easy examples -\> perhaps add this in
+            to training scheme
 
-    13. advantage is testing with light LASER model and only final
-        output instead of fine-tuning full model
+        6.  look into Elektra, SentenceBERT, bert~score~, models
+            developed for GLUE tasks such as paraphrase detection tasks
 
-    14. compare performance with or without other languages to see if
+        7.  not good enough argument to show that siamese network is
+            necessary compared to ordered concatenation
+
+    2.  LASER embeddings + dense layers
+
+        1.  **TODO** develop small but efficient pipeline to
+            run LASER + dense layer to get basic performance and show
+            ineffectiveness
+
+        2.  **TODO** add function for normalization within
+            class itself -\> or think of how to make normalization
+            scheme portable and not have it separate outside of model
+
+        3.  figure out nicer and more automated means of logging
+            experiments -\> tensorboard + csv logging -\> consider using
+            wandb, mlflow or comet-ml
+
+        4.  extend to all combinations of languages, keep this as
+            baseline comparison with larger models
+
+    3.  keep documentation of work -\> such as SGCP & SOW-REAP
+        performance (with examples), LASER performance
+
+    4.  compare performance with or without other languages to see if
         this differs
 
-    15. compare performance with other pre-trained paraphrase detector
+    5.  compare performance with other pre-trained paraphrase detector
         -\> such as fine-tuned multilingual BERT from PAWS-X paper
 
-    16. better to work with human-curated data than back-translated ones
+    6.  add failsafe to output maximum score in case same inputs
+
+    7.  manually test some test set paws-x data with nmt model
+
+    8.  possible to get students to do tests for us to check for
+        semantic transfer
+
+    9.  better to work with human-curated data than back-translated ones
         due to many errors -\> advantage in PAWS and PAWS-X
 
-    17. could not find other technique which used PAWS-X in combination
-        with LASER
-
-    18. add failsafe to output maximum score in case same
-
-    19. look into nli adversarial datasets -\> Nevin and Aatlantise
-
-2.  Code and documentation
+3.  Code and documentation
 
     1.  **TODO** add a deployed service on GitHub to build
         and check sanity
@@ -67,83 +103,84 @@
     2.  **TODO** add a pylinter for formatting as pre-commit
         hook -\> think of standards to abide by -\> auto-PEP8
 
-    3.  **TODO** clean up reading articles/papers and make
-        things neater overall
-
-    4.  **TODO** add documentation with typing to utils code
+    3.  **TODO** add documentation with typing to utils code
         later on
+
+    4.  ultimately release best fine-tuned model for use in other
+        scenarios -\> if possible add reproducability concept with
+        setting seeds
 
     5.  provide readme to hdf5 files with different index meanings
 
     6.  consider building readme and project using python -m framework
 
-    7.  log out random seeds for full reproducability
+    7.  think of how to handle LASER vs. larger model workflows in one
+        repo
 
-    8.  add citations in readme as per general standard
+    8.  log out random seeds for full reproducability
 
-    9.  add relevant gitignores
+    9.  add citations in readme as per general standard
 
-    10. add documentation/acknowledgments to datasets and code, and how
+    10. add relevant gitignores
+
+    11. add documentation/acknowledgments to datasets and code, and how
         to handle submodules
 
-    11. add failsafe to ensure submodules are all loaded -\> with some
-        phony checkouts
-
-    12. clarify exact meaning of wmt dev set vs test set
-
-    13. re-review dependencies and remove unnecessary ones upon next
+    12. re-review dependencies and remove unnecessary ones upon next
         check
-
-3.  Fairseq NMT models
-
-    1.  download SOTA models from fairseq, start testing paraphrased
-        samples on it and manually check out differences in results, see
-        if this idea makes sense on a large scale
-
-    2.  look for models that worked on WMT en-de datasets and work from
-        there
-
-    3.  pre-process data as per pre-trained model
 
 ### Completed
 
-1.  **DONE** look into ParaBank2 and universal
+1.  **DONE** bug in XLM-R as it does not appear to learn -\>
+    look through code
+
+2.  **DONE** multilingual BERT with de only -\> bug in how
+    test scripts are saved leads to wrong results
+
+3.  **DONE** maybe consider using German BERT for doing this
+    task explicitly for German, for our end task -\> German BERT and
+    RoBERTa for English to focus on exact task -\> perhaps just use
+    xtreme repo and keep only paws-x task -\> clean up code and workflow
+    for it -\> error might be arising due to gradient clipping for very
+    large model
+
+4.  **DONE** look into ParaBank2 and universal
     decompositional semantics -\> not great paraphrases, no human
     curation
 
-2.  **DONE** look into Duolingo dataset for paraphrases -\>
+5.  **DONE** look into Duolingo dataset for paraphrases -\>
     no German target side
 
-3.  **DONE** add symbols for defaults in metavar default
+6.  **DONE** add symbols for defaults in metavar default
     formatter, maybe add some other formatting tricks such as indents
     for defaults
 
-4.  **DONE** try installing java locally instead of root, if
+7.  **DONE** try installing java locally instead of root, if
     stanford parser is indeed necessary
 
-5.  **DONE** paraphrasing with SGCP -\> very bad results on
+8.  **DONE** paraphrasing with SGCP -\> very bad results on
     both original test and WMT data -\> very sensitive to exemplar
 
-6.  **DONE** embed and cluser using universal sentence
+9.  **DONE** embed and cluser using universal sentence
     encoder (eg. BERT or LASER) -\> use separate clusters for exemplar
     utility, make diverse collection and evaluate using metric or other
     NN
 
-7.  **DONE** find other sentence with maximum similarity and
+10. **DONE** find other sentence with maximum similarity and
     use that as exemplar, useparaphrase of best as exemplar, use
     pos-tags of sentence
 
-8.  **DONE** convert wmt datasets with derived exemplars into
+11. **DONE** convert wmt datasets with derived exemplars into
     format pipe-able into SGCP -\> needed before paraphrasing
 
-9.  **DONE** add workflow to download laser models with
+12. **DONE** add workflow to download laser models with
     python -m laserembeddings download-models
 
-10. **DONE** set up WMT 17 dev/test data and basic repo
+13. **DONE** set up WMT 17 dev/test data and basic repo
 
-11. **DONE** convert all processes to makefile for ease
+14. **DONE** convert all processes to makefile for ease
 
-12. **DONE** set up data downloading for all wmt sets with
+15. **DONE** set up data downloading for all wmt sets with
     SacreBLEU
 
 ### Downstream work
@@ -245,29 +282,31 @@
 
 3.  Data augmenttion
 
-    1.  either look for paraphrase source and target pair which are
+    1.  look into nli adversarial datasets -\> Nevin and Aatlantise
+
+    2.  either look for paraphrase source and target pair which are
         closest to gold ones and augment data with these -\> is safer to
         train with and can possibly improve overall translation quality
 
-    2.  otherwise, find paraphrase which is close on source side but
+    3.  otherwise, find paraphrase which is close on source side but
         problematic on target side and augment these with gold target
         -\> acts as a regularizing anchor and possibly adds some
         stability
 
-    3.  Zipf\'s law should apply to syntax chunks, bias might still be
+    4.  Zipf\'s law should apply to syntax chunks, bias might still be
         present
 
-    4.  anchor might still be useful, look for similar syntax on the
+    5.  anchor might still be useful, look for similar syntax on the
         target side that can be substituted -\> maybe some kind of
         imitation to make augmented pairs
 
-    5.  consider contributing paraphrases to data augmentation libraries
+    6.  consider contributing paraphrases to data augmentation libraries
         from research
 
-    6.  noise is not problematic since there is already noise present in
+    7.  noise is not problematic since there is already noise present in
         normal training data
 
-    7.  meaning preserving + adversarial outcome -\> then useful
+    8.  meaning preserving + adversarial outcome -\> then useful
 
-    8.  augmentation is important if adversarial attack is successful,
+    9.  augmentation is important if adversarial attack is successful,
         maybe syntax real-life frequency has effect

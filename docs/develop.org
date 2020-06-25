@@ -2,6 +2,7 @@
 
 - Produce basic translations, send these to Mathias for manual review and decide whether further student evaluations are required
 - Check human vs machine translated training, on different training sets, read more about structure of paws-x and how it was constructed, make basic translations and send to Mathias for manual review
+- Get multiple batches in torch hub fairseq model translations
 
 **** Investigate semantics transfer during translation
 ***** TODO do a bleu score comparison of translations and gold sentence paraphrases for surface level analysis

@@ -6,6 +6,7 @@
     sets, read more about structure of paws-x and how it was
     constructed, make basic translations and send to Mathias for manual
     review
+-   Get multiple batches in torch hub fairseq model translations
 
 1.  Investigate semantics transfer during translation
 

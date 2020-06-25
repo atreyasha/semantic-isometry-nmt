@@ -43,7 +43,7 @@ def main() -> None:
                                'transformer.wmt19.en-de.single_model')
     dict_store = {}
     # write everything to a dictionary json, keep it simple
-    for i, seg in enumerate(tqdm(en_test[:10])):
+    for i, seg in enumerate(tqdm(en_test)):
         dict_store[seg[0]] = {
             "sentence_1": {
                 "en": seg[1],

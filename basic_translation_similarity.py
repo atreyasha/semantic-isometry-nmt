@@ -44,7 +44,7 @@ def main() -> None:
                                'transformer.wmt19.en-de.single_model')
     dict_store = {}
     # write everything to a dictionary json, keep it simple
-    for i in tqdm(range(0, len(en_test[:100]), batch_size)):
+    for i in tqdm(range(0, len(en_test), batch_size)):
         chunk = en_test[i:i+batch_size]
         de_chunk = de_test[i:i+batch_size]
         sentence_1s = [seg[1] for seg in chunk]

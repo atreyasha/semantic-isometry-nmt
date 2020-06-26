@@ -37,11 +37,13 @@ def read_data(file_path: str, drop_first: bool = True) -> List[List[str]]:
 
 
 def main() -> None:
-    batch_size = 100
+    batch_size = 128
     en_test = read_data("./data/x-final/en/test_2k.tsv")
     de_test = read_data("./data/x-final/de/test_2k.tsv")
     nmt_en2de = torch.hub.load('pytorch/fairseq',
-                               'transformer.wmt19.en-de.single_model')
+                               'transformer.wmt14.en-de.single_model')
+    # enable this to use the GPU
+    nmt_en2de.cuda()
     dict_store = {}
     # write everything to a dictionary json, keep it simple
     for i in tqdm(range(0, len(en_test), batch_size)):

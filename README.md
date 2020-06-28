@@ -12,7 +12,7 @@ This repository investigates the performance of state-of-the-art Neural Machine 
     $ poetry install
     ```
 
-2. Alternatively, install dependencies via `pip`:
+2. Alternatively, create a virtual environment manually (recommended) and install dependencies via `pip`:
 
     ```shell
     $ pip install -r requirements.txt
@@ -28,6 +28,6 @@ $ make PAWS-X
 
 ### Development :snail:
 
-As we are still under development, parts of this repository are likely to change significantly
+As we are still u## NMT model robustness to syntax-level adversarial paraphrases.
 
 Check our development [log](./docs/develop.md) for information on current developments.

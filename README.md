@@ -1,10 +1,10 @@
 ## NMT model robustness to syntax-level adversarial paraphrases
 
-### Overview
+### Overview :book:
 
 This repository investigates the performance of state-of-the-art Neural Machine Translation (NMT) models in effectively and consistently transfering the semantics of syntax-level adversarial paraphrases. Through this, we aim to investigate the robustness of said models to such paraphrases. 
 
-### Dependencies
+### Dependencies :neckbeard:
 
 1. If `poetry` is installed on your system, you can install dependencies and create a virtual environment automatically via the following command:
 
@@ -18,7 +18,7 @@ This repository investigates the performance of state-of-the-art Neural Machine 
     $ pip install -r requirements.txt
     ```
 
-### Repository Initialization
+### Repository Initialization :fire:
 
 In order to download and deploy `PAWS-X` data from [Google Research](https://github.com/google-research-datasets/paws/tree/master/pawsx), run the following command:
 
@@ -26,8 +26,8 @@ In order to download and deploy `PAWS-X` data from [Google Research](https://git
 $ make PAWS-X
 ```
 
-### Development
+### Development :snail:
 
-As we are still under development, parts of this repository are likely to change significantly :snail:
+As we are still under development, parts of this repository are likely to change significantly
 
 Check our development [log](./docs/develop.md) for information on current developments.

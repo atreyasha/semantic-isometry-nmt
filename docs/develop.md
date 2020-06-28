@@ -1,6 +1,6 @@
 ### To-do\'s
 
-1.  1\. Investigate semantics transfer during translation
+1.  Investigate semantics transfer during translation
 
     1.  **TODO** investigate PAWS-X data origins and ensure
         this is not present in the NMT training data -\> find new NMT
@@ -29,7 +29,7 @@
     6.  expect very good results on translation and think of how to
         analyze and interpret/explain them
 
-2.  2\. Paraphrase data selection and analysis workflow
+2.  Paraphrase data selection and analysis workflow
 
     1.  Fine-tuning large X-models
 
@@ -82,7 +82,7 @@
     7.  keep documentation of work -\> such as SGCP & SOW-REAP
         performance (with examples), LASER performance
 
-3.  3\. Code and documentation
+3.  Code and documentation
 
     1.  **TODO** redo repository with only necessary
         code-chunks and fill up readme, recreate environment with

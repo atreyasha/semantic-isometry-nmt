@@ -1,133 +1,121 @@
 ### To-do\'s
 
--   Produce basic translations, send these to Mathias for manual review
-    and decide whether further student evaluations are required
--   Check human vs machine translated training, on different training
-    sets, read more about structure of paws-x and how it was
-    constructed, make basic translations and send to Mathias for manual
-    review
--   Get multiple batches in torch hub fairseq model translations
+1.  1\. Investigate semantics transfer during translation
 
-1.  Investigate semantics transfer during translation
+    1.  **TODO** investigate PAWS-X data origins and ensure
+        this is not present in the NMT training data -\> find new NMT
+        model that fits this criterion
 
-    1.  **TODO** do a bleu score comparison of translations
-        and gold sentence paraphrases for surface level analysis
+    2.  do a bleu score comparison of translations and gold sentence
+        paraphrases for surface level analysis -\> output data as tsv
+        instead of json -\> or perhaps provide option for both -\> add
+        this as a pipeline to investigate -\> perhaps use some
+        combinations of scores where possible
 
-    2.  **TODO** utilize fairseq model(s) for translation
-        from English to German and then use test translations
+    3.  utilize fairseq model(s) for translation from English to German
+        and then use test translations, provide options for various
+        models and run these through fine-tuned paraphrase detection
+        model later on -\> run on both gold and translated to check for
+        systematic errors as well
 
-    3.  **TODO** use XLM-R model for predictions -\> predict
-        it on the test set in german, and the test set translated and
-        check the differences and where they coincide and where not -\>
-        will tell you where the model is bad and where not to trust it
-        -\> and where to trust it
+    4.  use XLM-R model for predictions -\> predict it on the test set
+        in german, and the test set translated and check the differences
+        and where they coincide and where not -\> will tell you where
+        the model is bad and where not to trust it -\> and where to
+        trust it
 
-    4.  expect very good results on translation and think of how to
+    5.  check if human evaluation would be necessary at any point
+
+    6.  expect very good results on translation and think of how to
         analyze and interpret/explain them
 
-2.  Paraphrase data selection and analysis workflow
+2.  2\. Paraphrase data selection and analysis workflow
 
     1.  Fine-tuning large X-models
 
-        1.  **TODO** refactor and improve xtreme code with
-            simpler repository -\> modify logging of models, combination
-            of languages, correct naming of training parameters and
-            files, make training process exhaustive and thorough, add
-            better metrics for monitoring performance including ROC-AUC
-            etc.
+        1.  **TODO** fine-tune models with English and ensure
+            no or little machine translated data is present in training
+            set
 
-        2.  **TODO** train more model combinations, change
-            evaluation metrics on test set to only be at the end,
-            continue training for existing models or re-evaluate them on
-            the test dataset, make new model which learns from all data
-            instead of just one language, remove constant re-writing of
-            caches, add more information into each log file to make it
-            unique
+        2.  refactor and improve xtreme code with simpler repository -\>
+            modify logging of models, combination of languages, correct
+            naming of training parameters and files, make training
+            process exhaustive and thorough, add better metrics for
+            monitoring performance including ROC-AUC etc.
 
-        3.  **TODO** change pre-processing from two
-            concatenated sentences to permutation invariant type -\>
-            check if it improves
+        3.  train more model combinations, change evaluation metrics on
+            test set to only be at the end, continue training for
+            existing models or re-evaluate them on the test dataset,
+            make new model which learns from all data instead of just
+            one language, remove constant re-writing of caches, add more
+            information into each log file to make it unique
 
-        4.  use both s3it and local cluster for simulataneous model
+        4.  change pre-processing from two concatenated sentences to
+            permutation invariant type -\> check if it improves
+
+        5.  use both s3it and local cluster for simultaneous model
             training
 
-        5.  data augmentation with easy examples -\> perhaps add this in
+        6.  data augmentation with easy examples -\> perhaps add this in
             to training scheme
 
-        6.  look into Elektra, SentenceBERT, bert~score~, models
+        7.  look into Elektra, SentenceBERT, bert~score~, models
             developed for GLUE tasks such as paraphrase detection tasks
 
-        7.  not good enough argument to show that siamese network is
+        8.  not good enough argument to show that siamese network is
             necessary compared to ordered concatenation
 
-    2.  LASER embeddings + dense layers
-
-        1.  **TODO** develop small but efficient pipeline to
-            run LASER + dense layer to get basic performance and show
-            ineffectiveness
-
-        2.  **TODO** add function for normalization within
-            class itself -\> or think of how to make normalization
-            scheme portable and not have it separate outside of model
-
-        3.  figure out nicer and more automated means of logging
-            experiments -\> tensorboard + csv logging -\> consider using
-            wandb, mlflow or comet-ml
-
-        4.  extend to all combinations of languages, keep this as
-            baseline comparison with larger models
-
-    3.  keep documentation of work -\> such as SGCP & SOW-REAP
-        performance (with examples), LASER performance
-
-    4.  compare performance with or without other languages to see if
+    2.  compare performance with or without other languages to see if
         this differs
 
-    5.  compare performance with other pre-trained paraphrase detector
+    3.  compare performance with other pre-trained paraphrase detector
         -\> such as fine-tuned multilingual BERT from PAWS-X paper
 
-    6.  add failsafe to output maximum score in case same inputs
+    4.  add failsafe to output maximum score in case same inputs
 
-    7.  manually test some test set paws-x data with nmt model
-
-    8.  possible to get students to do tests for us to check for
-        semantic transfer
-
-    9.  better to work with human-curated data than back-translated ones
+    5.  better to work with human-curated data than back-translated ones
         due to many errors -\> advantage in PAWS and PAWS-X
 
-3.  Code and documentation
+    6.  possible to get students to do tests for us to check for
+        semantic transfer
 
-    1.  **TODO** add a deployed service on GitHub to build
-        and check sanity
+    7.  keep documentation of work -\> such as SGCP & SOW-REAP
+        performance (with examples), LASER performance
 
-    2.  **TODO** add a pylinter for formatting as pre-commit
-        hook -\> think of standards to abide by -\> auto-PEP8
+3.  3\. Code and documentation
 
-    3.  **TODO** add documentation with typing to utils code
-        later on
+    1.  **TODO** redo repository with only necessary
+        code-chunks and fill up readme, recreate environment with
+        python3.7 in cluster -\> re-run simple tests first
 
-    4.  ultimately release best fine-tuned model for use in other
+    2.  add a deployed service on GitHub to build and check sanity
+
+    3.  add a pylinter for formatting as pre-commit hook -\> think of
+        standards to abide by -\> auto-PEP8
+
+    4.  add documentation with typing to utils code later on
+
+    5.  ultimately release best fine-tuned model for use in other
         scenarios -\> if possible add reproducability concept with
         setting seeds
 
-    5.  provide readme to hdf5 files with different index meanings
+    6.  provide readme to hdf5 files with different index meanings
 
-    6.  consider building readme and project using python -m framework
+    7.  consider building readme and project using python -m framework
 
-    7.  think of how to handle LASER vs. larger model workflows in one
+    8.  think of how to handle LASER vs. larger model workflows in one
         repo
 
-    8.  log out random seeds for full reproducability
+    9.  log out random seeds for full reproducability
 
-    9.  add citations in readme as per general standard
+    10. add citations in readme as per general standard
 
-    10. add relevant gitignores
+    11. add relevant gitignores
 
-    11. add documentation/acknowledgments to datasets and code, and how
+    12. add documentation/acknowledgments to datasets and code, and how
         to handle submodules
 
-    12. re-review dependencies and remove unnecessary ones upon next
+    13. re-review dependencies and remove unnecessary ones upon next
         check
 
 ### Completed
@@ -186,7 +174,24 @@
 
 ### Downstream work
 
-1.  Semantic similarity metrics
+1.  LASER embeddings + dense layers
+
+    1.  **TODO** develop small but efficient pipeline to run
+        LASER + dense layer to get basic performance and show
+        ineffectiveness
+
+    2.  **TODO** add function for normalization within class
+        itself -\> or think of how to make normalization scheme portable
+        and not have it separate outside of model
+
+    3.  figure out nicer and more automated means of logging experiments
+        -\> tensorboard + csv logging -\> consider using wandb, mlflow
+        or comet-ml
+
+    4.  extend to all combinations of languages, keep this as baseline
+        comparison with larger models
+
+2.  Semantic similarity metrics
 
     1.  make table with all metrics and various datasets
 
@@ -207,7 +212,7 @@
         connecting, framenet, frame semantic parsing, brown clusters,
         AMR parsing, IWCS workshop for discussions
 
-2.  Paraphrase generation
+3.  Paraphrase generation
 
     1.  Ideas for self-paraphrasing
 
@@ -281,7 +286,7 @@
         2.  SCPN \[torch, python2.7, poorly documented\] -\> buggy, but
             some examples work
 
-3.  Data augmenttion
+4.  Data augmenttion
 
     1.  look into nli adversarial datasets -\> Nevin and Aatlantise
 

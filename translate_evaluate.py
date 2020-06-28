@@ -41,7 +41,7 @@ def main() -> None:
     en_test = read_data("./data/x-final/en/test_2k.tsv")
     de_test = read_data("./data/x-final/de/test_2k.tsv")
     nmt_en2de = torch.hub.load('pytorch/fairseq',
-                               'transformer.wmt14.en-de.single_model')
+                               'transformer.wmt16.en-de')
     # enable this to use the GPU
     nmt_en2de.cuda()
     dict_store = {}

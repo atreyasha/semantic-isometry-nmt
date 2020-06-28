@@ -1,43 +1,36 @@
 *** To-do's
 
-- Produce basic translations, send these to Mathias for manual review and decide whether further student evaluations are required
-- Check human vs machine translated training, on different training sets, read more about structure of paws-x and how it was constructed, make basic translations and send to Mathias for manual review
-- Get multiple batches in torch hub fairseq model translations
-
-**** Investigate semantics transfer during translation
-***** TODO do a bleu score comparison of translations and gold sentence paraphrases for surface level analysis
-***** TODO utilize fairseq model(s) for translation from English to German and then use test translations
-***** TODO use XLM-R model for predictions -> predict it on the test set in german, and the test set translated and check the differences and where they coincide and where not -> will tell you where the model is bad and where not to trust it -> and where to trust it
+**** 1. Investigate semantics transfer during translation
+***** TODO investigate PAWS-X data origins and ensure this is not present in the NMT training data -> find new NMT model that fits this criterion
+***** do a bleu score comparison of translations and gold sentence paraphrases for surface level analysis -> output data as tsv instead of json -> or perhaps provide option for both -> add this as a pipeline to investigate -> perhaps use some combinations of scores where possible
+***** utilize fairseq model(s) for translation from English to German and then use test translations, provide options for various models and run these through fine-tuned paraphrase detection model later on -> run on both gold and translated to check for systematic errors as well
+***** use XLM-R model for predictions -> predict it on the test set in german, and the test set translated and check the differences and where they coincide and where not -> will tell you where the model is bad and where not to trust it -> and where to trust it
+***** check if human evaluation would be necessary at any point
 ***** expect very good results on translation and think of how to analyze and interpret/explain them
 
-**** Paraphrase data selection and analysis workflow
+**** 2. Paraphrase data selection and analysis workflow
 ***** Fine-tuning large X-models
-****** TODO refactor and improve xtreme code with simpler repository -> modify logging of models, combination of languages, correct naming of training parameters and files, make training process exhaustive and thorough, add better metrics for monitoring performance including ROC-AUC etc.
-****** TODO train more model combinations, change evaluation metrics on test set to only be at the end, continue training for existing models or re-evaluate them on the test dataset, make new model which learns from all data instead of just one language, remove constant re-writing of caches, add more information into each log file to make it unique
-****** TODO change pre-processing from two concatenated sentences to permutation invariant type -> check if it improves
-****** use both s3it and local cluster for simulataneous model training
+****** TODO fine-tune models with English and ensure no or little machine translated data is present in training set
+****** refactor and improve xtreme code with simpler repository -> modify logging of models, combination of languages, correct naming of training parameters and files, make training process exhaustive and thorough, add better metrics for monitoring performance including ROC-AUC etc.
+****** train more model combinations, change evaluation metrics on test set to only be at the end, continue training for existing models or re-evaluate them on the test dataset, make new model which learns from all data instead of just one language, remove constant re-writing of caches, add more information into each log file to make it unique
+****** change pre-processing from two concatenated sentences to permutation invariant type -> check if it improves
+****** use both s3it and local cluster for simultaneous model training
 ****** data augmentation with easy examples -> perhaps add this in to training scheme
 ****** look into Elektra, SentenceBERT, bert_score, models developed for GLUE tasks such as paraphrase detection tasks 
 ****** not good enough argument to show that siamese network is necessary compared to ordered concatenation
 
-***** LASER embeddings + dense layers
-****** TODO develop small but efficient pipeline to run LASER + dense layer to get basic performance and show ineffectiveness
-****** TODO add function for normalization within class itself -> or think of how to make normalization scheme portable and not have it separate outside of model
-****** figure out nicer and more automated means of logging experiments -> tensorboard + csv logging -> consider using wandb, mlflow or comet-ml
-****** extend to all combinations of languages, keep this as baseline comparison with larger models
-
-***** keep documentation of work -> such as SGCP & SOW-REAP performance (with examples), LASER performance
 ***** compare performance with or without other languages to see if this differs
 ***** compare performance with other pre-trained paraphrase detector -> such as fine-tuned multilingual BERT from PAWS-X paper
 ***** add failsafe to output maximum score in case same inputs
-***** manually test some test set paws-x data with nmt model
-***** possible to get students to do tests for us to check for semantic transfer
 ***** better to work with human-curated data than back-translated ones due to many errors -> advantage in PAWS and PAWS-X
+***** possible to get students to do tests for us to check for semantic transfer
+***** keep documentation of work -> such as SGCP & SOW-REAP performance (with examples), LASER performance
 
-**** Code and documentation
-***** TODO add a deployed service on GitHub to build and check sanity
-***** TODO add a pylinter for formatting as pre-commit hook -> think of standards to abide by -> auto-PEP8
-***** TODO add documentation with typing to utils code later on
+**** 3. Code and documentation
+***** TODO redo repository with only necessary code-chunks and fill up readme, recreate environment with python3.7 in cluster -> re-run simple tests first
+***** add a deployed service on GitHub to build and check sanity
+***** add a pylinter for formatting as pre-commit hook -> think of standards to abide by -> auto-PEP8
+***** add documentation with typing to utils code later on
 ***** ultimately release best fine-tuned model for use in other scenarios -> if possible add reproducability concept with setting seeds
 ***** provide readme to hdf5 files with different index meanings
 ***** consider building readme and project using python -m framework
@@ -81,6 +74,12 @@
       CLOSED: [2020-05-17 Sun 21:58]
 
 *** Downstream work
+**** LASER embeddings + dense layers
+***** TODO develop small but efficient pipeline to run LASER + dense layer to get basic performance and show ineffectiveness
+***** TODO add function for normalization within class itself -> or think of how to make normalization scheme portable and not have it separate outside of model
+***** figure out nicer and more automated means of logging experiments -> tensorboard + csv logging -> consider using wandb, mlflow or comet-ml
+***** extend to all combinations of languages, keep this as baseline comparison with larger models
+
 **** Semantic similarity metrics
 ***** make table with all metrics and various datasets
 ***** possibly use several language pairs to test this

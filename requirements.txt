@@ -9,8 +9,8 @@ cython==0.29.20
 decorator==4.4.2
 fairseq==0.9.0
 fastbpe==0.1.0
-idna==2.9
-ipython==7.15.0
+idna==2.10
+ipython==7.16.1
 ipython-genutils==0.2.0
 jedi==0.17.1
 joblib==0.15.1
@@ -29,6 +29,7 @@ requests==2.24.0
 sacrebleu==1.4.10
 sacremoses==0.0.43
 six==1.15.0
+subword-nmt==0.3.7
 torch==1.4.0
 tqdm==4.46.1
 traitlets==4.3.3

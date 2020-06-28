@@ -6,13 +6,15 @@ This repository investigates the performance of state-of-the-art Neural Machine 
 
 ### Dependencies :neckbeard:
 
+Below are two recommended methods of syncing dependencies:
+
 1. If `poetry` is installed on your system, you can install dependencies and create a virtual environment automatically via the following command:
 
     ```shell
     $ poetry install
     ```
 
-2. Alternatively, create a virtual environment manually (recommended) and install dependencies via `pip`:
+2. Alternatively, create a virtual environment (recommended) and install dependencies via `pip`:
 
     ```shell
     $ pip install -r requirements.txt
@@ -20,7 +22,7 @@ This repository investigates the performance of state-of-the-art Neural Machine 
 
 ### Repository Initialization :fire:
 
-In order to download and deploy `PAWS-X` data from [Google Research](https://github.com/google-research-datasets/paws/tree/master/pawsx), run the following command:
+To download and deploy `PAWS-X` data from [Google Research](https://github.com/google-research-datasets/paws/tree/master/pawsx), run the following command:
 
 ```shell
 $ make PAWS-X
@@ -28,6 +30,6 @@ $ make PAWS-X
 
 ### Development :snail:
 
-As we are still u## NMT model robustness to syntax-level adversarial paraphrases.
+As we are still under development, several parts of this repository might change significantly.
 
 Check our development [log](./docs/develop.md) for information on current developments.

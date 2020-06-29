@@ -48,9 +48,9 @@ def write_to_file(lang: str, store: Dict) -> None:
         store (Dict): Dictionary ouput of translation task
     """
     # write everything to a json file to keep things simple
-    path = os.path.join("./out", lang, "store.json")
+    path = os.path.join("./out", lang)
     os.makedirs(path, exist_ok=True)
-    with open(path, "w") as json_file:
+    with open(os.path.join(path, "store.json"), "w") as json_file:
         json.dump(store, json_file, ensure_ascii=False)
 
 

@@ -1,5 +1,8 @@
 ### To-do\'s
 
+-   look into Mathias\' message and think of alternative approaches to
+    proceed by now
+
 1.  Code and documentation
 
     1.  **TODO** create different scripts to do different

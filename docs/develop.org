@@ -1,5 +1,7 @@
 *** To-do's
 
+- look into Mathias' message and think of alternative approaches to proceed by now
+
 **** Code and documentation
 ***** TODO create different scripts to do different things -> translate, basic_evaluate (bleu, chrf), fine_tune (large models on English), model_evaluate, visualize, etc.
 ***** TODO redo repository with only necessary code-chunks and fill up readme, recreate environment with python3.7 in cluster -> re-run simple tests first

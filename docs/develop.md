@@ -1,8 +1,5 @@
 ### To-do\'s
 
--   Consider changing name to something more meaningful -\> something
-    more to do with paraphrasal robustness
-
 1.  Investigate semantics transfer during translation
 
     1.  **TODO** investigate PAWS-X data origins and ensure
@@ -16,27 +13,30 @@
         this and perhaps do a meta-analysis of more languages to gain
         some meat
 
-    2.  do a bleu score comparison of translations and gold sentence
+    2.  **TODO** create different scripts to do different
+        things -\> first translate, then evaluate with different means
+
+    3.  do a bleu score comparison of translations and gold sentence
         paraphrases for surface level analysis -\> output data as tsv
         instead of json -\> or perhaps provide option for both -\> add
         this as a pipeline to investigate -\> perhaps use some
         combinations of scores where possible
 
-    3.  utilize fairseq model(s) for translation from English to German
+    4.  utilize fairseq model(s) for translation from English to German
         and then use test translations, provide options for various
         models and run these through fine-tuned paraphrase detection
         model later on -\> run on both gold and translated to check for
         systematic errors as well
 
-    4.  use XLM-R model for predictions -\> predict it on the test set
+    5.  use XLM-R model for predictions -\> predict it on the test set
         in german, and the test set translated and check the differences
         and where they coincide and where not -\> will tell you where
         the model is bad and where not to trust it -\> and where to
         trust it
 
-    5.  check if human evaluation would be necessary at any point
+    6.  check if human evaluation would be necessary at any point
 
-    6.  expect very good results on translation and think of how to
+    7.  expect very good results on translation and think of how to
         analyze and interpret/explain them
 
 2.  Paraphrase data selection and analysis workflow

@@ -1,9 +1,8 @@
 *** To-do's
 
-- Consider changing name to something more meaningful -> something more to do with paraphrasal robustness
-
 **** Investigate semantics transfer during translation
 ***** TODO investigate PAWS-X data origins and ensure this is not present in the NMT training data -> PAWS-X English is derived from Wikipedia with swapping/back-translation and verified, PAWS-X dev/test sets for all other languages are human translations while PAWS-X non-English training data is machine translated, WMT19 best model was trained on Newstest data which could not have overlapped with Wikipedia data given that in PAWS-X it was human translated -> proceed with analysis despite this and perhaps do a meta-analysis of more languages to gain some meat
+***** TODO create different scripts to do different things -> first translate, then evaluate with different means
 ***** do a bleu score comparison of translations and gold sentence paraphrases for surface level analysis -> output data as tsv instead of json -> or perhaps provide option for both -> add this as a pipeline to investigate -> perhaps use some combinations of scores where possible
 ***** utilize fairseq model(s) for translation from English to German and then use test translations, provide options for various models and run these through fine-tuned paraphrase detection model later on -> run on both gold and translated to check for systematic errors as well
 ***** use XLM-R model for predictions -> predict it on the test set in german, and the test set translated and check the differences and where they coincide and where not -> will tell you where the model is bad and where not to trust it -> and where to trust it

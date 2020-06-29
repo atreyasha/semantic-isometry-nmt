@@ -28,7 +28,7 @@ Below are two recommended methods of syncing dependencies:
     $ make PAWS-X
     ```
 
-2. If you aim to develop this repository further and want to keep pythonic dependencies and the `develop.org` synced, initialize the pre-commit hook:
+2. If you aim to develop this repository further and want to keep pythonic dependencies and `develop.org` synced, initialize the pre-commit hook:
 
     ```shell
     $ make pre_commit_hook

@@ -1,6 +1,46 @@
 ### To-do\'s
 
-1.  Investigate semantics transfer during translation
+1.  Code and documentation
+
+    1.  **TODO** create different scripts to do different
+        things -\> translate, basic~evaluate~ (bleu, chrf), fine~tune~
+        (large models on English), model~evaluate~, visualize, etc.
+
+    2.  **TODO** redo repository with only necessary
+        code-chunks and fill up readme, recreate environment with
+        python3.7 in cluster -\> re-run simple tests first
+
+    3.  add a deployed service on GitHub to build and check sanity
+
+    4.  add a pylinter for formatting as pre-commit hook -\> think of
+        standards to abide by -\> auto-PEP8
+
+    5.  add documentation with typing to utils code later on
+
+    6.  ultimately release best fine-tuned model for use in other
+        scenarios -\> if possible add reproducability concept with
+        setting seeds
+
+    7.  provide readme to hdf5 files with different index meanings
+
+    8.  consider building readme and project using python -m framework
+
+    9.  think of how to handle LASER vs. larger model workflows in one
+        repo
+
+    10. log out random seeds for full reproducability
+
+    11. add citations in readme as per general standard
+
+    12. add relevant gitignores
+
+    13. add documentation/acknowledgments to datasets and code, and how
+        to handle submodules
+
+    14. re-review dependencies and remove unnecessary ones upon next
+        check
+
+2.  Investigate semantics transfer during translation
 
     1.  **TODO** investigate PAWS-X data origins and ensure
         this is not present in the NMT training data -\> PAWS-X English
@@ -13,33 +53,30 @@
         this and perhaps do a meta-analysis of more languages to gain
         some meat
 
-    2.  **TODO** create different scripts to do different
-        things -\> first translate, then evaluate with different means
-
-    3.  do a bleu score comparison of translations and gold sentence
+    2.  do a bleu score comparison of translations and gold sentence
         paraphrases for surface level analysis -\> output data as tsv
         instead of json -\> or perhaps provide option for both -\> add
         this as a pipeline to investigate -\> perhaps use some
         combinations of scores where possible
 
-    4.  utilize fairseq model(s) for translation from English to German
+    3.  utilize fairseq model(s) for translation from English to German
         and then use test translations, provide options for various
         models and run these through fine-tuned paraphrase detection
         model later on -\> run on both gold and translated to check for
         systematic errors as well
 
-    5.  use XLM-R model for predictions -\> predict it on the test set
+    4.  use XLM-R model for predictions -\> predict it on the test set
         in german, and the test set translated and check the differences
         and where they coincide and where not -\> will tell you where
         the model is bad and where not to trust it -\> and where to
         trust it
 
-    6.  check if human evaluation would be necessary at any point
+    5.  check if human evaluation would be necessary at any point
 
-    7.  expect very good results on translation and think of how to
+    6.  expect very good results on translation and think of how to
         analyze and interpret/explain them
 
-2.  Paraphrase data selection and analysis workflow
+3.  Paraphrase data selection and analysis workflow
 
     1.  Fine-tuning large X-models
 
@@ -92,42 +129,6 @@
 
     7.  keep documentation of work -\> such as SGCP & SOW-REAP
         performance (with examples), LASER performance
-
-3.  Code and documentation
-
-    1.  **TODO** redo repository with only necessary
-        code-chunks and fill up readme, recreate environment with
-        python3.7 in cluster -\> re-run simple tests first
-
-    2.  add a deployed service on GitHub to build and check sanity
-
-    3.  add a pylinter for formatting as pre-commit hook -\> think of
-        standards to abide by -\> auto-PEP8
-
-    4.  add documentation with typing to utils code later on
-
-    5.  ultimately release best fine-tuned model for use in other
-        scenarios -\> if possible add reproducability concept with
-        setting seeds
-
-    6.  provide readme to hdf5 files with different index meanings
-
-    7.  consider building readme and project using python -m framework
-
-    8.  think of how to handle LASER vs. larger model workflows in one
-        repo
-
-    9.  log out random seeds for full reproducability
-
-    10. add citations in readme as per general standard
-
-    11. add relevant gitignores
-
-    12. add documentation/acknowledgments to datasets and code, and how
-        to handle submodules
-
-    13. re-review dependencies and remove unnecessary ones upon next
-        check
 
 ### Completed
 

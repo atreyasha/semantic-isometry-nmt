@@ -16,25 +16,21 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
       args (Namespace): Namespace object to be used in downstream functions
     """
     parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
-    parser.add_argument("--input-glob",
-                        type=str,
-                        default="./data/x-final/*/*.tsv",
-                        help="glob for finding input file(s)")
-    if subtype == "train":
-        parser.add_argument("--random-seed",
-                            type=int,
-                            default=42,
-                            help="Random seed for pseudo-stochastic simulation")
-    elif subtype == "pre_process":
+    if subtype == "translate":
+        parser.add_argument("--target-languages",
+                            type=str,
+                            default="de",
+                            help=("Comma separated target language(s),"
+                                  " where source language is English"))
         parser.add_argument("--batch-size",
                             type=int,
-                            default=1000,
-                            help="Batch size for reading/writing data")
+                            default=256,
+                            help="Batch size for translation")
     parser.add_argument("--verbosity",
                         type=int,
                         default=1,
                         choices=[0, 1],
-                        help="0 for warnings and critical information,"
-                        " 1 for general information and progress bars")
+                        help=("0 for warning/error logger,"
+                              " 1 for verbose information logger"))
     args = parser.parse_args()
     return args

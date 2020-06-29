@@ -1,8 +1,8 @@
-## NMT model robustness to syntax-level adversarial paraphrases
+## NMT model robustness to adversarial paraphrases
 
 ### Overview :book:
 
-This repository investigates the performance of state-of-the-art Neural Machine Translation (NMT) models in effectively and consistently transfering the semantics of syntax-level adversarial paraphrases. Through this, we aim to investigate the robustness of said models to such paraphrases. 
+This repository investigates the performance of state-of-the-art Neural Machine Translation (NMT) models in effectively and consistently transfering the semantics of adversarial paraphrases. Through this, we aim to investigate the robustness of said models to such paraphrases. 
 
 ### Dependencies :neckbeard:
 

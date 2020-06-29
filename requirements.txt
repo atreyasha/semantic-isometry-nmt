@@ -31,7 +31,7 @@ sacremoses==0.0.43
 six==1.15.0
 subword-nmt==0.3.7
 torch==1.4.0
-tqdm==4.46.1
+tqdm==4.47.0
 traitlets==4.3.3
 urllib3==1.25.9
 wcwidth==0.2.5

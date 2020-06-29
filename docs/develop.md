@@ -1,10 +1,20 @@
 ### To-do\'s
 
+-   Consider changing name to something more meaningful -\> something
+    more to do with paraphrasal robustness
+
 1.  Investigate semantics transfer during translation
 
     1.  **TODO** investigate PAWS-X data origins and ensure
-        this is not present in the NMT training data -\> find new NMT
-        model that fits this criterion
+        this is not present in the NMT training data -\> PAWS-X English
+        is derived from Wikipedia with swapping/back-translation and
+        verified, PAWS-X dev/test sets for all other languages are human
+        translations while PAWS-X non-English training data is machine
+        translated, WMT19 best model was trained on Newstest data which
+        could not have overlapped with Wikipedia data given that in
+        PAWS-X it was human translated -\> proceed with analysis despite
+        this and perhaps do a meta-analysis of more languages to gain
+        some meat
 
     2.  do a bleu score comparison of translations and gold sentence
         paraphrases for surface level analysis -\> output data as tsv
@@ -65,8 +75,9 @@
         8.  not good enough argument to show that siamese network is
             necessary compared to ordered concatenation
 
-    2.  compare performance with or without other languages to see if
-        this differs
+    2.  **TODO** compare performance with or without other
+        languages to see if this differs -\> might be an interesting
+        comparison if results are \"boring\" for German
 
     3.  compare performance with other pre-trained paraphrase detector
         -\> such as fine-tuned multilingual BERT from PAWS-X paper

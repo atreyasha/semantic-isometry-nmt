@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "syntax-robustness-nmt"
+name = "adversarial-robustness-nmt"
 version = "0.1.0"
 description = ""
 authors = ["Atreya Shankar <35427332+atreyasha@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.7.7"
+python = "^3.7.0"
 torch = "1.4.0"
 ipython = "^7.15.0"
 sacrebleu = "^1.4.10"

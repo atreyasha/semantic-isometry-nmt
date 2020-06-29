@@ -40,6 +40,13 @@ def read_data(file_path: str, drop_first: bool = True) -> List[List[str]]:
 
 
 def write_to_file(lang: str, store: Dict) -> None:
+    """
+    Write processed dictionary to json file
+
+    Args:
+        lang (str): Target language
+        store (Dict): Dictionary ouput of translation task
+    """
     # write everything to a json file to keep things simple
     path = os.path.join("./out", lang, "store.json")
     os.makedirs(path, exist_ok=True)
@@ -49,6 +56,18 @@ def write_to_file(lang: str, store: Dict) -> None:
 
 def translate_process(lang: str, en_input: List[str], target_gold: List[str],
                       batch_size: int) -> Dict:
+    """
+    Translate source data and append outputs into neat dictionary
+
+    Args:
+        lang (str): Target language
+        en_input (List[str]): English source sentences
+        target_gold (List[str]): Gold target translations for reference
+        batch_size (int): Batch size for translation
+
+    Returns:
+        store (Dict): Dictionary output containing all necessary translations
+    """
     # initialize data store
     store = {}
     # ensure sanity of data
@@ -90,6 +109,10 @@ def translate_process(lang: str, en_input: List[str], target_gold: List[str],
 
 
 def main() -> None:
+    """
+    Main function to read, translate and write English and target
+    language data
+    """
     args = parse_arguments(subtype="translate")
     # get verbosity
     if args.verbosity == 1:

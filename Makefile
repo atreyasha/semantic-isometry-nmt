@@ -2,11 +2,11 @@ SHELL = /bin/bash
 GIT_HOOKS = ./.git/hooks
 DATA = ./data
 
-$(GIT_HOOKS)/pre-commit: ./hooks/pre-commit.sample
+$(GIT_HOOKS)/pre-commit: ./hooks/pre-commit
 	cp --force $< $@
 
-.PHONY: hook
-hook: $(GIT_HOOKS)/pre-commit
+.PHONY: pre_commit_hook
+pre_commit_hook: $(GIT_HOOKS)/pre-commit
 
 .PHONY: PAWS_X
 PAWS_X:

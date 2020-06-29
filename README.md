@@ -22,11 +22,17 @@ Below are two recommended methods of syncing dependencies:
 
 ### Repository Initialization :fire:
 
-To download and deploy `PAWS-X` data from [Google Research](https://github.com/google-research-datasets/paws/tree/master/pawsx), run the following command:
+1. To download and deploy `PAWS-X` data from [Google Research](https://github.com/google-research-datasets/paws/tree/master/pawsx), run the following command:
 
-```shell
-$ make PAWS-X
-```
+    ```shell
+    $ make PAWS-X
+    ```
+
+2. If you aim to develop this repository further and want to keep pythonic dependencies and the `develop.org` synced, initialize the pre-commit hook:
+
+    ```shell
+    $ make pre_commit_hook
+    ```
 
 ### Development :snail:
 

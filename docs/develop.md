@@ -1,9 +1,16 @@
 ### To-do\'s
 
+-   cache origin translations where possible instead of re-doing them
+
+-   update readme with information on new names
+
+-   fix pydocstrings and types
+
 -   look into Mathias\' message and think of alternative approaches to
     proceed by now -\> consider looking into WMT19 paraphrased product
     as this is likely to be harder for the model to translate -\> maybe
     can use paraphrase detector on these datasets
+
 -   focus on wmt-19 paraphrases instead and work from there on -\>
     similar process but possibly more interesting results can come out
     of this process

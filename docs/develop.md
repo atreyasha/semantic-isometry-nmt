@@ -1,7 +1,5 @@
 ### To-do\'s
 
--   fix pydocstrings and types -\> look through carefully
-
 -   update readme with information on new names
 
 -   rate de-de and en-en with chrf scores for some measure

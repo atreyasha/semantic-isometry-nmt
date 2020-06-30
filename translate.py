@@ -191,7 +191,7 @@ def main() -> None:
                 store, _ = translate_process(model, de_input, batch_size,
                                              original_cache)
             # write json to disk
-            write_to_file("en", model_name, paraphrase_type, store)
+            write_to_file(model_name, paraphrase_type, store)
 
 
 if __name__ == "__main__":

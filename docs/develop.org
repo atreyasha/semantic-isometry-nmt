@@ -1,7 +1,7 @@
 *** To-do's
 
 **** Code and documentation
-***** TODO create different scripts to do different things -> translate, basic_evaluate (bleu, chrf), fine_tune (large models on English), model_evaluate, visualize, etc. -> rate de-de and en-en with chrf scores for some measure, utilize XLM-R on both paraphrases to have some baseline for validity
+***** TODO create different scripts to do different things -> translate, basic_evaluate (bleu, chrf), fine_tune (large models on English), model-evaluate, visualize, etc. -> rate de-de and en-en with chrf scores for some measure, utilize XLM-R on both paraphrases to have some baseline for validity
 ***** TODO redo repository with only necessary code-chunks and fill up readme, recreate environment with python3.7 in cluster -> re-run simple tests first
 ***** add a deployed service on GitHub to build and check sanity
 ***** add a pylinter for formatting as pre-commit hook -> think of standards to abide by -> auto-PEP8

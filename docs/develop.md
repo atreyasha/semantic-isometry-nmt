@@ -3,7 +3,7 @@
 1.  Code and documentation
 
     1.  **TODO** create different scripts to do different
-        things -\> translate, basic~evaluate~ (bleu, chrf), fine~tune~
+        things -\> translate, basic evaluate (bleu, chrf), fine tune
         (large models on English), model evaluate, visualize, etc. -\>
         rate de-de and en-en with chrf scores for some measure, utilize
         XLM-R on both paraphrases pairs (de-de and en-en) to have some

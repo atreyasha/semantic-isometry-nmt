@@ -8,13 +8,13 @@ This repository investigates the performance of state-of-the-art Neural Machine 
 
 Below are two recommended methods of syncing dependencies:
 
-1. If `poetry` is installed on your system, you can install dependencies and create a virtual environment automatically via the following command:
+1. If `poetry` is installed on your system, you can install dependencies and create a virtual environment with just one command:
 
     ```shell
     $ poetry install
     ```
 
-2. Alternatively, create a virtual environment (recommended) and install dependencies via `pip`:
+2. Alternatively, create a virtual environment separately (recommended) and install dependencies via `pip`:
 
     ```shell
     $ pip install -r requirements.txt
@@ -22,23 +22,11 @@ Below are two recommended methods of syncing dependencies:
 
 ### Repository Initialization :fire:
 
-1. To download and deploy `WMT19` test [data](http://www.statmt.org/wmt19/translation-task.html) for the `de-en` translation direction, run the following command:
+To download `PAWS-X` and `WMT19` gold+paraphrased test data for this repository, simply run the command below:
 
-  ```shell
-  $ make wmt19
-  ```
-
-2. To download and deploy paraphrased [references](https://github.com/google/wmt19-paraphrased-references) for the `WMT19` test data `de-en` translation direction, run the following command:
-
-  ```shell
-  $ make wmt19_paraphrased
-  ```
-
-3. To download and deploy `PAWS-X` data from [Google Research](https://github.com/google-research-datasets/paws/tree/master/pawsx), run the following command:
-
-  ```shell
-  $ make paws_x
-  ```
+```shell
+$ make data
+```
 
 ### Development :snail:
 

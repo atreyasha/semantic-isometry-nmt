@@ -31,3 +31,6 @@ wmt19_paraphrased:
 	wget -N -P $(WMT19_PARAPHRASED) "https://raw.githubusercontent.com/google/wmt19-paraphrased-references/master/wmt19/ende/wmt19-ende-hqp.ref"
 	wget -N -P $(WMT19_PARAPHRASED) "https://raw.githubusercontent.com/google/wmt19-paraphrased-references/master/wmt19/ende/wmt19-ende-hqr.ref"
 	wget -N -P $(WMT19_PARAPHRASED) "https://raw.githubusercontent.com/google/wmt19-paraphrased-references/master/wmt19/ende/wmt19-ende-wmtp.ref"
+
+.PHONY: data
+data: paws_x wmt19 wmt19_paraphrased

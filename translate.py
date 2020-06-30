@@ -88,6 +88,11 @@ def translate_process(target_lang: str, input_data: List[str], batch_size: int,
     """
     # initialize data store
     store = {}
+    if original_cache is not None:
+        use_cache = True
+    else:
+        use_cache = False
+        original_cache = []
     # get model based on language
     if target_lang == "en":
         model = torch.hub.load("pytorch/fairseq",
@@ -100,11 +105,9 @@ def translate_process(target_lang: str, input_data: List[str], batch_size: int,
     # conduct batch translation and data processing
     for i in tqdm(range(0, len(input_data), batch_size)):
         chunk = input_data[i:i + batch_size]
-        if original_cache is not None:
+        if use_cache:
             original = original_cache[i:i + batch_size]
         else:
-            if i == 0:
-                original_cache = []
             original = [seg[1] for seg in chunk]
             original = model.translate(original)
             original_cache.extend(original)

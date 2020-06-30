@@ -1,10 +1,5 @@
 ### To-do\'s
 
--   try using single vs ensemble model, might make difference here -\>
-    produce different files depending on model used for example
-
--   write models by providing prefixes instead of other metadata
-
 -   fix pydocstrings and types -\> look through carefully
 
 -   update readme with information on new names

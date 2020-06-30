@@ -76,13 +76,13 @@ def write_to_file(target_lang: str, model_name: str, paraphrase_type: str,
 
 
 def translate_process(
-        model: Any, input_data: List[str],
-        batch_size: int,
+        model: Any, input_data: List[str], batch_size: int,
         original_cache: Union[None, List[str]]) -> Tuple[Dict, List[str]]:
     """
     Translate source data and append outputs into neat dictionary
 
     Args:
+        model (fairseq.hub_utils.GeneratorHubInterface): Translation model
         input_data (List[str]): Source sentences
         batch_size (int): Batch size for translation
         original_cache (Union[None, List[str]): Cache of original data
@@ -152,7 +152,7 @@ def main() -> None:
     de_input_original = read_data("./data/wmt19/wmt19.test.truecased.de.ref")
     # define available models for de-en
     model_names = [
-        "transformer.wmt19.de-en", "transformer.wmt19.de-en.single_model"
+        "transformer.wmt19.de-en.single_model", "transformer.wmt19.de-en"
     ]
     # loop over respective models
     for model_name in model_names:

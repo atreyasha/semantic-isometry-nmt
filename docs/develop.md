@@ -1,7 +1,5 @@
 ### To-do\'s
 
--   update readme with information on new names
-
 -   rate de-de and en-en with chrf scores for some measure
 
 -   utilize XLM-R on both paraphrases to have some baseline for validity

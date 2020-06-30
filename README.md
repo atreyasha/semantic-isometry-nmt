@@ -51,7 +51,7 @@ Check our development [log](./docs/develop.md) for information on current develo
 
 ```
 @InProceedings{pawsx2019emnlp,
-  title = {{PAWS-X: A Cross-lingual Adversarial Dataset for Paraphrase Identification}},
+  title = {PAWS-X: A Cross-lingual Adversarial Dataset for Paraphrase Identification},
   author = {Yang, Yinfei and Zhang, Yuan and Tar, Chris and Baldridge, Jason},
   booktitle = {Proc. of EMNLP},
   year = {2019}
@@ -59,9 +59,9 @@ Check our development [log](./docs/develop.md) for information on current develo
 
 @article{hu2020xtreme,
   author = {Junjie Hu and Sebastian Ruder and Aditya Siddhant and Graham Neubig and Orhan Firat
-            and Melvin Johnson},
+  and Melvin Johnson},
   title = {XTREME: A Massively Multilingual Multi-task Benchmark for Evaluating Cross-lingual 
-           Generalization},
+  Generalization},
   journal = {CoRR},
   volume = {abs/2003.11080},
   year = {2020},

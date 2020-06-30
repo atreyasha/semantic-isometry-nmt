@@ -51,14 +51,15 @@ def interweave(dataset_1: List[str], dataset_2: List[str]) -> List[str]:
     Returns:
         interwoven (List[str]): Interwoven dataset
     """
+    assert len(dataset_1) == len(
+        dataset_2), "Input datasets have differing lengths"
     interwoven = []
     for i in range(len(dataset_1)):
         interwoven.append([i, dataset_1[i], dataset_2[i], 1])
     return interwoven
 
 
-def write_to_file(model_name: str, paraphrase_type: str,
-                  store: Dict) -> None:
+def write_to_file(model_name: str, paraphrase_type: str, store: Dict) -> None:
     """
     Write processed dictionary to json file
 
@@ -178,10 +179,8 @@ def main() -> None:
                 paraphrase_type, i + 1, len(input_paths))
             # read de paraphrase data
             de_input_paraphrased = read_data(input_path)
-            # perform sanity check on de overall data
-            logger.info("Performing sanity checks on 'de' input data")
-            assert len(de_input_original) == len(de_input_paraphrased)
             # assemble combined input data
+            logger.info("Interweaving 'de' input data")
             de_input = interweave(de_input_original, de_input_paraphrased)
             logger.info("Translating and processing to 'en'")
             if i == 0:

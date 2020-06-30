@@ -23,7 +23,7 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
                             help="Input glob for WMT19 paraphrase data")
         parser.add_argument("--batch-size",
                             type=int,
-                            default=256,
+                            default=128,
                             help="Batch size for translation")
     parser.add_argument("--verbosity",
                         type=int,

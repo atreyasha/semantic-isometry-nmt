@@ -1,10 +1,17 @@
 ### To-do\'s
 
--   cache origin translations where possible instead of re-doing them
+-   try using single vs ensemble model, might make difference here -\>
+    produce different files depending on model used for example
+
+-   write models by providing prefixes instead of other metadata
+
+-   fix pydocstrings and types -\> look through carefully
 
 -   update readme with information on new names
 
--   fix pydocstrings and types
+-   rate de-de and en-en with chrf scores for some measure
+
+-   utilize XLM-R on both paraphrases to have some baseline for validity
 
 -   look into Mathias\' message and think of alternative approaches to
     proceed by now -\> consider looking into WMT19 paraphrased product

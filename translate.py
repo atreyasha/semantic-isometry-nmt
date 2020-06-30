@@ -57,19 +57,18 @@ def interweave(dataset_1: List[str], dataset_2: List[str]) -> List[str]:
     return interwoven
 
 
-def write_to_file(target_lang: str, model_name: str, paraphrase_type: str,
+def write_to_file(model_name: str, paraphrase_type: str,
                   store: Dict) -> None:
     """
     Write processed dictionary to json file
 
     Args:
-        target_lang (str): Target language
         model_name (str): Name of translation model
         paraphrase_type (str): Type of paraphrase data supplied
         store (Dict): Dictionary ouput of translation task
     """
     # write everything to a json file to keep things simple
-    path = os.path.join("./out", model_name, "de-" + target_lang)
+    path = os.path.join("./out", model_name)
     os.makedirs(path, exist_ok=True)
     with open(os.path.join(path, paraphrase_type + ".json"), "w") as json_file:
         json.dump(store, json_file, ensure_ascii=False)
@@ -82,7 +81,8 @@ def translate_process(
     Translate source data and append outputs into neat dictionary
 
     Args:
-        model (fairseq.hub_utils.GeneratorHubInterface): Translation model
+        model (fairseq.hub_utils.GeneratorHubInterface): Translation model,
+        defaults to 'Any' type because this class is dynamically loaded
         input_data (List[str]): Source sentences
         batch_size (int): Batch size for translation
         original_cache (Union[None, List[str]): Cache of original data

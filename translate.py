@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from utils.parser import parse_arguments
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Tuple
 from tqdm import tqdm
 from glob import glob
 import codecs
@@ -41,8 +41,9 @@ def read_data(file_path: str, drop_first: bool = False) -> List[str]:
 
 def interweave(dataset_1: List[str], dataset_2: List[str]) -> List[str]:
     """
-    Interweave two datasets into one; different from zip because it
-    requires an index and gold label to be inserted
+    Interweave two datasets into one with the same ordering;
+    different from zip because it requires an index and
+    gold label to be inserted
 
     Args:
         dataset_1 (List[str]): First dataset
@@ -73,8 +74,9 @@ def write_to_file(target_lang: str, paraphrase_type: str, store: Dict) -> None:
         json.dump(store, json_file, ensure_ascii=False)
 
 
-def translate_process(target_lang: str, input_data: List[str], batch_size: int,
-                      original_cache: Union[None, List[str]]) -> Dict:
+def translate_process(
+        target_lang: str, input_data: List[str], batch_size: int,
+        original_cache: Union[None, List[str]]) -> Tuple[Dict, List[str]]:
     """
     Translate source data and append outputs into neat dictionary
 
@@ -82,9 +84,12 @@ def translate_process(target_lang: str, input_data: List[str], batch_size: int,
         target_lang (str): Target language
         input_data (List[str]): Source sentences
         batch_size (int): Batch size for translation
+        original_cache (Union[None, List[str]): Cache of original data
+        translation, otherwise set to be None
 
     Returns:
         store (Dict): Dictionary output containing all necessary translations
+        original_cache (List[str]): Cache of original data translations
     """
     # initialize data store
     store = {}
@@ -96,7 +101,8 @@ def translate_process(target_lang: str, input_data: List[str], batch_size: int,
     # get model based on language
     if target_lang == "en":
         model = torch.hub.load("pytorch/fairseq",
-                               "transformer.wmt19.de-en.single_model")
+                               "transformer.wmt19.de-en.single_model",
+                               tokenizer="moses", bpe="fastbpe")
     # disable dropout for prediction
     model.eval()
     # enable GPU hardware acceleration if GPU/CUDA present
@@ -131,8 +137,7 @@ def translate_process(target_lang: str, input_data: List[str], batch_size: int,
 
 def main() -> None:
     """
-    Main function to read, translate and write English and target
-    language data
+    Main function to read, translate and write data to disk
     """
     args = parse_arguments(subtype="translate")
     # get verbosity
@@ -150,33 +155,41 @@ def main() -> None:
     assert len(input_paths) > 0, "No paths found corresponding to input glob"
     # local setting depending on models available
     supported_languages = ["en"]
-    # read en_input data and concatenate here
+    # read original de data here
     logger.info("Reading WMT19 'de' reference data")
     de_input_original = read_data("./data/wmt19/wmt19.test.truecased.de.ref")
+    # loop over target languages
     for target_lang in target_languages:
+        # filter out unsupported languages
         if target_lang not in supported_languages:
             logger.warning(
                 "Dropping language '%s' as it is not a supported language",
                 target_lang)
             continue
         else:
+            # loop over paraphrase files
             for i, input_path in enumerate(input_paths):
                 paraphrase_type = os.path.basename(input_path)
                 logger.info(
                     "Reading WMT19 'de %s' paraphrased reference data: %d/%d",
                     paraphrase_type, i + 1, len(input_paths))
+                # read de paraphrase data
                 de_input_paraphrased = read_data(input_path)
-                # perform sanity check on English source data
+                # perform sanity check on de overall data
                 logger.info("Performing sanity checks on 'de' input data")
                 assert len(de_input_original) == len(de_input_paraphrased)
+                # assemble combined input data
                 de_input = interweave(de_input_original, de_input_paraphrased)
                 logger.info("Translating and processing to '%s'", target_lang)
                 if i == 0:
+                    # translate and cache original translations for re-use
                     store, original_cache = translate_process(
                         target_lang, de_input, batch_size, None)
                 else:
+                    # translate and use existing translation cache
                     store, _ = translate_process(target_lang, de_input,
                                                  batch_size, original_cache)
+                # write json to disk
                 write_to_file(target_lang, paraphrase_type, store)
 
 

@@ -1,4 +1,4 @@
-## NMT model robustness to adversarial paraphrases
+## NMT model robustness to hand-crafted adversarial paraphrases
 
 ### Overview :book:
 

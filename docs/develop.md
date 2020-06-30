@@ -6,7 +6,9 @@
         things -\> translate, basic~evaluate~ (bleu, chrf), fine~tune~
         (large models on English), model evaluate, visualize, etc. -\>
         rate de-de and en-en with chrf scores for some measure, utilize
-        XLM-R on both paraphrases to have some baseline for validity
+        XLM-R on both paraphrases pairs (de-de and en-en) to have some
+        baseline for validity -\> if de-de does not match, then don\'t
+        go for en-en -\> use that as a failsafe
 
     2.  **TODO** redo repository with only necessary
         code-chunks and fill up readme, recreate environment with

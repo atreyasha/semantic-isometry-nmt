@@ -17,11 +17,15 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
     """
     parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
     if subtype == "translate":
+        parser.add_argument("--input_glob",
+                            type=str,
+                            default="./data/wmt19_paraphrased/*",
+                            help="Input glob for WMT19 paraphrase data")
         parser.add_argument("--target-languages",
                             type=str,
-                            default="de",
+                            default="en",
                             help=("Comma separated target language(s),"
-                                  " where source language is English"))
+                                  " where source language is German"))
         parser.add_argument("--batch-size",
                             type=int,
                             default=256,

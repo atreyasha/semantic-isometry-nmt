@@ -2,3 +2,5 @@
 *.tsv
 *.hdf5
 *.p
+*.ref
+*.src

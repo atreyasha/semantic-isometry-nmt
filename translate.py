@@ -4,6 +4,7 @@
 from utils.parser import parse_arguments
 from typing import List, Dict
 from tqdm import tqdm
+from glob import glob
 import codecs
 import json
 import os
@@ -15,7 +16,7 @@ logging.config.fileConfig('./utils/resources/logging.conf',
                           disable_existing_loggers=True)
 
 
-def read_data(file_path: str, drop_first: bool = True) -> List[List[str]]:
+def read_data(file_path: str, drop_first: bool = False) -> List[List[str]]:
     """
     Generator which outputs lines in batches
 
@@ -33,36 +34,43 @@ def read_data(file_path: str, drop_first: bool = True) -> List[List[str]]:
             if drop_first:
                 drop_first = False
                 continue
-            split_line = line.strip().split("\t")
-            assert len(split_line) == 4
+            split_line = line.strip()
             collection.append(split_line)
     return collection
 
 
-def write_to_file(lang: str, store: Dict) -> None:
+def interweave(dataset_1: List[str], dataset_2: List[str]) -> List[str]:
+    interwoven = []
+    for i in range(len(dataset_1)):
+        interwoven.append([i, dataset_1[i], dataset_2[i], 1])
+    return interwoven
+
+
+def write_to_file(lang: str, paraphrase_type: str, store: Dict) -> None:
     """
     Write processed dictionary to json file
 
     Args:
         lang (str): Target language
+        paraphrase_type (str): Type of paraphrase data supplied
         store (Dict): Dictionary ouput of translation task
     """
     # write everything to a json file to keep things simple
-    path = os.path.join("./out", lang)
+    path = os.path.join("./out", "de-" + lang)
     os.makedirs(path, exist_ok=True)
-    with open(os.path.join(path, "store.json"), "w") as json_file:
+    with open(os.path.join(path, paraphrase_type + ".json"),
+              "w") as json_file:
         json.dump(store, json_file, ensure_ascii=False)
 
 
-def translate_process(lang: str, en_input: List[str], target_gold: List[str],
+def translate_process(lang: str, input_data: List[str],
                       batch_size: int) -> Dict:
     """
     Translate source data and append outputs into neat dictionary
 
     Args:
         lang (str): Target language
-        en_input (List[str]): English source sentences
-        target_gold (List[str]): Gold target translations for reference
+        input_data (List[str]): Source sentences
         batch_size (int): Batch size for translation
 
     Returns:
@@ -70,37 +78,31 @@ def translate_process(lang: str, en_input: List[str], target_gold: List[str],
     """
     # initialize data store
     store = {}
-    # ensure sanity of data
-    assert len(en_input) == len(target_gold), ("Input and gold data"
-                                               " are not of the same length")
     # get model based on language
-    if lang == "de":
+    if lang == "en":
         model = torch.hub.load("pytorch/fairseq",
-                               "transformer.wmt19.en-de.single_model")
+                               "transformer.wmt19.de-en.single_model")
     # disable dropout for prediction
     model.eval()
     # enable GPU hardware acceleration if GPU/CUDA present
     if torch.cuda.is_available():
         model.cuda()
     # conduct batch translation and data processing
-    for i in tqdm(range(0, len(en_input), batch_size)):
-        en_chunk = en_input[i:i + batch_size]
-        target_chunk = target_gold[i:i + batch_size]
+    for i in tqdm(range(0, len(input_data), batch_size)):
+        en_chunk = input_data[i:i + batch_size]
         sentence_1s = [seg[1] for seg in en_chunk]
         sentence_2s = [seg[2] for seg in en_chunk]
         sentence_1s = model.translate(sentence_1s)
         sentence_2s = model.translate(sentence_2s)
         for j, seg in enumerate(en_chunk):
             store[seg[0]] = {
-                "sentence_1": {
-                    "source_en": seg[1],
-                    "target_translated": sentence_1s[j],
-                    "target_gold": target_chunk[j][1]
+                "sentence_original": {
+                    "de_src": seg[1],
+                    "en_translated": sentence_1s[j]
                 },
-                "sentence_2": {
-                    "source_en": seg[2],
-                    "target_translated": sentence_2s[j],
-                    "target_gold": target_chunk[j][2]
+                "sentence_paraphrase": {
+                    "de_src": seg[2],
+                    "en_translated": sentence_2s[j]
                 },
                 "gold_label": seg[3]
             }
@@ -124,32 +126,34 @@ def main() -> None:
     assert len(target_languages) > 0, "No target language provided"
     # get batch-size
     batch_size = args.batch_size
+    # get paths corresponding to glob
+    input_paths = glob(args.input_glob)
+    assert len(input_paths) > 0, "No paths found corresponding to input glob"
     # local setting depending on models available
-    supported_languages = ["de"]
+    supported_languages = ["en"]
     # read en_input data and concatenate here
-    logger.info("Processing 'en' source data")
-    en_input = (read_data("./data/x-final/en/dev_2k.tsv") +
-                read_data("./data/x-final/en/test_2k.tsv"))
-    # perform sanity check on English source data
-    logger.info("Performing sanity checks on 'en' source data")
-    en_input_unique_ids = set([instance[0] for instance in en_input])
-    assert len(en_input) == len(en_input_unique_ids)
-    for lang in target_languages:
-        if lang not in supported_languages:
-            logger.warning(
-                "Dropping language '%s' as it is not a supported language",
-                lang)
-            continue
-        else:
-            logger.info("Processing '%s' target data", lang)
-            target_dev_path = os.path.join("./data/x-final", lang,
-                                           "dev_2k.tsv")
-            target_test_path = os.path.join("./data/x-final", lang,
-                                            "test_2k.tsv")
-            target_gold = (read_data(target_dev_path) +
-                           read_data(target_test_path))
-            store = translate_process(lang, en_input, target_gold, batch_size)
-            write_to_file(lang, store)
+    logger.info("Reading WMT19 en-de 'de' reference data")
+    de_input_original = read_data("./data/wmt19/wmt19.test.truecased.de.ref")
+    for i, input_path in enumerate(input_paths):
+        paraphrase_type = os.path.basename(input_path)
+        logger.info(
+            "Reading WMT19 en-de 'de' '%s' paraphrased reference data: %d/%d",
+            paraphrase_type, i + 1, len(input_paths))
+        de_input_paraphrased = read_data(input_path)
+        # perform sanity check on English source data
+        logger.info("Performing sanity checks on 'de' input data")
+        assert len(de_input_original) == len(de_input_paraphrased)
+        de_input = interweave(de_input_original, de_input_paraphrased)
+        for lang in target_languages:
+            if lang not in supported_languages:
+                logger.warning(
+                    "Dropping language '%s' as it is not a supported language",
+                    lang)
+                continue
+            else:
+                logger.info("Translating and processing to %s", lang)
+                store = translate_process(lang, de_input, batch_size)
+                write_to_file(lang, paraphrase_type, store)
 
 
 if __name__ == "__main__":

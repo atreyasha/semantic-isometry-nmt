@@ -1,7 +1,12 @@
 ### To-do\'s
 
 -   look into Mathias\' message and think of alternative approaches to
-    proceed by now
+    proceed by now -\> consider looking into WMT19 paraphrased product
+    as this is likely to be harder for the model to translate -\> maybe
+    can use paraphrase detector on these datasets
+-   focus on wmt-19 paraphrases instead and work from there on -\>
+    similar process but possibly more interesting results can come out
+    of this process
 
 1.  Code and documentation
 

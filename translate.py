@@ -168,6 +168,8 @@ def main() -> None:
                 checkpoint_file="model1.pt:model2.pt:model3.pt:model4.pt",
                 tokenizer="moses",
                 bpe="fastbpe")
+            # reduce batch size due to high memory usage
+            batch_size = 32
         # loop over paraphrase files
         for i, input_path in enumerate(input_paths):
             paraphrase_type = os.path.basename(input_path)

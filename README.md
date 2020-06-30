@@ -8,7 +8,7 @@ This repository investigates the performance of state-of-the-art Neural Machine 
 
 Below are two recommended methods of syncing dependencies:
 
-1. If `poetry` is installed on your system, you can install dependencies and create a virtual environment with just one command:
+1. If `poetry` is installed on your system, you can create a virtual environment and install dependencies with just one command:
 
     ```shell
     $ poetry install

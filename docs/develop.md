@@ -1,23 +1,12 @@
 ### To-do\'s
 
--   rate de-de and en-en with chrf scores for some measure
-
--   utilize XLM-R on both paraphrases to have some baseline for validity
-
--   look into Mathias\' message and think of alternative approaches to
-    proceed by now -\> consider looking into WMT19 paraphrased product
-    as this is likely to be harder for the model to translate -\> maybe
-    can use paraphrase detector on these datasets
-
--   focus on wmt-19 paraphrases instead and work from there on -\>
-    similar process but possibly more interesting results can come out
-    of this process
-
 1.  Code and documentation
 
     1.  **TODO** create different scripts to do different
         things -\> translate, basic~evaluate~ (bleu, chrf), fine~tune~
-        (large models on English), model~evaluate~, visualize, etc.
+        (large models on English), model~evaluate~, visualize, etc. -\>
+        rate de-de and en-en with chrf scores for some measure, utilize
+        XLM-R on both paraphrases to have some baseline for validity
 
     2.  **TODO** redo repository with only necessary
         code-chunks and fill up readme, recreate environment with

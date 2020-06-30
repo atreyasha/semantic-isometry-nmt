@@ -25,7 +25,7 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
                             type=str,
                             default="en",
                             help=("Comma separated target language(s),"
-                                  " where source language is German"))
+                                  " where source language is 'de'"))
         parser.add_argument("--batch-size",
                             type=int,
                             default=256,

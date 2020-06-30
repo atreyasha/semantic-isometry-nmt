@@ -16,17 +16,17 @@ logging.config.fileConfig('./utils/resources/logging.conf',
                           disable_existing_loggers=True)
 
 
-def read_data(file_path: str, drop_first: bool = False) -> List[List[str]]:
+def read_data(file_path: str, drop_first: bool = False) -> List[str]:
     """
-    Generator which outputs lines in batches
+    Function to read textual data with simple newline formatting
 
     Args:
         file_path (str): path to file
         drop_first (bool): drop first row given it is a header
 
     Returns:
-        collection (List[List[str]]): parsed textual data with
-        newline symbols removed and split at tab symbols
+        collection (List[str]): parsed textual data with
+        newline symbols removed
     """
     with codecs.open(file_path, "r", encoding="utf-8") as f:
         collection = []
@@ -40,6 +40,17 @@ def read_data(file_path: str, drop_first: bool = False) -> List[List[str]]:
 
 
 def interweave(dataset_1: List[str], dataset_2: List[str]) -> List[str]:
+    """
+    Interweave two datasets into one; different from zip because it
+    requires an index and gold label to be inserted
+
+    Args:
+        dataset_1 (List[str]): First dataset
+        dateset_2 (List[str]): Second dataset
+
+    Returns:
+        interwoven (List[str]): Interwoven dataset
+    """
     interwoven = []
     for i in range(len(dataset_1)):
         interwoven.append([i, dataset_1[i], dataset_2[i], 1])
@@ -62,9 +73,7 @@ def write_to_file(target_lang: str, paraphrase_type: str, store: Dict) -> None:
         json.dump(store, json_file, ensure_ascii=False)
 
 
-def translate_process(target_lang: str,
-                      input_data: List[str],
-                      batch_size: int,
+def translate_process(target_lang: str, input_data: List[str], batch_size: int,
                       original_cache: Union[None, List[str]]) -> Dict:
     """
     Translate source data and append outputs into neat dictionary
@@ -79,7 +88,6 @@ def translate_process(target_lang: str,
     """
     # initialize data store
     store = {}
-    original_cache = []
     # get model based on language
     if target_lang == "en":
         model = torch.hub.load("pytorch/fairseq",
@@ -93,8 +101,10 @@ def translate_process(target_lang: str,
     for i in tqdm(range(0, len(input_data), batch_size)):
         chunk = input_data[i:i + batch_size]
         if original_cache is not None:
-            original = original_cache[i: i + batch_size]
+            original = original_cache[i:i + batch_size]
         else:
+            if i == 0:
+                original_cache = []
             original = [seg[1] for seg in chunk]
             original = model.translate(original)
             original_cache.extend(original)
@@ -138,7 +148,7 @@ def main() -> None:
     # local setting depending on models available
     supported_languages = ["en"]
     # read en_input data and concatenate here
-    logger.info("Reading WMT19 en-de 'de' reference data")
+    logger.info("Reading WMT19 'de' reference data")
     de_input_original = read_data("./data/wmt19/wmt19.test.truecased.de.ref")
     for target_lang in target_languages:
         if target_lang not in supported_languages:
@@ -150,24 +160,20 @@ def main() -> None:
             for i, input_path in enumerate(input_paths):
                 paraphrase_type = os.path.basename(input_path)
                 logger.info(
-                    "Reading WMT19 en-de 'de' '%s' paraphrased reference data: %d/%d",
+                    "Reading WMT19 'de %s' paraphrased reference data: %d/%d",
                     paraphrase_type, i + 1, len(input_paths))
                 de_input_paraphrased = read_data(input_path)
                 # perform sanity check on English source data
                 logger.info("Performing sanity checks on 'de' input data")
                 assert len(de_input_original) == len(de_input_paraphrased)
                 de_input = interweave(de_input_original, de_input_paraphrased)
-                logger.info("Translating and processing to %s", target_lang)
+                logger.info("Translating and processing to '%s'", target_lang)
                 if i == 0:
-                    store, original_cache = translate_process(target_lang,
-                                                              de_input,
-                                                              batch_size,
-                                                              None)
+                    store, original_cache = translate_process(
+                        target_lang, de_input, batch_size, None)
                 else:
-                    store, _ = translate_process(target_lang,
-                                                 de_input,
-                                                 batch_size,
-                                                 original_cache)
+                    store, _ = translate_process(target_lang, de_input,
+                                                 batch_size, original_cache)
                 write_to_file(target_lang, paraphrase_type, store)
 
 

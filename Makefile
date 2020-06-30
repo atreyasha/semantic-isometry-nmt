@@ -14,7 +14,7 @@ pre_commit_hook: $(GIT_HOOKS)/pre-commit
 paws_x:
 	wget -N -P $(DATA) "https://storage.googleapis.com/paws/pawsx/x-final.tar.gz"
 	tar -zxvf $(DATA)/x-final.tar.gz -C $(DATA)
-	mv $(DATA)/x-final $(DATA)/paws-x
+	mv $(DATA)/x-final $(DATA)/paws_x
 
 .PHONY: wmt19
 wmt19:

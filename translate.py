@@ -181,9 +181,9 @@ def main() -> None:
             store = translate_process(model, de_input, batch_size)
             # get relevant metadata for writing to disk
             if all(re.search("-arp?.ref$", path) for path in input_paths):
-                metadata = "ar-arp"
+                metadata = "wmt19.ar.arp"
             else:
-                metadata = "wmt-wmtp"
+                metadata = "wmt19.wmt.wmtp"
             # write json to disk
             write_to_file(model_name, metadata, store)
 

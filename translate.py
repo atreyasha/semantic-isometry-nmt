@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from utils.parser import parse_arguments
-from typing import List, Dict, Union, Tuple, Any
+from typing import List, Dict, Any
 from tqdm import tqdm
-from glob import glob
 import codecs
 import json
+import re
 import os
 import torch
 import logging
@@ -59,25 +59,24 @@ def interweave(dataset_1: List[str], dataset_2: List[str]) -> List[str]:
     return interwoven
 
 
-def write_to_file(model_name: str, paraphrase_type: str, store: Dict) -> None:
+def write_to_file(model_name: str, metadata: str, store: Dict) -> None:
     """
     Write processed dictionary to json file
 
     Args:
         model_name (str): Name of translation model
-        paraphrase_type (str): Type of paraphrase data supplied
+        metadata (str): Metadata for naming of file
         store (Dict): Dictionary ouput of translation task
     """
     # write everything to a json file to keep things simple
     path = os.path.join("./out", model_name)
     os.makedirs(path, exist_ok=True)
-    with open(os.path.join(path, paraphrase_type + ".json"), "w") as json_file:
+    with open(os.path.join(path, metadata + ".json"), "w") as json_file:
         json.dump(store, json_file, ensure_ascii=False)
 
 
-def translate_process(
-        model: Any, input_data: List[str], batch_size: int,
-        original_cache: Union[None, List[str]]) -> Tuple[Dict, List[str]]:
+def translate_process(model: Any, input_data: List[str],
+                      batch_size: int) -> Dict:
     """
     Translate source data and append outputs into neat dictionary
 
@@ -86,21 +85,12 @@ def translate_process(
         defaults to 'Any' type because this class is dynamically loaded
         input_data (List[str]): Source sentences
         batch_size (int): Batch size for translation
-        original_cache (Union[None, List[str]): Cache of original data
-        translation, otherwise set to be None
 
     Returns:
         store (Dict): Dictionary output containing all necessary translations
-        original_cache (List[str]): Cache of original data translations
     """
     # initialize data store
     store = {}
-    # define whether to use cache or not
-    if original_cache is not None:
-        use_cache = True
-    else:
-        use_cache = False
-        original_cache = []
     # disable dropout for prediction
     model.eval()
     # enable GPU hardware acceleration if GPU/CUDA present
@@ -109,12 +99,8 @@ def translate_process(
     # conduct batch translation and data processing
     for i in tqdm(range(0, len(input_data), batch_size)):
         chunk = input_data[i:i + batch_size]
-        if use_cache:
-            original = original_cache[i:i + batch_size]
-        else:
-            original = [seg[1] for seg in chunk]
-            original = model.translate(original)
-            original_cache.extend(original)
+        original = [seg[1] for seg in chunk]
+        original = model.translate(original)
         paraphrase = [seg[2] for seg in chunk]
         paraphrase = model.translate(paraphrase)
         for j, seg in enumerate(chunk):
@@ -130,7 +116,7 @@ def translate_process(
                 "gold_label": seg[3]
             }
     # return final dictionary
-    return store, original_cache
+    return store
 
 
 def main() -> None:
@@ -145,12 +131,18 @@ def main() -> None:
         logger = logging.getLogger('root')
     # get batch-size
     batch_size = args.batch_size
-    # get paths corresponding to glob
-    input_paths = glob(args.input_glob)
-    assert len(input_paths) > 0, "No paths found corresponding to input glob"
-    # read original de data here
-    logger.info("Reading WMT19 'de' reference data")
-    de_input_original = read_data("./data/wmt19/wmt19.test.truecased.de.ref")
+    # create path dictionary
+    path_dict = {
+        "wmt": [[
+            "./data/wmt19/wmt19.test.truecased.de.ref",
+            "./data/wmt19_paraphrased/wmt19-ende-wmtp.ref"
+        ]],
+        "ar": [[
+            "./data/wmt19_paraphrased/wmt19-ende-ar.ref",
+            "./data/wmt19_paraphrased/wmt19-ende-arp.ref"
+        ]]
+    }
+    path_dict["both"] = path_dict["wmt"] + path_dict["ar"]
     # define available models for de-en
     model_names = [
         "transformer.wmt19.de-en.single_model", "transformer.wmt19.de-en"
@@ -172,27 +164,28 @@ def main() -> None:
             # reduce batch size due to high memory usage
             batch_size = 32
         # loop over paraphrase files
-        for i, input_path in enumerate(input_paths):
-            paraphrase_type = os.path.basename(input_path)
-            logger.info(
-                "Reading WMT19 'de %s' paraphrased reference data: %d/%d",
-                paraphrase_type, i + 1, len(input_paths))
+        for input_paths in path_dict[args.wmt_references]:
+            base = os.path.basename(input_paths[0])
+            # read original de data here
+            logger.info("Reading reference data: %s", base)
+            de_input_original = read_data(input_paths[0])
             # read de paraphrase data
-            de_input_paraphrased = read_data(input_path)
+            logger.info("Reading paraphrased reference data: %s",
+                        os.path.basename(input_paths[1]))
+            de_input_paraphrased = read_data(input_paths[1])
             # assemble combined input data
             logger.info("Interweaving 'de' input data")
             de_input = interweave(de_input_original, de_input_paraphrased)
             logger.info("Translating and processing to 'en'")
-            if i == 0:
-                # translate and cache original translations for re-use
-                store, original_cache = translate_process(
-                    model, de_input, batch_size, None)
+            # translate and process
+            store = translate_process(model, de_input, batch_size)
+            # get relevant metadata for writing to disk
+            if all(re.search("-arp?.ref$", path) for path in input_paths):
+                metadata = "ar-arp"
             else:
-                # translate and use existing translation cache
-                store, _ = translate_process(model, de_input, batch_size,
-                                             original_cache)
+                metadata = "wmt-wmtp"
             # write json to disk
-            write_to_file(model_name, paraphrase_type, store)
+            write_to_file(model_name, metadata, store)
 
 
 if __name__ == "__main__":

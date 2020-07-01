@@ -1,5 +1,15 @@
 ### To-do\'s
 
+-   get rid of caches as it is no longer necessary
+-   redo translations with two specific groups in mind -\> think about
+    what to do even if the translations are good
+-   extend and push this research on regardless, find other ways to make
+    this meaningful
+-   use lighter models maybe or try to find rare problematic cases
+-   even a positive conclusion is not bad
+-   what is inconsistencies in translation are so rare that XLM-R does
+    not detect them -\> what to do in this contingency
+
 1.  Code and documentation
 
     1.  **TODO** create different scripts to do different

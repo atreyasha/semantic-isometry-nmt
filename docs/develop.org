@@ -1,5 +1,12 @@
 *** To-do's
 
+- get rid of caches as it is no longer necessary
+- redo translations with two specific groups in mind -> think about what to do even if the translations are good
+- extend and push this research on regardless, find other ways to make this meaningful
+- use lighter models maybe or try to find rare problematic cases
+- even a positive conclusion is not bad
+- what is inconsistencies in translation are so rare that XLM-R does not detect them -> what to do in this contingency
+
 **** Code and documentation
 ***** TODO create different scripts to do different things -> translate, basic evaluate (bleu, chrf), fine tune (large models on English), model evaluate, visualize, etc. -> rate de-de and en-en with chrf scores for some measure, utilize XLM-R on both paraphrases pairs (de-de and en-en) to have some baseline for validity -> if de-de does not match, then don't go for en-en -> use that as a failsafe
 ***** TODO redo repository with only necessary code-chunks and fill up readme, recreate environment with python3.7 in cluster -> re-run simple tests first

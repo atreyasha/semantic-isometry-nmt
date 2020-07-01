@@ -13,14 +13,15 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
       subtype (str): subtype of parser which loads extra arguments
 
     Returns:
-      args (Namespace): Namespace object to be used in downstream functions
+      args (argparse.Namespace): Namespace object for downstream functions
     """
     parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
     if subtype == "translate":
-        parser.add_argument("--input_glob",
+        parser.add_argument("--wmt-references",
                             type=str,
-                            default="./data/wmt19_paraphrased/*",
-                            help="Input glob for WMT19 paraphrase data")
+                            default="both",
+                            choices=["ar", "wmt", "both"],
+                            help="WMT reference to use")
         parser.add_argument("--batch-size",
                             type=int,
                             default=256,

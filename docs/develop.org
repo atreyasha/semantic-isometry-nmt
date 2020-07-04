@@ -1,53 +1,41 @@
-*** To-do's
+*** Development
 
-- get rid of caches as it is no longer necessary
-- redo translations with two specific groups in mind -> think about what to do even if the translations are good
-- extend and push this research on regardless, find other ways to make this meaningful
-- use lighter models maybe or try to find rare problematic cases
-- even a positive conclusion is not bad
-- what is inconsistencies in translation are so rare that XLM-R does not detect them -> what to do in this contingency
-
-**** Code and documentation
-***** TODO create different scripts to do different things -> translate, basic evaluate (bleu, chrf), fine tune (large models on English), model evaluate, visualize, etc. -> rate de-de and en-en with chrf scores for some measure, utilize XLM-R on both paraphrases pairs (de-de and en-en) to have some baseline for validity -> if de-de does not match, then don't go for en-en -> use that as a failsafe
-***** TODO redo repository with only necessary code-chunks and fill up readme, recreate environment with python3.7 in cluster -> re-run simple tests first
-***** add a deployed service on GitHub to build and check sanity
-***** add a pylinter for formatting as pre-commit hook -> think of standards to abide by -> auto-PEP8
-***** add documentation with typing to utils code later on
-***** ultimately release best fine-tuned model for use in other scenarios -> if possible add reproducability concept with setting seeds
-***** provide readme to hdf5 files with different index meanings
+**** Clean-code and documentation
+***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
+***** think of how to handle all scripts -> whether with makefile or simple bash reference
 ***** consider building readme and project using python -m framework
-***** think of how to handle LASER vs. larger model workflows in one repo
-***** log out random seeds for full reproducability
+***** provide all trained models for later reference -> and/or provide full random seeds for generation
 ***** add citations in readme as per general standard
-***** add relevant gitignores
-***** add documentation/acknowledgments to datasets and code, and how to handle submodules
-***** re-review dependencies and remove unnecessary ones upon next check
 
-**** Investigate semantics transfer during translation
-***** TODO investigate PAWS-X data origins and ensure this is not present in the NMT training data -> PAWS-X English is derived from Wikipedia with swapping/back-translation and verified, PAWS-X dev/test sets for all other languages are human translations while PAWS-X non-English training data is machine translated, WMT19 best model was trained on Newstest data which could not have overlapped with Wikipedia data given that in PAWS-X it was human translated -> proceed with analysis despite this and perhaps do a meta-analysis of more languages to gain some meat
-***** do a bleu score comparison of translations and gold sentence paraphrases for surface level analysis -> output data as tsv instead of json -> or perhaps provide option for both -> add this as a pipeline to investigate -> perhaps use some combinations of scores where possible
-***** utilize fairseq model(s) for translation from English to German and then use test translations, provide options for various models and run these through fine-tuned paraphrase detection model later on -> run on both gold and translated to check for systematic errors as well
-***** use XLM-R model for predictions -> predict it on the test set in german, and the test set translated and check the differences and where they coincide and where not -> will tell you where the model is bad and where not to trust it -> and where to trust it
-***** check if human evaluation would be necessary at any point
-***** expect very good results on translation and think of how to analyze and interpret/explain them
+**** Translation
+***** work on fairseq wmt17 de-en weaker model translation workflow
+***** use strong and weak model for translation -> strong model being WMT19 single and ensemble with back translation (which adds robustness), while weak model being transformer trained on WMT17 without back translation
+***** add easy and meaningful workflow for this directly into repository
 
-**** Paraphrase data selection and analysis workflow
-***** Fine-tuning large X-models
-****** TODO fine-tune models with English and ensure no or little machine translated data is present in training set
-****** refactor and improve xtreme code with simpler repository -> modify logging of models, combination of languages, correct naming of training parameters and files, make training process exhaustive and thorough, add better metrics for monitoring performance including ROC-AUC etc.
-****** train more model combinations, change evaluation metrics on test set to only be at the end, continue training for existing models or re-evaluate them on the test dataset, make new model which learns from all data instead of just one language, remove constant re-writing of caches, add more information into each log file to make it unique
-****** change pre-processing from two concatenated sentences to permutation invariant type -> check if it improves
-****** use both s3it and local cluster for simultaneous model training
-****** data augmentation with easy examples -> perhaps add this in to training scheme
-****** look into Elektra, SentenceBERT, bert_score, models developed for GLUE tasks such as paraphrase detection tasks 
-****** not good enough argument to show that siamese network is necessary compared to ordered concatenation
+**** Paraphrase detection
+***** Fine-tuning using modified xtreme workflow
+****** fine-tune models with English and ensure no or little machine translated data is present in training set
+****** refactor and improve xtreme code with simpler repository:
+******* modify logging of models, combination of languages, correct naming of training parameters and files, add better metrics for monitoring performance like F1
+******* train more model combinations, change evaluation metrics on test set to only be at the end, continue training for existing models or re-evaluate them on the test dataset, make new model which learns from all data instead of just one language, remove constant re-writing of caches, add more information into each log file to make it unique
+******* add clean prediction workflow for translated data
 
-***** TODO compare performance with or without other languages to see if this differs -> might be an interesting comparison if results are "boring" for German
-***** compare performance with other pre-trained paraphrase detector -> such as fine-tuned multilingual BERT from PAWS-X paper
-***** add failsafe to output maximum score in case same inputs
-***** better to work with human-curated data than back-translated ones due to many errors -> advantage in PAWS and PAWS-X
-***** possible to get students to do tests for us to check for semantic transfer
-***** keep documentation of work -> such as SGCP & SOW-REAP performance (with examples), LASER performance
+****** optional: data augmentation with easy examples -> perhaps add this in to training scheme
+****** run and document multiple models -> such as fine-tuned multilingual BERT and others
+****** add failsafe to output maximum score in case same inputs
+****** better to work with human-curated data than back-translated ones due to many errors -> advantage in PAWS and PAWS-X English data + WMT19 AR paraphrases
+
+**** Evaluation and visualization
+***** run bleu and chrF comparisons on sources and targets for nice plots 
+***** run paraphrase detection only in cases where initial German paraphrase is positively detected, to ensure some consistency for evaluation -> maybe there might be an interesting correlation between XLM-R prediction and chrF scores
+***** in rare cases, can do manual analysis and include this inside report
+***** report evaluation of fine-tuning paraphrase detector and weaker translation model -> get enough well-structured data for ultimate plotting
+***** early conclusions/hypothese: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
+
+**** Paper
+***** describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
+***** list hypotheses and how some were refuted by results
+***** include semantic transferance equation in paper to introduce some formalisms
 
 *** Completed
 ***** DONE bug in XLM-R as it does not appear to learn -> look through code
@@ -81,16 +69,13 @@
 ***** DONE set up data downloading for all wmt sets with SacreBLEU
       CLOSED: [2020-05-17 Sun 21:58]
 
-*** Downstream work
+*** Brainstorming and logs
 **** LASER embeddings + dense layers
-***** TODO develop small but efficient pipeline to run LASER + dense layer to get basic performance and show ineffectiveness
-***** TODO add function for normalization within class itself -> or think of how to make normalization scheme portable and not have it separate outside of model
-***** figure out nicer and more automated means of logging experiments -> tensorboard + csv logging -> consider using wandb, mlflow or comet-ml
-***** extend to all combinations of languages, keep this as baseline comparison with larger models
+***** not very useful by itself, needs a larger token-touching model
+***** models do not show generalization, ie. training loss decreases but development loss rises
+***** need to access larger token-based models to leverage full power of NLP model
 
 **** Semantic similarity metrics
-***** make table with all metrics and various datasets
-***** possibly use several language pairs to test this
 ***** multireference BLEU score, use multiple paraphrases and check for best BLEU score
 ***** perhaps modified BLEU, METEOR, CCG semantics lambda calculus
 ***** perhaps some combination of edit distance with wordnet metrics
@@ -103,7 +88,7 @@
 ****** permute-paraphrase using syntax-tree chunks and test paraphrses using a detect or LASER embeddings for agnosticism between source/target
 
 ***** Viable pre-developed dynamic paraphrase-generation frameworks
-****** SOW-REAP [torch, python3, average-documented] -> generate paraphrases without exemplar sentence form, worth trying out
+****** SOW-REAP [torch, python3, average-documented] -> generate paraphrases without exemplar sentence form, worth trying out -> still poor results and only SOW model appears to be robust
 ******* refactor/extract out SOW model, shorten pipeline in sow to reduce computation and make input simpler
 ******* make quick samples from SOW and hand-select good ones, test them manually on fairseq NMT system for en-de to probe robustness
 ******* fork sow repo and clean code, remove bugs and make better documented with dep tracking and clearer instructions
@@ -136,3 +121,4 @@
 ***** noise is not problematic since there is already noise present in normal training data
 ***** meaning preserving + adversarial outcome -> then useful
 ***** augmentation is important if adversarial attack is successful, maybe syntax real-life frequency has effect
+      

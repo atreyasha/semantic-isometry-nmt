@@ -1,16 +1,21 @@
 *** Development
 
+- Replace makefile with discrete shell scripts, tailor translation training to specific task carefully with sufficient logging and failsafes, high memory usage
+- Envision problems early on and try to make things work smoothly to handle these issues -> brainstorm first before training
+
 **** Clean-code and documentation
 ***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
+***** add readme information to manually download wmt16 data, not possible via google drive
 ***** think of how to handle all scripts -> whether with makefile or simple bash reference
 ***** consider building readme and project using python -m framework
 ***** provide all trained models for later reference -> and/or provide full random seeds for generation
 ***** add citations in readme as per general standard
 
 **** Translation
-***** work on fairseq wmt17 de-en weaker model translation workflow
+***** TODO work on fairseq wmt17 de-en weaker model training -> clean model training with last N checkpoints saved to prevent overwriting, specify maximum epochs to train for some failsafe, specify logging for later plots 
 ***** use strong and weak model for translation -> strong model being WMT19 single and ensemble with back translation (which adds robustness), while weak model being transformer trained on WMT17 without back translation
 ***** add easy and meaningful workflow for this directly into repository
+***** consider also looking into extra references repo "evaluation-of-nmt-bt"
 
 **** Paraphrase detection
 ***** Fine-tuning using modified xtreme workflow

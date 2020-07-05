@@ -3,10 +3,8 @@
 
 # extract text from tarball
 TEXT="./data/wmt16_en_de_bpe32k"
-if [ ! -d "$TEXT" ]; then
-  mkdir -p "$TEXT"
-  tar -xzvf "./data/wmt16_en_de.tar.gz" -C "$TEXT"
-fi
+mkdir -p "$TEXT"
+tar -xzvf "./data/wmt16_en_de.tar.gz" -C "$TEXT"
 
 # pre-process and make ready for model training
 fairseq-preprocess \

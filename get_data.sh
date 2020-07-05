@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This function downloads and deploy all necessary data
 # Except cases of Google Drive data which must be manually downloaded/deployed
 

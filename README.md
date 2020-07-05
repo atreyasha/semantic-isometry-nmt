@@ -6,27 +6,27 @@ This repository investigates the performance of state-of-the-art Neural Machine 
 
 ### Dependencies :neckbeard:
 
-Below are two recommended methods of syncing dependencies:
+This repository's code was tested with Python versions 3.7+. In order to sync dependencies, create a virtual environment (recommended) and install dependencies via `pip`:
 
-1. If `poetry` is installed on your system, you can create a virtual environment and install dependencies with just one command:
-
-    ```shell
-    $ poetry install
-    ```
-
-2. Alternatively, create a virtual environment separately (recommended) and install dependencies via `pip`:
-
-    ```shell
-    $ pip install -r requirements.txt
-    ```
+```shell
+$ pip install -r requirements.txt
+```
 
 ### Repository Initialization :fire:
 
-To download `PAWS-X` and `WMT19` gold+paraphrased test data for this repository, simply run the command below:
+1. To download `PAWS-X` and `WMT19` original + additional references + paraphrased test data, simply run the command below:
 
-```shell
-$ make data
-```
+    ```shell
+    $ bash get_data.sh
+    ```
+
+2. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory. This download process is not automated due to frequent inconsistencies when downloading from Google Drive with command-line tools such as `curl` or `wget`.
+
+3. If you want to further develop this repository, you can sync python dependencies by initializing a pre-commit hook:
+
+    ```shell
+    $ bash setup_pre_commit_hook.sh
+    ```
 
 ### Development :snail:
 

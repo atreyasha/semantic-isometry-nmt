@@ -78,32 +78,39 @@
     1.  run bleu and chrF comparisons on sources and targets for nice
         plots
 
-    2.  run paraphrase detection only in cases where initial German
+    2.  need to think of effective ways of converting tensorflow event
+        logs to csv\'s for nicer plotting -\> look into event log
+        combination workflow
+
+    3.  run paraphrase detection only in cases where initial German
         paraphrase is positively detected, to ensure some consistency
         for evaluation -\> maybe there might be an interesting
         correlation between XLM-R prediction and chrF scores
 
-    3.  in rare cases, can do manual analysis and include this inside
+    4.  in rare cases, can do manual analysis and include this inside
         report
 
-    4.  report evaluation of fine-tuning paraphrase detector and weaker
+    5.  report evaluation of fine-tuning paraphrase detector and weaker
         translation model -\> get enough well-structured data for
         ultimate plotting
 
-    5.  early conclusions/hypothese: hand-crafted adversarial paraphrase
+    6.  early conclusions/hypothese: hand-crafted adversarial paraphrase
         robustness is handled well in SOTA models due to backtranslation
         reguralization, main vulnerability will be targetted adversarial
         samples
 
 5.  Paper
 
-    1.  describe processes that worked and did not work -\> talk about
+    1.  use two-column format for final paper, to prepare for paper
+        writing
+
+    2.  describe processes that worked and did not work -\> talk about
         all the hurdles and show some bad examples when they occurred
         -\> summarized below in logs
 
-    2.  list hypotheses and how some were refuted by results
+    3.  list hypotheses and how some were refuted by results
 
-    3.  include semantic transferance equation in paper to introduce
+    4.  include semantic transferance equation in paper to introduce
         some formalisms
 
 ### Completed

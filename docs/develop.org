@@ -1,5 +1,5 @@
 *** Development
-
+  
 **** Clean-code and documentation
 ***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
 ***** add readme information to manually download wmt16 data, not possible via google drive
@@ -29,12 +29,14 @@
 
 **** Evaluation and visualization
 ***** run bleu and chrF comparisons on sources and targets for nice plots 
+***** need to think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
 ***** run paraphrase detection only in cases where initial German paraphrase is positively detected, to ensure some consistency for evaluation -> maybe there might be an interesting correlation between XLM-R prediction and chrF scores
 ***** in rare cases, can do manual analysis and include this inside report
 ***** report evaluation of fine-tuning paraphrase detector and weaker translation model -> get enough well-structured data for ultimate plotting
 ***** early conclusions/hypothese: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
 
 **** Paper
+***** use two-column format for final paper, to prepare for paper writing
 ***** describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
 ***** list hypotheses and how some were refuted by results
 ***** include semantic transferance equation in paper to introduce some formalisms

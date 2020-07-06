@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# This script sets up a pre-commit hook to keep the development log
+# and pythonic dependencies up-to-date
 
 # check for python dependency commands
 test_pipreqs=$(command -v pipreqs)

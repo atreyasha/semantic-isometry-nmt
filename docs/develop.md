@@ -3,8 +3,6 @@
 -   Replace makefile with discrete shell scripts, tailor translation
     training to specific task carefully with sufficient logging and
     failsafes, high memory usage
--   Envision problems early on and try to make things work smoothly to
-    handle these issues -\> brainstorm first before training
 
 1.  Clean-code and documentation
 

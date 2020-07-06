@@ -15,6 +15,3 @@ fairseq-train \
     --save-dir "./model_logs/transformer_wmt16_de_en_${unix_epoch}" \
     --tensorboard-logdir "./model_logs/transformer_wmt16_de_en_${unix_epoch}" \
     --keep-last-epochs 10
-
-# TODO specify verbose logging for later plots
-# TODO figure out correct tensorboard location for server output

@@ -25,7 +25,8 @@
     1.  **TODO** work on fairseq wmt17 de-en weaker model
         training -\> clean model training with last N checkpoints saved
         to prevent overwriting, specify maximum epochs to train for some
-        failsafe, specify logging for later plots
+        failsafe, specify logging for later plots -\> add rest of
+        scripts to synchronize everything
 
     2.  use strong and weak model for translation -\> strong model being
         WMT19 single and ensemble with back translation (which adds

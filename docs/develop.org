@@ -9,7 +9,7 @@
 ***** add citations in readme as per general standard
 
 **** Translation
-***** TODO work on fairseq wmt17 de-en weaker model training -> clean model training with last N checkpoints saved to prevent overwriting, specify maximum epochs to train for some failsafe, specify logging for later plots 
+***** TODO work on fairseq wmt17 de-en weaker model training -> clean model training with last N checkpoints saved to prevent overwriting, specify maximum epochs to train for some failsafe, specify logging for later plots -> add rest of scripts to synchronize everything
 ***** use strong and weak model for translation -> strong model being WMT19 single and ensemble with back translation (which adds robustness), while weak model being transformer trained on WMT17 without back translation
 ***** add easy and meaningful workflow for this directly into repository
 ***** consider also looking into extra references repo "evaluation-of-nmt-bt"

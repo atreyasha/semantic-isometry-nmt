@@ -20,6 +20,7 @@ pexpect==4.8.0; sys_platform != "win32"
 pickleshare==0.7.5
 portalocker==1.7.0
 prompt-toolkit==3.0.5
+protobuf==3.12.2
 ptyprocess==0.6.0; sys_platform != "win32"
 pycparser==2.20
 pygments==2.6.1
@@ -30,6 +31,7 @@ sacrebleu==1.4.10
 sacremoses==0.0.43
 six==1.15.0
 subword-nmt==0.3.7
+tensorboardx==2.1
 torch==1.4.0
 tqdm==4.47.0
 traitlets==4.3.3

@@ -12,7 +12,7 @@ import torch
 import logging
 import logging.config
 logging.config.fileConfig(os.path.join(os.path.dirname(__file__),
-                                       "logging.conf"),
+                                       "resources","logging.conf"),
                           disable_existing_loggers=True)
 
 

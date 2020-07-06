@@ -14,15 +14,15 @@ pip install -r requirements.txt
 
 ### Repository Initialization :fire:
 
-1. To download `PAWS-X` and `WMT19` original + additional references + paraphrased test data, simply run the command below:
+1. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory.
+
+2. To download/prepare `PAWS-X` and `WMT19` original + additional references + paraphrased test data, as well as prepare the previously downloaded `WMT16` data, simply run the command below:
 
     ```shell
-    bash scripts/get_data.sh
+    bash scripts/prepare_data.sh
     ```
 
-2. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory. This download process is not automated due to frequent inconsistencies when downloading from Google Drive with command-line tools such as `curl` or `wget`.
-
-3. If you want to further develop this repository, you can keep python dependencies updated by initializing a pre-commit hook:
+3. If you want to further develop this repository, you can keep python dependencies and the development log updated by initializing a pre-commit hook:
 
     ```shell
     bash scripts/setup_pre_commit_hook.sh

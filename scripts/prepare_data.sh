@@ -5,11 +5,20 @@
 DATA="./data"
 WMT19="./data/wmt19"
 WMT19_PARAPHRASED="./data/wmt19_paraphrased"
+WMT16="./data/wmt16_en_de_bpe32k"
+
+wmt16() {
+  if [ -f "./data/wmt16_en_de.tar.gz" ]; then
+    mkdir -p "$WMT16"
+    tar -xzvf "./data/wmt16_en_de.tar.gz" -C "$WMT16"
+  fi
+}
 
 paws_x() {
 	wget -N -P "$DATA" "https://storage.googleapis.com/paws/pawsx/x-final.tar.gz"
 	tar -zxvf "$DATA/x-final.tar.gz" -C $DATA
-	mv "$DATA/x-final" "$DATA/paws_x"
+    rm -rf "$DATA/paws_x"
+	mv -f "$DATA/x-final" "$DATA/paws_x"
 }
 
 wmt19() {
@@ -25,5 +34,5 @@ wmt19_paraphrased() {
 	wget -N -P "$WMT19_PARAPHRASED" "https://raw.githubusercontent.com/google/wmt19-paraphrased-references/master/wmt19/ende/wmt19-ende-wmtp.ref"
 }
 
-# execute all three functions
-paws_x; wmt19; wmt19_paraphrased
+# execute all functions
+paws_x; wmt19; wmt19_paraphrased; wmt16

@@ -12,6 +12,6 @@ fairseq-train \
     --dropout 0.3 --weight-decay 0.0 \
     --criterion label_smoothed_cross_entropy --label-smoothing 0.1 \
     --max-tokens 3584 \
-    --save-dir "./model_logs/transformer_wmt16_de_en_${unix_epoch}" \
-    --tensorboard-logdir "./model_logs/transformer_wmt16_de_en_${unix_epoch}" \
+    --save-dir "./models/transformer_wmt16_de_en_${unix_epoch}" \
+    --tensorboard-logdir "./models/transformer_wmt16_de_en_${unix_epoch}" \
     --keep-last-epochs 10

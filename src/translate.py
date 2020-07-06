@@ -70,7 +70,7 @@ def write_to_file(model_name: str, metadata: str, store: Dict) -> None:
         store (Dict): Dictionary ouput of translation task
     """
     # write everything to a json file to keep things simple
-    path = os.path.join("./out", model_name)
+    path = os.path.join("./predictions", model_name)
     os.makedirs(path, exist_ok=True)
     with open(os.path.join(path, metadata + ".json"), "w") as json_file:
         json.dump(store, json_file, ensure_ascii=False)

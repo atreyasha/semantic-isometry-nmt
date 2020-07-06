@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Script sourced and adapted from https://github.com/pytorch/fairseq/blob/master/examples/scaling_nmt/README.md
 
-unix_epoch=$(date +%s)
+unix_epoch="$(date +%s)"
 
 # train fairseq model
 fairseq-train \

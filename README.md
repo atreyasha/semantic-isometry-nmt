@@ -6,7 +6,7 @@ This repository investigates the performance of state-of-the-art Neural Machine 
 
 ### Dependencies :neckbeard:
 
-This repository's code was tested with Python versions 3.7+. In order to sync dependencies, create a virtual environment (recommended) and install dependencies via `pip`:
+This repository's code was tested with Python versions `3.7+`. In order to sync dependencies, create a virtual environment (recommended) and install dependencies via `pip`:
 
 ```shell
 pip install -r requirements.txt
@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 1. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory.
 
-2. To download/prepare `PAWS-X` and `WMT19` original + additional references + paraphrased test data, as well as prepare the previously downloaded `WMT16` data, simply run the command below:
+2. To download/prepare `PAWS-X` and `WMT19` original + additional references + paraphrased test data, as well as prepare the previously downloaded `WMT16` data, run the command below:
 
     ```shell
     bash scripts/prepare_data.sh
@@ -33,7 +33,6 @@ pip install -r requirements.txt
 As we are still under development, several parts of this repository might change significantly.
 
 Check our development [log](./docs/develop.md) for information on current developments.
-
 
 ### Citations
 

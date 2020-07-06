@@ -1,131 +1,110 @@
 ### Development
 
-Prepare discussion points for skype call later
-==============================================
+1.  Clean-code and documentation
 
-Thank Sharid for taking the time to call and for being willing to supervise, am very grateful
----------------------------------------------------------------------------------------------
+    1.  **TODO** create discrete scripts -\> train
+        translation model, fine tune paraphrase detector, translate
+        sentences, evaluate (bleu, chrf, fine-tuned model), visualize
+        data
 
-Get to know each other shortly, talk about backgrounds and personal interests
------------------------------------------------------------------------------
+    2.  add readme information to manually download wmt16 data, not
+        possible via google drive
 
-Talk about interests in model distillation for the purpose for interpretability -\> might give more insights of how they work precisely and could be used to diagnose in higher-risk situations
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    3.  think of how to handle all scripts -\> whether with makefile or
+        simple bash reference
 
-Learning agreement -\> show template and discuss that I will fill out various parts
------------------------------------------------------------------------------------
+    4.  consider building readme and project using python -m framework
 
-Need a signature from an academic \"coordinator\" -\> would be best if I get two signatures -\> one from yourself and one from Manfred on this
-----------------------------------------------------------------------------------------------------------------------------------------------
+    5.  provide all trained models for later reference -\> and/or
+        provide full random seeds for generation
 
--   Replace makefile with discrete shell scripts, tailor translation
-    training to specific task carefully with sufficient logging and
-    failsafes, high memory usage
--   Use two-column format for final paper, to prepare for paper writing
--   Update readme with new data preparation information
--   Consider renaming out to pred to be more clear on file structure,
-    rename model~logs~ to models for simplicity
+    6.  add citations in readme as per general standard
 
-Clean-code and documentation
+2.  Translation
 
-1.  **TODO** create discrete scripts -\> train translation
-    model, fine tune paraphrase detector, translate sentences, evaluate
-    (bleu, chrf, fine-tuned model), visualize data
+    1.  **TODO** work on fairseq wmt17 de-en weaker model
+        training -\> clean model training with last N checkpoints saved
+        to prevent overwriting, specify maximum epochs to train for some
+        failsafe, specify logging for later plots
 
-2.  add readme information to manually download wmt16 data, not possible
-    via google drive
+    2.  use strong and weak model for translation -\> strong model being
+        WMT19 single and ensemble with back translation (which adds
+        robustness), while weak model being transformer trained on WMT17
+        without back translation
 
-3.  think of how to handle all scripts -\> whether with makefile or
-    simple bash reference
+    3.  add easy and meaningful workflow for this directly into
+        repository
 
-4.  consider building readme and project using python -m framework
+    4.  consider also looking into extra references repo
+        \"evaluation-of-nmt-bt\"
 
-5.  provide all trained models for later reference -\> and/or provide
-    full random seeds for generation
+3.  Paraphrase detection
 
-6.  add citations in readme as per general standard
+    1.  Fine-tuning using modified xtreme workflow
 
-Translation
+        1.  fine-tune models with English and ensure no or little
+            machine translated data is present in training set
 
-1.  **TODO** work on fairseq wmt17 de-en weaker model
-    training -\> clean model training with last N checkpoints saved to
-    prevent overwriting, specify maximum epochs to train for some
-    failsafe, specify logging for later plots
+        2.  refactor and improve xtreme code with simpler repository:
 
-2.  use strong and weak model for translation -\> strong model being
-    WMT19 single and ensemble with back translation (which adds
-    robustness), while weak model being transformer trained on WMT17
-    without back translation
+            1.  modify logging of models, combination of languages,
+                correct naming of training parameters and files, add
+                better metrics for monitoring performance like F1
 
-3.  add easy and meaningful workflow for this directly into repository
+            2.  train more model combinations, change evaluation metrics
+                on test set to only be at the end, continue training for
+                existing models or re-evaluate them on the test dataset,
+                make new model which learns from all data instead of
+                just one language, remove constant re-writing of caches,
+                add more information into each log file to make it
+                unique
 
-4.  consider also looking into extra references repo
-    \"evaluation-of-nmt-bt\"
+            3.  add clean prediction workflow for translated data
 
-Paraphrase detection
+        3.  optional: data augmentation with easy examples -\> perhaps
+            add this in to training scheme
 
-1.  Fine-tuning using modified xtreme workflow
+        4.  run and document multiple models -\> such as fine-tuned
+            multilingual BERT and others
 
-    1.  fine-tune models with English and ensure no or little machine
-        translated data is present in training set
+        5.  add failsafe to output maximum score in case same inputs
 
-    2.  refactor and improve xtreme code with simpler repository:
+        6.  better to work with human-curated data than back-translated
+            ones due to many errors -\> advantage in PAWS and PAWS-X
+            English data + WMT19 AR paraphrases
 
-        1.  modify logging of models, combination of languages, correct
-            naming of training parameters and files, add better metrics
-            for monitoring performance like F1
+4.  Evaluation and visualization
 
-        2.  train more model combinations, change evaluation metrics on
-            test set to only be at the end, continue training for
-            existing models or re-evaluate them on the test dataset,
-            make new model which learns from all data instead of just
-            one language, remove constant re-writing of caches, add more
-            information into each log file to make it unique
+    1.  run bleu and chrF comparisons on sources and targets for nice
+        plots
 
-        3.  add clean prediction workflow for translated data
+    2.  run paraphrase detection only in cases where initial German
+        paraphrase is positively detected, to ensure some consistency
+        for evaluation -\> maybe there might be an interesting
+        correlation between XLM-R prediction and chrF scores
 
-    3.  optional: data augmentation with easy examples -\> perhaps add
-        this in to training scheme
+    3.  in rare cases, can do manual analysis and include this inside
+        report
 
-    4.  run and document multiple models -\> such as fine-tuned
-        multilingual BERT and others
+    4.  report evaluation of fine-tuning paraphrase detector and weaker
+        translation model -\> get enough well-structured data for
+        ultimate plotting
 
-    5.  add failsafe to output maximum score in case same inputs
+    5.  early conclusions/hypothese: hand-crafted adversarial paraphrase
+        robustness is handled well in SOTA models due to backtranslation
+        reguralization, main vulnerability will be targetted adversarial
+        samples
 
-    6.  better to work with human-curated data than back-translated ones
-        due to many errors -\> advantage in PAWS and PAWS-X English
-        data + WMT19 AR paraphrases
+5.  Paper
 
-Evaluation and visualization
+    1.  describe processes that worked and did not work -\> talk about
+        all the hurdles and show some bad examples when they occurred
+        -\> summarized below in logs
 
-1.  run bleu and chrF comparisons on sources and targets for nice plots
+    2.  list hypotheses and how some were refuted by results
 
-2.  run paraphrase detection only in cases where initial German
-    paraphrase is positively detected, to ensure some consistency for
-    evaluation -\> maybe there might be an interesting correlation
-    between XLM-R prediction and chrF scores
-
-3.  in rare cases, can do manual analysis and include this inside report
-
-4.  report evaluation of fine-tuning paraphrase detector and weaker
-    translation model -\> get enough well-structured data for ultimate
-    plotting
-
-5.  early conclusions/hypothese: hand-crafted adversarial paraphrase
-    robustness is handled well in SOTA models due to backtranslation
-    reguralization, main vulnerability will be targetted adversarial
-    samples
-
-Paper
-
-1.  describe processes that worked and did not work -\> talk about all
-    the hurdles and show some bad examples when they occurred -\>
-    summarized below in logs
-
-2.  list hypotheses and how some were refuted by results
-
-3.  include semantic transferance equation in paper to introduce some
-    formalisms
+    3.  include semantic transferance equation in paper to introduce
+        some formalisms
 
 ### Completed
 

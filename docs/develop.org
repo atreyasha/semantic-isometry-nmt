@@ -1,17 +1,5 @@
 *** Development
 
-* Prepare discussion points for skype call later
-** Thank Sharid for taking the time to call and for being willing to supervise, am very grateful
-** Get to know each other shortly, talk about backgrounds and personal interests 
-** Talk about interests in model distillation for the purpose for interpretability -> might give more insights of how they work precisely and could be used to diagnose in higher-risk situations
-** Learning agreement -> show template and discuss that I will fill out various parts
-** Need a signature from an academic "coordinator" -> would be best if I get two signatures -> one from yourself and one from Manfred on this
-
-- Replace makefile with discrete shell scripts, tailor translation training to specific task carefully with sufficient logging and failsafes, high memory usage
-- Use two-column format for final paper, to prepare for paper writing
-- Update readme with new data preparation information
-- Consider renaming out to pred to be more clear on file structure, rename model_logs to models for simplicity
-
 **** Clean-code and documentation
 ***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
 ***** add readme information to manually download wmt16 data, not possible via google drive

@@ -1,6 +1,8 @@
 *** Development
 
 - Replace makefile with discrete shell scripts, tailor translation training to specific task carefully with sufficient logging and failsafes, high memory usage
+- Use two-column format for final paper, to prepare for paper writing
+- Prepare discussion points for skype call later
 
 **** Clean-code and documentation
 ***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data

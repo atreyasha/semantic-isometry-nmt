@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from utils.parser import parse_arguments
+from .arg_parser import parse_arguments
 from typing import List, Dict, Any
 from tqdm import tqdm
 import codecs
@@ -11,7 +11,8 @@ import os
 import torch
 import logging
 import logging.config
-logging.config.fileConfig('./utils/resources/logging.conf',
+logging.config.fileConfig(os.path.join(os.path.dirname(__file__),
+                                       "logging.conf"),
                           disable_existing_loggers=True)
 
 

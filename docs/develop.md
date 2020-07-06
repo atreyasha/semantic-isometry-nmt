@@ -3,6 +3,8 @@
 -   Replace makefile with discrete shell scripts, tailor translation
     training to specific task carefully with sufficient logging and
     failsafes, high memory usage
+-   Use two-column format for final paper, to prepare for paper writing
+-   Prepare discussion points for skype call later
 
 1.  Clean-code and documentation
 

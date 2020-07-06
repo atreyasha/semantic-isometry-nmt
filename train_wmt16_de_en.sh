@@ -4,7 +4,7 @@
 # train fairseq model
 fairseq-train \
     ./data/wmt16_en_de_bpe32k/bin \
-    --arch transformer_vaswani_wmt_en_de --share-all-embeddings \
+    --arch transformer_vaswani_wmt_en_de_big --share-all-embeddings \
     --optimizer adam --adam-betas '(0.9, 0.98)' --clip-norm 0.0 \
     --lr 0.0005 --lr-scheduler inverse_sqrt --warmup-updates 4000 --warmup-init-lr 1e-07 \
     --dropout 0.3 --weight-decay 0.0 \

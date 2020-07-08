@@ -183,9 +183,9 @@ def main() -> None:
             store = translate_process(model, de_input, batch_size)
             # get relevant metadata for writing to disk
             if isinstance(model, fairseq.hub_utils.GeneratorHubInterface):
-                model = "hub." + model
+                model_name = "hub." + model_name
             else:
-                model = "local." + model
+                model_name = "local." + model_name
             if all(re.search("-arp?.ref$", path) for path in input_paths):
                 metadata = "wmt19.ar.arp"
             else:

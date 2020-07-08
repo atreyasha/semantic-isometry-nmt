@@ -37,7 +37,7 @@ train(){
       --lr 0.001 --lr-scheduler inverse_sqrt --warmup-updates 4000 --warmup-init-lr 1e-07 \
       --dropout 0.3 --weight-decay 0.0 \
       --criterion label_smoothed_cross_entropy --label-smoothing 0.1 \
-      --max-tokens 3584 --fp16 --update-freq 16 \
+      --max-tokens 7168 --fp16 --update-freq 8 \
       --keep-last-epochs 10 \
       --save-dir "./models/${arch}.wmt16.de-en.${unix_epoch}" \
       --tensorboard-logdir "./models/${arch}.wmt16.de-en.${unix_epoch}"

@@ -10,15 +10,15 @@
         appropriately with indication of research origins such as ng et
         al. or indication such as hub/local
 
-    3.  **TODO** keep in mind effective batch sizes with
+    3.  **TODO** re-look at stopping model training and how
+        this would generally work
+
+    4.  **TODO** keep in mind effective batch sizes with
         gradient accumulation and priorities for slurm
 
-    4.  **TODO** re-look at checkpoint saving and how it
+    5.  **TODO** re-look at checkpoint saving and how it
         should be done via intervals and pershaps not via epochs -\>
         look at points from Mathias texts and try implementing
-
-    5.  **TODO** re-look at stopping model training and how
-        this would generally work
 
     6.  **TODO** continue training on s3it instead of
         translation models -\> improve scripts and standards for final

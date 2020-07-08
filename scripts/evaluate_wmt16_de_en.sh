@@ -28,21 +28,16 @@ check_help(){
 }
 
 evaluate(){
-# compulsory
-path="$1"
-# optional
-subset="${2:-test}"
-# derived
-outfile="$(dirname "$path")/$(basename "$path")."$subset".out"
-# TODO add auto scoring here next to outfile
-
-# process generations
-fairseq-generate \
-    data/wmt16_en_de_bpe32k/bin \
-    --path "$path" \
-    --beam 4 --lenpen 0.6 --remove-bpe \
-    --gen-subset "$subset" \
-    --max-tokens 2048 | tee "$outfile"
+  # declare variables
+  local checkpoint_path="$1" subset="${2:-test}"
+  local outfile="${checkpoint_path}.${subset}.out"
+  # process generations
+  fairseq-generate \
+      "data/wmt16_en_de_bpe32k/bin" \
+      --path "$checkpoint_path" \
+      --beam 4 --lenpen 0.6 --remove-bpe \
+      --gen-subset "$subset" \
+      --max-tokens 3584 | tee "$outfile"
 }
 
 check_help "$@"; evaluate "$@"

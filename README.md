@@ -8,7 +8,7 @@ This repository investigates the performance of state-of-the-art Neural Machine 
 
 This repository's code was tested with Python versions `3.7+`. We recommend the two following methods for syncing python dependencies.
 
-1. If poetry is installed on your system, you can create a virtual environment and install dependencies with just one command:
+1. If `poetry` is installed on your system, you can create a virtual environment and install dependencies with just one command:
 
     ```shell
     poetry install

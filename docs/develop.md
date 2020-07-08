@@ -2,14 +2,11 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** continue training on s3it instead of
-        translation models -\> improve scripts and standards for final
-        use and deploy -\> try to resume training where possible instead
-        of re-training
-
-    2.  **TODO** change focus to refactoring XLM-R
+    1.  **TODO** change focus to refactoring XLM-R
         implementation on PAWS-X and train this model on jarvis as it is
         lower training resourced
+
+    2.  consider upgrading fairseq to latest version for patience
 
     3.  consider making separate branch with sbatch parameters all
         present in files as necessary

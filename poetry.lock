@@ -111,6 +111,10 @@ sacrebleu = "*"
 torch = "*"
 tqdm = "*"
 
+[package.source]
+reference = "9f92b05e2a10f1c559d44dc1c264af31723d1d76"
+type = "git"
+url = "https://github.com/pytorch/fairseq.git"
 [[package]]
 category = "main"
 description = "C++ implementation of Neural Machine Translation of Rare Words with Subword Units, with Python API."
@@ -654,7 +658,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "64b1e1058f842f5963499e298c0e2d8ba89ec46f77feac6a84afa8c223243bbb"
+content-hash = "cc619328171d898b3a63473a1fc03515764dd7dad1be99e26fb036d11f61402c"
 python-versions = "^3.7.0"
 
 [metadata.files]
@@ -758,9 +762,7 @@ decorator = [
     {file = "decorator-4.4.2-py2.py3-none-any.whl", hash = "sha256:41fa54c2a0cc4ba648be4fd43cff00aedf5b9465c9bf18d64325bc225f08f760"},
     {file = "decorator-4.4.2.tar.gz", hash = "sha256:e3a62f0520172440ca0dcc823749319382e377f37f140a0b99ef45fecb84bfe7"},
 ]
-fairseq = [
-    {file = "fairseq-0.9.0.tar.gz", hash = "sha256:61206358b79f325ea0b46cfd8c95cdb81bfbcfb43cf12b47d1d5124ce7321d3b"},
-]
+fairseq = []
 fastbpe = [
     {file = "fastBPE-0.1.0.tar.gz", hash = "sha256:95eef4be2689e822a918ac4eae3349cd78ca3f28af591afa421f8fac6d4cd889"},
 ]

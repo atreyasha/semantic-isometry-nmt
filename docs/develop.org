@@ -1,9 +1,8 @@
 *** Development
 
 **** Clean-code and documentation
-***** TODO continue training on s3it instead of translation models -> improve scripts and standards for final use and deploy -> try to resume training where possible instead of re-training
-
 ***** TODO change focus to refactoring XLM-R implementation on PAWS-X and train this model on jarvis as it is lower training resourced
+***** consider upgrading fairseq to latest version for patience
 ***** consider making separate branch with sbatch parameters all present in files as necessary
 ***** create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
 ***** make separate readmes depending on if user wants to use or train

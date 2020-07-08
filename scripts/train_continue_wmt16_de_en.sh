@@ -42,7 +42,7 @@ train_continue(){
       --dropout 0.3 --weight-decay 0.0 \
       --criterion label_smoothed_cross_entropy --label-smoothing 0.1 \
       --max-tokens 3584 --fp16 --update-freq 16  \
-      --keep-last-epochs 10 --patience 3 \
+      --keep-last-epochs 10 \
       --save-dir "$save_dir" \
       --tensorboard-logdir "$save_dir"
 }

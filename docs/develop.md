@@ -2,37 +2,30 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** re-look at checkpoint saving and how it
-        should be done via intervals and pershaps not via epochs -\>
-        look at points from Mathias texts and try implementing
-
-    2.  **TODO** implement same fairseq details for
-        train~continue~ and train
-
-    3.  **TODO** continue training on s3it instead of
+    1.  **TODO** continue training on s3it instead of
         translation models -\> improve scripts and standards for final
         use and deploy -\> try to resume training where possible instead
         of re-training
 
-    4.  **TODO** change focus to refactoring XLM-R
+    2.  **TODO** change focus to refactoring XLM-R
         implementation on PAWS-X and train this model on jarvis as it is
         lower training resourced
 
-    5.  consider making separate branch with sbatch parameters all
+    3.  consider making separate branch with sbatch parameters all
         present in files as necessary
 
-    6.  create discrete scripts -\> train translation model, fine tune
+    4.  create discrete scripts -\> train translation model, fine tune
         paraphrase detector, translate sentences, evaluate (bleu, chrf,
         fine-tuned model), visualize data
 
-    7.  make separate readmes depending on if user wants to use or train
+    5.  make separate readmes depending on if user wants to use or train
 
-    8.  consider building readme and project using python -m framework
+    6.  consider building readme and project using python -m framework
 
-    9.  provide all trained models for later reference -\> and/or
+    7.  provide all trained models for later reference -\> and/or
         provide full random seeds for generation
 
-    10. add citations in readme as per general standard
+    8.  add citations in readme as per general standard
 
 2.  Translation
 

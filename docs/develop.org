@@ -1,8 +1,6 @@
 *** Development
 
 **** Clean-code and documentation
-***** TODO re-look at checkpoint saving and how it should be done via intervals and pershaps not via epochs -> look at points from Mathias texts and try implementing
-***** TODO implement same fairseq details for train_continue and train
 ***** TODO continue training on s3it instead of translation models -> improve scripts and standards for final use and deploy -> try to resume training where possible instead of re-training
 
 ***** TODO change focus to refactoring XLM-R implementation on PAWS-X and train this model on jarvis as it is lower training resourced

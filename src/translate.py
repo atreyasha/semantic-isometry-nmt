@@ -9,10 +9,11 @@ import json
 import re
 import os
 import torch
+import fairseq
 import logging
 import logging.config
-logging.config.fileConfig(os.path.join(os.path.dirname(__file__),
-                                       "resources","logging.conf"),
+logging.config.fileConfig(os.path.join(os.path.dirname(__file__), "resources",
+                                       "logging.conf"),
                           disable_existing_loggers=True)
 
 
@@ -181,6 +182,10 @@ def main() -> None:
             # translate and process
             store = translate_process(model, de_input, batch_size)
             # get relevant metadata for writing to disk
+            if isinstance(model, fairseq.hub_utils.GeneratorHubInterface):
+                model = "hub." + model
+            else:
+                model = "local." + model
             if all(re.search("-arp?.ref$", path) for path in input_paths):
                 metadata = "wmt19.ar.arp"
             else:

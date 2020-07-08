@@ -2,44 +2,41 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** add dynamic evaluation and add scoring
-        script in one setting, use tee instead of results path along
-        with grep before scoring
-
-    2.  **TODO** rename prediction model folders
+    1.  **TODO** rename prediction model folders
         appropriately with indication of research origins such as ng et
         al. or indication such as hub/local
 
-    3.  **TODO** re-look at stopping model training and how
+    2.  **TODO** re-look at stopping model training and how
         this would generally work
 
-    4.  **TODO** keep in mind effective batch sizes with
+    3.  **TODO** keep in mind effective batch sizes with
         gradient accumulation and priorities for slurm
 
-    5.  **TODO** re-look at checkpoint saving and how it
+    4.  **TODO** re-look at checkpoint saving and how it
         should be done via intervals and pershaps not via epochs -\>
         look at points from Mathias texts and try implementing
 
-    6.  **TODO** continue training on s3it instead of
+    5.  **TODO** continue training on s3it instead of
         translation models -\> improve scripts and standards for final
-        use and deploy
+        use and deploy -\> try to resume training where possible instead
+        of re-training
 
-    7.  keep jarvis for training paraphrase detection models as this is
+    6.  keep jarvis for training paraphrase detection models as this is
         slightly lower resource in terms of training data
 
-    8.  **TODO** create discrete scripts -\> train
+    7.  **TODO** create discrete scripts -\> train
         translation model, fine tune paraphrase detector, translate
         sentences, evaluate (bleu, chrf, fine-tuned model), visualize
         data
 
-    9.  make separate readmes depending on if user wants to use or train
+    8.  make separate readmes depending on if user wants to use or train
 
-    10. consider building readme and project using python -m framework
+    9.  consider building readme and project using python -m framework
 
-    11. provide all trained models for later reference -\> and/or
+    10. provide all trained models for later reference -\> and/or
         provide full random seeds for generation
 
-    12. add citations in readme as per general standard
+    11. add citations in readme as per general standard
 
 2.  Translation
 

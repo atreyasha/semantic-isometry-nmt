@@ -10,15 +10,15 @@ This repository's code was tested with Python versions `3.7+`. We recommend the 
 
 1. If poetry is installed on your system, you can create a virtual environment and install dependencies with just one command:
 
-```shell
-poetry install
-```
+    ```shell
+    poetry install
+    ```
 
 2. Create a virtual environment (recommended) and install dependencies via `pip`:
 
-```shell
-pip install -r requirements.txt
-```
+    ```shell
+    pip install -r requirements.txt
+    ```
 
 ### Repository Initialization :fire:
 

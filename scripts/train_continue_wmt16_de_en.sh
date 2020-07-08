@@ -5,12 +5,13 @@ set -e
 # usage function
 usage(){
   cat <<EOF
-Usage: train_wmt16_de_en.sh [-h|--help] [arch]
+Usage: train_continue_wmt16_de_en.sh [-h|--help] save_dir
 
 Optional arguments:
-  -h, --help           Show this help message and exit
-  arch <fairseq_arch>  Architecture for use in model, defaults
-                       to "transformer_vaswani_wmt_en_de_big"
+  -h, --help       Show this help message and exit
+
+Required arguments:
+  save_dir <path>  Path to directory containing checkpoints
 EOF
 }
 
@@ -25,10 +26,13 @@ check_help(){
 }
 
 # train function
-train(){
+train_continue(){
   # declare variables
-  local arch="${1:-transformer_vaswani_wmt_en_de_big}"
-  local unix_epoch="$(date +%s)"
+  local save_dir="$1"
+  # exit if no valid save_dir provided
+  [ ! -d "$save_dir" ] && usage && exit 1
+  # deduce architecture from save_dir name
+  local arch="$(sed -re 's/^([^.]*)\.(.*)$/\1/g' <<< $(basename $save_dir))"
   # train fairseq model
   fairseq-train \
       "data/wmt16_en_de_bpe32k/bin" \
@@ -38,8 +42,8 @@ train(){
       --dropout 0.3 --weight-decay 0.0 \
       --criterion label_smoothed_cross_entropy --label-smoothing 0.1 \
       --max-tokens 3584 \
-      --save-dir "./models/${arch}.wmt16.de-en.${unix_epoch}" \
-      --tensorboard-logdir "./models/${arch}.wmt16.de-en.${unix_epoch}"
+      --save-dir "$save_dir" \
+      --tensorboard-logdir "$save_dir"
 }
 
-check_help "$@"; train "$@"
+check_help "$@"; train_continue "$@"

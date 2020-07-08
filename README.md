@@ -22,7 +22,7 @@ pip install -r requirements.txt
     bash scripts/prepare_data.sh
     ```
 
-3. If you want to further develop this repository, you can keep python dependencies and the development log updated by initializing a pre-commit hook:
+3. Optionally, if you want to further develop this repository; you can keep python dependencies and the development log updated by initializing a pre-commit hook:
 
     ```shell
     bash scripts/setup_pre_commit_hook.sh

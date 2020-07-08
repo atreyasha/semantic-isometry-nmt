@@ -2,31 +2,49 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** create discrete scripts -\> train
+    1.  **TODO** add dynamic evaluation and add scoring
+        script in one setting, use tee instead of results path along
+        with grep before scoring
+
+    2.  **TODO** rename prediction model folders
+        appropriately with indication of research origins such as ng et
+        al. or indication such as hub/local
+
+    3.  **TODO** keep in mind effective batch sizes with
+        gradient accumulation and priorities for slurm
+
+    4.  **TODO** re-look at checkpoint saving and how it
+        should be done via intervals and pershaps not via epochs -\>
+        look at points from Mathias texts and try implementing
+
+    5.  **TODO** re-look at stopping model training and how
+        this would generally work
+
+    6.  **TODO** continue training on s3it instead of
+        translation models -\> improve scripts and standards for final
+        use and deploy
+
+    7.  keep jarvis for training paraphrase detection models as this is
+        slightly lower resource in terms of training data
+
+    8.  **TODO** create discrete scripts -\> train
         translation model, fine tune paraphrase detector, translate
         sentences, evaluate (bleu, chrf, fine-tuned model), visualize
         data
 
-    2.  add readme information to manually download wmt16 data, not
-        possible via google drive
+    9.  make separate readmes depending on if user wants to use or train
 
-    3.  think of how to handle all scripts -\> whether with makefile or
-        simple bash reference
+    10. consider building readme and project using python -m framework
 
-    4.  consider building readme and project using python -m framework
-
-    5.  provide all trained models for later reference -\> and/or
+    11. provide all trained models for later reference -\> and/or
         provide full random seeds for generation
 
-    6.  add citations in readme as per general standard
+    12. add citations in readme as per general standard
 
 2.  Translation
 
     1.  **TODO** work on fairseq wmt17 de-en weaker model
-        training -\> clean model training with last N checkpoints saved
-        to prevent overwriting, specify maximum epochs to train for some
-        failsafe, specify logging for later plots -\> add rest of
-        scripts to synchronize everything
+        training -\> add rest of scripts to synchronize everything
 
     2.  use strong and weak model for translation -\> strong model being
         WMT19 single and ensemble with back translation (which adds

@@ -151,12 +151,13 @@ def main() -> None:
     ]
     # loop over respective models
     for model_name in model_names:
-        if "single_model" in model_name:
+        # add rules for loading models
+        if model_name == "transformer.wmt19.de-en.single_model":
             model = torch.hub.load("pytorch/fairseq",
                                    model_name,
                                    tokenizer="moses",
                                    bpe="fastbpe")
-        else:
+        elif model_name == "transformer.wmt19.de-en":
             model = torch.hub.load(
                 "pytorch/fairseq",
                 model_name,
@@ -165,6 +166,11 @@ def main() -> None:
                 bpe="fastbpe")
             # reduce batch size due to high memory usage
             batch_size = 32
+        # add hub/local tag to model_name
+        if isinstance(model, fairseq.hub_utils.GeneratorHubInterface):
+            model_name = "hub." + model_name
+        elif isinstance(model, fairseq.models.transformer.TransformerModel):
+            model_name = "local." + model_name
         # loop over paraphrase files
         for input_paths in path_dict[args.wmt_references]:
             base = os.path.basename(input_paths[0])
@@ -181,12 +187,8 @@ def main() -> None:
             logger.info("Translating and processing to 'en'")
             # translate and process
             store = translate_process(model, de_input, batch_size)
-            # get relevant metadata for writing to disk
-            if isinstance(model, fairseq.hub_utils.GeneratorHubInterface):
-                model_name = "hub." + model_name
-            else:
-                model_name = "local." + model_name
-            if all(re.search("-arp?.ref$", path) for path in input_paths):
+            # modify metadata
+            if all(re.search(r"-arp?.ref$", path) for path in input_paths):
                 metadata = "wmt19.ar.arp"
             else:
                 metadata = "wmt19.wmt.wmtp"

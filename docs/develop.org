@@ -1,14 +1,13 @@
 *** Development
 
 **** Clean-code and documentation
-***** TODO rename prediction model folders appropriately with indication of research origins such as ng et al. or indication such as hub/local
 ***** TODO re-look at stopping model training and how this would generally work
 ***** TODO keep in mind effective batch sizes with gradient accumulation and priorities for slurm
 ***** TODO re-look at checkpoint saving and how it should be done via intervals and pershaps not via epochs -> look at points from Mathias texts and try implementing
-***** TODO continue training on s3it instead of translation models -> improve scripts and standards for final use and deploy -> try to resume training where possible instead of re-training
-***** keep jarvis for training paraphrase detection models as this is slightly lower resource in terms of training data 
+***** continue training on s3it instead of translation models -> improve scripts and standards for final use and deploy -> try to resume training where possible instead of re-training
 
 ***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
+***** TODO change focus to refactoring XLM-R implementation on PAWS-X and train this model on jarvis as it is lower training resourced
 ***** make separate readmes depending on if user wants to use or train
 ***** consider building readme and project using python -m framework
 ***** provide all trained models for later reference -> and/or provide full random seeds for generation

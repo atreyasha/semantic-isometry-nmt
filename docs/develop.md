@@ -2,41 +2,37 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** rename prediction model folders
-        appropriately with indication of research origins such as ng et
-        al. or indication such as hub/local
-
-    2.  **TODO** re-look at stopping model training and how
+    1.  **TODO** re-look at stopping model training and how
         this would generally work
 
-    3.  **TODO** keep in mind effective batch sizes with
+    2.  **TODO** keep in mind effective batch sizes with
         gradient accumulation and priorities for slurm
 
-    4.  **TODO** re-look at checkpoint saving and how it
+    3.  **TODO** re-look at checkpoint saving and how it
         should be done via intervals and pershaps not via epochs -\>
         look at points from Mathias texts and try implementing
 
-    5.  **TODO** continue training on s3it instead of
-        translation models -\> improve scripts and standards for final
-        use and deploy -\> try to resume training where possible instead
-        of re-training
+    4.  continue training on s3it instead of translation models -\>
+        improve scripts and standards for final use and deploy -\> try
+        to resume training where possible instead of re-training
 
-    6.  keep jarvis for training paraphrase detection models as this is
-        slightly lower resource in terms of training data
-
-    7.  **TODO** create discrete scripts -\> train
+    5.  **TODO** create discrete scripts -\> train
         translation model, fine tune paraphrase detector, translate
         sentences, evaluate (bleu, chrf, fine-tuned model), visualize
         data
 
-    8.  make separate readmes depending on if user wants to use or train
+    6.  **TODO** change focus to refactoring XLM-R
+        implementation on PAWS-X and train this model on jarvis as it is
+        lower training resourced
 
-    9.  consider building readme and project using python -m framework
+    7.  make separate readmes depending on if user wants to use or train
 
-    10. provide all trained models for later reference -\> and/or
+    8.  consider building readme and project using python -m framework
+
+    9.  provide all trained models for later reference -\> and/or
         provide full random seeds for generation
 
-    11. add citations in readme as per general standard
+    10. add citations in readme as per general standard
 
 2.  Translation
 

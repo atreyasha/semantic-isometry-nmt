@@ -29,6 +29,7 @@ train(){
   # declare variables
   local arch="${1:-transformer_vaswani_wmt_en_de_big}"
   local unix_epoch="$(date +%s)"
+  local save_dir="./models/${arch}.wmt16.de-en.${unix_epoch}"
   # train fairseq model
   fairseq-train \
       "data/wmt16_en_de_bpe32k/bin" \
@@ -39,8 +40,8 @@ train(){
       --criterion label_smoothed_cross_entropy --label-smoothing 0.1 \
       --max-tokens 3584 --fp16 --update-freq 16 \
       --keep-last-epochs 10 --patience 3 --num-workers 5 \
-      --save-dir "./models/${arch}.wmt16.de-en.${unix_epoch}" \
-      --tensorboard-logdir "./models/${arch}.wmt16.de-en.${unix_epoch}"
+      --save-dir "$save_dir" \
+      --tensorboard-logdir "$save_dir"
 }
 
 check_help "$@"; train "$@"

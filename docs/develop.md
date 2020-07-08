@@ -6,21 +6,20 @@
         should be done via intervals and pershaps not via epochs -\>
         look at points from Mathias texts and try implementing
 
-    2.  **TODO** consider disabling tqdm as this will only
-        flood slurm log -\> keep no progress log but instead refer to
-        tensorboard only
-
-    3.  **TODO** implement same fairseq details for
+    2.  **TODO** implement same fairseq details for
         train~continue~ and train
 
-    4.  **TODO** continue training on s3it instead of
+    3.  **TODO** continue training on s3it instead of
         translation models -\> improve scripts and standards for final
         use and deploy -\> try to resume training where possible instead
         of re-training
 
-    5.  **TODO** change focus to refactoring XLM-R
+    4.  **TODO** change focus to refactoring XLM-R
         implementation on PAWS-X and train this model on jarvis as it is
         lower training resourced
+
+    5.  consider making separate branch with sbatch parameters all
+        present in files as necessary
 
     6.  create discrete scripts -\> train translation model, fine tune
         paraphrase detector, translate sentences, evaluate (bleu, chrf,

@@ -147,7 +147,7 @@ def main() -> None:
     path_dict["both"] = path_dict["wmt"] + path_dict["ar"]
     # define available models for de-en
     model_names = [
-        "transformer.wmt19.de-en.single_model", "transformer.wmt19.de-en"
+        "transformer.wmt19.de-en.single_model"
     ]
     # loop over respective models
     for model_name in model_names:
@@ -157,16 +157,6 @@ def main() -> None:
                                    model_name,
                                    tokenizer="moses",
                                    bpe="fastbpe")
-        elif model_name == "transformer.wmt19.de-en":
-            model = torch.hub.load(
-                "pytorch/fairseq",
-                model_name,
-                checkpoint_file="model1.pt:model2.pt:model3.pt:model4.pt",
-                tokenizer="moses",
-                bpe="fastbpe")
-            # reduce batch size due to high memory usage
-            batch_size = 32
-        # add hub/local tag to model_name
         if isinstance(model, fairseq.hub_utils.GeneratorHubInterface):
             model_name = "hub." + model_name
         elif isinstance(model, fairseq.models.transformer.TransformerModel):

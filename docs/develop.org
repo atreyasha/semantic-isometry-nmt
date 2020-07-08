@@ -1,20 +1,21 @@
 *** Development
 
 **** Clean-code and documentation
-***** TODO re-look at stopping model training and how this would generally work
-***** TODO keep in mind effective batch sizes with gradient accumulation and priorities for slurm
 ***** TODO re-look at checkpoint saving and how it should be done via intervals and pershaps not via epochs -> look at points from Mathias texts and try implementing
-***** continue training on s3it instead of translation models -> improve scripts and standards for final use and deploy -> try to resume training where possible instead of re-training
+***** TODO consider disabling tqdm as this will only flood slurm log -> keep no progress log but instead refer to tensorboard only
 
-***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
+***** TODO implement same fairseq details for train_continue and train
+***** TODO continue training on s3it instead of translation models -> improve scripts and standards for final use and deploy -> try to resume training where possible instead of re-training
+
 ***** TODO change focus to refactoring XLM-R implementation on PAWS-X and train this model on jarvis as it is lower training resourced
+***** create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
 ***** make separate readmes depending on if user wants to use or train
 ***** consider building readme and project using python -m framework
 ***** provide all trained models for later reference -> and/or provide full random seeds for generation
 ***** add citations in readme as per general standard
 
 **** Translation
-***** TODO work on fairseq wmt17 de-en weaker model training -> add rest of scripts to synchronize everything
+***** TODO think about checkpoint averaging and how this would also ultimately work
 ***** use strong and weak model for translation -> strong model being WMT19 single and ensemble with back translation (which adds robustness), while weak model being transformer trained on WMT17 without back translation
 ***** add easy and meaningful workflow for this directly into repository
 ***** consider also looking into extra references repo "evaluation-of-nmt-bt"

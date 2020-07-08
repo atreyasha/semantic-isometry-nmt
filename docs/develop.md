@@ -2,28 +2,29 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** re-look at stopping model training and how
-        this would generally work
-
-    2.  **TODO** keep in mind effective batch sizes with
-        gradient accumulation and priorities for slurm
-
-    3.  **TODO** re-look at checkpoint saving and how it
+    1.  **TODO** re-look at checkpoint saving and how it
         should be done via intervals and pershaps not via epochs -\>
         look at points from Mathias texts and try implementing
 
-    4.  continue training on s3it instead of translation models -\>
-        improve scripts and standards for final use and deploy -\> try
-        to resume training where possible instead of re-training
+    2.  **TODO** consider disabling tqdm as this will only
+        flood slurm log -\> keep no progress log but instead refer to
+        tensorboard only
 
-    5.  **TODO** create discrete scripts -\> train
-        translation model, fine tune paraphrase detector, translate
-        sentences, evaluate (bleu, chrf, fine-tuned model), visualize
-        data
+    3.  **TODO** implement same fairseq details for
+        train~continue~ and train
 
-    6.  **TODO** change focus to refactoring XLM-R
+    4.  **TODO** continue training on s3it instead of
+        translation models -\> improve scripts and standards for final
+        use and deploy -\> try to resume training where possible instead
+        of re-training
+
+    5.  **TODO** change focus to refactoring XLM-R
         implementation on PAWS-X and train this model on jarvis as it is
         lower training resourced
+
+    6.  create discrete scripts -\> train translation model, fine tune
+        paraphrase detector, translate sentences, evaluate (bleu, chrf,
+        fine-tuned model), visualize data
 
     7.  make separate readmes depending on if user wants to use or train
 
@@ -36,8 +37,8 @@
 
 2.  Translation
 
-    1.  **TODO** work on fairseq wmt17 de-en weaker model
-        training -\> add rest of scripts to synchronize everything
+    1.  **TODO** think about checkpoint averaging and how
+        this would also ultimately work
 
     2.  use strong and weak model for translation -\> strong model being
         WMT19 single and ensemble with back translation (which adds

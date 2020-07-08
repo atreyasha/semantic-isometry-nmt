@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Script sourced and adapted from https://github.com/pytorch/fairseq/blob/master/examples/scaling_nmt/README.md
 
+TEXT="./data/wmt16_en_de_bpe32k"
+
 # pre-process and make ready for model training
 fairseq-preprocess \
     --source-lang de --target-lang en \

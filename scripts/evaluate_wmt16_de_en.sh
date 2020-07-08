@@ -27,6 +27,7 @@ check_help(){
   done
 }
 
+# evaluate function
 evaluate(){
   # declare variables
   local checkpoint_path="$1" subset="${2:-test}"

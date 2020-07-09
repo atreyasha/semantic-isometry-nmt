@@ -3,41 +3,47 @@
 1.  Clean-code and documentation
 
     1.  **TODO** change focus to refactoring XLM-R
-        implementation on PAWS-X and train this model on jarvis as it is
-        lower training resourced
+        implementation on PAWS-X and train this model on jarvis as it
+        has lower trahas lower training resource requirements
 
-    2.  consider upgrading fairseq to latest version for patience
+    2.  **TODO** consider making separate branch with sbatch
+        parameters all present in files as necessary for reproducibility
 
-    3.  consider making separate branch with sbatch parameters all
-        present in files as necessary
-
-    4.  create discrete scripts -\> train translation model, fine tune
+    3.  create discrete scripts -\> train translation model, fine tune
         paraphrase detector, translate sentences, evaluate (bleu, chrf,
         fine-tuned model), visualize data
 
-    5.  make separate readmes depending on if user wants to use or train
+    4.  make separate readmes depending on if user wants to use or train
 
-    6.  consider building readme and project using python -m framework
+    5.  consider building readme and project using python -m framework
 
-    7.  provide all trained models for later reference -\> and/or
+    6.  provide all trained models for later reference -\> and/or
         provide full random seeds for generation
 
-    8.  add citations in readme as per general standard
+    7.  add citations in readme as per general standard
 
 2.  Translation
 
     1.  **TODO** think about checkpoint averaging and how
         this would also ultimately work
 
-    2.  use strong and weak model for translation -\> strong model being
-        WMT19 single and ensemble with back translation (which adds
-        robustness), while weak model being transformer trained on WMT17
-        without back translation
+    2.  **TODO** during use in translate script, load model
+        manually with specified checkpoint, moses tokenizer, fastbpe and
+        bpe.32000 file
 
-    3.  add easy and meaningful workflow for this directly into
+    3.  **TODO** split output sentences by single space and
+        then do moses detokenization to get back most ordered output for
+        reading/comparison
+
+    4.  use strong and weak model for translation -\> strong model being
+        WMT19 single and ensemble with back translation (which adds
+        robustness), while weak model being transformer trained on WMT16
+        without back translation -\> compare general bleu scores
+
+    5.  add easy and meaningful workflow for this directly into
         repository
 
-    4.  consider also looking into extra references repo
+    6.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
 
 3.  Paraphrase detection

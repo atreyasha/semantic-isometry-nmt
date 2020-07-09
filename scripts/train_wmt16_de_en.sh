@@ -38,8 +38,8 @@ train(){
       --lr 0.001 --lr-scheduler inverse_sqrt --warmup-updates 4000 --warmup-init-lr 1e-07 \
       --dropout 0.3 --weight-decay 0.0 \
       --criterion label_smoothed_cross_entropy --label-smoothing 0.1 \
-      --max-tokens 3584 --fp16 --update-freq 16 \
-      --keep-last-epochs 10 --patience 3 --num-workers 5 \
+      --max-tokens 14336 --fp16 --update-freq 4 \
+      --keep-last-epochs 10 --patience 5 --num-workers 5 \
       --save-dir "$save_dir" \
       --tensorboard-logdir "$save_dir"
 }

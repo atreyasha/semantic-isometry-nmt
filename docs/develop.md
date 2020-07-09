@@ -1,13 +1,7 @@
 ### Development
 
--   Fix up git branch for slurm
--   Add module loads into all slurm scripts
--   Wait for current epoch to finish, put slurm logs into specific log
-    file as well
--   Change patience to higher value, increase wpb and decreases
-    update-freq to maximize memory, change qos in slurm commands and run
-    time to a higher value, let the model run for much longer until
-    convergence is achieved
+-   Change qos in slurm commands and run time to a higher value
+-   Let the model run for much longer until convergence is achieved
 
 1.  Clean-code and documentation
 

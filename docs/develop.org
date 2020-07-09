@@ -1,5 +1,10 @@
 *** Development
 
+- Fix up git branch for slurm
+- Add module loads into all slurm scripts
+- Wait for current epoch to finish, put slurm logs into specific log file as well
+- Change patience to higher value, increase wpb and decreases update-freq to maximize memory, change qos in slurm commands and run time to a higher value, let the model run for much longer until convergence is achieved
+
 **** Clean-code and documentation
 ***** TODO change focus to refactoring XLM-R implementation on PAWS-X and train this model on jarvis as it has lower trahas lower training resource requirements
 ***** TODO consider making separate branch with sbatch parameters all present in files as necessary for reproducibility

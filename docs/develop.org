@@ -1,11 +1,9 @@
 *** Development
 
-- Change qos in slurm commands and run time to a higher value
 - Let the model run for much longer until convergence is achieved
 
 **** Clean-code and documentation
 ***** TODO change focus to refactoring XLM-R implementation on PAWS-X and train this model on jarvis as it has lower trahas lower training resource requirements
-***** TODO consider making separate branch with sbatch parameters all present in files as necessary for reproducibility
 ***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
 ***** make separate readmes depending on if user wants to use or train
 ***** consider building readme and project using python -m framework
@@ -48,6 +46,8 @@
 ***** include semantic transferance equation in paper to introduce some formalisms
 
 *** Completed
+***** DONE consider making separate branch with sbatch parameters all present in files as necessary for reproducibility
+      CLOSED: [2020-07-09 Thu 16:30]
 ***** DONE bug in XLM-R as it does not appear to learn -> look through code
       CLOSED: [2020-06-17 Wed 16:47]
 ***** DONE multilingual BERT with de only -> bug in how test scripts are saved leads to wrong results

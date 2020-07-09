@@ -1,7 +1,5 @@
 ### Development
 
--   Let the model run for much longer until convergence is achieved
-
 1.  Clean-code and documentation
 
     1.  **TODO** change focus to refactoring XLM-R

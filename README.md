@@ -30,7 +30,7 @@ This repository's code was tested with Python versions `3.7+`. We recommend the 
     bash scripts/prepare_data.sh
     ```
 
-3. Optionally, if you want to further develop this repository; you can keep python dependencies, the development log and the `slurm-s3it` branch mirrored by initializing pre-commit and post-commit `git` hooks:
+3. Optionally, if you want to further develop this repository; you can keep python dependencies, the development log and the `slurm-s3it` branch synchronized by initializing pre-commit and post-commit `git` hooks:
 
     ```shell
     bash scripts/setup_commit_hooks.sh

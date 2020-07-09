@@ -9,9 +9,10 @@
     2.  **TODO** consider making separate branch with sbatch
         parameters all present in files as necessary for reproducibility
 
-    3.  create discrete scripts -\> train translation model, fine tune
-        paraphrase detector, translate sentences, evaluate (bleu, chrf,
-        fine-tuned model), visualize data
+    3.  **TODO** create discrete scripts -\> train
+        translation model, fine tune paraphrase detector, translate
+        sentences, evaluate (bleu, chrf, fine-tuned model), visualize
+        data
 
     4.  make separate readmes depending on if user wants to use or train
 

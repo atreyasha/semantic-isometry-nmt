@@ -3,7 +3,7 @@
 **** Clean-code and documentation
 ***** TODO change focus to refactoring XLM-R implementation on PAWS-X and train this model on jarvis as it has lower trahas lower training resource requirements
 ***** TODO consider making separate branch with sbatch parameters all present in files as necessary for reproducibility
-***** create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
+***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
 ***** make separate readmes depending on if user wants to use or train
 ***** consider building readme and project using python -m framework
 ***** provide all trained models for later reference -> and/or provide full random seeds for generation

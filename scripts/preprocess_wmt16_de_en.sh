@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Script sourced and adapted from https://github.com/pytorch/fairseq/blob/master/examples/scaling_nmt/README.md
+set -e
 
 WMT16="./data/wmt16_en_de_bpe32k"
 

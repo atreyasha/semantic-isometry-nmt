@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script mirrors one branch with master
+
+$MIRROR="slurm-s3it"
+git checkout "$MIRROR"
+git rebase master
+git checkout master

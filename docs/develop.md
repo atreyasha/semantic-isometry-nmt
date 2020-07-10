@@ -1,7 +1,5 @@
 ### Development
 
--   add scaling NMT citation to readme as well
-
 1.  Clean-code and documentation
 
     1.  **TODO** change focus to refactoring XLM-R

@@ -1,5 +1,9 @@
 *** Development
 
+- Change patience value back to 3
+- change default gpu to v100 in branch scripts
+- add scaling NMT citation to readme as well
+
 **** Clean-code and documentation
 ***** TODO change focus to refactoring XLM-R implementation on PAWS-X and train this model on jarvis as it has lower trahas lower training resource requirements
 ***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data

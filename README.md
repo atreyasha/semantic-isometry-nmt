@@ -37,6 +37,13 @@ Check our development [log](./docs/develop.md) for information on current develo
 ### Citations
 
 ```
+@inproceedings{ott2018scaling,
+  title = {Scaling Neural Machine Translation},
+  author = {Ott, Myle and Edunov, Sergey and Grangier, David and Auli, Michael},
+  booktitle = {Proceedings of the Third Conference on Machine Translation (WMT)},
+  year = 2018,
+}
+
 @InProceedings{pawsx2019emnlp,
   title = {PAWS-X: A Cross-lingual Adversarial Dataset for Paraphrase Identification},
   author = {Yang, Yinfei and Zhang, Yuan and Tar, Chris and Baldridge, Jason},

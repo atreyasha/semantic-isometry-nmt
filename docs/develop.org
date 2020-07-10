@@ -1,7 +1,5 @@
 *** Development
 
-- Change patience value back to 3
-- change default gpu to v100 in branch scripts
 - add scaling NMT citation to readme as well
 
 **** Clean-code and documentation

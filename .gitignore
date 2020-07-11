@@ -4,3 +4,4 @@
 *.out
 poetry.lock
 pyproject.toml
+./src/fairseq/

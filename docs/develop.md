@@ -24,7 +24,9 @@
         relevant in code -\> add those to poetry
 
     4.  **TODO** figure out effecient handling of submodule
-        and related processes
+        and related processes -\> add extra script to sync submodule and
+        symlink executables to relevant locations, add extra script for
+        preprocessing paws-x data
 
     5.  create discrete scripts -\> train translation model, fine tune
         paraphrase detector, translate sentences, evaluate (bleu, chrf,
@@ -48,26 +50,29 @@
     1.  **TODO** think about checkpoint averaging and how
         this would also ultimately work
 
-    2.  **TODO** during use in translate script, load model
+    2.  **TODO** think of post-processing scripts needed for
+        final checkpoints, conversion to csv etc.
+
+    3.  **TODO** during use in translate script, load model
         manually with specified checkpoint, moses tokenizer, fastbpe and
         bpe.32000 file
 
-    3.  **TODO** split output sentences by single space and
+    4.  **TODO** split output sentences by single space and
         then do moses detokenization to get back most ordered output for
         reading/comparison
 
-    4.  **TODO** fix up model typing for translation
+    5.  **TODO** fix up model typing for translation
         functions, try to use fairseq transformer class instead of Any
 
-    5.  use strong and weak model for translation -\> strong model being
+    6.  use strong and weak model for translation -\> strong model being
         WMT19 single and ensemble with back translation (which adds
         robustness), while weak model being transformer trained on WMT16
         without back translation -\> compare general bleu scores
 
-    6.  add easy and meaningful workflow for this directly into
+    7.  add easy and meaningful workflow for this directly into
         repository
 
-    7.  consider also looking into extra references repo
+    8.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
 
 3.  Paraphrase detection

@@ -1,5 +1,6 @@
 *** Development
 
+
 **** Clean-code and documentation
 ***** TODO paws-x -> refactor code to only be as simple as possible -> drop xlm, keep only xlm-r and bert as models to use -> be careful of test set bug which removes test label -> clean up everything and use as module or branched script from root repo -> add clean code with mains to all scripts
 ****** start with all small python scripts
@@ -8,7 +9,7 @@
 ****** finally dependencies
 ***** TODO improve training regime with more sensible logging styles -> do this later after main clean-up
 ***** TODO filter out dependencies to ones that are relevant in code -> add those to poetry
-***** TODO figure out effecient handling of submodule and related processes
+***** TODO figure out effecient handling of submodule and related processes -> add extra script to sync submodule and symlink executables to relevant locations, add extra script for preprocessing paws-x data
 
 ***** create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
 ***** add instructions for syncing xtreme forked submodule and how the whole process should work
@@ -19,6 +20,7 @@
 
 **** Translation
 ***** TODO think about checkpoint averaging and how this would also ultimately work
+***** TODO think of post-processing scripts needed for final checkpoints, conversion to csv etc.
 ***** TODO during use in translate script, load model manually with specified checkpoint, moses tokenizer, fastbpe and bpe.32000 file
 ***** TODO split output sentences by single space and then do moses detokenization to get back most ordered output for reading/comparison
 ***** TODO fix up model typing for translation functions, try to use fairseq transformer class instead of Any

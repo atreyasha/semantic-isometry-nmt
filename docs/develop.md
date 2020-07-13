@@ -1,12 +1,20 @@
 ### Development
 
--   figure out preprocessing steps with submodules etc -\> test basic
-    training to see if it works -\> then modify other stuff where
-    required
+-   stop force writing caches, re-use them instead
+
+-   add unix time epoched filenames
+
+-   put tensorflow logs directly in model log instead of elsewhere
+
+-   fix up evaluation steps and all, check that these work on jarvis
+
 -   remove xlm model implementations where possible -\> use only bert
     and xlm-r
+
 -   use fp16 where possible, fix up command line arguments to make more
     sense
+
+-   consider adding continue training features to train~pawsx~.sh
 
 1.  Clean-code and documentation
 

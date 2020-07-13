@@ -56,7 +56,6 @@ python3 -m src.paws_x.run_classify \
   --task_name $TASK \
   --do_train \
   --do_eval \
-  --do_predict \
   --train_split train \
   --test_split test \
   --data_dir $DATA_DIR \
@@ -68,9 +67,6 @@ python3 -m src.paws_x.run_classify \
   --max_seq_length $MAXL \
   --output_dir $SAVE_DIR \
   --eval_all_checkpoints \
-  --overwrite_output_dir \
-  --overwrite_cache \
   --log_file 'train.log' \
   --predict_languages $LANGS \
   --save_only_best_checkpoint $LC \
-  --eval_test_set

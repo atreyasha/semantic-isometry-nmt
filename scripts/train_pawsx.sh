@@ -59,7 +59,7 @@ python3 -m src.paws_x.run_classify \
   --do_predict \
   --train_split train \
   --test_split test \
-  --data_dir $DATA_DIR/$TASK/ \
+  --data_dir $DATA_DIR \
   --gradient_accumulation_steps $GRAD_ACC \
   --save_steps 200 \
   --per_gpu_train_batch_size $BATCH_SIZE \

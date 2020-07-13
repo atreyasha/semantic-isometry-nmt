@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 #
 # MIT License
 # Copyright (c) Facebook, Inc. and its affiliates.

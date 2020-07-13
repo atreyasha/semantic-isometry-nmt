@@ -16,15 +16,15 @@
     2.  **TODO** filter out dependencies to ones that are
         relevant in code -\> add those to poetry
 
-    3.  clean up readme and all afterwards -\> make scripts/side repos
-        pretty where possible -\> change xtreme-pawsx
+    3.  **TODO** clean up readme and all afterwards -\> make
+        scripts/side repos pretty where possible -\> change xtreme-pawsx
         readmes/descriptions to make it all simpler
 
-    4.  figure out effecient handling of submodule and related processes
-        -\> add extra script to sync submodule and symlink executables
-        to relevant locations, add extra script for preprocessing paws-x
-        data in appropriate manner -\> figure out how to tie this whole
-        thing together
+    4.  **TODO** figure out effecient handling of submodule
+        and related processes -\> add extra script to sync submodule and
+        symlink executables to relevant locations, add extra script for
+        preprocessing paws-x data in appropriate manner -\> figure out
+        how to tie this whole thing together
 
     5.  create discrete scripts -\> train translation model, fine tune
         paraphrase detector, translate sentences, evaluate (bleu, chrf,

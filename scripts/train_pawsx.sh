@@ -1,0 +1,1 @@
+../submodules/xtreme-pawsx/scripts/train_pawsx.sh

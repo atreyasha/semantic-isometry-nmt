@@ -5,3 +5,4 @@
 *.ref
 *.src
 wmt16_en_de_bpe32k/
+paws_x/

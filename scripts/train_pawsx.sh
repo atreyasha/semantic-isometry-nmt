@@ -49,7 +49,7 @@ fi
 SAVE_DIR="${OUT_DIR}/${TASK}/${MODEL}-LR${LR}-epoch${EPOCH}-MaxLen${MAXL}/"
 mkdir -p $SAVE_DIR
 
-python3 -m src.run_classify \
+python3 -m src.paws_x.run_classify \
   --model_type $MODEL_TYPE \
   --model_name_or_path $MODEL \
   --train_language en \

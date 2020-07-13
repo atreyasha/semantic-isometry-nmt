@@ -18,7 +18,8 @@
 
     3.  **TODO** clean up readme and all afterwards -\> make
         scripts/side repos pretty where possible -\> change xtreme-pawsx
-        readmes/descriptions to make it all simpler
+        readmes/descriptions to make it all simpler -\> ensure all data
+        is now present
 
     4.  **TODO** figure out effecient handling of submodule
         and related processes -\> add extra script to sync submodule and

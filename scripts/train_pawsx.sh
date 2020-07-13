@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Copyright 2020 Google and DeepMind.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,21 +12,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+set -e
 
-REPO=$PWD
 MODEL=${1:-bert-base-multilingual-cased}
 GPU=${2:-0}
-DATA_DIR=${3:-"$REPO/download/"}
-OUT_DIR=${4:-"$REPO/outputs/"}
-
 export CUDA_VISIBLE_DEVICES=$GPU
+
+DATA_DIR=${3:-"./data/paws_x/"}
+OUT_DIR=${4:-"./models/"}
 
 TASK='pawsx'
 LR=2e-5
 EPOCH=5
 MAXL=128
+
 LANGS="de,en,es,fr,ja,ko,zh"
 LC=""
+
 if [ $MODEL == "bert-base-multilingual-cased" ]; then
   MODEL_TYPE="bert"
 elif [ $MODEL == "xlm-mlm-100-1280" ] || [ $MODEL == "xlm-mlm-tlm-xnli15-1024" ]; then
@@ -47,7 +49,7 @@ fi
 SAVE_DIR="${OUT_DIR}/${TASK}/${MODEL}-LR${LR}-epoch${EPOCH}-MaxLen${MAXL}/"
 mkdir -p $SAVE_DIR
 
-python3 $PWD/third_party/run_classify.py \
+python3 -m src.run_classify \
   --model_type $MODEL_TYPE \
   --model_name_or_path $MODEL \
   --train_language en \

@@ -7,7 +7,7 @@
 **** Clean-code and documentation
 ***** TODO improve training regime with more sensible logging styles -> do this later after main clean-up
 ***** TODO filter out dependencies to ones that are relevant in code -> add those to poetry
-***** clean up readme and all afterwards -> make scripts/side repos pretty where possible
+***** clean up readme and all afterwards -> make scripts/side repos pretty where possible -> change xtreme-pawsx readmes/descriptions to make it all simpler
 ***** figure out effecient handling of submodule and related processes -> add extra script to sync submodule and symlink executables to relevant locations, add extra script for preprocessing paws-x data in appropriate manner -> figure out how to tie this whole thing together
 
 ***** create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data

@@ -17,7 +17,8 @@
         relevant in code -\> add those to poetry
 
     3.  clean up readme and all afterwards -\> make scripts/side repos
-        pretty where possible
+        pretty where possible -\> change xtreme-pawsx
+        readmes/descriptions to make it all simpler
 
     4.  figure out effecient handling of submodule and related processes
         -\> add extra script to sync submodule and symlink executables

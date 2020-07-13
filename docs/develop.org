@@ -1,11 +1,12 @@
 *** Development
 
 - add unix time epoched filenames
-- rename save directory and clean this part up
-- fix up evaluation steps and all, check that these work on jarvis
+- make better train script and add additional continue train script
+- test out script and continue script for 1 epoch with bert
 
 - remove xlm model implementations where possible -> use only bert and xlm-r
 - use fp16 where possible, fix up command line arguments to make more sense
+- add additional step to evaluate using f1
 - consider adding continue training features to train_pawsx.sh
 
 **** Clean-code and documentation

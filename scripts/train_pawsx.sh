@@ -26,7 +26,7 @@ OUT_DIR=${4:-"./models/"}
 
 TASK='pawsx'
 LR=2e-5
-EPOCH=5
+EPOCH=1
 MAXL=128
 
 # local unix_epoch="$(date +%s)"
@@ -47,11 +47,11 @@ if [ $MODEL == "xlm-mlm-100-1280" ] || [ $MODEL == "xlm-roberta-large" ]; then
   BATCH_SIZE=2
   GRAD_ACC=16
 else
-  BATCH_SIZE=8
-  GRAD_ACC=4
+  BATCH_SIZE=32
+  GRAD_ACC=1
 fi
 
-SAVE_DIR="${OUT_DIR}/${TASK}/${MODEL}-LR${LR}-epoch${EPOCH}-MaxLen${MAXL}/"
+SAVE_DIR="${OUT_DIR}/${MODEL}-LR${LR}-epoch${EPOCH}-MaxLen${MAXL}/"
 mkdir -p $SAVE_DIR
 
 python3 -m src.paws_x.run_classify \
@@ -60,7 +60,6 @@ python3 -m src.paws_x.run_classify \
   --train_language en \
   --task_name $TASK \
   --do_train \
-  --do_eval \
   --do_predict \
   --train_split train \
   --test_split test \

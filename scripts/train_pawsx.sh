@@ -62,7 +62,6 @@ python3 -m src.paws_x.run_classify \
   --do_train \
   --do_eval \
   --do_predict \
-  --evaluate_during_training \
   --train_split train \
   --test_split test \
   --data_dir $DATA_DIR \

@@ -14,6 +14,9 @@
 # limitations under the License.
 set -e
 
+# TODO clean up this file with functional representation
+# TODO add proper unique time-based folder naming here
+
 MODEL=${1:-bert-base-multilingual-cased}
 GPU=${2:-0}
 export CUDA_VISIBLE_DEVICES=$GPU
@@ -26,8 +29,10 @@ LR=2e-5
 EPOCH=5
 MAXL=128
 
+# local unix_epoch="$(date +%s)"
+# local save_dir="./models/${arch}.wmt16.de-en.${unix_epoch}"
+
 LANGS="de,en,es,fr,ja,ko,zh"
-LC=""
 
 if [ $MODEL == "bert-base-multilingual-cased" ]; then
   MODEL_TYPE="bert"
@@ -56,6 +61,8 @@ python3 -m src.paws_x.run_classify \
   --task_name $TASK \
   --do_train \
   --do_eval \
+  --do_predict \
+  --evaluate_during_training \
   --train_split train \
   --test_split test \
   --data_dir $DATA_DIR \
@@ -69,4 +76,3 @@ python3 -m src.paws_x.run_classify \
   --eval_all_checkpoints \
   --log_file 'train.log' \
   --predict_languages $LANGS \
-  --save_only_best_checkpoint $LC \

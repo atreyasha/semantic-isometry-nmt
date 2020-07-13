@@ -1,10 +1,8 @@
 ### Development
 
--   stop force writing caches, re-use them instead
-
 -   add unix time epoched filenames
 
--   put tensorflow logs directly in model log instead of elsewhere
+-   rename save directory and clean this part up
 
 -   fix up evaluation steps and all, check that these work on jarvis
 

@@ -16,7 +16,10 @@ paws_x() {
   wget -N -P "$DATA" "https://storage.googleapis.com/paws/pawsx/x-final.tar.gz"
   tar -zxvf "$DATA/x-final.tar.gz" -C $DATA
   rm -rf "$DATA/paws_x"
-  mv -f "$DATA/x-final" "$DATA/paws_x"
+  python3 -m src.preprocess \
+    --data_dir "$DATA/x-final" \
+    --output_dir "$DATA/paws_x/"
+  rm -rf "$DATA/x-final"
 }
 
 wmt19() {

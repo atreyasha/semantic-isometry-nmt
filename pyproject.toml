@@ -7,7 +7,6 @@ authors = ["Atreya Shankar <35427332+atreyasha@users.noreply.github.com>"]
 [tool.poetry.dependencies]
 python = "^3.7.0"
 torch = "1.4.0"
-ipython = "^7.15.0"
 sacrebleu = "^1.4.10"
 requests = "^2.24.0"
 sacremoses = "^0.0.43"
@@ -17,8 +16,13 @@ subword_nmt = "^0.3.7"
 tensorboardX = "^2.1"
 tensorboard = "^2.2.2"
 fairseq = {git = "https://github.com/pytorch/fairseq.git", rev = "9f92b05e2a10f1c559d44dc1c264af31723d1d76"}
+seqeval = "^0.0.12"
+kytea = "^0.1.5"
+apex = "^0.9.10-alpha.0"
+transformers = {git = "https://github.com/huggingface/transformers.git", rev = "cefd51c50cc08be8146c1151544495968ce8f2ad"}
 
 [tool.poetry.dev-dependencies]
+ipython = "^7.16.1"
 
 [build-system]
 requires = ["poetry>=0.12"]

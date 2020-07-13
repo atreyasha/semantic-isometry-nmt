@@ -1,32 +1,29 @@
 ### Development
 
+-   figure out preprocessing steps with submodules etc -\> test basic
+    training to see if it works -\> then modify other stuff where
+    required
+-   remove xlm model implementations where possible -\> use only bert
+    and xlm-r
+-   use fp16 where possible, fix up command line arguments to make more
+    sense
+
 1.  Clean-code and documentation
 
-    1.  **TODO** paws-x -\> refactor code to only be as
-        simple as possible -\> drop xlm, keep only xlm-r and bert as
-        models to use -\> be careful of test set bug which removes test
-        label -\> clean up everything and use as module or branched
-        script from root repo -\> add clean code with mains to all
-        scripts
-
-        1.  start with all small python scripts
-
-        2.  then do large python scripts
-
-        3.  then shell scripts
-
-        4.  finally dependencies
-
-    2.  **TODO** improve training regime with more sensible
+    1.  **TODO** improve training regime with more sensible
         logging styles -\> do this later after main clean-up
 
-    3.  **TODO** filter out dependencies to ones that are
+    2.  **TODO** filter out dependencies to ones that are
         relevant in code -\> add those to poetry
 
-    4.  **TODO** figure out effecient handling of submodule
-        and related processes -\> add extra script to sync submodule and
-        symlink executables to relevant locations, add extra script for
-        preprocessing paws-x data
+    3.  clean up readme and all afterwards -\> make scripts/side repos
+        pretty where possible
+
+    4.  figure out effecient handling of submodule and related processes
+        -\> add extra script to sync submodule and symlink executables
+        to relevant locations, add extra script for preprocessing paws-x
+        data in appropriate manner -\> figure out how to tie this whole
+        thing together
 
     5.  create discrete scripts -\> train translation model, fine tune
         paraphrase detector, translate sentences, evaluate (bleu, chrf,
@@ -64,15 +61,21 @@
     5.  **TODO** fix up model typing for translation
         functions, try to use fairseq transformer class instead of Any
 
-    6.  use strong and weak model for translation -\> strong model being
+    6.  train additional large model on wmt19 non-backtranslated data
+        without backtranslation and similar transformer arch as fair
+        paper, see how that works, do this after building all the other
+        pipelines since this should be quick task given that translation
+        code is mostly working
+
+    7.  use strong and weak model for translation -\> strong model being
         WMT19 single and ensemble with back translation (which adds
         robustness), while weak model being transformer trained on WMT16
         without back translation -\> compare general bleu scores
 
-    7.  add easy and meaningful workflow for this directly into
+    8.  add easy and meaningful workflow for this directly into
         repository
 
-    8.  consider also looking into extra references repo
+    9.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
 
 3.  Paraphrase detection

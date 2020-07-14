@@ -14,8 +14,7 @@
 ***** add citations in readme as per general standard
 
 **** Paraphrase detection
-***** TODO Increase sequence lengths during training to accomodate for longer paraphrases, compute average seq lengths of wmt inputs to estimate model seq lengths for training paraphrase detector, work on keeping code simple
-***** add additional step to evaluate using f1
+***** TODO touch up final bits for evaluation and plotting
 ***** Fine-tuning using modified xtreme workflow
 ****** fine-tune models with English and ensure no or little machine translated data is present in training set
 ****** refactor and improve xtreme code with simpler repository:
@@ -52,6 +51,8 @@
 ***** include semantic transferance equation in paper to introduce some formalisms
 
 *** Completed
+***** DONE Increase sequence lengths during training to accomodate for longer paraphrases, compute average seq lengths of wmt inputs to estimate model seq lengths for training paraphrase detector, work on keeping code simple
+      CLOSED: [2020-07-14 Tue 14:53]
 ***** DONE consider making separate branch with sbatch parameters all present in files as necessary for reproducibility
       CLOSED: [2020-07-09 Thu 16:30]
 ***** DONE bug in XLM-R as it does not appear to learn -> look through code

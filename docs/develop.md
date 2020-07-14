@@ -38,14 +38,10 @@
 
 2.  Paraphrase detection
 
-    1.  **TODO** Increase sequence lengths during training to
-        accomodate for longer paraphrases, compute average seq lengths
-        of wmt inputs to estimate model seq lengths for training
-        paraphrase detector, work on keeping code simple
+    1.  **TODO** touch up final bits for evaluation and
+        plotting
 
-    2.  add additional step to evaluate using f1
-
-    3.  Fine-tuning using modified xtreme workflow
+    2.  Fine-tuning using modified xtreme workflow
 
         1.  fine-tune models with English and ensure no or little
             machine translated data is present in training set
@@ -73,7 +69,7 @@
             ones due to many errors -\> advantage in PAWS and PAWS-X
             English data + WMT19 AR paraphrases
 
-    4.  fix and refine paws-x pipeline later on with patience, typing
+    3.  fix and refine paws-x pipeline later on with patience, typing
         and documentation if possible, keep simple as of now
 
 3.  Translation
@@ -154,59 +150,64 @@
 
 ### Completed
 
-1.  **DONE** consider making separate branch with sbatch
+1.  **DONE** Increase sequence lengths during training to
+    accomodate for longer paraphrases, compute average seq lengths of
+    wmt inputs to estimate model seq lengths for training paraphrase
+    detector, work on keeping code simple
+
+2.  **DONE** consider making separate branch with sbatch
     parameters all present in files as necessary for reproducibility
 
-2.  **DONE** bug in XLM-R as it does not appear to learn -\>
+3.  **DONE** bug in XLM-R as it does not appear to learn -\>
     look through code
 
-3.  **DONE** multilingual BERT with de only -\> bug in how
+4.  **DONE** multilingual BERT with de only -\> bug in how
     test scripts are saved leads to wrong results
 
-4.  **DONE** maybe consider using German BERT for doing this
+5.  **DONE** maybe consider using German BERT for doing this
     task explicitly for German, for our end task -\> German BERT and
     RoBERTa for English to focus on exact task -\> perhaps just use
     xtreme repo and keep only paws-x task -\> clean up code and workflow
     for it -\> error might be arising due to gradient clipping for very
     large model
 
-5.  **DONE** look into ParaBank2 and universal
+6.  **DONE** look into ParaBank2 and universal
     decompositional semantics -\> not great paraphrases, no human
     curation
 
-6.  **DONE** look into Duolingo dataset for paraphrases -\>
+7.  **DONE** look into Duolingo dataset for paraphrases -\>
     no German target side
 
-7.  **DONE** add symbols for defaults in metavar default
+8.  **DONE** add symbols for defaults in metavar default
     formatter, maybe add some other formatting tricks such as indents
     for defaults
 
-8.  **DONE** try installing java locally instead of root, if
+9.  **DONE** try installing java locally instead of root, if
     stanford parser is indeed necessary
 
-9.  **DONE** paraphrasing with SGCP -\> very bad results on
+10. **DONE** paraphrasing with SGCP -\> very bad results on
     both original test and WMT data -\> very sensitive to exemplar
 
-10. **DONE** embed and cluser using universal sentence
+11. **DONE** embed and cluser using universal sentence
     encoder (eg. BERT or LASER) -\> use separate clusters for exemplar
     utility, make diverse collection and evaluate using metric or other
     NN
 
-11. **DONE** find other sentence with maximum similarity and
+12. **DONE** find other sentence with maximum similarity and
     use that as exemplar, useparaphrase of best as exemplar, use
     pos-tags of sentence
 
-12. **DONE** convert wmt datasets with derived exemplars into
+13. **DONE** convert wmt datasets with derived exemplars into
     format pipe-able into SGCP -\> needed before paraphrasing
 
-13. **DONE** add workflow to download laser models with
+14. **DONE** add workflow to download laser models with
     python -m laserembeddings download-models
 
-14. **DONE** set up WMT 17 dev/test data and basic repo
+15. **DONE** set up WMT 17 dev/test data and basic repo
 
-15. **DONE** convert all processes to makefile for ease
+16. **DONE** convert all processes to makefile for ease
 
-16. **DONE** set up data downloading for all wmt sets with
+17. **DONE** set up data downloading for all wmt sets with
     SacreBLEU
 
 ### Brainstorming and logs

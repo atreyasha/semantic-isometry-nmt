@@ -6,10 +6,9 @@
 - fix args.best_checkpoint to best_checkpoint (done)
 - problematic to continue training for checkpoint best because there is no global step mentioned -> might need to modify stuff here to make it work (not worth the effort to make a continuation script)
 - add loss to evaluation scripts as well -> figure out how this works on train vs. valid (done)
+- add f1 computation early on instead of later -> can effectively remove evaluation script (done)
 
-- add f1 computation early on instead of later -> can effectively remove evaluation script
-- test out script and how it works on jarvis -> run full script
-
+- test out script and how it works on jarvis -> run full script for 1 epoch
 - increase batch sizes to fit into GPU memory and for best efficiency
 - remove xlm model implementations where possible -> use only bert and xlm-r
 - use fp16 for slurm-s3it implementation

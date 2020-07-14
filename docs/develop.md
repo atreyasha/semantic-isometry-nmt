@@ -17,9 +17,10 @@
     on train vs. valid (done)
 
 -   add f1 computation early on instead of later -\> can effectively
-    remove evaluation script
+    remove evaluation script (done)
 
--   test out script and how it works on jarvis -\> run full script
+-   test out script and how it works on jarvis -\> run full script for 1
+    epoch
 
 -   increase batch sizes to fit into GPU memory and for best efficiency
 

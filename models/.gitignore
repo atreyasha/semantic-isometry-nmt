@@ -1,2 +1,6 @@
 *.pt
 events*
+*.json
+*.bin
+*.txt
+*.log

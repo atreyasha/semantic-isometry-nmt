@@ -5,9 +5,21 @@
 -   add training end proper checkpoint (done, check later)
 
 -   add unix time epoched filenames -\> make naming semantic which will
-    also help for continue training
+    also help for continue training (done, check later)
 
--   test out script and continue script for 1 epoch with bert on jarvis
+-   fix args.best~checkpoint~ to best~checkpoint~ (done)
+
+-   problematic to continue training for checkpoint best because there
+    is no global step mentioned -\> might need to modify stuff here to
+    make it work (not worth the effort to make a continuation script)
+
+-   add loss to evaluation scripts as well -\> figure out how this works
+    on train vs. valid (done)
+
+-   add f1 computation early on instead of later -\> can effectively
+    remove evaluation script
+
+-   test out script and how it works on jarvis -\> run full script
 
 -   increase batch sizes to fit into GPU memory and for best efficiency
 

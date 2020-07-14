@@ -48,7 +48,7 @@ train() {
   local MAXL=128
   local LANGS="de,en,es,fr,ja,ko,zh"
   local UNIX_EPOCH="$(date +%s)"
-  local SAVE_DIR="${OUT_DIR}/${MODEL}.${TASK}.ML${MAXL}.${unix_epoch}"
+  local SAVE_DIR="${OUT_DIR}/${MODEL}.${TASK}.ML${MAXL}.${UNIX_EPOCH}"
   mkdir -p $SAVE_DIR
 
   if [ $MODEL == "bert-base-multilingual-cased" ]; then

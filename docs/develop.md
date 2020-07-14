@@ -6,9 +6,10 @@
         scripts/side repos pretty where possible -\> change xtreme-pawsx
         readmes/descriptions to make it all simpler
 
-    2.  create discrete scripts -\> train translation model, fine tune
-        paraphrase detector, translate sentences, evaluate (bleu, chrf,
-        fine-tuned model), visualize data
+    2.  **TODO** create discrete scripts -\> train
+        translation model, fine tune paraphrase detector, translate
+        sentences, evaluate (bleu, chrf, fine-tuned model), visualize
+        data
 
     3.  add instructions for syncing xtreme forked submodule and how the
         whole process should work

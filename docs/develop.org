@@ -2,7 +2,7 @@
 
 **** Clean-code and documentation
 ***** TODO clean up readme and all afterwards -> make scripts/side repos pretty where possible -> change xtreme-pawsx readmes/descriptions to make it all simpler
-***** create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
+***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
 ***** add instructions for syncing xtreme forked submodule and how the whole process should work
 ***** make separate readmes depending on if user wants to use or train, add separate instructions for different branches
 ***** consider building readme and project using python -m framework

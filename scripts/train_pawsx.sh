@@ -59,9 +59,9 @@ train() {
 
   if [ $MODEL == "xlm-roberta-large" ]; then
     BATCH_SIZE=16
-    GRAD_ACC=8
+    GRAD_ACC=4
   else
-    BATCH_SIZE=64
+    BATCH_SIZE=32
     GRAD_ACC=2
   fi
 
@@ -85,8 +85,7 @@ train() {
                       --output_dir $SAVE_DIR \
                       --log_file 'train.log' \
                       --predict_languages $LANGS \
-                      --save_only_best_checkpoint \
-                      --fp16
+                      --save_only_best_checkpoint
 }
 
 check_help "$@"; train "$@"

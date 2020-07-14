@@ -20,7 +20,7 @@
         how to tie this whole thing together
 
     5.  **TODO** manual installation instructions for apex
-        library
+        library -\> update instructions on readme
 
     6.  create discrete scripts -\> train translation model, fine tune
         paraphrase detector, translate sentences, evaluate (bleu, chrf,

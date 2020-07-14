@@ -2,49 +2,36 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** improve training regime with more sensible
-        logging styles -\> do this later after main clean-up
-
-    2.  **TODO** filter out dependencies to ones that are
-        relevant in code -\> add those to poetry
-
-    3.  **TODO** clean up readme and all afterwards -\> make
+    1.  **TODO** clean up readme and all afterwards -\> make
         scripts/side repos pretty where possible -\> change xtreme-pawsx
-        readmes/descriptions to make it all simpler -\> ensure all data
-        is now present
+        readmes/descriptions to make it all simpler
 
-    4.  **TODO** figure out efficient handling of submodule
-        and related processes -\> add extra script to sync submodule and
-        symlink executables to relevant locations, add extra script for
-        preprocessing paws-x data in appropriate manner -\> figure out
-        how to tie this whole thing together
-
-    5.  **TODO** manual installation instructions for apex
-        library -\> update instructions on readme
-
-    6.  create discrete scripts -\> train translation model, fine tune
+    2.  create discrete scripts -\> train translation model, fine tune
         paraphrase detector, translate sentences, evaluate (bleu, chrf,
         fine-tuned model), visualize data
 
-    7.  add instructions for syncing xtreme forked submodule and how the
+    3.  add instructions for syncing xtreme forked submodule and how the
         whole process should work
 
-    8.  make separate readmes depending on if user wants to use or
+    4.  make separate readmes depending on if user wants to use or
         train, add separate instructions for different branches
 
-    9.  consider building readme and project using python -m framework
+    5.  consider building readme and project using python -m framework
 
-    10. provide all trained models for later reference -\> and/or
+    6.  provide all trained models for later reference -\> and/or
         provide full random seeds for generation
 
-    11. add citations in readme as per general standard
+    7.  add citations in readme as per general standard
 
 2.  Paraphrase detection
 
     1.  **TODO** touch up final bits for evaluation and
-        plotting -\> perhaps try other free gpu\'s
+        plotting
 
-    2.  Fine-tuning using modified xtreme workflow
+    2.  **TODO** fix and refine paws-x pipeline later on with
+        patience, typing and possibly continuation of training
+
+    3.  Fine-tuning using modified xtreme workflow
 
         1.  fine-tune models with English and ensure no or little
             machine translated data is present in training set
@@ -72,44 +59,37 @@
             ones due to many errors -\> advantage in PAWS and PAWS-X
             English data + WMT19 AR paraphrases
 
-    3.  fix and refine paws-x pipeline later on with patience, typing
-        and documentation if possible, keep simple as of now
-
 3.  Translation
 
-    1.  **TODO** think about checkpoint averaging and how
-        this would also ultimately work -\> consider replacing this with
-        just final and best checkpoint
-
-    2.  **TODO** think of post-processing scripts needed for
+    1.  **TODO** think of post-processing scripts needed for
         final checkpoints, conversion to csv etc.
 
-    3.  **TODO** during use in translate script, load model
+    2.  **TODO** during use in translate script, load model
         manually with specified checkpoint, moses tokenizer, fastbpe and
         bpe.32000 file
 
-    4.  **TODO** split output sentences by single space and
+    3.  **TODO** split output sentences by single space and
         then do moses detokenization to get back most ordered output for
         reading/comparison
 
-    5.  **TODO** fix up model typing for translation
+    4.  **TODO** fix up model typing for translation
         functions, try to use fairseq transformer class instead of Any
 
-    6.  train additional large model on wmt19 non-backtranslated data
+    5.  train additional large model on wmt19 non-backtranslated data
         without backtranslation and similar transformer arch as fair
         paper, see how that works, do this after building all the other
         pipelines since this should be quick task given that translation
         code is mostly working
 
-    7.  use strong and weak model for translation -\> strong model being
+    6.  use strong and weak model for translation -\> strong model being
         WMT19 single and ensemble with back translation (which adds
         robustness), while weak model being transformer trained on WMT16
         without back translation -\> compare general bleu scores
 
-    8.  add easy and meaningful workflow for this directly into
+    7.  add easy and meaningful workflow for this directly into
         repository
 
-    9.  consider also looking into extra references repo
+    8.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
 
 4.  Evaluation and visualization

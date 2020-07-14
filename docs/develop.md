@@ -1,25 +1,5 @@
 ### Development
 
--   get rid of test 1,0 predictions (done, check later)
--   add training end proper checkpoint (done, check later)
--   add unix time epoched filenames -\> make naming semantic which will
-    also help for continue training (done, check later)
--   fix args.best~checkpoint~ to best~checkpoint~ (done)
--   problematic to continue training for checkpoint best because there
-    is no global step mentioned -\> might need to modify stuff here to
-    make it work (not worth the effort to make a continuation script)
--   add loss to evaluation scripts as well -\> figure out how this works
-    on train vs. valid (done)
--   add f1 computation early on instead of later -\> can effectively
-    remove evaluation script (done)
--   test out script and how it works on jarvis -\> run full script for 1
-    epoch (done)
--   remove xlm model implementations where possible -\> use only bert
-    and xlm-r (done)
--   increase batch sizes to fit into GPU memory and for best efficiency
-    (done)
--   use fp16 for slurm-s3it implementation (done)
-
 1.  Clean-code and documentation
 
     1.  **TODO** improve training regime with more sensible

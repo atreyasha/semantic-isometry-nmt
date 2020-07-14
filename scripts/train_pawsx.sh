@@ -43,7 +43,7 @@ train() {
   local DATA_DIR="./data/paws_x"
   local OUT_DIR="./models"
   local TASK="pawsx"
-  local LR=5e-5
+  local LR=2e-5
   local EPOCH=10
   local MAXL=128
   local LANGS="de,en,es,fr,ja,ko,zh"
@@ -58,11 +58,11 @@ train() {
   fi
 
   if [ $MODEL == "xlm-roberta-large" ]; then
-    BATCH_SIZE=16
+    BATCH_SIZE=8
     GRAD_ACC=4
   else
     BATCH_SIZE=32
-    GRAD_ACC=2
+    GRAD_ACC=1
   fi
 
   CUDA_VISIBLE_DEVICES=$GPU python3 -m src.paws_x.run_classify \

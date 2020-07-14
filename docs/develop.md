@@ -1,20 +1,20 @@
 ### Development
 
--   add unix time epoched filenames
+-   get rid of test 1,0 predictions (done, check later)
 
--   make better train script and add additional continue train script
+-   add training end proper checkpoint (done, check later)
 
--   test out script and continue script for 1 epoch with bert
+-   add unix time epoched filenames -\> make naming semantic which will
+    also help for continue training
+
+-   test out script and continue script for 1 epoch with bert on jarvis
+
+-   increase batch sizes to fit into GPU memory and for best efficiency
 
 -   remove xlm model implementations where possible -\> use only bert
     and xlm-r
 
--   use fp16 where possible, fix up command line arguments to make more
-    sense
-
--   add additional step to evaluate using f1
-
--   consider adding continue training features to train~pawsx~.sh
+-   use fp16 for slurm-s3it implementation
 
 1.  Clean-code and documentation
 
@@ -52,7 +52,47 @@
 
     10. add citations in readme as per general standard
 
-2.  Translation
+2.  Paraphrase detection
+
+    1.  **TODO** Increase sequence lengths during training to
+        accomodate for longer paraphrases, compute average seq lengths
+        of wmt inputs to estimate model seq lengths for training
+        paraphrase detector, work on keeping code simple
+
+    2.  add additional step to evaluate using f1
+
+    3.  Fine-tuning using modified xtreme workflow
+
+        1.  fine-tune models with English and ensure no or little
+            machine translated data is present in training set
+
+        2.  refactor and improve xtreme code with simpler repository:
+
+            1.  modify logging of models, combination of languages,
+                correct naming of training parameters and files, add
+                better metrics for monitoring performance like F1
+
+            2.  train more model combinations, change evaluation metrics
+                on test set to only be at the end, continue training for
+                existing models or re-evaluate them on the test dataset,
+                make new model which learns from all data instead of
+                just one language, remove constant re-writing of caches,
+                add more information into each log file to make it
+                unique
+
+            3.  add clean prediction workflow for translated data
+
+        3.  run and document multiple models -\> such as fine-tuned
+            multilingual BERT and others
+
+        4.  better to work with human-curated data than back-translated
+            ones due to many errors -\> advantage in PAWS and PAWS-X
+            English data + WMT19 AR paraphrases
+
+    4.  fix and refine paws-x pipeline later on with patience, typing
+        and documentation if possible, keep simple as of now
+
+3.  Translation
 
     1.  **TODO** think about checkpoint averaging and how
         this would also ultimately work
@@ -87,41 +127,6 @@
 
     9.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
-
-3.  Paraphrase detection
-
-    1.  Fine-tuning using modified xtreme workflow
-
-        1.  fine-tune models with English and ensure no or little
-            machine translated data is present in training set
-
-        2.  refactor and improve xtreme code with simpler repository:
-
-            1.  modify logging of models, combination of languages,
-                correct naming of training parameters and files, add
-                better metrics for monitoring performance like F1
-
-            2.  train more model combinations, change evaluation metrics
-                on test set to only be at the end, continue training for
-                existing models or re-evaluate them on the test dataset,
-                make new model which learns from all data instead of
-                just one language, remove constant re-writing of caches,
-                add more information into each log file to make it
-                unique
-
-            3.  add clean prediction workflow for translated data
-
-        3.  optional: data augmentation with easy examples -\> perhaps
-            add this in to training scheme
-
-        4.  run and document multiple models -\> such as fine-tuned
-            multilingual BERT and others
-
-        5.  add failsafe to output maximum score in case same inputs
-
-        6.  better to work with human-curated data than back-translated
-            ones due to many errors -\> advantage in PAWS and PAWS-X
-            English data + WMT19 AR paraphrases
 
 4.  Evaluation and visualization
 

@@ -13,33 +13,36 @@
         readmes/descriptions to make it all simpler -\> ensure all data
         is now present
 
-    4.  **TODO** figure out effecient handling of submodule
+    4.  **TODO** figure out efficient handling of submodule
         and related processes -\> add extra script to sync submodule and
         symlink executables to relevant locations, add extra script for
         preprocessing paws-x data in appropriate manner -\> figure out
         how to tie this whole thing together
 
-    5.  create discrete scripts -\> train translation model, fine tune
+    5.  **TODO** manual installation instructions for apex
+        library
+
+    6.  create discrete scripts -\> train translation model, fine tune
         paraphrase detector, translate sentences, evaluate (bleu, chrf,
         fine-tuned model), visualize data
 
-    6.  add instructions for syncing xtreme forked submodule and how the
+    7.  add instructions for syncing xtreme forked submodule and how the
         whole process should work
 
-    7.  make separate readmes depending on if user wants to use or
+    8.  make separate readmes depending on if user wants to use or
         train, add separate instructions for different branches
 
-    8.  consider building readme and project using python -m framework
+    9.  consider building readme and project using python -m framework
 
-    9.  provide all trained models for later reference -\> and/or
+    10. provide all trained models for later reference -\> and/or
         provide full random seeds for generation
 
-    10. add citations in readme as per general standard
+    11. add citations in readme as per general standard
 
 2.  Paraphrase detection
 
     1.  **TODO** touch up final bits for evaluation and
-        plotting
+        plotting -\> perhaps try other free gpu\'s
 
     2.  Fine-tuning using modified xtreme workflow
 

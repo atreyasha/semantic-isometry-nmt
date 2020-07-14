@@ -4,7 +4,8 @@
 ***** TODO improve training regime with more sensible logging styles -> do this later after main clean-up
 ***** TODO filter out dependencies to ones that are relevant in code -> add those to poetry
 ***** TODO clean up readme and all afterwards -> make scripts/side repos pretty where possible -> change xtreme-pawsx readmes/descriptions to make it all simpler -> ensure all data is now present
-***** TODO figure out effecient handling of submodule and related processes -> add extra script to sync submodule and symlink executables to relevant locations, add extra script for preprocessing paws-x data in appropriate manner -> figure out how to tie this whole thing together
+***** TODO figure out efficient handling of submodule and related processes -> add extra script to sync submodule and symlink executables to relevant locations, add extra script for preprocessing paws-x data in appropriate manner -> figure out how to tie this whole thing together
+***** TODO manual installation instructions for apex library
 
 ***** create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
 ***** add instructions for syncing xtreme forked submodule and how the whole process should work
@@ -14,7 +15,7 @@
 ***** add citations in readme as per general standard
 
 **** Paraphrase detection
-***** TODO touch up final bits for evaluation and plotting
+***** TODO touch up final bits for evaluation and plotting -> perhaps try other free gpu's
 ***** Fine-tuning using modified xtreme workflow
 ****** fine-tune models with English and ensure no or little machine translated data is present in training set
 ****** refactor and improve xtreme code with simpler repository:

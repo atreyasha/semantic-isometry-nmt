@@ -75,7 +75,8 @@
 3.  Translation
 
     1.  **TODO** think about checkpoint averaging and how
-        this would also ultimately work
+        this would also ultimately work -\> consider replacing this with
+        just final and best checkpoint
 
     2.  **TODO** think of post-processing scripts needed for
         final checkpoints, conversion to csv etc.

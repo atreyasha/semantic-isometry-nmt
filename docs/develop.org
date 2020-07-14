@@ -26,7 +26,7 @@
 ***** fix and refine paws-x pipeline later on with patience, typing and documentation if possible, keep simple as of now
 
 **** Translation
-***** TODO think about checkpoint averaging and how this would also ultimately work
+***** TODO think about checkpoint averaging and how this would also ultimately work -> consider replacing this with just final and best checkpoint
 ***** TODO think of post-processing scripts needed for final checkpoints, conversion to csv etc.
 ***** TODO during use in translate script, load model manually with specified checkpoint, moses tokenizer, fastbpe and bpe.32000 file
 ***** TODO split output sentences by single space and then do moses detokenization to get back most ordered output for reading/comparison

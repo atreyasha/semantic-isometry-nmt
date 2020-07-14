@@ -250,18 +250,6 @@ six = ">=1.5.2"
 
 [[package]]
 category = "main"
-description = "Read and write HDF5 files from Python"
-name = "h5py"
-optional = false
-python-versions = "*"
-version = "2.10.0"
-
-[package.dependencies]
-numpy = ">=1.7"
-six = "*"
-
-[[package]]
-category = "main"
 description = "Integrated process monitor for developing and reloading daemons."
 name = "hupper"
 optional = false
@@ -366,24 +354,6 @@ name = "joblib"
 optional = false
 python-versions = ">=3.6"
 version = "0.16.0"
-
-[[package]]
-category = "main"
-description = "Deep Learning for humans"
-name = "keras"
-optional = false
-python-versions = "*"
-version = "2.4.3"
-
-[package.dependencies]
-h5py = "*"
-numpy = ">=1.9.1"
-pyyaml = "*"
-scipy = ">=0.14"
-
-[package.extras]
-tests = ["pytest", "pytest-pep8", "pytest-xdist", "flaky", "pytest-cov", "pandas", "requests", "markdown"]
-visualize = ["pydot (>=1.2.4)"]
 
 [[package]]
 category = "main"
@@ -671,14 +641,6 @@ version = "228"
 
 [[package]]
 category = "main"
-description = "YAML parser and emitter for Python"
-name = "pyyaml"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "5.3.1"
-
-[[package]]
-category = "main"
 description = "Alternative regular expression module, to replace re."
 name = "regex"
 optional = false
@@ -820,22 +782,6 @@ name = "sentencepiece"
 optional = false
 python-versions = "*"
 version = "0.1.91"
-
-[[package]]
-category = "main"
-description = "Testing framework for sequence labeling"
-name = "seqeval"
-optional = false
-python-versions = "*"
-version = "0.0.12"
-
-[package.dependencies]
-Keras = ">=2.2.4"
-numpy = ">=1.14.0"
-
-[package.extras]
-cpu = ["tensorflow (>=1.13.1)"]
-gpu = ["tensorflow-gpu"]
 
 [[package]]
 category = "main"
@@ -1222,7 +1168,7 @@ transaction = ">=1.6.0"
 test = ["zope.testing"]
 
 [metadata]
-content-hash = "87efde17a0d1f7ed2281a5a0367696ea0c11a78a6bc06e32c5e40145fe8d14aa"
+content-hash = "44d41781c4771dc16a2508887de32d42db237106fb2b3c776d06d3fefb708fe7"
 python-versions = "^3.7.0"
 
 [metadata.files]
@@ -1397,37 +1343,6 @@ grpcio = [
     {file = "grpcio-1.30.0-cp38-cp38-win_amd64.whl", hash = "sha256:31e9891ac742e6866aec0cf67f1892618982cfbaf08bdcf3bb2e0f0828530c38"},
     {file = "grpcio-1.30.0.tar.gz", hash = "sha256:e8f2f5d16e0164c415f1b31a8d9a81f2e4645a43d1b261375d6bab7b0adf511f"},
 ]
-h5py = [
-    {file = "h5py-2.10.0-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:ecf4d0b56ee394a0984de15bceeb97cbe1fe485f1ac205121293fc44dcf3f31f"},
-    {file = "h5py-2.10.0-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:86868dc07b9cc8cb7627372a2e6636cdc7a53b7e2854ad020c9e9d8a4d3fd0f5"},
-    {file = "h5py-2.10.0-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:aac4b57097ac29089f179bbc2a6e14102dd210618e94d77ee4831c65f82f17c0"},
-    {file = "h5py-2.10.0-cp27-cp27m-win32.whl", hash = "sha256:7be5754a159236e95bd196419485343e2b5875e806fe68919e087b6351f40a70"},
-    {file = "h5py-2.10.0-cp27-cp27m-win_amd64.whl", hash = "sha256:13c87efa24768a5e24e360a40e0bc4c49bcb7ce1bb13a3a7f9902cec302ccd36"},
-    {file = "h5py-2.10.0-cp27-cp27mu-manylinux1_i686.whl", hash = "sha256:79b23f47c6524d61f899254f5cd5e486e19868f1823298bc0c29d345c2447172"},
-    {file = "h5py-2.10.0-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:cbf28ae4b5af0f05aa6e7551cee304f1d317dbed1eb7ac1d827cee2f1ef97a99"},
-    {file = "h5py-2.10.0-cp34-cp34m-manylinux1_i686.whl", hash = "sha256:c0d4b04bbf96c47b6d360cd06939e72def512b20a18a8547fa4af810258355d5"},
-    {file = "h5py-2.10.0-cp34-cp34m-manylinux1_x86_64.whl", hash = "sha256:549ad124df27c056b2e255ea1c44d30fb7a17d17676d03096ad5cd85edb32dc1"},
-    {file = "h5py-2.10.0-cp35-cp35m-macosx_10_6_intel.whl", hash = "sha256:a5f82cd4938ff8761d9760af3274acf55afc3c91c649c50ab18fcff5510a14a5"},
-    {file = "h5py-2.10.0-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:3dad1730b6470fad853ef56d755d06bb916ee68a3d8272b3bab0c1ddf83bb99e"},
-    {file = "h5py-2.10.0-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:063947eaed5f271679ed4ffa36bb96f57bc14f44dd4336a827d9a02702e6ce6b"},
-    {file = "h5py-2.10.0-cp35-cp35m-win32.whl", hash = "sha256:c54a2c0dd4957776ace7f95879d81582298c5daf89e77fb8bee7378f132951de"},
-    {file = "h5py-2.10.0-cp35-cp35m-win_amd64.whl", hash = "sha256:6998be619c695910cb0effe5eb15d3a511d3d1a5d217d4bd0bebad1151ec2262"},
-    {file = "h5py-2.10.0-cp36-cp36m-macosx_10_6_intel.whl", hash = "sha256:ff7d241f866b718e4584fa95f520cb19405220c501bd3a53ee11871ba5166ea2"},
-    {file = "h5py-2.10.0-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:54817b696e87eb9e403e42643305f142cd8b940fe9b3b490bbf98c3b8a894cf4"},
-    {file = "h5py-2.10.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:d3c59549f90a891691991c17f8e58c8544060fdf3ccdea267100fa5f561ff62f"},
-    {file = "h5py-2.10.0-cp36-cp36m-win32.whl", hash = "sha256:d7ae7a0576b06cb8e8a1c265a8bc4b73d05fdee6429bffc9a26a6eb531e79d72"},
-    {file = "h5py-2.10.0-cp36-cp36m-win_amd64.whl", hash = "sha256:bffbc48331b4a801d2f4b7dac8a72609f0b10e6e516e5c480a3e3241e091c878"},
-    {file = "h5py-2.10.0-cp37-cp37m-macosx_10_6_intel.whl", hash = "sha256:51ae56894c6c93159086ffa2c94b5b3388c0400548ab26555c143e7cfa05b8e5"},
-    {file = "h5py-2.10.0-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:16ead3c57141101e3296ebeed79c9c143c32bdd0e82a61a2fc67e8e6d493e9d1"},
-    {file = "h5py-2.10.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:f0e25bb91e7a02efccb50aba6591d3fe2c725479e34769802fcdd4076abfa917"},
-    {file = "h5py-2.10.0-cp37-cp37m-win32.whl", hash = "sha256:f23951a53d18398ef1344c186fb04b26163ca6ce449ebd23404b153fd111ded9"},
-    {file = "h5py-2.10.0-cp37-cp37m-win_amd64.whl", hash = "sha256:8bb1d2de101f39743f91512a9750fb6c351c032e5cd3204b4487383e34da7f75"},
-    {file = "h5py-2.10.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:64f74da4a1dd0d2042e7d04cf8294e04ddad686f8eba9bb79e517ae582f6668d"},
-    {file = "h5py-2.10.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:d35f7a3a6cefec82bfdad2785e78359a0e6a5fbb3f605dd5623ce88082ccd681"},
-    {file = "h5py-2.10.0-cp38-cp38-win32.whl", hash = "sha256:6ef7ab1089e3ef53ca099038f3c0a94d03e3560e6aff0e9d6c64c55fb13fc681"},
-    {file = "h5py-2.10.0-cp38-cp38-win_amd64.whl", hash = "sha256:769e141512b54dee14ec76ed354fcacfc7d97fea5a7646b709f7400cf1838630"},
-    {file = "h5py-2.10.0.tar.gz", hash = "sha256:84412798925dc870ffd7107f045d7659e60f5d46d1c70c700375248bf6bf512d"},
-]
 hupper = [
     {file = "hupper-1.10.2-py2.py3-none-any.whl", hash = "sha256:5de835f3b58324af2a8a16f52270c4d1a3d1734c45eed94b77fd622aea737f29"},
     {file = "hupper-1.10.2.tar.gz", hash = "sha256:3818f53dabc24da66f65cf4878c1c7a9b5df0c46b813e014abdd7c569eb9a02a"},
@@ -1459,10 +1374,6 @@ jmespath = [
 joblib = [
     {file = "joblib-0.16.0-py3-none-any.whl", hash = "sha256:d348c5d4ae31496b2aa060d6d9b787864dd204f9480baaa52d18850cb43e9f49"},
     {file = "joblib-0.16.0.tar.gz", hash = "sha256:8f52bf24c64b608bf0b2563e0e47d6fcf516abc8cfafe10cfd98ad66d94f92d6"},
-]
-keras = [
-    {file = "Keras-2.4.3-py2.py3-none-any.whl", hash = "sha256:05e2faf6885f7899482a7d18fc00ba9655fe2c9296a35ad96949a07a9c27d1bb"},
-    {file = "Keras-2.4.3.tar.gz", hash = "sha256:fedd729b52572fb108a98e3d97e1bac10a81d3917d2103cc20ab2a5f03beb973"},
 ]
 kytea = [
     {file = "kytea-0.1.5-cp35-cp35m-macosx_10_13_x86_64.whl", hash = "sha256:f910b4d573ffe88d0ae0748f966ccc7150565dfe67f8f54472b88bd6475b10ce"},
@@ -1713,19 +1624,6 @@ pywin32 = [
     {file = "pywin32-228-cp39-cp39-win32.whl", hash = "sha256:ed74b72d8059a6606f64842e7917aeee99159ebd6b8d6261c518d002837be298"},
     {file = "pywin32-228-cp39-cp39-win_amd64.whl", hash = "sha256:8319bafdcd90b7202c50d6014efdfe4fde9311b3ff15fd6f893a45c0868de203"},
 ]
-pyyaml = [
-    {file = "PyYAML-5.3.1-cp27-cp27m-win32.whl", hash = "sha256:74809a57b329d6cc0fdccee6318f44b9b8649961fa73144a98735b0aaf029f1f"},
-    {file = "PyYAML-5.3.1-cp27-cp27m-win_amd64.whl", hash = "sha256:240097ff019d7c70a4922b6869d8a86407758333f02203e0fc6ff79c5dcede76"},
-    {file = "PyYAML-5.3.1-cp35-cp35m-win32.whl", hash = "sha256:4f4b913ca1a7319b33cfb1369e91e50354d6f07a135f3b901aca02aa95940bd2"},
-    {file = "PyYAML-5.3.1-cp35-cp35m-win_amd64.whl", hash = "sha256:cc8955cfbfc7a115fa81d85284ee61147059a753344bc51098f3ccd69b0d7e0c"},
-    {file = "PyYAML-5.3.1-cp36-cp36m-win32.whl", hash = "sha256:7739fc0fa8205b3ee8808aea45e968bc90082c10aef6ea95e855e10abf4a37b2"},
-    {file = "PyYAML-5.3.1-cp36-cp36m-win_amd64.whl", hash = "sha256:69f00dca373f240f842b2931fb2c7e14ddbacd1397d57157a9b005a6a9942648"},
-    {file = "PyYAML-5.3.1-cp37-cp37m-win32.whl", hash = "sha256:d13155f591e6fcc1ec3b30685d50bf0711574e2c0dfffd7644babf8b5102ca1a"},
-    {file = "PyYAML-5.3.1-cp37-cp37m-win_amd64.whl", hash = "sha256:73f099454b799e05e5ab51423c7bcf361c58d3206fa7b0d555426b1f4d9a3eaf"},
-    {file = "PyYAML-5.3.1-cp38-cp38-win32.whl", hash = "sha256:06a0d7ba600ce0b2d2fe2e78453a470b5a6e000a985dd4a4e54e436cc36b0e97"},
-    {file = "PyYAML-5.3.1-cp38-cp38-win_amd64.whl", hash = "sha256:95f71d2af0ff4227885f7a6605c37fd53d3a106fcab511b8860ecca9fcf400ee"},
-    {file = "PyYAML-5.3.1.tar.gz", hash = "sha256:b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"},
-]
 regex = [
     {file = "regex-2020.6.8-cp27-cp27m-win32.whl", hash = "sha256:fbff901c54c22425a5b809b914a3bfaf4b9570eee0e5ce8186ac71eb2025191c"},
     {file = "regex-2020.6.8-cp27-cp27m-win_amd64.whl", hash = "sha256:112e34adf95e45158c597feea65d06a8124898bdeac975c9087fe71b572bd938"},
@@ -1838,9 +1736,6 @@ sentencepiece = [
     {file = "sentencepiece-0.1.91-cp38-cp38-win32.whl", hash = "sha256:9bdff324279359598a516de8413fd2c62bc3c9c8f569f4431829599fbe57e417"},
     {file = "sentencepiece-0.1.91-cp38-cp38-win_amd64.whl", hash = "sha256:c2a004470d388272d6c17ca160ef73d6ea1ffcddc345771d817ece5c85d85dcb"},
     {file = "sentencepiece-0.1.91.tar.gz", hash = "sha256:f9700cf607ea064d9fad34c751fbf49953dcc56fe68c54b277481aa0aec5c18f"},
-]
-seqeval = [
-    {file = "seqeval-0.0.12.tar.gz", hash = "sha256:9c7764b88b6d1430ab59de63efddf19495fca82159920fd11e362a405f8fc378"},
 ]
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},

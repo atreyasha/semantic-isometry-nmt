@@ -32,33 +32,12 @@
     2.  **TODO** fix and refine paws-x pipeline later on with
         patience, typing and possibly continuation of training
 
-    3.  Fine-tuning using modified xtreme workflow
+    3.  better to work with human-curated data than back-translated ones
+        due to many errors -\> advantage in PAWS and PAWS-X English
+        data + WMT19 AR paraphrases
 
-        1.  fine-tune models with English and ensure no or little
-            machine translated data is present in training set
-
-        2.  refactor and improve xtreme code with simpler repository:
-
-            1.  modify logging of models, combination of languages,
-                correct naming of training parameters and files, add
-                better metrics for monitoring performance like F1
-
-            2.  train more model combinations, change evaluation metrics
-                on test set to only be at the end, continue training for
-                existing models or re-evaluate them on the test dataset,
-                make new model which learns from all data instead of
-                just one language, remove constant re-writing of caches,
-                add more information into each log file to make it
-                unique
-
-            3.  add clean prediction workflow for translated data
-
-        3.  run and document multiple models -\> such as fine-tuned
-            multilingual BERT and others
-
-        4.  better to work with human-curated data than back-translated
-            ones due to many errors -\> advantage in PAWS and PAWS-X
-            English data + WMT19 AR paraphrases
+    4.  fine-tune models with English and ensure no or little machine
+        translated data is present in training set
 
 3.  Translation
 
@@ -119,7 +98,7 @@
         reguralization, main vulnerability will be targetted adversarial
         samples
 
-5.  Paper
+5.  \[\#B\] Paper
 
     1.  use two-column format for final paper, to prepare for paper
         writing

@@ -12,14 +12,8 @@
 **** Paraphrase detection
 ***** TODO touch up final bits for evaluation and plotting
 ***** TODO fix and refine paws-x pipeline later on with patience, typing and possibly continuation of training
-***** Fine-tuning using modified xtreme workflow
-****** fine-tune models with English and ensure no or little machine translated data is present in training set
-****** refactor and improve xtreme code with simpler repository:
-******* modify logging of models, combination of languages, correct naming of training parameters and files, add better metrics for monitoring performance like F1
-******* train more model combinations, change evaluation metrics on test set to only be at the end, continue training for existing models or re-evaluate them on the test dataset, make new model which learns from all data instead of just one language, remove constant re-writing of caches, add more information into each log file to make it unique
-******* add clean prediction workflow for translated data
-****** run and document multiple models -> such as fine-tuned multilingual BERT and others
-****** better to work with human-curated data than back-translated ones due to many errors -> advantage in PAWS and PAWS-X English data + WMT19 AR paraphrases
+***** better to work with human-curated data than back-translated ones due to many errors -> advantage in PAWS and PAWS-X English data + WMT19 AR paraphrases
+***** fine-tune models with English and ensure no or little machine translated data is present in training set
 
 **** Translation
 ***** TODO think of post-processing scripts needed for final checkpoints, conversion to csv etc.
@@ -39,7 +33,7 @@
 ***** report evaluation of fine-tuning paraphrase detector and weaker translation model -> get enough well-structured data for ultimate plotting
 ***** early conclusions/hypothese: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
 
-**** Paper
+**** [#B] Paper
 ***** use two-column format for final paper, to prepare for paper writing
 ***** describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
 ***** list hypotheses and how some were refuted by results

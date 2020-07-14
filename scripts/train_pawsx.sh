@@ -58,8 +58,8 @@ train() {
   fi
 
   if [ $MODEL == "xlm-roberta-large" ]; then
-    BATCH_SIZE=2
-    GRAD_ACC=16
+    BATCH_SIZE=8
+    GRAD_ACC=4
   else
     BATCH_SIZE=32
     GRAD_ACC=1

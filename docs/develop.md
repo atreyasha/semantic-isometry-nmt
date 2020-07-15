@@ -7,11 +7,12 @@
         sentences, evaluate (bleu, chrf, fine-tuned model), visualize
         data
 
-    2.  **TODO** segment readme into training or using -\>
-        add some basic usage instructions -\> change pawsx instructions
-        and default model based on which model is the best
+    2.  **TODO** segment readme into training or evaluating
+        with relevant usages -\> change pawsx instructions and default
+        model based on which model performs best
 
     3.  export best models to google drive for download into repository
+        -\> perhaps just export all models instead of just one
 
     4.  add instructions for downloading and deploying downloaded models
         in repo initialization section

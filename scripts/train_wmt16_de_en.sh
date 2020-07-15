@@ -6,6 +6,7 @@ set -e
 usage(){
   cat <<EOF
 Usage: train_wmt16_de_en.sh [-h|--help] [arch]
+Train fairseq model on WMT16 de-en data
 
 Optional arguments:
   -h, --help           Show this help message and exit
@@ -24,8 +25,8 @@ check_help(){
   done
 }
 
-# train function
-train(){
+# define function
+train_wmt16_de_en(){
   # declare variables
   local arch="${1:-transformer_vaswani_wmt_en_de_big}"
   local unix_epoch="$(date +%s)"
@@ -44,4 +45,5 @@ train(){
       --tensorboard-logdir "$save_dir"
 }
 
-check_help "$@"; train "$@"
+# execute function
+check_help "$@"; train_wmt16_de_en "$@"

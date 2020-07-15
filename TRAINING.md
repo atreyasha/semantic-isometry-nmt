@@ -6,15 +6,16 @@
     bash scripts/preprocess_wmt16_de_en.sh
     ```
 
-2. Train a large transformer model using `train_wmt_de_en.sh`:
+2. Train a large transformer model using `train_wmt16_de_en.sh`:
 
     ```
     Usage: train_wmt16_de_en.sh [-h|--help] [arch]
+    Train fairseq model on WMT16 de-en data
 
     Optional arguments:
-    -h, --help           Show this help message and exit
-    arch <fairseq_arch>  Architecture for use in model, defaults
-                         to "transformer_vaswani_wmt_en_de_big"
+      -h, --help           Show this help message and exit
+      arch <fairseq_arch>  Architecture for use in model, defaults
+                           to "transformer_vaswani_wmt_en_de_big"    
     ```
 
     In theory, any of the `fairseq` [architectures](<https://fairseq.readthedocs.io/en/latest/command_line_tools.html#Model configuration>) could be used as an argument for this script. To use our default settings based on experiments, simply execute:
@@ -27,6 +28,7 @@
 
     ```
     Usage: train_continue_wmt16_de_en.sh [-h|--help] save_dir
+    Continue training fairseq model on WMT16 de-en data
 
     Optional arguments:
       -h, --help       Show this help message and exit
@@ -46,6 +48,7 @@
 
     ```
     Usage: evaluate_wmt16_de_en.sh [-h|--help] checkpoint [subset]
+    Evaluate trained fairseq model on WMT16 de-en data
 
     Optional arguments:
       -h, --help         Show this help message and exit
@@ -69,6 +72,8 @@ Fine-tune a large XL transformer language model on the `PAWS-X` paraphrase detec
 
 ```
 Usage: train_evaluate_pawsx.sh [-h|--help] [model]
+Train (fine-tune) and evaluate large transformer language
+models on the PAWS-X paraphrase detection task
 
 Optional arguments:
   -h, --help    Show this help message and exit

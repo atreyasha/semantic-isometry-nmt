@@ -1,6 +1,9 @@
-*.pt
 events*
+*.pt
 *.json
 *.bin
 *.txt
 *.log
+*f1
+*model
+*tar.gz

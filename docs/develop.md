@@ -1,75 +1,81 @@
 ### Development
 
-1.  Clean-code and documentation
+1.  Translation
 
-    1.  **TODO** create discrete scripts -\> train
+    1.  **TODO** during use in translate script, load model
+        manually with specified checkpoint, moses tokenizer, fastbpe and
+        bpe.32000 file
+
+    2.  **TODO** split output sentences by single space and
+        then do moses detokenization to get back most ordered output for
+        reading/comparison -\> add boolean for moses detokenization to
+        translation function and do this before appending translations
+        to dictionary
+
+    3.  **TODO** fix up model typing for translation
+        functions, try to use fairseq transformer class instead of Any
+
+    4.  **TODO** add input glob for using local models as
+        well -\> in case someone trains their own model -\> think of how
+        this process would work
+
+    5.  strong model being WMT19 single and ensemble with back
+        translation (which adds robustness), while weak model being
+        transformer trained on WMT16 without back translation -\>
+        compare general performances and metrics
+
+    6.  consider also looking into extra references repo
+        \"evaluation-of-nmt-bt\"
+
+    7.  extra: train additional large model on wmt19 non-backtranslated
+        data and similar transformer arch as fair paper
+
+2.  Clean-code and documentation
+
+    1.  **TODO** add functional representations to all shell
+        scripts with standards across -\> name functions with more
+        information -\> add new help scripts back to TRAINING.md
+
+    2.  **TODO** make shell script which automatically
+        filters and compresses to tar gz
+
+    3.  **TODO** improve structure of translate script and
+        perhaps modify name since it works on glob
+
+    4.  **TODO** create discrete scripts -\> train
         translation model, fine tune paraphrase detector, translate
         sentences, evaluate (bleu, chrf, fine-tuned model), visualize
         data
 
-    2.  **TODO** segment readme into training or evaluating
-        with relevant usages -\> change pawsx instructions and default
-        model based on which model performs best
+    5.  segment readme into training or evaluating with relevant usages
+        -\> change pawsx instructions and default model based on which
+        model performs best
 
-    3.  export best models to google drive for download into repository
-        -\> perhaps just export all models instead of just one
+    6.  export only best checkpoint of models to google drive for
+        download into repository -\> perhaps export all pawsx models
+        instead of one
 
-    4.  add instructions for downloading and deploying downloaded models
+    7.  add instructions for downloading and deploying downloaded models
         in repo initialization section
 
-    5.  replace relevant bash commands with sbatch in slurm-s3it branch
+    8.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    6.  add citations in readme as per general standard
+    9.  add citations in readme as per general standard
 
-    7.  add final paper/presentation into repo with link in readme
-
-2.  Translation
-
-    1.  **TODO** think of post-processing scripts needed for
-        final checkpoints, conversion to csv etc.
-
-    2.  **TODO** during use in translate script, load model
-        manually with specified checkpoint, moses tokenizer, fastbpe and
-        bpe.32000 file
-
-    3.  **TODO** split output sentences by single space and
-        then do moses detokenization to get back most ordered output for
-        reading/comparison
-
-    4.  **TODO** fix up model typing for translation
-        functions, try to use fairseq transformer class instead of Any
-
-    5.  **TODO** add input glob for using local models as
-        well -\> in case someone trains their own model
-
-    6.  train additional large model on wmt19 non-backtranslated data
-        without backtranslation and similar transformer arch as fair
-        paper, see how that works, do this after building all the other
-        pipelines since this should be quick task given that translation
-        code is mostly working
-
-    7.  use strong and weak model for translation -\> strong model being
-        WMT19 single and ensemble with back translation (which adds
-        robustness), while weak model being transformer trained on WMT16
-        without back translation -\> compare general bleu scores
-
-    8.  add easy and meaningful workflow for this directly into
-        repository
-
-    9.  consider also looking into extra references repo
-        \"evaluation-of-nmt-bt\"
+    10. add final paper/presentation into repo with link in readme
 
 3.  Paraphrase detection
 
-    1.  **TODO** touch up final bits for evaluation/plotting
+    1.  **TODO** touch up final bits such as model defaults
+        based on best model performance
 
-    2.  better to work with human-curated data than back-translated ones
+    2.  fine-tune models with English and ensure no or little machine
+        translated data is present in training set
+
+    3.  better to work with human-curated data than back-translated ones
         due to many errors -\> advantage in PAWS and PAWS-X English
         data + WMT19 AR paraphrases
-
-    3.  fine-tune models with English and ensure no or little machine
-        translated data is present in training set
 
     4.  extra: fix and refine paws-x pipeline later on with patience,
         typing and possibly continuation of training
@@ -79,14 +85,15 @@
     1.  run bleu and chrF comparisons on sources and targets for nice
         plots
 
-    2.  need to think of effective ways of converting tensorflow event
-        logs to csv\'s for nicer plotting -\> look into event log
-        combination workflow
+    2.  think of effective ways of converting tensorflow event logs to
+        csv\'s for nicer plotting -\> look into event log combination
+        workflow
 
     3.  run paraphrase detection only in cases where initial German
         paraphrase is positively detected, to ensure some consistency
         for evaluation -\> maybe there might be an interesting
-        correlation between XLM-R prediction and chrF scores
+        correlation between XLM-R prediction and chrF scores -\> or
+        maybe run with multiple models to check for agreement
 
     4.  in rare cases, can do manual analysis and include this inside
         report

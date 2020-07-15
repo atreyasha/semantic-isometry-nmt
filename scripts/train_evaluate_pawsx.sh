@@ -18,6 +18,8 @@ set -e
 usage(){
   cat <<EOF
 Usage: train_evaluate_pawsx.sh [-h|--help] [model]
+Train (fine-tune) and evaluate large transformer language
+models on the PAWS-X paraphrase detection task
 
 Optional arguments:
   -h, --help    Show this help message and exit
@@ -36,8 +38,8 @@ check_help(){
   done
 }
 
-# define train function
-train() {
+# define function
+train_evaluate_pawsx(){
   local MODEL=${1:-"xlm-roberta-large"}
   local GPU=0
   local DATA_DIR="./data/paws_x"
@@ -88,4 +90,5 @@ train() {
                       --save_only_best_checkpoint
 }
 
-check_help "$@"; train "$@"
+# execute function
+check_help "$@"; train_evaluate_pawsx "$@"

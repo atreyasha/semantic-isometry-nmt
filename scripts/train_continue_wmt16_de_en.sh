@@ -6,6 +6,7 @@ set -e
 usage(){
   cat <<EOF
 Usage: train_continue_wmt16_de_en.sh [-h|--help] save_dir
+Continue training fairseq model on WMT16 de-en data
 
 Optional arguments:
   -h, --help       Show this help message and exit
@@ -25,8 +26,8 @@ check_help(){
   done
 }
 
-# train function
-train_continue(){
+# define function
+train_continue_wmt16_de_en(){
   # declare variables
   local save_dir="$1"
   # exit if no valid save_dir provided
@@ -47,4 +48,5 @@ train_continue(){
       --tensorboard-logdir "$save_dir"
 }
 
-check_help "$@"; train_continue "$@"
+# execute function
+check_help "$@"; train_continue_wmt16_de_en "$@"

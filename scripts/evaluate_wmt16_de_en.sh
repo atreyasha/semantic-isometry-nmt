@@ -6,6 +6,7 @@ set -e
 usage(){
   cat <<EOF
 Usage: evaluate_wmt16_de_en.sh [-h|--help] checkpoint [subset]
+Evaluate trained fairseq model on WMT16 de-en data
 
 Optional arguments:
   -h, --help         Show this help message and exit
@@ -27,8 +28,8 @@ check_help(){
   done
 }
 
-# evaluate function
-evaluate(){
+# define function
+evaluate_wmt16_de_en(){
   # declare variables
   local checkpoint_path="$1" subset="${2:-test}"
   local outfile="${checkpoint_path}.${subset}.out"
@@ -41,4 +42,5 @@ evaluate(){
       --max-tokens 3584 | tee "$outfile"
 }
 
-check_help "$@"; evaluate "$@"
+# execute function
+check_help "$@"; evaluate_wmt16_de_en "$@"

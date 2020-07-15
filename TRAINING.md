@@ -16,15 +16,15 @@
     arch <fairseq_arch>  Architecture for use in model, defaults
                          to "transformer_vaswani_wmt_en_de_big"
   ```
-  
+
   In theory, any of the `fairseq` [architectures](<https://fairseq.readthedocs.io/en/latest/command_line_tools.html#Model configuration>) could be used as an argument for this script. To use our default settings based on experiments, simply execute:
-  
+
   ```
   bash scripts/train_wmt16_de_en.sh
   ```
-  
+
 3. In case training was discontinued and needs to be continued later on, use `train_continue_wmt16_de_en.sh`:
-  
+
     ```
     Usage: train_continue_wmt16_de_en.sh [-h|--help] save_dir
 

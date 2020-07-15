@@ -8,20 +8,20 @@
 
 2. Train a large transformer model using `train_wmt_de_en.sh`:
 
-  ```
-  Usage: train_wmt16_de_en.sh [-h|--help] [arch]
+    ```
+    Usage: train_wmt16_de_en.sh [-h|--help] [arch]
 
-  Optional arguments:
+    Optional arguments:
     -h, --help           Show this help message and exit
     arch <fairseq_arch>  Architecture for use in model, defaults
                          to "transformer_vaswani_wmt_en_de_big"
-  ```
+    ```
 
-  In theory, any of the `fairseq` [architectures](<https://fairseq.readthedocs.io/en/latest/command_line_tools.html#Model configuration>) could be used as an argument for this script. To use our default settings based on experiments, simply execute:
+    In theory, any of the `fairseq` [architectures](<https://fairseq.readthedocs.io/en/latest/command_line_tools.html#Model configuration>) could be used as an argument for this script. To use our default settings based on experiments, simply execute:
 
-  ```
-  bash scripts/train_wmt16_de_en.sh
-  ```
+    ```
+    bash scripts/train_wmt16_de_en.sh
+    ```
 
 3. In case training was discontinued and needs to be continued later on, use `train_continue_wmt16_de_en.sh`:
 
@@ -36,7 +36,7 @@
     ```
 
     An example of running this script would be:
-    
+
     ```shell
     bash scripts/train_continue_wmt16_de_en.sh \
     "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"

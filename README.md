@@ -37,7 +37,7 @@ pip install -r requirements.txt
     ```
     git checkout slurm-s3it
     ```
-    
+
 5. **Optional:** If you want to further develop this repository; you can keep python dependencies, the development log and the `slurm-s3it` branch synchronized by initializing pre-commit and pre-push `git` hooks:
 
     ```shell

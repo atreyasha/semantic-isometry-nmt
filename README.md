@@ -30,7 +30,7 @@ pip install -r requirements.txt
     bash scripts/prepare_data.sh
     ```
 
-4. Optionally, if you want to further develop this repository; you can keep python dependencies, the development log and the `slurm-s3it` branch synchronized by initializing pre-commit and pre-push `git` hooks:
+4. **Optional:** If you want to further develop this repository; you can keep python dependencies, the development log and the `slurm-s3it` branch synchronized by initializing pre-commit and pre-push `git` hooks:
 
     ```shell
     bash scripts/setup_git_hooks.sh

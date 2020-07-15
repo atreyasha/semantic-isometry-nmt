@@ -2,44 +2,31 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** clean up readme and all afterwards -\> make
-        scripts/side repos pretty where possible -\> change xtreme-pawsx
-        readmes/descriptions to make it all simpler
+    1.  **TODO** change xtreme-pawsx readmes/descriptions to
+        make it all simpler
 
-    2.  **TODO** create discrete scripts -\> train
+    2.  **TODO** clean up readme, make scripts/side repos
+        pretty -\> segment into training or using -\> add new files
+        specialized for each purpose with different commands for
+        branches
+
+    3.  **TODO** create discrete scripts -\> train
         translation model, fine tune paraphrase detector, translate
         sentences, evaluate (bleu, chrf, fine-tuned model), visualize
         data
 
-    3.  add instructions for syncing xtreme forked submodule and how the
-        whole process should work
+    4.  make separate readmes depending on if user wants to use or train
 
-    4.  make separate readmes depending on if user wants to use or
-        train, add separate instructions for different branches
+    5.  replace relevant bash commands with sbatch in slurm-s3it branch
+        after repository is completed
 
-    5.  consider building readme and project using python -m framework
-
-    6.  provide all trained models for later reference -\> and/or
-        provide full random seeds for generation
+    6.  provide all trained models for later reference
 
     7.  add citations in readme as per general standard
 
-2.  Paraphrase detection
+    8.  add final paper/presentation into repo with link in readme
 
-    1.  **TODO** touch up final bits for evaluation and
-        plotting
-
-    2.  **TODO** fix and refine paws-x pipeline later on with
-        patience, typing and possibly continuation of training
-
-    3.  better to work with human-curated data than back-translated ones
-        due to many errors -\> advantage in PAWS and PAWS-X English
-        data + WMT19 AR paraphrases
-
-    4.  fine-tune models with English and ensure no or little machine
-        translated data is present in training set
-
-3.  Translation
+2.  Translation
 
     1.  **TODO** think of post-processing scripts needed for
         final checkpoints, conversion to csv etc.
@@ -55,22 +42,40 @@
     4.  **TODO** fix up model typing for translation
         functions, try to use fairseq transformer class instead of Any
 
-    5.  train additional large model on wmt19 non-backtranslated data
+    5.  **TODO** add input glob for using local models as
+        well -\> in case someone trains their own model
+
+    6.  train additional large model on wmt19 non-backtranslated data
         without backtranslation and similar transformer arch as fair
         paper, see how that works, do this after building all the other
         pipelines since this should be quick task given that translation
         code is mostly working
 
-    6.  use strong and weak model for translation -\> strong model being
+    7.  use strong and weak model for translation -\> strong model being
         WMT19 single and ensemble with back translation (which adds
         robustness), while weak model being transformer trained on WMT16
         without back translation -\> compare general bleu scores
 
-    7.  add easy and meaningful workflow for this directly into
+    8.  add easy and meaningful workflow for this directly into
         repository
 
-    8.  consider also looking into extra references repo
+    9.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
+
+3.  Paraphrase detection
+
+    1.  **TODO** touch up final bits for evaluation and
+        plotting
+
+    2.  better to work with human-curated data than back-translated ones
+        due to many errors -\> advantage in PAWS and PAWS-X English
+        data + WMT19 AR paraphrases
+
+    3.  fine-tune models with English and ensure no or little machine
+        translated data is present in training set
+
+    4.  extra: fix and refine paws-x pipeline later on with patience,
+        typing and possibly continuation of training
 
 4.  Evaluation and visualization
 
@@ -98,7 +103,7 @@
         reguralization, main vulnerability will be targetted adversarial
         samples
 
-5.  \[\#B\] Paper
+5.  Paper
 
     1.  use two-column format for final paper, to prepare for paper
         writing

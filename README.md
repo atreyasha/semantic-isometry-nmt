@@ -4,6 +4,8 @@
 
 This repository investigates the performance of state-of-the-art Neural Machine Translation (NMT) models in effectively and consistently transfering the semantics of hand-crafted adversarial paraphrases. Through this, we aim to interpret the robustness of said models to such adversarial paraphrases.
 
+In this repository, we provide a mirror `slurm-s3it` branch for executing scripts on the `s3it` server with `slurm`. To use this branch, simply execute `git checkout slurm-s3it`. 
+
 ### Dependencies :neckbeard:
 
 This repository's code was tested with Python versions `3.7+`. To install relevant dependencies, we recommend creating a virtual environment and installing packages via `pip`:
@@ -14,27 +16,29 @@ pip install -r requirements.txt
 
 ### Repository Initialization :fire:
 
-1. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory.
+1. Initialize the `xtreme-pawsx` git submodule by running the following command:
 
-2. To download/prepare `PAWS-X` and `WMT19` original + additional references + paraphrased test data, as well as prepare the previously downloaded `WMT16` data, run the command below:
+  ```shell
+  bash scripts/setup_xtreme_pawsx.sh
+  ```
+
+2. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory.
+
+3. To download/prepare `PAWS-X` and `WMT19` original + additional references + paraphrased test data, as well as prepare the previously downloaded `WMT16` data, run the command below:
 
     ```shell
     bash scripts/prepare_data.sh
     ```
 
-3. Optionally, if you want to further develop this repository; you can keep python dependencies, the development log and the `slurm-s3it` branch synchronized by initializing pre-commit and pre-push `git` hooks:
+4. Optionally, if you want to further develop this repository; you can keep python dependencies, the development log and the `slurm-s3it` branch synchronized by initializing pre-commit and pre-push `git` hooks:
 
     ```shell
     bash scripts/setup_git_hooks.sh
     ```
 
-### Development :snail:
+### Citations :sweat_drops:
 
-As we are still under development, several parts of this repository might change significantly.
-
-Check our development [log](./docs/develop.md) for information on current developments.
-
-### Citations
+Below are the key citations that were used in this repository.
 
 ```
 @inproceedings{ott2018scaling,
@@ -71,3 +75,7 @@ Check our development [log](./docs/develop.md) for information on current develo
   volume = {abs/2004.06063}
 }
 ```
+
+### Development :snail:
+
+Check our development [log](./docs/develop.md) for information on current developments.

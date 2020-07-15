@@ -18,7 +18,7 @@
                            to "transformer_vaswani_wmt_en_de_big"    
     ```
 
-    In theory, any of the `fairseq` [architectures](<https://fairseq.readthedocs.io/en/latest/command_line_tools.html#Model configuration>) could be used as an argument for this script. To use our default settings based on experiments, simply execute:
+    Generally, any of the `fairseq` [architectures](<https://fairseq.readthedocs.io/en/latest/command_line_tools.html#Model configuration>) could be used as an argument for this script. To use our default settings based on experiments, simply execute:
 
     ```
     bash scripts/train_wmt16_de_en.sh
@@ -60,13 +60,13 @@
     ```
 
     An example of running this script would be:
-    
+
     ```shell
     bash scripts/evaluate_wmt16_de_en.sh \
     "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt"
     ```
 
-## Fine-tuning XL language model on PAWS-X
+## Fine-tuning XL transformer language model on PAWS-X
 
 Fine-tune a large XL transformer language model on the `PAWS-X` paraphrase detection task using `train_evaluate_pawsx.sh`:
 

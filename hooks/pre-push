@@ -5,10 +5,8 @@ MIRROR="slurm-s3it"
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
 if [ "$current_branch" == "master" ]; then
-  git stash
   git checkout "$MIRROR"
-  git rebase master
+  git rebase --autostash master
   git push --force origin "$MIRROR"
   git checkout master
-  git stash pop
 fi

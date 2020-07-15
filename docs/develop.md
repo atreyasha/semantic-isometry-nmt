@@ -61,8 +61,7 @@
 
 3.  Paraphrase detection
 
-    1.  **TODO** touch up final bits for evaluation and
-        plotting
+    1.  **TODO** touch up final bits for evaluation/plotting
 
     2.  better to work with human-curated data than back-translated ones
         due to many errors -\> advantage in PAWS and PAWS-X English

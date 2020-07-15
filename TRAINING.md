@@ -65,7 +65,7 @@
 
 ## Fine-tuning XL language model on PAWS-X
 
-Fine-tune a large XL transformer model on the `PAWS-X` paraphrase detection task using `train_evaluate_pawsx.sh`:
+Fine-tune a large XL transformer language model on the `PAWS-X` paraphrase detection task using `train_evaluate_pawsx.sh`:
 
 ```
 Usage: train_evaluate_pawsx.sh [-h|--help] [model]

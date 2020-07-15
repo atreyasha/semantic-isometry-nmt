@@ -21,7 +21,7 @@
 ***** consider also looking into extra references repo "evaluation-of-nmt-bt"
 
 **** Paraphrase detection
-***** TODO touch up final bits for evaluation and plotting
+***** TODO touch up final bits for evaluation/plotting
 ***** better to work with human-curated data than back-translated ones due to many errors -> advantage in PAWS and PAWS-X English data + WMT19 AR paraphrases
 ***** fine-tune models with English and ensure no or little machine translated data is present in training set
 ***** extra: fix and refine paws-x pipeline later on with patience, typing and possibly continuation of training

@@ -43,28 +43,26 @@ train() {
   local DATA_DIR="./data/paws_x"
   local OUT_DIR="./models"
   local TASK="pawsx"
-  local LR=2e-5
   local EPOCH=10
   local MAXL=128
   local LANGS="de,en,es,fr,ja,ko,zh"
   local UNIX_EPOCH="$(date +%s)"
   local SAVE_DIR="${OUT_DIR}/${MODEL}.${TASK}.ML${MAXL}.${UNIX_EPOCH}"
-  local MODEL_TYPE BATCH_SIZE GRAD_ACC
+  local BATCH_SIZE=32
+  local GRAD_ACC=1
+  local LR=2e-5
+  local MODEL_TYPE
   mkdir -p $SAVE_DIR
 
   if [ $MODEL == "bert-base-multilingual-cased" ]; then
     MODEL_TYPE="bert"
-  elif [ $MODEL == "xlm-roberta-large" ] || [ $MODEL == "xlm-roberta-base" ]; then
+  elif [ $MODEL == "xlm-roberta-base" ]; then
     MODEL_TYPE="xlmr"
-  fi
-
-  if [ $MODEL == "xlm-roberta-large" ]; then
+  elif [ $MODEL == "xlm-roberta-large" ]; then
+    MODEL_TYPE="xlmr"
     BATCH_SIZE=4
     GRAD_ACC=8
     LR=1e-6
-  else
-    BATCH_SIZE=32
-    GRAD_ACC=1
   fi
 
   CUDA_VISIBLE_DEVICES=$GPU python3 -m src.paws_x.run_classify \

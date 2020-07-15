@@ -49,6 +49,7 @@ train() {
   local LANGS="de,en,es,fr,ja,ko,zh"
   local UNIX_EPOCH="$(date +%s)"
   local SAVE_DIR="${OUT_DIR}/${MODEL}.${TASK}.ML${MAXL}.${UNIX_EPOCH}"
+  local MODEL_TYPE BATCH_SIZE GRAD_ACC
   mkdir -p $SAVE_DIR
 
   if [ $MODEL == "bert-base-multilingual-cased" ]; then
@@ -60,6 +61,7 @@ train() {
   if [ $MODEL == "xlm-roberta-large" ]; then
     BATCH_SIZE=4
     GRAD_ACC=8
+    LR=1e-6
   else
     BATCH_SIZE=32
     GRAD_ACC=1

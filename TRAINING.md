@@ -1,5 +1,3 @@
-Testing out some code here
-
 ## Training non-SOTA NMT model on WMT16 de-en
 
 1. Preprocess WMT16 with BPE codes into an appropriate format:

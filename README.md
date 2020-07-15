@@ -18,9 +18,9 @@ pip install -r requirements.txt
 
 1. Initialize the `xtreme-pawsx` git submodule by running the following command:
 
-  ```shell
-  bash scripts/setup_xtreme_pawsx.sh
-  ```
+    ```shell
+    bash scripts/setup_xtreme_pawsx.sh
+    ```
 
 2. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory.
 

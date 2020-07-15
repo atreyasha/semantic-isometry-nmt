@@ -17,12 +17,12 @@ set -e
 # usage function
 usage(){
   cat <<EOF
-Usage: train_pawsx.sh [-h|--help] [model]
+Usage: train_evaluate_pawsx.sh [-h|--help] [model]
 
 Optional arguments:
   -h, --help    Show this help message and exit
   model <arch>  Architecture for use in model, defaults
-                to "bert-base-multilingual-cased"
+                to "xlm-roberta-large"
 EOF
 }
 
@@ -38,7 +38,7 @@ check_help(){
 
 # define train function
 train() {
-  local MODEL=${1:-"bert-base-multilingual-cased"}
+  local MODEL=${1:-"xlm-roberta-large"}
   local GPU=0
   local DATA_DIR="./data/paws_x"
   local OUT_DIR="./models"

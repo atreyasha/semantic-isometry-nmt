@@ -2,13 +2,15 @@
 
 ### Overview :book:
 
-This repository investigates the performance of state-of-the-art Neural Machine Translation (NMT) models in effectively and consistently transfering the semantics of hand-crafted adversarial paraphrases. Through this, we aim to interpret the robustness of said models to such adversarial paraphrases.
+This repository investigates the performance of Neural Machine Translation (NMT) models in effectively and consistently transfering the semantics of hand-crafted adversarial paraphrases. Through this, we aim to interpret the robustness of said models to such adversarial paraphrases.
 
-In this repository, we provide a mirror `slurm-s3it` branch for executing scripts on the `s3it` server with `slurm`. To use this branch, simply execute `git checkout slurm-s3it`. 
+To approach this objective, we start by gathering hand-crafted [paraphrases](https://github.com/google/wmt19-paraphrased-references) of WMT19 `en-de` test data's legacy and additional references. We then translate these paraphrases in the reverse direction ie. `de-en` using both SOTA and non-SOTA NMT models to obtain various translation samples. We use Facebook's FAIR WMT19 winning [base model](https://github.com/pytorch/fairseq/blob/master/examples/translation/README.md) from [Ng. et al., 2019](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large [transformer model](https://github.com/pytorch/fairseq/blob/master/examples/scaling_nmt/README.md) based off [Ott et al., 2018](https://arxiv.org/abs/1806.00187) on reversed WMT16 data and utilize this model as our non-SOTA model.
+
+Finally, to check the quality/consistency of the translated paraphrases; we train a large paraphrase detection model based off Google's [XTREME](https://github.com/google-research/xtreme) benchmarks on the [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task and apply this model on the aforementioned translations. A detailed description of our methodologies and results can be found in our research paper. 
 
 ### Dependencies :neckbeard:
 
-This repository's code was tested with Python versions `3.7+`. To install relevant dependencies, we recommend creating a virtual environment and installing packages via `pip`:
+This repository's code was tested with Python versions `3.7+`. To sync dependencies, we recommend creating a virtual environment and installing the relevant packages via `pip`:
 
 ```shell
 pip install -r requirements.txt
@@ -16,7 +18,7 @@ pip install -r requirements.txt
 
 ### Repository Initialization :fire:
 
-1. Initialize the `xtreme-pawsx` git submodule by running the following command:
+1. Initialize the [xtreme-pawsx](https://github.com/atreyasha/xtreme-pawsx) git submodule by running the following command:
 
     ```shell
     bash scripts/setup_xtreme_pawsx.sh
@@ -30,15 +32,29 @@ pip install -r requirements.txt
     bash scripts/prepare_data.sh
     ```
 
-4. **Optional:** If you want to further develop this repository; you can keep python dependencies, the development log and the `slurm-s3it` branch synchronized by initializing pre-commit and pre-push `git` hooks:
+4. **Optional:** We provide a mirror branch `slurm-s3it` for executing scripts on the `s3it` server with `slurm`. To use this branch, simply execute:
+
+    ```
+    git checkout slurm-s3it
+    ```
+    
+5. **Optional:** If you want to further develop this repository; you can keep python dependencies, the development log and the `slurm-s3it` branch synchronized by initializing pre-commit and pre-push `git` hooks:
 
     ```shell
     bash scripts/setup_git_hooks.sh
     ```
 
+### Usage :cyclone: 
+
+#### Model Training
+
+Since we already provide pre-trained models in this repository, we treat model training from scratch as an auxiliary procedure. If you would like to indeed train non-SOTA NMT and paraphrase detection models from scratch, refer to the instructions in [TRAINING.md](training.md)
+
+(More developments coming up right here...)
+
 ### Citations :sweat_drops:
 
-Below are the key citations that were used in this repository.
+Below are the key citations that were used in this research:
 
 ```
 @inproceedings{ott2018scaling,
@@ -78,4 +94,4 @@ Below are the key citations that were used in this repository.
 
 ### Development :snail:
 
-Check our development [log](./docs/develop.md) for information on current developments.
+Check our development [log](./docs/develop.md) for information on upcoming changes.

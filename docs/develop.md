@@ -2,29 +2,25 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** change xtreme-pawsx readmes/descriptions to
-        make it all simpler
-
-    2.  **TODO** clean up readme, make scripts/side repos
-        pretty -\> segment into training or using -\> add new files
-        specialized for each purpose with different commands for
-        branches
-
-    3.  **TODO** create discrete scripts -\> train
+    1.  **TODO** create discrete scripts -\> train
         translation model, fine tune paraphrase detector, translate
         sentences, evaluate (bleu, chrf, fine-tuned model), visualize
         data
 
-    4.  make separate readmes depending on if user wants to use or train
+    2.  **TODO** segment readme into training or using -\>
+        add some basic usage instructions
+
+    3.  export best models to google drive for download into repository
+
+    4.  add instructions for downloading and deploying downloaded models
+        in repo initialization section
 
     5.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    6.  provide all trained models for later reference
+    6.  add citations in readme as per general standard
 
-    7.  add citations in readme as per general standard
-
-    8.  add final paper/presentation into repo with link in readme
+    7.  add final paper/presentation into repo with link in readme
 
 2.  Translation
 
@@ -108,13 +104,16 @@
     1.  use two-column format for final paper, to prepare for paper
         writing
 
-    2.  describe processes that worked and did not work -\> talk about
+    2.  think more about whether to include or exclude adversarial term
+        since this might be a grey area
+
+    3.  describe processes that worked and did not work -\> talk about
         all the hurdles and show some bad examples when they occurred
         -\> summarized below in logs
 
-    3.  list hypotheses and how some were refuted by results
+    4.  list hypotheses and how some were refuted by results
 
-    4.  include semantic transferance equation in paper to introduce
+    5.  include semantic transferance equation in paper to introduce
         some formalisms
 
 ### Completed

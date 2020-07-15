@@ -1,13 +1,11 @@
 *** Development
     
 **** Clean-code and documentation
-***** TODO change xtreme-pawsx readmes/descriptions to make it all simpler
-***** TODO clean up readme, make scripts/side repos pretty -> segment into training or using -> add new files specialized for each purpose with different commands for branches
-
 ***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
-***** make separate readmes depending on if user wants to use or train
+***** TODO segment readme into training or using -> add some basic usage instructions
+***** export best models to google drive for download into repository
+***** add instructions for downloading and deploying downloaded models in repo initialization section
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
-***** provide all trained models for later reference
 ***** add citations in readme as per general standard
 ***** add final paper/presentation into repo with link in readme
 
@@ -38,6 +36,7 @@
 
 **** Paper
 ***** use two-column format for final paper, to prepare for paper writing
+***** think more about whether to include or exclude adversarial term since this might be a grey area
 ***** describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
 ***** list hypotheses and how some were refuted by results
 ***** include semantic transferance equation in paper to introduce some formalisms

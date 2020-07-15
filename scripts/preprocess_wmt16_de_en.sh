@@ -23,7 +23,6 @@ check_help(){
   done
 }
 
-
 # define function
 preprocess_wmt16(){
   local WMT16="./data/wmt16_en_de_bpe32k"

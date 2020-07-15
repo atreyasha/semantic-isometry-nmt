@@ -8,7 +8,8 @@
         data
 
     2.  **TODO** segment readme into training or using -\>
-        add some basic usage instructions
+        add some basic usage instructions -\> change pawsx instructions
+        and default model based on which model is the best
 
     3.  export best models to google drive for download into repository
 

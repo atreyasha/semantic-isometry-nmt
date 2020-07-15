@@ -2,7 +2,7 @@
     
 **** Clean-code and documentation
 ***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
-***** TODO segment readme into training or using -> add some basic usage instructions
+***** TODO segment readme into training or using -> add some basic usage instructions -> change pawsx instructions and default model based on which model is the best
 ***** export best models to google drive for download into repository
 ***** add instructions for downloading and deploying downloaded models in repo initialization section
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed

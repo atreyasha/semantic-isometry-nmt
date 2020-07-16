@@ -2,22 +2,22 @@
 
 1.  Translation
 
-    1.  **TODO** during use in translate script, load model
+    1.  **TODO** fix up model typing for translation
+        functions, try to use fairseq transformer class instead of Any
+
+    2.  **TODO** add input glob for using local models as
+        well -\> in case someone trains their own model -\> think of how
+        this process would work
+
+    3.  **TODO** during use in translate script, load model
         manually with specified checkpoint, moses tokenizer, fastbpe and
         bpe.32000 file
 
-    2.  **TODO** split output sentences by single space and
+    4.  **TODO** split output sentences by single space and
         then do moses detokenization to get back most ordered output for
         reading/comparison -\> add boolean for moses detokenization to
         translation function and do this before appending translations
         to dictionary
-
-    3.  **TODO** fix up model typing for translation
-        functions, try to use fairseq transformer class instead of Any
-
-    4.  **TODO** add input glob for using local models as
-        well -\> in case someone trains their own model -\> think of how
-        this process would work
 
     5.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being
@@ -32,34 +32,31 @@
 
 2.  Clean-code and documentation
 
-    1.  **TODO** change prepare data function and add untar
-        models as well -\> update readme on this
-
-    2.  **TODO** improve structure of translate script and
+    1.  **TODO** improve structure of translate script and
         perhaps modify name since it works on glob
 
-    3.  **TODO** create discrete scripts -\> train
+    2.  **TODO** create discrete scripts -\> train
         translation model, fine tune paraphrase detector, translate
         sentences, evaluate (bleu, chrf, fine-tuned model), visualize
         data
 
-    4.  segment readme into training or evaluating with relevant usages
+    3.  segment readme into training or evaluating with relevant usages
         -\> change pawsx instructions and default model based on which
         model performs best
 
-    5.  export only best checkpoint of models to google drive for
+    4.  export only best checkpoint of models to google drive for
         download into repository -\> perhaps export all pawsx models
         instead of one
 
-    6.  add instructions for downloading and deploying downloaded models
+    5.  add instructions for downloading and deploying downloaded models
         in repo initialization section
 
-    7.  replace relevant bash commands with sbatch in slurm-s3it branch
+    6.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    8.  add citations in readme as per general standard
+    7.  add citations in readme as per general standard
 
-    9.  add final paper/presentation into repo with link in readme
+    8.  add final paper/presentation into repo with link in readme
 
 3.  Paraphrase detection
 

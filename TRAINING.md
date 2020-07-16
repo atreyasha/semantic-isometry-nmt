@@ -76,14 +76,14 @@
     "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt"
     ```
 
-## Fine-tuning XL transformer language model on PAWS-X
+## Fine-tuning multilingual transformer language model on PAWS-X
 
-Fine-tune a large XL transformer language model on the `PAWS-X` paraphrase detection task using `train_evaluate_pawsx.sh`:
+Fine-tune a large multilingual transformer language model on the `PAWS-X` paraphrase detection task using `train_evaluate_pawsx.sh`:
 
 ```
 Usage: train_evaluate_pawsx.sh [-h|--help] [model]
-Train (fine-tune) and evaluate XL transformer language
-models on the PAWS-X paraphrase detection task
+Train (fine-tune) and evaluate multilingual transformer
+language models on the PAWS-X paraphrase detection task
 
 Optional arguments:
   -h, --help    Show this help message and exit

@@ -18,8 +18,8 @@ set -e
 usage() {
   cat <<EOF
 Usage: train_evaluate_pawsx.sh [-h|--help] [model]
-Train (fine-tune) and evaluate XL transformer language
-models on the PAWS-X paraphrase detection task
+Train (fine-tune) and evaluate multilingual transformer
+language models on the PAWS-X paraphrase detection task
 
 Optional arguments:
   -h, --help    Show this help message and exit

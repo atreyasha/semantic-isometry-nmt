@@ -5,6 +5,7 @@ MIRROR="slurm-s3it"
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
 if [ "$current_branch" == "master" ]; then
+  printf "%s\n" "Syncing $MIRROR with master"
   git checkout "$MIRROR"
   git rebase --autostash master
   git push --force origin "$MIRROR"

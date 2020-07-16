@@ -32,38 +32,34 @@
 
 2.  Clean-code and documentation
 
-    1.  **TODO** add functional representations to all shell
-        scripts with standards across -\> name functions with more
-        information -\> add new help scripts back to TRAINING.md
-
-    2.  **TODO** make shell script which automatically
-        filters and compresses to tar gz
-
-    3.  **TODO** improve structure of translate script and
+    1.  **TODO** improve structure of translate script and
         perhaps modify name since it works on glob
 
-    4.  **TODO** create discrete scripts -\> train
+    2.  **TODO** change prepare data function and add untar
+        models as well
+
+    3.  **TODO** create discrete scripts -\> train
         translation model, fine tune paraphrase detector, translate
         sentences, evaluate (bleu, chrf, fine-tuned model), visualize
         data
 
-    5.  segment readme into training or evaluating with relevant usages
+    4.  segment readme into training or evaluating with relevant usages
         -\> change pawsx instructions and default model based on which
         model performs best
 
-    6.  export only best checkpoint of models to google drive for
+    5.  export only best checkpoint of models to google drive for
         download into repository -\> perhaps export all pawsx models
         instead of one
 
-    7.  add instructions for downloading and deploying downloaded models
+    6.  add instructions for downloading and deploying downloaded models
         in repo initialization section
 
-    8.  replace relevant bash commands with sbatch in slurm-s3it branch
+    7.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    9.  add citations in readme as per general standard
+    8.  add citations in readme as per general standard
 
-    10. add final paper/presentation into repo with link in readme
+    9.  add final paper/presentation into repo with link in readme
 
 3.  Paraphrase detection
 
@@ -126,64 +122,67 @@
 
 ### Completed
 
-1.  **DONE** Increase sequence lengths during training to
+1.  **DONE** make shell script which automatically filters
+    and compresses to tar gz
+
+2.  **DONE** Increase sequence lengths during training to
     accomodate for longer paraphrases, compute average seq lengths of
     wmt inputs to estimate model seq lengths for training paraphrase
     detector, work on keeping code simple
 
-2.  **DONE** consider making separate branch with sbatch
+3.  **DONE** consider making separate branch with sbatch
     parameters all present in files as necessary for reproducibility
 
-3.  **DONE** bug in XLM-R as it does not appear to learn -\>
+4.  **DONE** bug in XLM-R as it does not appear to learn -\>
     look through code
 
-4.  **DONE** multilingual BERT with de only -\> bug in how
+5.  **DONE** multilingual BERT with de only -\> bug in how
     test scripts are saved leads to wrong results
 
-5.  **DONE** maybe consider using German BERT for doing this
+6.  **DONE** maybe consider using German BERT for doing this
     task explicitly for German, for our end task -\> German BERT and
     RoBERTa for English to focus on exact task -\> perhaps just use
     xtreme repo and keep only paws-x task -\> clean up code and workflow
     for it -\> error might be arising due to gradient clipping for very
     large model
 
-6.  **DONE** look into ParaBank2 and universal
+7.  **DONE** look into ParaBank2 and universal
     decompositional semantics -\> not great paraphrases, no human
     curation
 
-7.  **DONE** look into Duolingo dataset for paraphrases -\>
+8.  **DONE** look into Duolingo dataset for paraphrases -\>
     no German target side
 
-8.  **DONE** add symbols for defaults in metavar default
+9.  **DONE** add symbols for defaults in metavar default
     formatter, maybe add some other formatting tricks such as indents
     for defaults
 
-9.  **DONE** try installing java locally instead of root, if
+10. **DONE** try installing java locally instead of root, if
     stanford parser is indeed necessary
 
-10. **DONE** paraphrasing with SGCP -\> very bad results on
+11. **DONE** paraphrasing with SGCP -\> very bad results on
     both original test and WMT data -\> very sensitive to exemplar
 
-11. **DONE** embed and cluser using universal sentence
+12. **DONE** embed and cluser using universal sentence
     encoder (eg. BERT or LASER) -\> use separate clusters for exemplar
     utility, make diverse collection and evaluate using metric or other
     NN
 
-12. **DONE** find other sentence with maximum similarity and
+13. **DONE** find other sentence with maximum similarity and
     use that as exemplar, useparaphrase of best as exemplar, use
     pos-tags of sentence
 
-13. **DONE** convert wmt datasets with derived exemplars into
+14. **DONE** convert wmt datasets with derived exemplars into
     format pipe-able into SGCP -\> needed before paraphrasing
 
-14. **DONE** add workflow to download laser models with
+15. **DONE** add workflow to download laser models with
     python -m laserembeddings download-models
 
-15. **DONE** set up WMT 17 dev/test data and basic repo
+16. **DONE** set up WMT 17 dev/test data and basic repo
 
-16. **DONE** convert all processes to makefile for ease
+17. **DONE** convert all processes to makefile for ease
 
-17. **DONE** set up data downloading for all wmt sets with
+18. **DONE** set up data downloading for all wmt sets with
     SacreBLEU
 
 ### Brainstorming and logs

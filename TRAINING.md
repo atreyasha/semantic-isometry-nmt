@@ -82,7 +82,7 @@ Fine-tune a large XL transformer language model on the `PAWS-X` paraphrase detec
 
 ```
 Usage: train_evaluate_pawsx.sh [-h|--help] [model]
-Train (fine-tune) and evaluate large transformer language
+Train (fine-tune) and evaluate XL transformer language
 models on the PAWS-X paraphrase detection task
 
 Optional arguments:

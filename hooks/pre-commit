@@ -41,8 +41,8 @@ if [ -f ./docs/develop.org ] && [ "$develop_change" -eq "1" ]; then
 fi
 
 # format staged shell scripts
-if [ -n "$test_shfmt" ] && [ ${#scripts_change[@]} -ne 0 ] ; then
+if [ -n "$test_shfmt" ] && [ "${#scripts_change[@]}" -ne "0" ]; then
   printf "%s\n" "Formatting shell scripts"
-  shfmt -w -i 2 "${staged[@]}"
-  git add "${staged[@]}"
+  shfmt -w -i 2 "${scripts_change[@]}"
+  git add "${scripts_change[@]}"
 fi

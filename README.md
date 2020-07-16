@@ -26,10 +26,10 @@ pip install -r requirements.txt
 
 2. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory.
 
-3. To download/prepare `PAWS-X` and `WMT19` original + additional references + paraphrased test data, as well as prepare the previously downloaded `WMT16` data, run the command below:
+3. To download/prepare `PAWS-X` and `WMT19` original + additional references + paraphrased test data, as well as prepare the previously downloaded `WMT16` data and pre-trained models, run the command below:
 
     ```shell
-    bash scripts/prepare_data.sh
+    bash scripts/prepare_data_models.sh
     ```
 
 4. **Optional:** We provide a mirror branch `slurm-s3it` for executing scripts on the `s3it` server with `slurm`. To use this branch, simply execute:

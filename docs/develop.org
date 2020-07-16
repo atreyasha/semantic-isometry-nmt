@@ -10,8 +10,8 @@
 ***** extra: train additional large model on wmt19 non-backtranslated data and similar transformer arch as fair paper
  
 **** Clean-code and documentation
+***** TODO change prepare data function and add untar models as well -> update readme on this
 ***** TODO improve structure of translate script and perhaps modify name since it works on glob
-***** TODO change prepare data function and add untar models as well
 ***** TODO create discrete scripts -> train translation model, fine tune paraphrase detector, translate sentences, evaluate (bleu, chrf, fine-tuned model), visualize data
 ***** segment readme into training or evaluating with relevant usages -> change pawsx instructions and default model based on which model performs best
 ***** export only best checkpoint of models to google drive for download into repository -> perhaps export all pawsx models instead of one

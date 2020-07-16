@@ -32,11 +32,11 @@
 
 2.  Clean-code and documentation
 
-    1.  **TODO** improve structure of translate script and
-        perhaps modify name since it works on glob
+    1.  **TODO** change prepare data function and add untar
+        models as well -\> update readme on this
 
-    2.  **TODO** change prepare data function and add untar
-        models as well
+    2.  **TODO** improve structure of translate script and
+        perhaps modify name since it works on glob
 
     3.  **TODO** create discrete scripts -\> train
         translation model, fine tune paraphrase detector, translate

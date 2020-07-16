@@ -1,6 +1,16 @@
 ## Training fairseq NMT model on WMT16 de-en
 
-1. Preprocess WMT16 with BPE codes into an appropriate format:
+1. Preprocess WMT16 with pre-computed BPE codes into an appropriate format using `preprocess_wmt16_de_en.sh`:
+
+    ```
+    Usage: preprocess_wmt16_de_en.sh [-h|--help]
+    Preprocess WMT16 de-en data for training fairseq model
+
+    Optional arguments:
+      -h, --help  Show this help message and exit
+    ```
+
+    To run this script, execute:
 
     ```shell
     bash scripts/preprocess_wmt16_de_en.sh

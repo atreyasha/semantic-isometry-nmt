@@ -2,14 +2,20 @@
 # This script sets up a pre-commit hook to keep the development log
 # and pythonic dependencies up-to-date
 
-# check for python dependency commands
+# check for various dependency executables
 test_pipreqs=$(command -v pipreqs)
 test_poetry=$(command -v poetry)
 test_shfmt=$(command -v shfmt)
 
 # check if develop.org has been staged for commit
-develop_change=$(git diff --cached --exit-code ./docs/develop.org \
-                     > /dev/null; echo $?)
+develop_change=$(
+  git diff --cached --exit-code ./docs/develop.org \
+    >/dev/null
+  echo $?
+)
+
+# check which shell scripts have been staged for commit
+scripts_change=($(git diff --name-only --cached ./scripts/))
 
 # update requirements.txt given conditions
 if [ -f "./poetry.lock" ] && [ -n "$test_poetry" ]; then
@@ -34,12 +40,9 @@ if [ -f ./docs/develop.org ] && [ "$develop_change" -eq "1" ]; then
   git add ./docs/develop.md
 fi
 
-# format all shell scripts
-if [ -n "$test_shfmt" ]; then
+# format staged shell scripts
+if [ -n "$test_shfmt" ] && [ -n "${scripts_change[@]}" ]; then
   printf "%s\n" "Formatting shell scripts"
-  staged=($(git diff --name-only --cached ./scripts/))
-  if [ -n "${staged[@]}" ]; then
-    shfmt -w -i 2 "${staged[@]}"
-    git add "${staged[@]}"
-  fi
+  shfmt -w -i 2 "${staged[@]}"
+  git add "${staged[@]}"
 fi

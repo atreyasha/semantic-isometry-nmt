@@ -2,4 +2,4 @@
 set -e
 
 # execute translation for all
-python3 -m src.translate
+python3 -m src.translate.test

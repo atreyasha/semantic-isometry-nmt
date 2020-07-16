@@ -13,18 +13,18 @@ develop_change=$(git diff --cached --exit-code ./docs/develop.org \
 
 # update requirements.txt given conditions
 if [ -f "./poetry.lock" ] && [ -n "$test_poetry" ]; then
-  print "%s\n" "Syncing python dependencies with poetry"
+  printf "%s\n" "Syncing python dependencies with poetry"
   poetry export -f requirements.txt --without-hashes -o requirements.txt
   git add "requirements.txt"
 elif [ ! -f "./poetry.lock" ] && [ -n "$test_pipreqs" ]; then
-  print "%s\n" "Syncing python dependencies with pipreqs"
+  printf "%s\n" "Syncing python dependencies with pipreqs"
   pipreqs --force .
   git add "requirements.txt"
 fi
 
 # update develop.md given conditions
 if [ -f ./docs/develop.org ] && [ "$develop_change" -eq "1" ]; then
-  print "%s\n" "Syncing develop.md with develop.org"
+  printf "%s\n" "Syncing develop.md with develop.org"
   # convert todos.org to todos.md
   pandoc -f org -t markdown -o ./docs/develop.md ./docs/develop.org
   # replace TODOs cleanly
@@ -36,6 +36,6 @@ fi
 
 # format all shell scripts
 if [ -n "$test_shfmt" ]; then
-  print "%s\n" "Formatting shell scripts"
+  printf "%s\n" "Formatting shell scripts"
   shfmt -w "./scripts/"
 fi

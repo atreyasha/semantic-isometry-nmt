@@ -25,6 +25,7 @@ check_help() {
   done
 }
 
+# prepare wmt16 data
 wmt16() {
   local WMT16="./data/wmt16_en_de_bpe32k"
   if [ -f "./data/wmt16_en_de.tar.gz" ]; then
@@ -33,6 +34,7 @@ wmt16() {
   fi
 }
 
+# download and prepare paws-x
 paws_x() {
   local DATA="./data"
   wget -N -P "$DATA" "https://storage.googleapis.com/paws/pawsx/x-final.tar.gz"
@@ -44,6 +46,7 @@ paws_x() {
   rm -rf "$DATA/x-final"
 }
 
+# download and prepare wmt19
 wmt19() {
   local WMT19="./data/wmt19"
   mkdir -p $WMT19
@@ -51,6 +54,7 @@ wmt19() {
   sacrebleu --test-set "wmt19" --language-pair en-de --echo ref >"$WMT19/wmt19.test.truecased.de.ref"
 }
 
+# download and prepare wmt19 paraphrases
 wmt19_paraphrased() {
   local WMT19_PARAPHRASED="./data/wmt19_paraphrased"
   mkdir -p "$WMT19_PARAPHRASED"
@@ -59,6 +63,7 @@ wmt19_paraphrased() {
   wget -N -P "$WMT19_PARAPHRASED" "https://raw.githubusercontent.com/google/wmt19-paraphrased-references/master/wmt19/ende/wmt19-ende-wmtp.ref"
 }
 
+# prepare models
 extract_models() {
   local model_dir="./models"
   find "$model_dir" -maxdepth 1 -iname "*.tar.gz" | xargs \
@@ -71,3 +76,4 @@ paws_x
 wmt19
 wmt19_paraphrased
 wmt16
+extract_models

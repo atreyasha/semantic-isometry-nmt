@@ -76,6 +76,27 @@
     "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt"
     ```
 
+5. After choosing the best model, execute post-processing on the model directory using `postprocess_wmt16_de_en.sh`:
+
+    ```
+    Usage: postprocess_wmt16_de_en.sh [-h|--help] model_directory...
+    Postprocess desired model directories to get them ready for exporting
+
+    Optional arguments:
+      -h, --help              Show this help message and exit
+
+    Required arguments:
+      model_directory <path>  Path to directory containing model
+                              checkpoints
+    ```
+
+    This process copies over relevant `bpe` files into the model directory; which is necessary in order to export the model. An example of running this script would be:
+
+    ```shell
+    bash scripts/postprocess_wmt16_de_en.sh \
+    "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
+    ```
+
 ## Fine-tuning multilingual transformer language model on PAWS-X
 
 Fine-tune a large multilingual transformer language model on the `PAWS-X` paraphrase detection task using `train_evaluate_pawsx.sh`:
@@ -98,3 +119,27 @@ bash scripts/train_evaluate_pawsx.sh
 ```
 
 This script will automatically evaluate the model against the `dev` set during training and the `test` set after training. Therefore a separate evaluation step is not necessary.
+
+## Exporting final models
+
+To export the final models, you can use `export_tar_gz.sh`:
+
+```
+Usage: export_tar_gz.sh [-h|--help] model_directory...
+Export training logs and best checkpoint to tarball
+
+Optional arguments:
+  -h, --help              Show this help message and exit
+
+Required arguments:
+  model_directory <path>  Path to directory containing model
+                          checkpoints
+```
+
+This script will select and compress the best checkpoints along with logging information for deployment purposes downstream. An example of executing this script would be:
+
+```shell
+bash scripts/export_tar_gz.sh \
+    "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573" \
+    "./models/bert-base-multilingual-cased.pawsx.ML128.1594737128"
+```

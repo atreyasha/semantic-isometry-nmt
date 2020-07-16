@@ -5,8 +5,8 @@ set -e
 # usage function
 usage() {
   cat <<EOF
-Usage: export_tar_gz.sh [-h|--help] model_directory...
-Export training logs and best checkpoint to tarball
+Usage: postprocess_wmt16_de_en.sh [-h|--help] model_directory...
+Postprocess desired model directories to get them ready for exporting
 
 Optional arguments:
   -h, --help              Show this help message and exit
@@ -28,21 +28,19 @@ check_help() {
 }
 
 # define function
-export_tar_gz() {
+postprocess_wmt16_de_en() {
   local directories="$@"
+  local data_dir="./data/wmt16_en_de_bpe32k"
+  local bpe_path_array=("${data_dir}/bpe.32000"
+                        "${data_dir}/bin/dict.en.txt"
+                        "${data_dir}/bin/dict.de.txt")
   [ -z "$directories" ] && usage && exit 1
   for direct in ${directories[@]}; do
-    [ ! -d "$direct" ] && printf "%s\n" "$direct does not exist" && continue
-    (
-      parent_name="$(dirname $direct)"
-      child_name="$(basename $direct)"
-      cd "$parent_name"
-      tar --exclude="*checkpoint_last*" --exclude="*checkpoint-training-end*" \
-          -zcvf "${child_name}.tar.gz" "$child_name"
-    )
+    mkdir -p "${direct}/bpe"
+    cp "${bpe_path_array[@]}" "${direct}/bpe"
   done
 }
 
 # execute function
 check_help "$@"
-export_tar_gz "$@"
+postprocess_wmt16_de_en "$@"

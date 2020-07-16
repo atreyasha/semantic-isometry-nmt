@@ -37,5 +37,5 @@ fi
 # format all shell scripts
 if [ -n "$test_shfmt" ]; then
   printf "%s\n" "Formatting shell scripts"
-  shfmt -w "./scripts/"
+  shfmt -w -i 2 "./scripts/"
 fi

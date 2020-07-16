@@ -37,5 +37,9 @@ fi
 # format all shell scripts
 if [ -n "$test_shfmt" ]; then
   printf "%s\n" "Formatting shell scripts"
-  shfmt -w -i 2 "./scripts/"
+  staged=($(git diff --name-only --cached ./scripts/))
+  if [ -n "${staged[@]}" ]; then
+    shfmt -w -i 2 "${staged[@]}"
+    git add "${staged[@]}"
+  fi
 fi

@@ -32,8 +32,8 @@ postprocess_wmt16_de_en() {
   local directories="$@"
   local data_dir="./data/wmt16_en_de_bpe32k"
   local bpe_path_array=("${data_dir}/bpe.32000"
-                        "${data_dir}/bin/dict.en.txt"
-                        "${data_dir}/bin/dict.de.txt")
+    "${data_dir}/bin/dict.en.txt"
+    "${data_dir}/bin/dict.de.txt")
   [ -z "$directories" ] && usage && exit 1
   for direct in ${directories[@]}; do
     mkdir -p "${direct}/bpe"

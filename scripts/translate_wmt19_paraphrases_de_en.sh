@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Script to translate wmt19 paraphrases using both hub and local NMT models
 set -e
 
 # usage function

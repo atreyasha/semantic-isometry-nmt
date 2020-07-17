@@ -53,20 +53,17 @@
 
 3.  Paraphrase detection
 
-    1.  **TODO** finalize train/evaluate script default model
-        based on best model performance -\> update readme later
-
-    2.  **TODO** use all three models to get some sense of
+    1.  **TODO** use all three models to get some sense of
         agreement between models for predictions
 
-    3.  fine-tune models with English and ensure no or little machine
+    2.  fine-tune models with English and ensure no or little machine
         translated data is present in training set
 
-    4.  better to work with human-curated data than back-translated ones
+    3.  better to work with human-curated data than back-translated ones
         due to many errors -\> advantage in PAWS and PAWS-X English
         data + WMT19 AR paraphrases
 
-    5.  extra: fix and refine paws-x pipeline later on with patience,
+    4.  extra: fix and refine paws-x pipeline later on with patience,
         typing and possibly continuation of training
 
 4.  Evaluation and visualization

@@ -1,5 +1,13 @@
 ## NMT model robustness to hand-crafted adversarial paraphrases
 
+1. [Overview](#1-Overview-:book:)
+2. [Dependencies](#2-Dependencies-:neckbeard:)
+3. [Repository Initialization](#3-Repository-Initialization-:fire:)
+4. [Usage](#4-Usage-:cyclone:)
+    1. [Training](#Training)
+5. [Citations](#5-Citations-:sweat_drops:)
+6. [Development](#6-Development-:snail:)
+
 ### Overview :book:
 
 This repository investigates the performance of Neural Machine Translation (NMT) models in effectively and consistently transfering the semantics of hand-crafted adversarial paraphrases. Through this, we aim to interpret the robustness of said models to such adversarial paraphrases.

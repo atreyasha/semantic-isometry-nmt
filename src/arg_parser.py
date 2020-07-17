@@ -33,7 +33,7 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
                             help="WMT reference to use")
         parser.add_argument("--batch-size",
                             type=int,
-                            default=128,
+                            default=256,
                             help="Batch size for translation")
     parser.add_argument("--verbosity",
                         type=int,

@@ -2,33 +2,29 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** name new files with more semantics such as
-        translate~wmt19all~ etc. -\> clean up translation shell script
-        and test it out
+    1.  **TODO** add instructions for downloading and
+        deploying downloaded models in repo initialization section
 
-    2.  **TODO** improve structure of translate script and
-        perhaps modify name since it works on glob
+    2.  **TODO** add instructions on running translations for
+        models
 
     3.  **TODO** consider using torch data processor class
         for next functions and to control batch sizes
 
-    4.  **TODO** add instructions for downloading and
-        deploying downloaded models in repo initialization section
-
-    5.  create discrete scripts -\> train translation model, fine tune
+    4.  create discrete scripts -\> train translation model, fine tune
         paraphrase detector, translate sentences, evaluate (bleu, chrf,
         fine-tuned model), visualize data
 
-    6.  segment readme into training or evaluating with relevant usages
+    5.  segment readme into training or evaluating with relevant usages
 
-    7.  replace relevant bash commands with sbatch in slurm-s3it branch
+    6.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    8.  update TOC\'s in all readmes to reflect latest changes
+    7.  update TOC\'s in all readmes to reflect latest changes
 
-    9.  add citations in readme as per general standard
+    8.  add citations in readme as per general standard
 
-    10. add final paper/presentation into repo with link in readme
+    9.  add final paper/presentation into repo with link in readme
 
 2.  Translation
 

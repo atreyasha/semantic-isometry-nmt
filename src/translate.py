@@ -176,6 +176,8 @@ def main() -> None:
         # enable GPU hardware acceleration if GPU/CUDA present
         if torch.cuda.is_available():
             model.cuda()
+        # log model used in current loop
+        logger.info("Translating with model: %s", model_name)
         # loop over paraphrase files
         for input_paths in path_dict[args.wmt_references]:
             base = os.path.basename(input_paths[0])

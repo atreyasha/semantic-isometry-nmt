@@ -22,9 +22,9 @@ Train (fine-tune) and evaluate multilingual transformer
 language models on the PAWS-X paraphrase detection task
 
 Optional arguments:
-  -h, --help    Show this help message and exit
-  model <arch>  Pre-trained language model to fine-tune,
-                defaults to "xlm-roberta-large"
+  -h, --help     Show this help message and exit
+  model <model>  Pre-trained language model to fine-tune,
+                 defaults to "xlm-roberta-large"
 EOF
 }
 

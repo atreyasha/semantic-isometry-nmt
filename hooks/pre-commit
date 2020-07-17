@@ -3,9 +3,15 @@
 # and pythonic dependencies up-to-date
 
 # check for various dependency executables
-test_pipreqs=$(command -v pipreqs)
 test_poetry=$(command -v poetry)
 test_shfmt=$(command -v shfmt)
+
+# check if poetry files have been staged for commit
+poetry_change=$(
+  git diff --cached --exit-code pyproject.toml poetry.lock \
+    >/dev/null
+  echo $?
+)
 
 # check if develop.org has been staged for commit
 develop_change=$(
@@ -18,13 +24,9 @@ develop_change=$(
 scripts_change=($(git diff --name-only --cached --diff-filter=d ./scripts/))
 
 # update requirements.txt given conditions
-if [ -f "./poetry.lock" ] && [ -n "$test_poetry" ]; then
+if [ -f "./poetry.lock" ] && [ -n "$test_poetry" ] && [ "$poetry_change" -eq "1" ]; then
   printf "%s\n" "Syncing python dependencies with poetry"
   poetry export -f requirements.txt --without-hashes -o requirements.txt
-  git add "requirements.txt"
-elif [ ! -f "./poetry.lock" ] && [ -n "$test_pipreqs" ]; then
-  printf "%s\n" "Syncing python dependencies with pipreqs"
-  pipreqs --force .
   git add "requirements.txt"
 fi
 

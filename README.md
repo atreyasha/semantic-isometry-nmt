@@ -1,12 +1,12 @@
 ## NMT model robustness to hand-crafted adversarial paraphrases
 
-1. [Overview](#1-Overview-:book:)
-2. [Dependencies](#2-Dependencies-:neckbeard:)
-3. [Repository Initialization](#3-Repository-Initialization-:fire:)
-4. [Usage](#4-Usage-:cyclone:)
+1. [Overview](#Overview-:book:)
+2. [Dependencies](#Dependencies-:neckbeard:)
+3. [Repository Initialization](#Repository-Initialization-:fire:)
+4. [Usage](#Usage-:cyclone:)
     1. [Training](#Training)
-5. [Citations](#5-Citations-:sweat_drops:)
-6. [Development](#6-Development-:snail:)
+5. [Citations](#Citations-:sweat_drops:)
+6. [Development](#Development-:snail:)
 
 ### Overview :book:
 

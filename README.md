@@ -107,7 +107,7 @@ Optional arguments:
 This script will analyze the translation `json` outputs and append `BLEU` and `chrF` scores in-place. To run this script, simply execute:
 
 ```shell
-bash scripts/evaluate_bleu_chrF_wmt19_paraphrases.sh
+bash scripts/evaluate_bleu_chrF_wmt19_paraphrases_de_en.sh
 ```
 
 ### Citations :sweat_drops:

@@ -3,7 +3,7 @@
 1. [Overview](#1-Overview)
 2. [Training fairseq NMT model on WMT16 de-en](#2-Training-fairseq-NMT-model-on-WMT16-de-en)
 3. [Fine-tuning multilingual transformer language model on PAWS-X](#3-Fine-tuning-multilingual-transformer-language-model-on-PAWS-X)
-4. [Exporting-models](#4-Exporting-models)
+4. [Exporting models](#4-Exporting-models)
 
 ### 1. Overview
 

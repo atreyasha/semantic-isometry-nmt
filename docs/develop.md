@@ -1,6 +1,36 @@
 ### Development
 
-1.  Translation
+1.  Clean-code and documentation
+
+    1.  **TODO** name new files with more semantics such as
+        translate~wmt19all~ etc. -\> clean up translation shell script
+        and test it out
+
+    2.  **TODO** improve structure of translate script and
+        perhaps modify name since it works on glob
+
+    3.  **TODO** consider using torch data processor class
+        for next functions and to control batch sizes
+
+    4.  **TODO** add instructions for downloading and
+        deploying downloaded models in repo initialization section
+
+    5.  create discrete scripts -\> train translation model, fine tune
+        paraphrase detector, translate sentences, evaluate (bleu, chrf,
+        fine-tuned model), visualize data
+
+    6.  segment readme into training or evaluating with relevant usages
+
+    7.  replace relevant bash commands with sbatch in slurm-s3it branch
+        after repository is completed
+
+    8.  update TOC\'s in all readmes to reflect latest changes
+
+    9.  add citations in readme as per general standard
+
+    10. add final paper/presentation into repo with link in readme
+
+2.  Translation
 
     1.  **TODO** split output sentences by single space and
         then do moses detokenization -\> check output of bulk traslation
@@ -16,40 +46,6 @@
 
     4.  extra: train additional large model on wmt19 non-backtranslated
         data and similar transformer arch as fair paper
-
-2.  Clean-code and documentation
-
-    1.  **TODO** name new files with more semantics such as
-        translate~wmt19all~ etc. -\> clean up translation shell script
-        and test it out
-
-    2.  **TODO** improve structure of translate script and
-        perhaps modify name since it works on glob
-
-    3.  **TODO** consider using torch data processor class
-        for next functions and to control batch sizes
-
-    4.  create discrete scripts -\> train translation model, fine tune
-        paraphrase detector, translate sentences, evaluate (bleu, chrf,
-        fine-tuned model), visualize data
-
-    5.  segment readme into training or evaluating with relevant usages
-        -\> change pawsx instructions and default model based on which
-        model performs best
-
-    6.  export only best checkpoint of models to google drive for
-        download into repository -\> perhaps export all pawsx models
-        instead of one
-
-    7.  add instructions for downloading and deploying downloaded models
-        in repo initialization section
-
-    8.  replace relevant bash commands with sbatch in slurm-s3it branch
-        after repository is completed
-
-    9.  add citations in readme as per general standard
-
-    10. add final paper/presentation into repo with link in readme
 
 3.  Paraphrase detection
 

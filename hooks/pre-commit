@@ -15,7 +15,7 @@ develop_change=$(
 )
 
 # check which shell scripts have been staged for commit
-scripts_change=($(git diff --name-only --cached ./scripts/))
+scripts_change=($(git diff --name-only --cached --diff-filter=d ./scripts/))
 
 # update requirements.txt given conditions
 if [ -f "./poetry.lock" ] && [ -n "$test_poetry" ]; then

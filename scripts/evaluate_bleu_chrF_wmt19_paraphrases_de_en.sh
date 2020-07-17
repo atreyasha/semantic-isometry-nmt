@@ -6,7 +6,7 @@ set -e
 # usage function
 usage() {
   cat <<EOF
-Usage: evaluate_bleu_chrF_wmt19_paraphrases.sh [-h|--help] [glob]
+Usage: evaluate_bleu_chrF_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
 Conduct shallow evaluation of WMT19 paraphrases with BLEU and
 chrF scores
 

@@ -1,56 +1,17 @@
 ### Development
 
-1.  Clean-code and documentation
-
-    1.  **TODO** create discrete scripts with instructions in
-        readme -\> train translation model (done), fine tune paraphrase
-        detector (done), translate sentences (done), evaluate (bleu,
-        chrf, fine-tuned language model), visualize results
-
-    2.  **TODO** consider using torch data processor class
-        for next functions and to control batch sizes
-
-    3.  segment readme into training, translation and others categories
-        with relevant usages
-
-    4.  replace relevant bash commands with sbatch in slurm-s3it branch
-        after repository is completed
-
-    5.  update TOC\'s in all readmes to reflect latest changes
-
-    6.  add citations in readme as per general standard
-
-    7.  add final paper/presentation into repo with link in readme
-
-2.  Paraphrase detection
-
-    1.  **TODO** use all three models to get some sense of
-        agreement between models for predictions
-
-    2.  fine-tune models with English and ensure no or little machine
-        translated data is present in training set
-
-    3.  better to work with human-curated data than back-translated ones
-        due to many errors -\> advantage in PAWS and PAWS-X English
-        data + WMT19 AR paraphrases
-
-    4.  extra: fix and refine paws-x pipeline later on with patience,
-        typing and possibly continuation of training
-
-3.  Evaluation and visualization
+1.  Evaluation and visualization
 
     1.  **TODO** run bleu and chrF comparisons on sources and
-        targets for nice plots
+        targets -\> make nice plots of these using latex output from
+        matplotlib to keep code base inside python
 
     2.  think of effective ways of converting tensorflow event logs to
         csv\'s for nicer plotting -\> look into event log combination
         workflow
 
-    3.  run paraphrase detection only in cases where initial German
-        paraphrase is positively detected, to ensure some consistency
-        for evaluation -\> maybe there might be an interesting
-        correlation between XLM-R prediction and chrF scores -\> or
-        maybe run with multiple models to check for agreement
+    3.  check for possibly interesting correlations between XLM-R
+        prediction and chrF/BLEU scores
 
     4.  in rare cases, can do manual analysis and include this inside
         report
@@ -63,6 +24,55 @@
         robustness is handled well in SOTA models due to backtranslation
         reguralization, main vulnerability will be targetted adversarial
         samples
+
+2.  Clean-code and documentation
+
+    1.  **TODO** create modular scripts with instructions in
+        readme -\> evaluate using fine-tuned language model, visualize
+        results (shallow metrics, fine-tuned LM result, correlation of
+        LM and shallow metrics, model training evolutions)
+
+        1.  **DONE** train translation model
+
+        2.  **DONE** fine tune paraphrase detector
+
+        3.  **DONE** translate sentences
+
+        4.  **DONE** evaluate bleu & chrf
+
+    2.  segment readme into training, translation and others categories
+        with relevant usages
+
+    3.  replace relevant bash commands with sbatch in slurm-s3it branch
+        after repository is completed
+
+    4.  update TOC\'s in all readmes to reflect latest changes
+
+    5.  add citations in readme as per general standard
+
+    6.  add final paper/presentation into repo with link in readme
+
+3.  Paraphrase detection
+
+    1.  **TODO** consider using torch data processor class
+        for next functions and to control batch sizes
+
+    2.  **TODO** use all three models to get some sense of
+        agreement between models for predictions
+
+    3.  perhaps run paraphrase detection only in cases where initial
+        German paraphrase is positively detected, to ensure some
+        consistency for evaluation
+
+    4.  fine-tune models with English and ensure no or little machine
+        translated data is present in training set
+
+    5.  better to work with human-curated data than back-translated ones
+        due to many errors -\> advantage in PAWS and PAWS-X English
+        data + WMT19 AR paraphrases
+
+    6.  extra: fix and refine paws-x pipeline later on with patience,
+        typing and possibly continuation of training
 
 4.  Translation
 
@@ -88,17 +98,20 @@
         writing
 
     2.  think more about whether to include or exclude adversarial term
-        since this might be a grey area
+        since this might be a grey area -\> qualify various means of
+        being adversarial ie. targetted through model or perhaps just an
+        intention
 
-    3.  describe processes that worked and did not work -\> talk about
+    3.  include semantic transferance equation in paper to introduce
+        some formalisms -\> show mathematical properties of isometric
+        functions/spaces and how this should hold for semantic vector
+        spaces
+
+    4.  describe processes that worked and did not work -\> talk about
         all the hurdles and show some bad examples when they occurred
         -\> summarized below in logs
 
-    4.  list hypotheses and how some were refuted by results
-
-    5.  include semantic transferance equation in paper to introduce
-        some formalisms -\> show mathematical properties of isometric
-        functions/spaces
+    5.  list hypotheses and how some were refuted by results
 
 ### Completed
 

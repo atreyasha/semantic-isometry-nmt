@@ -91,10 +91,10 @@ bash scripts/translate_wmt19_paraphrases_de_en.sh
 
 ##### BLEU and chrF
 
-After translating the WMT19 paraphrases, we can conduct a *quick and dirty* evaluation of the paraphrases using the `BLEU` and `chrF` sequence similarity metrics. For this, we provide `evaluate_bleu_chrF_wmt19_paraphrases.sh`:
+After translating the WMT19 paraphrases, we can conduct a *quick and dirty* evaluation of the paraphrases using the `BLEU` and `chrF` sequence similarity metrics. For this, we provide `evaluate_bleu_chrF_wmt19_paraphrases_de_en.sh`:
 
 ```
-Usage: evaluate_bleu_chrF_wmt19_paraphrases.sh [-h|--help] [glob]
+Usage: evaluate_bleu_chrF_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
 Conduct shallow evaluation of WMT19 paraphrases with BLEU and
 chrF scores
 

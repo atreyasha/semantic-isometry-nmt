@@ -5,6 +5,7 @@
 3. [Repository Initialization](#Repository-Initialization-fire)
 4. [Usage](#Usage-cyclone)
     1. [Training](#Training)
+    2. [Translation](#Translation)
 5. [Citations](#Citations-sweat_drops)
 6. [Development](#Development-snail)
 
@@ -34,6 +35,12 @@ pip install -r requirements.txt
 
 2. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory.
 
+3. Manually download the following four pre-trained models and place all of the tarballs in the `models` directory (~9 GB total download size):
+    1. [Large NMT Transformer](https://drive.google.com/uc?id=1xT082A30WkwWfxv-scYF2TrOopD1odUt&export=download) for non-SOTA `de-en` translation
+    2. [BERT-Multilingual-Base](https://drive.google.com/uc?id=1LFjYMo36RgcS8VDaWoHz1EKQsXgAq_u6&export=download) for multilingual paraphrase detection
+    3. [XLM-R-Base](https://drive.google.com/uc?id=1g1KTF7K1rHUPfxmpLGCJ23JW10IHSZOc&export=download) for multilingual paraphrase detection
+    4. [XLM-R-Large](https://drive.google.com/uc?id=10iestAbz2aCIOYGRYPAK_kpHukz_pEM4&export=download) for multilingual paraphrase detection
+
 3. To download/prepare `PAWS-X` and `WMT19` original + additional references + paraphrased test data, as well as prepare the previously downloaded `WMT16` data and pre-trained models, run the command below:
 
     ```shell
@@ -57,6 +64,27 @@ pip install -r requirements.txt
 #### Training
 
 Since we already provide pre-trained models in this repository, we treat model training from scratch as an auxiliary procedure. If you would like to indeed train non-SOTA NMT and paraphrase detection models from scratch, refer to the instructions in [TRAINING.md](TRAINING.md).
+
+#### Translation
+
+In order to translate WMT19 legacy and additional references with corresponding paraphrases, we provide a script `translate_wmt19_paraphrases_de_en.sh`: 
+
+```
+Usage: translate_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
+Translate WMT19 paraphrases using both torch-hub and local
+model globs
+
+Optional arguments:
+  -h, --help   Show this help message and exit
+  glob <glob>  Glob for finding local NMT models, defaults to
+               "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
+```
+
+This script will run translation using Facebook FAIR'S winning WMT19 model as the SOTA model and the previously downloaded NMT model as the non-SOTA model. Translation results will be saved as `json` files in the `predictions` directory. To run this script using our defaults, simply execute:
+
+```shell
+bash scripts/translate_wmt19_paraphrases_de_en.sh 
+```
 
 ### Citations :sweat_drops:
 
@@ -100,4 +128,4 @@ Below are the key citations that were used in this research:
 
 ### Development :snail:
 
-Check our development [log](./docs/develop.md) for information on upcoming changes.
+Check our development [log](./docs/develop.md) for information on prospective changes.

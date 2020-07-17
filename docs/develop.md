@@ -2,48 +2,27 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** add instructions for downloading and
-        deploying downloaded models in repo initialization section
-
-    2.  **TODO** add instructions on running translations for
-        models
-
-    3.  **TODO** consider using torch data processor class
+    1.  **TODO** consider using torch data processor class
         for next functions and to control batch sizes
 
-    4.  create discrete scripts -\> train translation model, fine tune
-        paraphrase detector, translate sentences, evaluate (bleu, chrf,
-        fine-tuned model), visualize data
+    2.  **TODO** create discrete scripts with instructions in
+        readme -\> train translation model (done), fine tune paraphrase
+        detector (done), translate sentences (done), evaluate (bleu,
+        chrf, fine-tuned language model), visualize results
 
-    5.  segment readme into training or evaluating with relevant usages
+    3.  segment readme into training, translation and others categories
+        with relevant usages
 
-    6.  replace relevant bash commands with sbatch in slurm-s3it branch
+    4.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    7.  update TOC\'s in all readmes to reflect latest changes
+    5.  update TOC\'s in all readmes to reflect latest changes
 
-    8.  add citations in readme as per general standard
+    6.  add citations in readme as per general standard
 
-    9.  add final paper/presentation into repo with link in readme
+    7.  add final paper/presentation into repo with link in readme
 
-2.  Translation
-
-    1.  **TODO** split output sentences by single space and
-        then do moses detokenization -\> check output of bulk traslation
-        to see if this is necessary
-
-    2.  strong model being WMT19 single and ensemble with back
-        translation (which adds robustness), while weak model being
-        transformer trained on WMT16 without back translation -\>
-        compare general performances and metrics
-
-    3.  consider also looking into extra references repo
-        \"evaluation-of-nmt-bt\"
-
-    4.  extra: train additional large model on wmt19 non-backtranslated
-        data and similar transformer arch as fair paper
-
-3.  Paraphrase detection
+2.  Paraphrase detection
 
     1.  **TODO** use all three models to get some sense of
         agreement between models for predictions
@@ -58,10 +37,10 @@
     4.  extra: fix and refine paws-x pipeline later on with patience,
         typing and possibly continuation of training
 
-4.  Evaluation and visualization
+3.  Evaluation and visualization
 
-    1.  run bleu and chrF comparisons on sources and targets for nice
-        plots
+    1.  **TODO** run bleu and chrF comparisons on sources and
+        targets for nice plots
 
     2.  think of effective ways of converting tensorflow event logs to
         csv\'s for nicer plotting -\> look into event log combination
@@ -84,6 +63,24 @@
         robustness is handled well in SOTA models due to backtranslation
         reguralization, main vulnerability will be targetted adversarial
         samples
+
+4.  Translation
+
+    1.  strong model being WMT19 single and ensemble with back
+        translation (which adds robustness), while weak model being
+        transformer trained on WMT16 without back translation -\>
+        compare general performances and metrics
+
+    2.  extra: train additional large model on wmt19 non-backtranslated
+        data and similar transformer arch as fair paper -\> to get
+        slightly better performance for comparison -\> this can also be
+        done later
+
+    3.  consider also looking into extra references repo
+        \"evaluation-of-nmt-bt\"
+
+    4.  split output sentences by single space and then do moses
+        detokenization if tokenization artefacts still present
 
 5.  Paper
 

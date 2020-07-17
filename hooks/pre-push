@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# This script mirrors one branch with master
+# This script mirrors the slurm-s3it branch with master,
+# while keeping it ahead by a single commit for sbatch command replacements
 
 MIRROR="slurm-s3it"
 current_branch=$(git rev-parse --abbrev-ref HEAD)

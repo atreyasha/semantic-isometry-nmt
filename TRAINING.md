@@ -1,9 +1,9 @@
 ## Training models
 
 1. [Overview](#1-Overview)
-2. [Training fairseq NMT model on WMT16 de-en](#1-Training-fairseq-NMT-model-on-WMT16-de-en)
-3. [Fine-tuning multilingual transformer language model on PAWS-X](#2-Fine-tuning-multilingual-transformer-language-model-on-PAWS-X)
-4. [Exporting-models](#3-Exporting-models)
+2. [Training fairseq NMT model on WMT16 de-en](#2-Training-fairseq-NMT-model-on-WMT16-de-en)
+3. [Fine-tuning multilingual transformer language model on PAWS-X](#3-Fine-tuning-multilingual-transformer-language-model-on-PAWS-X)
+4. [Exporting-models](#4-Exporting-models)
 
 ### 1. Overview
 

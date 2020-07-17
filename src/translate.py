@@ -2,14 +2,16 @@
 # -*- coding: utf-8 -*-
 
 from .arg_parser import parse_arguments
-from typing import List, Dict, Any
+from typing import List, Dict
 from tqdm import tqdm
+from glob import glob
+from fairseq.hub_utils import GeneratorHubInterface
+from fairseq.models.transformer import TransformerModel
 import codecs
 import json
 import re
 import os
 import torch
-import fairseq
 import logging
 import logging.config
 logging.config.fileConfig(os.path.join(os.path.dirname(__file__), "resources",
@@ -77,15 +79,15 @@ def write_to_file(model_name: str, metadata: str, store: Dict) -> None:
         json.dump(store, json_file, ensure_ascii=False)
 
 
-def translate_process(model: Any, input_data: List[str],
+def translate_process(model: GeneratorHubInterface,
+                      input_data: List[str],
                       batch_size: int) -> Dict:
     """
     Translate source data and append outputs into neat dictionary
 
     Args:
-        model (fairseq.hub_utils.GeneratorHubInterface): Translation model,
-        defaults to 'Any' type because this class is dynamically loaded
-        input_data (List[str]): Source sentences
+        model (GeneratorHubInterface): Translation model interface class
+        input_data (List[str]): Source sentences (without preprocessing)
         batch_size (int): Batch size for translation
 
     Returns:
@@ -93,11 +95,6 @@ def translate_process(model: Any, input_data: List[str],
     """
     # initialize data store
     store = {}
-    # disable dropout for prediction
-    model.eval()
-    # enable GPU hardware acceleration if GPU/CUDA present
-    if torch.cuda.is_available():
-        model.cuda()
     # conduct batch translation and data processing
     for i in tqdm(range(0, len(input_data), batch_size)):
         chunk = input_data[i:i + batch_size]
@@ -133,6 +130,12 @@ def main() -> None:
         logger = logging.getLogger('root')
     # get batch-size
     batch_size = args.batch_size
+    # model subsets
+    model_subset = args.model_subset
+    # local model glob
+    local_model_glob = args.local_model_glob
+    # initialize model names
+    model_names = []
     # create path dictionary
     path_dict = {
         "wmt": [[
@@ -146,9 +149,10 @@ def main() -> None:
     }
     path_dict["both"] = path_dict["wmt"] + path_dict["ar"]
     # define available models for de-en
-    model_names = [
-        "transformer.wmt19.de-en.single_model"
-    ]
+    if model_subset in ["local", "both"]:
+        model_names.extend(glob(local_model_glob))
+    if model_subset in ["hub", "both"]:
+        model_names.append("transformer.wmt19.de-en.single_model")
     # loop over respective models
     for model_name in model_names:
         # add rules for loading models
@@ -157,10 +161,21 @@ def main() -> None:
                                    model_name,
                                    tokenizer="moses",
                                    bpe="fastbpe")
-        if isinstance(model, fairseq.hub_utils.GeneratorHubInterface):
-            model_name = "hub." + model_name
-        elif isinstance(model, fairseq.models.transformer.TransformerModel):
+            model_name = "torch_hub." + model_name
+        else:
+            model = TransformerModel.from_pretrained(
+                model_name,
+                checkpoint_file='checkpoint_best.pt',
+                bpe="fastbpe",
+                tokenizer="moses",
+                data_name_or_path="./bpe/",
+                bpe_codes=os.path.join(model_name, "bpe", "bpe.32000"))
             model_name = "local." + model_name
+        # disable dropout for prediction
+        model.eval()
+        # enable GPU hardware acceleration if GPU/CUDA present
+        if torch.cuda.is_available():
+            model.cuda()
         # loop over paraphrase files
         for input_paths in path_dict[args.wmt_references]:
             base = os.path.basename(input_paths[0])

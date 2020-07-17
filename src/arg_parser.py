@@ -17,6 +17,15 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
     """
     parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
     if subtype == "translate":
+        parser.add_argument("--model-subset",
+                            type=str,
+                            default="both",
+                            choices=["local", "hub", "both"],
+                            help="Whether to use hub or local NMT models, or both")
+        parser.add_argument("--local-model-glob",
+                            type=str,
+                            default="./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573",
+                            help="Input glob to find local models")
         parser.add_argument("--wmt-references",
                             type=str,
                             default="both",

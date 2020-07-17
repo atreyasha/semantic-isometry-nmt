@@ -23,8 +23,8 @@ language models on the PAWS-X paraphrase detection task
 
 Optional arguments:
   -h, --help    Show this help message and exit
-  model <arch>  Architecture for use in model, defaults
-                to "xlm-roberta-large"
+  model <arch>  Pre-trained language model to fine-tune,
+                defaults to "xlm-roberta-large"
 EOF
 }
 

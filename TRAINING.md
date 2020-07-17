@@ -37,14 +37,15 @@
 3. In case training was discontinued and needs to be continued later on, use `train_continue_wmt16_de_en.sh`:
 
     ```
-    Usage: train_continue_wmt16_de_en.sh [-h|--help] save_dir
+    Usage: train_continue_wmt16_de_en.sh [-h|--help] model_directory
     Continue training fairseq model on WMT16 de-en data
 
     Optional arguments:
-      -h, --help       Show this help message and exit
+      -h, --help              Show this help message and exit
 
     Required arguments:
-      save_dir <path>  Path to directory containing checkpoints
+      model_directory <path>  Path to directory containing model
+                              checkpoints
     ```
 
     An example of running this script would be:

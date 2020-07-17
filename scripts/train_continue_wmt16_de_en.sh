@@ -5,14 +5,15 @@ set -e
 # usage function
 usage() {
   cat <<EOF
-Usage: train_continue_wmt16_de_en.sh [-h|--help] save_dir
+Usage: train_continue_wmt16_de_en.sh [-h|--help] model_directory
 Continue training fairseq model on WMT16 de-en data
 
 Optional arguments:
-  -h, --help       Show this help message and exit
+  -h, --help              Show this help message and exit
 
 Required arguments:
-  save_dir <path>  Path to directory containing checkpoints
+  model_directory <path>  Path to directory containing model
+                          checkpoints
 EOF
 }
 

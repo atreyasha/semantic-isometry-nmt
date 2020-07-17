@@ -1,22 +1,37 @@
 ### Development
 
-1.  Clean-code and documentation
+1.  Translation
 
-    1.  **TODO** export bpe codes alongside model to ensure
-        it works out of the box -\> add perhaps post-processing script
-        to do this before exporting if given model is good -\> add
-        post-processing and exporting to readme as part of workflow
+    1.  **TODO** split output sentences by single space and
+        then do moses detokenization -\> check output of bulk traslation
+        to see if this is necessary
 
-    2.  **TODO** name new files with more semantics such as
-        translate~wmt19all~ etc.
+    2.  strong model being WMT19 single and ensemble with back
+        translation (which adds robustness), while weak model being
+        transformer trained on WMT16 without back translation -\>
+        compare general performances and metrics
 
-    3.  **TODO** improve structure of translate script and
+    3.  consider also looking into extra references repo
+        \"evaluation-of-nmt-bt\"
+
+    4.  extra: train additional large model on wmt19 non-backtranslated
+        data and similar transformer arch as fair paper
+
+2.  Clean-code and documentation
+
+    1.  **TODO** name new files with more semantics such as
+        translate~wmt19all~ etc. -\> clean up translation shell script
+        and test it out
+
+    2.  **TODO** improve structure of translate script and
         perhaps modify name since it works on glob
 
-    4.  **TODO** create discrete scripts -\> train
-        translation model, fine tune paraphrase detector, translate
-        sentences, evaluate (bleu, chrf, fine-tuned model), visualize
-        data
+    3.  **TODO** consider using torch data processor class
+        for next functions and to control batch sizes
+
+    4.  create discrete scripts -\> train translation model, fine tune
+        paraphrase detector, translate sentences, evaluate (bleu, chrf,
+        fine-tuned model), visualize data
 
     5.  segment readme into training or evaluating with relevant usages
         -\> change pawsx instructions and default model based on which
@@ -36,51 +51,22 @@
 
     10. add final paper/presentation into repo with link in readme
 
-2.  Translation
-
-    1.  **TODO** fix up model typing for translation
-        functions, try to use fairseq transformer class instead of Any
-
-    2.  **TODO** clean up model names for hub vs. local
-
-    3.  **TODO** add input glob for using local models as
-        well -\> in case someone trains their own model -\> think of how
-        this process would work for more complicated model combinations
-
-    4.  **TODO** during use in translate script, load model
-        manually with specified checkpoint, moses tokenizer, fastbpe and
-        bpe.32000 file
-
-    5.  **TODO** split output sentences by single space and
-        then do moses detokenization to get back most ordered output for
-        reading/comparison -\> add boolean for moses detokenization to
-        translation function and do this before appending translations
-        to dictionary
-
-    6.  strong model being WMT19 single and ensemble with back
-        translation (which adds robustness), while weak model being
-        transformer trained on WMT16 without back translation -\>
-        compare general performances and metrics
-
-    7.  consider also looking into extra references repo
-        \"evaluation-of-nmt-bt\"
-
-    8.  extra: train additional large model on wmt19 non-backtranslated
-        data and similar transformer arch as fair paper
-
 3.  Paraphrase detection
 
-    1.  **TODO** touch up final bits such as model defaults
-        based on best model performance
+    1.  **TODO** finalize train/evaluate script default model
+        based on best model performance -\> update readme later
 
-    2.  fine-tune models with English and ensure no or little machine
+    2.  **TODO** use all three models to get some sense of
+        agreement between models for predictions
+
+    3.  fine-tune models with English and ensure no or little machine
         translated data is present in training set
 
-    3.  better to work with human-curated data than back-translated ones
+    4.  better to work with human-curated data than back-translated ones
         due to many errors -\> advantage in PAWS and PAWS-X English
         data + WMT19 AR paraphrases
 
-    4.  extra: fix and refine paws-x pipeline later on with patience,
+    5.  extra: fix and refine paws-x pipeline later on with patience,
         typing and possibly continuation of training
 
 4.  Evaluation and visualization
@@ -125,7 +111,8 @@
     4.  list hypotheses and how some were refuted by results
 
     5.  include semantic transferance equation in paper to introduce
-        some formalisms
+        some formalisms -\> show mathematical properties of isometric
+        functions/spaces
 
 ### Completed
 

@@ -62,11 +62,11 @@ pip install -r requirements.txt
 
 ### Usage :cyclone: 
 
-#### Training
+#### i. Training
 
 Since we already provide pre-trained models in this repository, we treat model training from scratch as an auxiliary procedure. If you would like to indeed train non-SOTA NMT and paraphrase detection models from scratch, refer to the instructions in [TRAINING.md](TRAINING.md).
 
-#### Translation
+#### ii. Translation
 
 In order to translate WMT19 legacy and additional references with corresponding paraphrases, we provide a script `translate_wmt19_paraphrases_de_en.sh`: 
 
@@ -87,7 +87,7 @@ This script will run translation using Facebook FAIR'S winning WMT19 model as th
 bash scripts/translate_wmt19_paraphrases_de_en.sh 
 ```
 
-#### Evaluation
+#### iii. Evaluation
 
 ##### BLEU and chrF
 

@@ -29,7 +29,7 @@ check_help() {
 # define function
 translate_wmt19_paraphrases_de_en() {
   local glob="${1:-"./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"}"
-  python3 -m src.translate --local-model-glob "$glob"
+  python3 -m src.translate_wmt19_paraphrases_de_en --local-model-glob "$glob"
 }
 
 # execute function

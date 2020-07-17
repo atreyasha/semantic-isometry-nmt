@@ -170,7 +170,7 @@ def main() -> None:
                 tokenizer="moses",
                 data_name_or_path="./bpe/",
                 bpe_codes=os.path.join(model_name, "bpe", "bpe.32000"))
-            model_name = "local." + model_name
+            model_name = "local." + os.path.basename(model_name)
         # disable dropout for prediction
         model.eval()
         # enable GPU hardware acceleration if GPU/CUDA present

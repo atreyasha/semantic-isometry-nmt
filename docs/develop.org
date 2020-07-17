@@ -1,9 +1,8 @@
 *** Development
 
 **** Clean-code and documentation
-***** TODO consider using torch data processor class for next functions and to control batch sizes
 ***** TODO create discrete scripts with instructions in readme -> train translation model (done), fine tune paraphrase detector (done), translate sentences (done), evaluate (bleu, chrf, fine-tuned language model), visualize results
-
+***** TODO consider using torch data processor class for next functions and to control batch sizes
 ***** segment readme into training, translation and others categories with relevant usages
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
 ***** update TOC's in all readmes to reflect latest changes

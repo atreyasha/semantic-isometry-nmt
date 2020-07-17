@@ -6,6 +6,7 @@
 4. [Usage](#Usage-cyclone)
     1. [Training](#Training)
     2. [Translation](#Translation)
+    3. [Evaluation](#Evaluation)
 5. [Citations](#Citations-sweat_drops)
 6. [Development](#Development-snail)
 
@@ -84,6 +85,29 @@ This script will run translation using Facebook FAIR'S winning WMT19 model as th
 
 ```shell
 bash scripts/translate_wmt19_paraphrases_de_en.sh 
+```
+
+#### Evaluation
+
+##### BLEU and chrF
+
+After translating the WMT19 paraphrases, we can conduct a *quick and dirty* evaluation of the paraphrases using the `BLEU` and `chrF` sequence similarity metrics. For this, we provide `evaluate_bleu_chrF_wmt19_paraphrases.sh`:
+
+```
+Usage: evaluate_bleu_chrF_wmt19_paraphrases.sh [-h|--help] [glob]
+Conduct shallow evaluation of WMT19 paraphrases with BLEU and
+chrF scores
+
+Optional arguments:
+  -h, --help   Show this help message and exit
+  glob <glob>  Glob for finding input json translations, defaults to
+               "./predictions/*/*.json"
+```
+
+This script will analyze the translation `json` outputs and append `BLEU` and `chrF` scores in-place. To run this script, simply execute:
+
+```shell
+bash scripts/evaluate_bleu_chrF_wmt19_paraphrases.sh
 ```
 
 ### Citations :sweat_drops:

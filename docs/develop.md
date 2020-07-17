@@ -2,13 +2,13 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** consider using torch data processor class
-        for next functions and to control batch sizes
-
-    2.  **TODO** create discrete scripts with instructions in
+    1.  **TODO** create discrete scripts with instructions in
         readme -\> train translation model (done), fine tune paraphrase
         detector (done), translate sentences (done), evaluate (bleu,
         chrf, fine-tuned language model), visualize results
+
+    2.  **TODO** consider using torch data processor class
+        for next functions and to control batch sizes
 
     3.  segment readme into training, translation and others categories
         with relevant usages

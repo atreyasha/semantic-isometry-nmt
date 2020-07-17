@@ -35,6 +35,11 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
                             type=int,
                             default=256,
                             help="Batch size for translation")
+    elif subtype == "evaluate":
+        parser.add_argument("--json-glob",
+                            type=str,
+                            default="./predictions/*/*.json",
+                            help="Input glob to find json translation outputs")
     parser.add_argument("--verbosity",
                         type=int,
                         default=1,

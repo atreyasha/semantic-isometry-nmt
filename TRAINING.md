@@ -1,4 +1,14 @@
-## Training fairseq NMT model on WMT16 de-en
+## Training models
+
+1. [Training fairseq NMT model on WMT16 de-en](#1-Training-fairseq-NMT-model-on-WMT16-de-en)
+2. [Fine-tuning multilingual transformer language model on PAWS-X](#2-Fine-tuning-multilingual-transformer-language-model-on-PAWS-X)
+3. [Exporting-models](#3-Exporting-models)
+
+### Overview
+
+This readme provides additional information on training/fine-tuning models used in this repository from (quasi) scratch. It is highly recommended to use the defaults as per the provided shell scripts, since there could be unforeseen issues related to using new model configurations.
+
+### 1. Training fairseq NMT model on WMT16 de-en
 
 1. Preprocess WMT16 with pre-computed BPE codes into an appropriate format using `preprocess_wmt16_de_en.sh`:
 
@@ -98,7 +108,7 @@
     "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
     ```
 
-## Fine-tuning multilingual transformer language model on PAWS-X
+### 2. Fine-tuning multilingual transformer language model on PAWS-X
 
 Fine-tune a large multilingual transformer language model on the `PAWS-X` paraphrase detection task using `train_evaluate_pawsx.sh`:
 
@@ -121,7 +131,7 @@ bash scripts/train_evaluate_pawsx.sh
 
 This script will automatically evaluate the model against the `dev` set during training and the `test` set after training. Therefore a separate evaluation step is not necessary.
 
-## Exporting final models
+### 3. Exporting models
 
 To export the final models, you can use `export_tar_gz.sh`:
 

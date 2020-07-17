@@ -39,7 +39,7 @@ export_tar_gz() {
       cd "$parent_name"
       tar --exclude="*checkpoint_last*" \
         --exclude="*checkpoint-training-end*" \
-        --zcvf "${child_name}.tar.gz" "$child_name"
+        -zcvf "${child_name}.tar.gz" "$child_name"
     )
   done
 }

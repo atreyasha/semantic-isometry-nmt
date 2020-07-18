@@ -632,17 +632,6 @@ version = "1.15.0"
 
 [[package]]
 category = "main"
-description = "A set of python modules for machine learning and data mining"
-name = "sklearn"
-optional = false
-python-versions = "*"
-version = "0.0"
-
-[package.dependencies]
-scikit-learn = "*"
-
-[[package]]
-category = "main"
 description = "Unsupervised Word Segmentation for Neural Machine Translation and Text Generation"
 name = "subword-nmt"
 optional = false
@@ -842,7 +831,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "48ecbf2cb003eb332d47cc09c62bf3da181d91a8490bb8b93471633b4fc37376"
+content-hash = "f6745b93c0d1553724287ac06a072b6a96b24f182acbfa62ad28669390af5c58"
 python-versions = "^3.7.0"
 
 [metadata.files]
@@ -1338,9 +1327,6 @@ sentencepiece = [
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
     {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
-]
-sklearn = [
-    {file = "sklearn-0.0.tar.gz", hash = "sha256:e23001573aa194b834122d2b9562459bf5ae494a2d59ca6b8aa22c85a44c0e31"},
 ]
 subword-nmt = [
     {file = "subword_nmt-0.3.7-py2.py3-none-any.whl", hash = "sha256:a2d92eed5dea55f2b1c9b21225a57b3ae7009ce8a1fa4d2e3f01ab11435c28c9"},

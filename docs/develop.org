@@ -4,6 +4,7 @@
 ***** TODO run bleu and chrF comparisons on sources and targets -> make nice plots of these using latex output from matplotlib to keep code base inside python
 ***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
 ***** check for possibly interesting correlations between XLM-R prediction and chrF/BLEU scores 
+***** compute statistical tests for ascertaining significance of relationships
 ***** in rare cases, can do manual analysis and include this inside report
 ***** report evaluation of fine-tuning paraphrase detector and weaker translation model -> get enough well-structured data for ultimate plotting
 ***** early conclusions/hypothese: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
@@ -16,6 +17,7 @@
 ****** DONE evaluate bleu & chrf
 ***** segment readme into training, translation and others categories with relevant usages
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
+***** update initial page of readme with overview/abstract of work including shallow metrics
 ***** update TOC's in all readmes to reflect latest changes
 ***** add citations in readme as per general standard
 ***** add final paper/presentation into repo with link in readme 

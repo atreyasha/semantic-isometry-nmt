@@ -13,14 +13,17 @@
     3.  check for possibly interesting correlations between XLM-R
         prediction and chrF/BLEU scores
 
-    4.  in rare cases, can do manual analysis and include this inside
+    4.  compute statistical tests for ascertaining significance of
+        relationships
+
+    5.  in rare cases, can do manual analysis and include this inside
         report
 
-    5.  report evaluation of fine-tuning paraphrase detector and weaker
+    6.  report evaluation of fine-tuning paraphrase detector and weaker
         translation model -\> get enough well-structured data for
         ultimate plotting
 
-    6.  early conclusions/hypothese: hand-crafted adversarial paraphrase
+    7.  early conclusions/hypothese: hand-crafted adversarial paraphrase
         robustness is handled well in SOTA models due to backtranslation
         reguralization, main vulnerability will be targetted adversarial
         samples
@@ -46,11 +49,14 @@
     3.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    4.  update TOC\'s in all readmes to reflect latest changes
+    4.  update initial page of readme with overview/abstract of work
+        including shallow metrics
 
-    5.  add citations in readme as per general standard
+    5.  update TOC\'s in all readmes to reflect latest changes
 
-    6.  add final paper/presentation into repo with link in readme
+    6.  add citations in readme as per general standard
+
+    7.  add final paper/presentation into repo with link in readme
 
 3.  Paraphrase detection
 

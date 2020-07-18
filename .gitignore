@@ -2,5 +2,5 @@
 *.temp
 *.tar.gz
 *.out
-poetry.lock
-pyproject.toml
+src/fairseq/
+src/transformers

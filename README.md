@@ -4,9 +4,9 @@
 2. [Dependencies](#Dependencies-neckbeard)
 3. [Repository Initialization](#Repository-Initialization-fire)
 4. [Usage](#Usage-cyclone)
-    1. [Training](#Training)
-    2. [Translation](#Translation)
-    3. [Evaluation](#Evaluation)
+    1. [Training](#i-Training)
+    2. [Translation](#ii-Translation)
+    3. [Evaluation](#iii-Evaluation)
 5. [Citations](#Citations-sweat_drops)
 6. [Development](#Development-snail)
 

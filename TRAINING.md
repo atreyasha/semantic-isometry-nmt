@@ -36,7 +36,7 @@ Train fairseq model on WMT16 de-en data
 Optional arguments:
   -h, --help           Show this help message and exit
   arch <fairseq_arch>  Architecture for use in model, defaults
-                        to "transformer_vaswani_wmt_en_de_big"    
+                       to "transformer_vaswani_wmt_en_de_big"    
 ```
 
 Generally, any of the `fairseq` [architectures](<https://fairseq.readthedocs.io/en/latest/command_line_tools.html#Model configuration>) could be used as an argument for this script. To use our default settings based on experiments, simply execute:
@@ -75,7 +75,7 @@ Evaluate trained fairseq model on WMT16 de-en data
 Optional arguments:
   -h, --help         Show this help message and exit
   subset <str>       Which subset to evaluate in {train, valid, test},
-                      defaults to "test"
+                     defaults to "test"
 
 Required arguments:
   checkpoint <path>  Path to checkpoint which should be used

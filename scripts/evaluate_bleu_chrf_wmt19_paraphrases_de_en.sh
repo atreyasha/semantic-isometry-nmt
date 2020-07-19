@@ -28,11 +28,11 @@ check_help() {
 }
 
 # define function
-evaluate_bleu_chrf_wmt19_paraphrases() {
+evaluate_bleu_chrf_wmt19_paraphrases_de_en() {
   local glob="${1:-"./predictions/*/*.json"}"
   python3 -m src.evaluate_bleu_chrf_wmt19_paraphrases_de_en --json-glob "$glob"
 }
 
 # execute function
 check_help "$@"
-evaluate_bleu_chrf_wmt19_paraphrases"$@"
+evaluate_bleu_chrf_wmt19_paraphrases_de_en "$@"

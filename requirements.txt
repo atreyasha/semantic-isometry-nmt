@@ -6,6 +6,7 @@ certifi==2020.6.20
 cffi==1.14.0
 chardet==3.0.4
 click==7.1.2
+cycler==0.10.0
 cython==0.29.20
 docutils==0.15.2
 -e git+https://github.com/pytorch/fairseq.git@9f92b05e2a10f1c559d44dc1c264af31723d1d76#egg=fairseq
@@ -18,16 +19,20 @@ idna==2.10
 importlib-metadata==1.7.0; python_version < "3.8"
 jmespath==0.10.0
 joblib==0.16.0
+kiwisolver==1.2.0
 kytea==0.1.5
 markdown==3.2.2
+matplotlib==3.3.0
 mecab-python3==0.996.5
 numpy==1.19.0
 oauthlib==3.1.0
+pillow==7.2.0
 portalocker==1.7.0
 protobuf==3.12.2
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
+pyparsing==2.4.7
 python-dateutil==2.8.1
 pywin32==228; platform_system == "Windows"
 regex==2020.6.8

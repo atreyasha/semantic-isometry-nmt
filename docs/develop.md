@@ -1,15 +1,16 @@
 ### Development
 
-1.  Evaluation and visualization
+1.  Visualization
 
     1.  **TODO** run bleu and chrF comparisons on sources and
         targets with dual strategy -\> make nice plots of these using
         latex output from matplotlib to keep code base inside python -\>
         change names to evaluating shallow vs. deep
 
-    2.  look through xtreme-pawsx source code to tokenize and predict on
-        translations -\> try to store prediction values and decisions in
-        order to conduct numerical analyses
+    2.  add various sub-routines with different visualization shell
+        scripts corresponding to different arguments of python script
+        -\> such as defining model paths to plot model evolutions, etc.
+        -\> make this more dynamic and practical where possible
 
     3.  think of plotting schemes that could be used on various results
         of analysis such as paraphrase detection results from all three
@@ -19,38 +20,28 @@
         csv\'s for nicer plotting -\> look into event log combination
         workflow
 
-    5.  check for possibly interesting correlations between XLM-R
-        prediction and chrF/BLEU scores
-
-    6.  compute statistical tests for ascertaining significance of
-        relationships
-
-    7.  in rare cases, can do manual analysis and include this inside
-        report
-
-    8.  report evaluation of fine-tuning paraphrase detector and weaker
-        translation model -\> get enough well-structured data for
-        ultimate plotting
-
-    9.  early conclusions/hypothese: hand-crafted adversarial paraphrase
-        robustness is handled well in SOTA models due to backtranslation
-        reguralization, main vulnerability will be targetted adversarial
-        samples
-
 2.  Clean-code and documentation
 
-    1.  **TODO** create modular scripts with instructions in
-        readme -\> evaluate using fine-tuned language model, visualize
-        results (shallow metrics, fine-tuned LM result, correlation of
-        LM and shallow metrics, model training evolutions)
+    1.  create modular scripts with instructions in readme:
 
-        1.  **DONE** train translation model
+        1.  **TODO** evaluate using fine-tuned language model
 
-        2.  **DONE** fine tune paraphrase detector
+        2.  **TODO** visualize shallow metrics
 
-        3.  **DONE** translate sentences
+        3.  **TODO** visualize fine-tuned LM result
 
-        4.  **DONE** evaluate bleu & chrf
+        4.  **TODO** visualize correlation of LM and shallow
+            metrics
+
+        5.  **TODO** visualize model training evolutions
+
+        6.  **DONE** train translation model
+
+        7.  **DONE** fine tune paraphrase detector
+
+        8.  **DONE** translate sentences
+
+        9.  **DONE** evaluate bleu & chrf
 
     2.  segment readme into training, translation and others categories
         with relevant usages
@@ -67,32 +58,55 @@
 
     7.  add final paper/presentation into repo with link in readme
 
-3.  Paraphrase detection
+3.  Evaluation
 
-    1.  **TODO** consider using torch data processor class
-        for next functions and to control batch sizes
+    1.  **TODO** look through xtreme-pawsx source code to
+        tokenize and predict on translations -\> try to store prediction
+        values and decisions in order to conduct numerical analyses
 
-    2.  **TODO** use all three models to get some sense of
-        agreement between models for predictions
+    2.  **TODO** use all three pawsx models to get some sense
+        of agreement between models for predictions
 
-    3.  consider roc and other evaluation metrics for pawsx model -\> in
+    3.  **TODO** perhaps reliably use paraphrase detection
+        only in cases where initial German paraphrase is positively
+        detected, to ensure some consistency for evaluation
+
+    4.  consider using torch data processor class for next functions and
+        to control batch sizes
+
+    5.  check for possibly interesting correlations between XLM-R
+        prediction and chrF/BLEU scores
+
+    6.  compute statistical tests for ascertaining significance of
+        relationships
+
+    7.  in rare cases, can do manual analysis and include this inside
+        report
+
+    8.  report evaluation of fine-tuning paraphrase detector and weaker
+        translation model
+
+    9.  early conclusions/hypothese: hand-crafted adversarial paraphrase
+        robustness is handled well in SOTA models due to backtranslation
+        reguralization, main vulnerability will be targetted adversarial
+        samples
+
+4.  Paraphrase detection
+
+    1.  consider roc and other evaluation metrics for pawsx model -\> in
         case these might be of more help
 
-    4.  perhaps run paraphrase detection only in cases where initial
-        German paraphrase is positively detected, to ensure some
-        consistency for evaluation
-
-    5.  fine-tune models with English and ensure no or little machine
+    2.  fine-tune models with English and ensure no or little machine
         translated data is present in training set
 
-    6.  better to work with human-curated data than back-translated ones
+    3.  better to work with human-curated data than back-translated ones
         due to many errors -\> advantage in PAWS and PAWS-X English
         data + WMT19 AR paraphrases
 
-    7.  extra: fix and refine paws-x pipeline later on with patience,
-        typing and possibly continuation of training
+    4.  ****extra:**** fix and refine paws-x pipeline later on with
+        patience, typing and possibly continuation of training
 
-4.  Translation
+5.  Translation
 
     1.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being
@@ -102,12 +116,12 @@
     2.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
 
-    3.  extra: train additional large model on wmt19 non-backtranslated
-        data and similar transformer arch as fair paper -\> to get
-        slightly better performance for comparison -\> this can also be
-        done later
+    3.  ****extra:**** train additional large model on wmt19
+        non-backtranslated data and similar transformer arch as fair
+        paper -\> to get slightly better performance for comparison -\>
+        this can also be done later
 
-5.  Paper
+6.  Paper
 
     1.  use two-column format for final paper, to prepare for paper
         writing

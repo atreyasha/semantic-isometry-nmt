@@ -27,7 +27,7 @@ def main() -> None:
     files = glob(json_glob)
     for input_file in files:
         # log information
-        logger.info("Computing bleu and chrF scores: %s", input_file)
+        logger.info("Computing bleu and chrf scores: %s", input_file)
         # load single dictionary and compute surface similarity scores
         with open(input_file, "r") as f:
             store = json.load(f)
@@ -52,11 +52,11 @@ def main() -> None:
                                                   trans_para_en).score +
                           sacrebleu.sentence_bleu(trans_para_en,
                                                   trans_orig_en).score)/2
-            store[key]["chrF_src"] = chrf_src
-            store[key]["chrF_translated"] = chrf_trans
+            store[key]["chrf_src"] = chrf_src
+            store[key]["chrf_translated"] = chrf_trans
             store[key]["bleu_src"] = bleu_src
             store[key]["bleu_translated"] = bleu_trans
-            store[key]["chrF_avg"] = (chrf_src + chrf_trans)/2
+            store[key]["chrf_avg"] = (chrf_src + chrf_trans)/2
             store[key]["bleu_avg"] = (bleu_src + bleu_trans)/2
         # write back json to disk
         with open(input_file, "w") as f:

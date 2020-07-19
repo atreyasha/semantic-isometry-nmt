@@ -24,7 +24,7 @@ check_help() {
 }
 
 # define function
-preprocess_wmt16() {
+preprocess_wmt16_de_en() {
   local WMT16="./data/wmt16_en_de_bpe32k"
   # pre-process and make ready for model training
   fairseq-preprocess \
@@ -40,4 +40,4 @@ preprocess_wmt16() {
 
 # execute function
 check_help "$@"
-preprocess_wmt16
+preprocess_wmt16_de_en

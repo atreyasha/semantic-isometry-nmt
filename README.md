@@ -20,11 +20,17 @@ Finally, to check the quality/consistency of the translated paraphrases; we trai
 
 ### Dependencies :neckbeard:
 
-This repository's code was tested with Python versions `3.7+`. To sync dependencies, we recommend creating a virtual environment and installing the relevant packages via `pip`:
+1. This repository's code was tested with Python versions `3.7+`. To sync dependencies, we recommend creating a virtual environment and installing the relevant packages via `pip`:
 
-```shell
-pip install -r requirements.txt
-```
+    ```shell
+    pip install -r requirements.txt
+    ```
+
+2. In this repository, we use `R` (version `3.6+`) and `ggplot` for visualization. Execute the following within your R console to get the dependencies:
+
+    ```r
+    install.packages(c("ggplot2","tikzDevice","reshape2","optparse"))
+    ```
 
 ### Repository Initialization :fire:
 

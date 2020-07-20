@@ -20,7 +20,6 @@ kytea = "^0.1.5"
 transformers = {git = "https://github.com/huggingface/transformers.git", rev = "cefd51c50cc08be8146c1151544495968ce8f2ad"}
 sentencepiece = "0.1.91"
 scikit-learn = "^0.23.1"
-matplotlib = "^3.3.0"
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.16.1"

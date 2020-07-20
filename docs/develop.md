@@ -1,11 +1,23 @@
 ### Development
 
+-   Do single good plot of chrF and BLEU trends, revert loggers after
+    testing
+-   Then move on to evaluation with pre-trained pawsx models using
+    xtreme submodule code
+-   Revert back to matplotlib for easier plotting and consistent code
+    base, do paraphrase detection process first and focus on plotting
+    with matplotlib/ggplot after doing all of this, add roc auc on pawsx
+    training as extra task, recheck with uzh int office and grant
+    agreement what I must show at the end of internship, think more
+    about chrf vs paraphrase detection style and how this can be plotted
+-   Add command line arguments to R script, update R dependencies
+
 1.  Visualization
 
     1.  **TODO** run bleu and chrF comparisons on sources and
         targets with dual strategy -\> make nice plots of these using
-        latex output from matplotlib to keep code base inside python -\>
-        change names to evaluating shallow vs. deep
+        latex output from ggplot+R instead of matplotlib -\> use python
+        as source to call R scripts
 
     2.  add various sub-routines with different visualization shell
         scripts corresponding to different arguments of python script

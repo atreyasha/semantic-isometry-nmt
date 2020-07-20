@@ -44,10 +44,10 @@ plot_shallow_metrics <- function(input_glob){
             panel.grid = element_line(size = 1),
             axis.ticks.length=unit(.15, "cm"),
             legend.margin=margin(c(1,5,5,15))) +
-      scale_x_continuous(breaks = custom_breaks,
-                         labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
-      scale_y_continuous(breaks = custom_breaks,
-                         labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
+      ## scale_x_continuous(breaks = custom_breaks,
+      ##                    labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
+      ## scale_y_continuous(breaks = custom_breaks,
+      ##                    labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
       facet_grid(data_name ~ model_name) +
       scale_color_viridis(name="Point\nDensity") +
       ylab(paste0("Target"," \\textit{",metric,"} [En]","\n")) +

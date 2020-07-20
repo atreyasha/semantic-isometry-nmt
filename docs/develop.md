@@ -85,7 +85,8 @@
 
     1.  run bleu and chrF comparisons on sources and targets with dual
         strategy -\> make nice plots of these using latex output from
-        ggplot+R -\> use python as source to call R scripts
+        ggplot+R -\> use memory efficient pipelines and newer
+        visualization techniques to assist in understanding
 
     2.  add linear regression lines to plots later with respective
         parameters

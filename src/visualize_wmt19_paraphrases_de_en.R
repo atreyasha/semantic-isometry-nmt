@@ -6,6 +6,7 @@ library(rjson)
 library(ggplot2)
 library(tikzDevice)
 library(reshape2)
+library(optparse)
 
 plot_shallow_metrics <- function(input_glob="./predictions/*/*.json"){
   files <- Sys.glob(input_glob)

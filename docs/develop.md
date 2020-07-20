@@ -11,7 +11,8 @@
     agreement what I must show at the end of internship, think more
     about chrf vs paraphrase detection style and how this can be plotted
 -   Add command line arguments to R script, update R dependencies
--   Consider adding minor ticks to ggplot plots
+-   Consider adding minor ticks to ggplot plots -\> need to do some
+    tricks with minor functions
 -   Add linear regression lines to plots later with respective
     parameters
 

@@ -48,6 +48,7 @@ plot_shallow_metrics <- function(input_glob="./predictions/*/*.json"){
     theme(text = element_text(size=25),
           legend.position = "none",
           strip.background = element_blank(),
+          strip.text = element_text(face="bold"),
           panel.grid = element_line(size = 1)) +
     facet_grid(data_name ~ model_name) +
     ylab(paste("Target",metric,"[En]","\n")) +
@@ -66,6 +67,7 @@ plot_shallow_metrics <- function(input_glob="./predictions/*/*.json"){
     theme(text = element_text(size=25),
           legend.position = "none",
           strip.background = element_blank(),
+          strip.text = element_text(face="bold"),
           panel.grid = element_line(size = 1)) +
     facet_grid(data_name ~ model_name) +
     ylab(paste("Target",metric,"[En]","\n")) +

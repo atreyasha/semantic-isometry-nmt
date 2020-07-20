@@ -30,12 +30,12 @@
 ***** add final paper/presentation into repo with link in readme 
 
 **** Visualization
-***** update R dependencies
 ***** run bleu and chrF comparisons on sources and targets with dual strategy -> make nice plots of these using latex output from ggplot+R instead of matplotlib -> use python as source to call R scripts
 ***** add linear regression lines to plots later with respective parameters
 ***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
 ***** think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas
 ***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
+***** update R dependencies in readme
 
 **** Paraphrase detection
 ***** consider roc and other evaluation metrics for pawsx model -> in case these might be of more help

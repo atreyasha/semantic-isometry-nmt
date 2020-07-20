@@ -11,6 +11,7 @@ every_nth <- function(x, nth, empty = TRUE, inverse = FALSE)
 # can be used to generate additional ticks
 # source: https://stackoverflow.com/a/34533473
 {
+  x = format(x)
   if (!inverse) {
     if(empty) {
       x[1:nth == 1] <- ""

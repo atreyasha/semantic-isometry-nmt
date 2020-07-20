@@ -73,28 +73,28 @@
 
 3.  Visualization
 
-    1.  update R dependencies
-
-    2.  run bleu and chrF comparisons on sources and targets with dual
+    1.  run bleu and chrF comparisons on sources and targets with dual
         strategy -\> make nice plots of these using latex output from
         ggplot+R instead of matplotlib -\> use python as source to call
         R scripts
 
-    3.  add linear regression lines to plots later with respective
+    2.  add linear regression lines to plots later with respective
         parameters
 
-    4.  add various sub-routines with different visualization shell
+    3.  add various sub-routines with different visualization shell
         scripts corresponding to different arguments of python script
         -\> such as defining model paths to plot model evolutions, etc.
         -\> make this more dynamic and practical where possible
 
-    5.  think of plotting schemes that could be used on various results
+    4.  think of plotting schemes that could be used on various results
         of analysis such as paraphrase detection results from all three
         models -\> get creative with these ideas
 
-    6.  think of effective ways of converting tensorflow event logs to
+    5.  think of effective ways of converting tensorflow event logs to
         csv\'s for nicer plotting -\> look into event log combination
         workflow
+
+    6.  update R dependencies in readme
 
 4.  Paraphrase detection
 

@@ -59,10 +59,10 @@ plot_shallow_metrics <- function(input_glob){
       as.numeric(x[4:7])})))
     names(filtered) <- names(data[[1]])[4:7]
     if (grepl("ar", data_name)) {
-      data_name <- "WMT-AR"
+      data_name <- "WMT19 Test AR"
     }
     else {
-      data_name <- "WMT-Legacy"
+      data_name <- "WMT19 Test Legacy"
     }
     if (grepl("hub", model_name)){
       model_name <- "FAIR SOTA Transformer"

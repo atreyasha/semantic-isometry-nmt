@@ -119,8 +119,8 @@
         data + WMT19 AR paraphrases
 
     4.  ****extra:**** fix and refine paws-x pipeline later on with
-        patience, typing and possibly continuation of training, add roc
-        auc on pawsx test data
+        patience, typing, better documentation, clean-code and possibly
+        continuation of training, add roc auc on pawsx test data
 
 5.  Translation
 

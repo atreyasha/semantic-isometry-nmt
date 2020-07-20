@@ -33,25 +33,43 @@ every_nth <- function(x, nth, empty = TRUE, inverse = FALSE)
 
 plot_shallow_metrics <- function(input_glob){
   # internal re-usable plot function
-  internal_plot <- function(metric){
-    g <- ggplot(subset(collection, Type==metric), aes(x=Source, y=Target)) +
-      geom_pointdensity(adjust=0.7) +
-      theme_bw() +
-      theme(text = element_text(size=25),
-            strip.background = element_blank(),
-            legend.key.height = unit(3, "cm"),
-            strip.text = element_text(face="bold"),
-            panel.grid = element_line(size = 1),
-            axis.ticks.length=unit(.15, "cm"),
-            legend.margin=margin(c(1,5,5,15))) +
-      ## scale_x_continuous(breaks = custom_breaks,
-      ##                    labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
-      ## scale_y_continuous(breaks = custom_breaks,
-      ##                    labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
-      facet_grid(data_name ~ model_name) +
-      scale_color_viridis(name="Point\nDensity") +
-      ylab(paste0("Target"," \\textit{",metric,"} [En]","\n")) +
-      xlab(paste0("\n","Source"," \\textit{",metric,"} [De]"))
+  internal_plot <- function(metric, custom_breaks){
+    if(!is.null(custom_breaks)){
+      g <- ggplot(subset(collection, Type==metric), aes(x=Source, y=Target)) +
+        geom_pointdensity(adjust=0.7) +
+        theme_bw() +
+        theme(text = element_text(size=25),
+              strip.background = element_blank(),
+              legend.key.height = unit(3, "cm"),
+              strip.text = element_text(face="bold"),
+              panel.grid = element_line(size = 1),
+              axis.ticks.length=unit(.15, "cm"),
+              legend.margin=margin(c(1,5,5,15))) +
+        scale_x_continuous(breaks = custom_breaks,
+                           labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
+        scale_y_continuous(breaks = custom_breaks,
+                           labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
+        facet_grid(data_name ~ model_name) +
+        scale_color_viridis(name="Point\nDensity") +
+        ylab(paste0("Target"," \\textit{",metric,"} [En]","\n")) +
+        xlab(paste0("\n","Source"," \\textit{",metric,"} [De]"))
+    } else {
+      g <- ggplot(subset(collection, Type==metric), aes(x=Source, y=Target)) +
+        geom_pointdensity(adjust=0.7) +
+        theme_bw() +
+        theme(text = element_text(size=25),
+              strip.background = element_blank(),
+              legend.key.height = unit(3, "cm"),
+              strip.text = element_text(face="bold"),
+              panel.grid = element_line(size = 1),
+              axis.ticks.length=unit(.15, "cm"),
+              legend.margin=margin(c(1,5,5,15))) +
+        facet_grid(data_name ~ model_name) +
+        scale_color_viridis(name="Point\nDensity") +
+        ylab(paste0("Target"," \\textit{",metric,"} [En]","\n")) +
+        xlab(paste0("\n","Source"," \\textit{",metric,"} [De]"))
+    }
+    return(g)
   }
   files <- Sys.glob(input_glob)
   collection <- lapply(1:length(files), function(i){
@@ -88,7 +106,7 @@ plot_shallow_metrics <- function(input_glob){
   metric = "chrF"
   custom_breaks <- seq(0.00, 1.00, 0.05)
   tikz(paste0(metric, ".tex"), width=15, height=10, standAlone = TRUE)
-  g <- internal_plot(metric)
+  g <- internal_plot(metric, NULL)
   print(g)
   dev.off()
   texi2pdf(paste0(metric,".tex"),clean=TRUE)
@@ -99,7 +117,7 @@ plot_shallow_metrics <- function(input_glob){
   metric = "BLEU"
   custom_breaks <- seq(0, 100, 5)
   tikz(paste0(metric, ".tex"), width=15, height=10, standAlone = TRUE)
-  g <- internal_plot(metric)
+  g <- internal_plot(metric, NULL)
   print(g)
   dev.off()
   texi2pdf(paste0(metric,".tex"),clean=TRUE)

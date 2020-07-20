@@ -1,17 +1,15 @@
 *** Development
     
-- Do single good plot of chrF and BLEU trends, revert loggers after testing
-- Then move on to evaluation with pre-trained pawsx models using xtreme submodule code
-- Revert back to matplotlib for easier plotting and consistent code base, do paraphrase detection process first and focus on plotting with matplotlib/ggplot after doing all of this, add roc auc on pawsx training as extra task, recheck with uzh int office and grant agreement what I must show at the end of internship, think more about chrf vs paraphrase detection style and how this can be plotted
-- Add command line arguments to R script, update R dependencies
-- Consider adding minor ticks to ggplot plots -> need to do some tricks with minor functions
-- Add linear regression lines to plots later with respective parameters
-
-**** Visualization
-***** TODO run bleu and chrF comparisons on sources and targets with dual strategy -> make nice plots of these using latex output from ggplot+R instead of matplotlib -> use python as source to call R scripts
-***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
-***** think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas
-***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
+**** Evaluation
+***** TODO look through xtreme-pawsx source code to tokenize and predict on translations -> try to store prediction values and decisions in order to conduct numerical analyses
+***** TODO use all three pawsx models to get some sense of agreement between models for predictions
+***** TODO perhaps reliably use paraphrase detection only in cases where initial German paraphrase is positively detected, to ensure some consistency for evaluation
+***** consider using torch data processor class for next functions and to control batch sizes
+***** check for possibly interesting correlations between XLM-R prediction and chrF/BLEU scores 
+***** compute statistical tests for ascertaining significance of relationships
+***** in rare cases, can do manual analysis and include this inside report
+***** report evaluation of fine-tuning paraphrase detector and weaker translation model
+***** early conclusions/hypothese: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
 
 **** Clean-code and documentation
 ***** create modular scripts with instructions in readme: 
@@ -31,22 +29,19 @@
 ***** add citations in readme as per general standard
 ***** add final paper/presentation into repo with link in readme 
 
-**** Evaluation
-***** TODO look through xtreme-pawsx source code to tokenize and predict on translations -> try to store prediction values and decisions in order to conduct numerical analyses
-***** TODO use all three pawsx models to get some sense of agreement between models for predictions
-***** TODO perhaps reliably use paraphrase detection only in cases where initial German paraphrase is positively detected, to ensure some consistency for evaluation
-***** consider using torch data processor class for next functions and to control batch sizes
-***** check for possibly interesting correlations between XLM-R prediction and chrF/BLEU scores 
-***** compute statistical tests for ascertaining significance of relationships
-***** in rare cases, can do manual analysis and include this inside report
-***** report evaluation of fine-tuning paraphrase detector and weaker translation model
-***** early conclusions/hypothese: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
+**** Visualization
+***** update R dependencies
+***** run bleu and chrF comparisons on sources and targets with dual strategy -> make nice plots of these using latex output from ggplot+R instead of matplotlib -> use python as source to call R scripts
+***** add linear regression lines to plots later with respective parameters
+***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
+***** think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas
+***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
 
 **** Paraphrase detection
 ***** consider roc and other evaluation metrics for pawsx model -> in case these might be of more help
 ***** fine-tune models with English and ensure no or little machine translated data is present in training set
 ***** better to work with human-curated data than back-translated ones due to many errors -> advantage in PAWS and PAWS-X English data + WMT19 AR paraphrases
-***** **extra:** fix and refine paws-x pipeline later on with patience, typing and possibly continuation of training
+***** **extra:** fix and refine paws-x pipeline later on with patience, typing and possibly continuation of training, add roc auc on pawsx test data
 
 **** Translation
 ***** strong model being WMT19 single and ensemble with back translation (which adds robustness), while weak model being transformer trained on WMT16 without back translation -> compare general performances and metrics

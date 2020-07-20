@@ -47,8 +47,8 @@ plot_shallow_metrics <- function(input_glob){
       scale_y_continuous(breaks = custom_breaks,
                          labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
       facet_grid(data_name ~ model_name) +
-      ylab(paste("Target",metric,"[En]","\n")) +
-      xlab(paste("\n","Source",metric,"[De]"))
+      ylab(paste0("Target"," \\textit{",metric,"} [En]","\n")) +
+      xlab(paste0("\n","Source"," \\textit{",metric,"} [De]"))
   }
   files <- Sys.glob(input_glob)
   collection <- lapply(1:length(files), function(i){

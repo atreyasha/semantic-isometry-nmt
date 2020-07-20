@@ -50,8 +50,8 @@ plot_shallow_metrics <- function(input_glob="./predictions/*/*.json"){
           strip.background = element_blank(),
           panel.grid = element_line(size = 1)) +
     facet_grid(data_name ~ model_name) +
-    ylab(paste("Target",metric,"\n")) +
-    xlab(paste("\n","Source",metric))
+    ylab(paste("Target",metric,"[En]","\n")) +
+    xlab(paste("\n","Source",metric,"[De]"))
   print(g)
   dev.off()
   texi2pdf(paste0(metric,".tex"),clean=TRUE)
@@ -68,8 +68,8 @@ plot_shallow_metrics <- function(input_glob="./predictions/*/*.json"){
           strip.background = element_blank(),
           panel.grid = element_line(size = 1)) +
     facet_grid(data_name ~ model_name) +
-    ylab(paste("Target",metric,"\n")) +
-    xlab(paste("\n","Source",metric))
+    ylab(paste("Target",metric,"[En]","\n")) +
+    xlab(paste("\n","Source",metric,"[De]"))
   print(g)
   dev.off()
   texi2pdf(paste0(metric,".tex"),clean=TRUE)

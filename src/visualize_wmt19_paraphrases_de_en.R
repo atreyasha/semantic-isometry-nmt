@@ -6,6 +6,8 @@ library(rjson)
 library(ggplot2)
 library(tikzDevice)
 library(optparse)
+library(ggpointdensity)
+library(viridis)
 
 every_nth <- function(x, nth, empty = TRUE, inverse = FALSE)
 # can be used to generate additional ticks
@@ -32,21 +34,22 @@ every_nth <- function(x, nth, empty = TRUE, inverse = FALSE)
 plot_shallow_metrics <- function(input_glob){
   # internal re-usable plot function
   internal_plot <- function(metric){
-    color = ifelse(metric=="chrF","red","blue")
     g <- ggplot(subset(collection, Type==metric), aes(x=Source, y=Target)) +
-      geom_point(color=color, alpha=0.2, size=3) +
+      geom_pointdensity(adjust=0.7) +
       theme_bw() +
       theme(text = element_text(size=25),
-            legend.position = "none",
             strip.background = element_blank(),
+            legend.key.height = unit(3, "cm"),
             strip.text = element_text(face="bold"),
             panel.grid = element_line(size = 1),
-            axis.ticks.length=unit(.15, "cm")) +
+            axis.ticks.length=unit(.15, "cm"),
+            legend.margin=margin(c(1,5,5,15))) +
       scale_x_continuous(breaks = custom_breaks,
                          labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
       scale_y_continuous(breaks = custom_breaks,
                          labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
       facet_grid(data_name ~ model_name) +
+      scale_color_viridis(name="Point\nDensity") +
       ylab(paste0("Target"," \\textit{",metric,"} [En]","\n")) +
       xlab(paste0("\n","Source"," \\textit{",metric,"} [De]"))
   }
@@ -84,23 +87,25 @@ plot_shallow_metrics <- function(input_glob){
   # first plot with chrf
   metric = "chrF"
   custom_breaks <- seq(0.00, 1.00, 0.05)
-  tikz(paste0(metric, ".tex"), width=15, height=13, standAlone = TRUE)
+  tikz(paste0(metric, ".tex"), width=15, height=10, standAlone = TRUE)
   g <- internal_plot(metric)
   print(g)
   dev.off()
   texi2pdf(paste0(metric,".tex"),clean=TRUE)
   file.remove(paste0(metric,".tex"))
   file.rename(paste0(metric,".pdf"), paste0("./img/", metric, ".pdf"))
+  unlink(paste0(metric,"*png"))
   # second plot with BLEU
   metric = "BLEU"
   custom_breaks <- seq(0, 100, 5)
-  tikz(paste0(metric, ".tex"), width=15, height=13, standAlone = TRUE)
+  tikz(paste0(metric, ".tex"), width=15, height=10, standAlone = TRUE)
   g <- internal_plot(metric)
   print(g)
   dev.off()
   texi2pdf(paste0(metric,".tex"),clean=TRUE)
   file.remove(paste0(metric,".tex"))
   file.rename(paste0(metric,".pdf"), paste0("./img/", metric, ".pdf"))
+  unlink(paste0(metric,"*png"))
 }
 
 # parse command-line arguments

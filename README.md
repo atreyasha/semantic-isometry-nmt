@@ -26,7 +26,7 @@ Finally, to check the quality/consistency of the translated paraphrases; we trai
     pip install -r requirements.txt
     ```
 
-2. In this repository, we use `R` (version `3.6+`) and `ggplot` for visualization. Execute the following within your R console to get the dependencies:
+2. In this repository, we use `R` (versions `3.6+`) and `ggplot` for visualization. Execute the following within your R console to get the dependencies:
 
     ```r
     install.packages(c("ggplot2","tikzDevice","reshape2","optparse"))

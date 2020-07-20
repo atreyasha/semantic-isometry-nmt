@@ -7,7 +7,7 @@
     1. [Training](#i-Training)
     2. [Translation](#ii-Translation)
     3. [Evaluation](#iii-Evaluation)
-5. [Citations](#Citations-sweat_drops)
+5. [References](#References-sweat_drops)
 6. [Development](#Development-snail)
 
 ### Overview :book:
@@ -116,9 +116,9 @@ This script will analyze the translation `json` outputs and append `BLEU` and `c
 bash scripts/evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh
 ```
 
-### Citations :sweat_drops:
+### References :sweat_drops:
 
-Below are the key citations that were used in this research:
+Below are the key references that were used in this research:
 
 ```
 @inproceedings{ott2018scaling,

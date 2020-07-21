@@ -34,41 +34,26 @@ every_nth <- function(x, nth, empty = TRUE, inverse = FALSE)
 plot_shallow_metrics <- function(input_glob){
   # internal re-usable plot function
   internal_plot <- function(metric, custom_breaks){
+    g <- ggplot(subset(collection, Type==metric), aes(x=Source, y=Target)) +
+      geom_pointdensity(adjust=0.1) +
+      theme_bw() +
+      theme(text = element_text(size=25),
+            strip.background = element_blank(),
+            legend.key.height = unit(3, "cm"),
+            strip.text = element_text(face="bold"),
+            panel.grid = element_line(size = 1),
+            axis.ticks.length=unit(.15, "cm"),
+            legend.margin=margin(c(1,5,5,15))) +
+      facet_grid(data_name ~ model_name) +
+      scale_color_viridis(name="Density") +
+      ylab(paste0("Target"," \\textit{",metric,"} [En]","\n")) +
+      xlab(paste0("\n","Source"," \\textit{",metric,"} [De]"))
     if(!is.null(custom_breaks)){
-      g <- ggplot(subset(collection, Type==metric), aes(x=Source, y=Target)) +
-        geom_pointdensity(adjust=0.7) +
-        theme_bw() +
-        theme(text = element_text(size=25),
-              strip.background = element_blank(),
-              legend.key.height = unit(3, "cm"),
-              strip.text = element_text(face="bold"),
-              panel.grid = element_line(size = 1),
-              axis.ticks.length=unit(.15, "cm"),
-              legend.margin=margin(c(1,5,5,15))) +
-        scale_x_continuous(breaks = custom_breaks,
-                           labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
-        scale_y_continuous(breaks = custom_breaks,
-                           labels = every_nth(custom_breaks, 5, inverse=TRUE)) +
-        facet_grid(data_name ~ model_name) +
-        scale_color_viridis(name="Point\nDensity") +
-        ylab(paste0("Target"," \\textit{",metric,"} [En]","\n")) +
-        xlab(paste0("\n","Source"," \\textit{",metric,"} [De]"))
-    } else {
-      g <- ggplot(subset(collection, Type==metric), aes(x=Source, y=Target)) +
-        geom_pointdensity(adjust=0.7) +
-        theme_bw() +
-        theme(text = element_text(size=25),
-              strip.background = element_blank(),
-              legend.key.height = unit(3, "cm"),
-              strip.text = element_text(face="bold"),
-              panel.grid = element_line(size = 1),
-              axis.ticks.length=unit(.15, "cm"),
-              legend.margin=margin(c(1,5,5,15))) +
-        facet_grid(data_name ~ model_name) +
-        scale_color_viridis(name="Point\nDensity") +
-        ylab(paste0("Target"," \\textit{",metric,"} [En]","\n")) +
-        xlab(paste0("\n","Source"," \\textit{",metric,"} [De]"))
-    }
+      g <- g + scale_x_continuous(breaks = custom_breaks,
+                                  labels = every_nth(custom_breaks, 5, inverse=TRUE))
+      g <- g + scale_y_continuous(breaks = custom_breaks,
+                                  labels = every_nth(custom_breaks, 5, inverse=TRUE))
+      }
     return(g)
   }
   files <- Sys.glob(input_glob)

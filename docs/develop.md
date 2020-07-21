@@ -2,43 +2,46 @@
 
 1.  Evaluation
 
-    1.  **TODO** find data loading lines which would need to
+    1.  **TODO** transfer script to src instead of pawsx -\>
+        aim to have updated json results today
+
+    2.  **TODO** find data loading lines which would need to
         be adapted -\> load data as input examples and then process them
         directly to input features -\> test out tokenization first on
         local system to see how it works
 
-    2.  **TODO** add extra boolean-controlled section for
+    3.  **TODO** add extra boolean-controlled section for
         prediction
 
-    3.  **TODO** find model stats loading lines (\~L1050)
+    4.  **TODO** find model stats loading lines (\~L1050)
 
-    4.  look through xtreme-pawsx source code to tokenize and predict on
+    5.  look through xtreme-pawsx source code to tokenize and predict on
         translations -\> try to store prediction values and decisions in
         order to conduct numerical analyses
 
-    5.  use all three pawsx models to get some sense of agreement
+    6.  use all three pawsx models to get some sense of agreement
         between models for predictions
 
-    6.  perhaps reliably use paraphrase detection only in cases where
+    7.  perhaps reliably use paraphrase detection only in cases where
         initial German paraphrase is positively detected, to ensure some
         consistency for evaluation
 
-    7.  consider using torch data processor class for next functions and
+    8.  consider using torch data processor class for next functions and
         to control batch sizes
 
-    8.  check for possibly interesting correlations between XLM-R
+    9.  check for possibly interesting correlations between XLM-R
         prediction and chrF/BLEU scores
 
-    9.  compute statistical tests for ascertaining significance of
+    10. compute statistical tests for ascertaining significance of
         relationships
 
-    10. in rare cases, can do manual analysis and include this inside
+    11. in rare cases, can do manual analysis and include this inside
         report
 
-    11. report evaluation of fine-tuning paraphrase detector and weaker
+    12. report evaluation of fine-tuning paraphrase detector and weaker
         translation model
 
-    12. early conclusions/hypothese: hand-crafted adversarial paraphrase
+    13. early conclusions/hypothese: hand-crafted adversarial paraphrase
         robustness is handled well in SOTA models due to backtranslation
         reguralization, main vulnerability will be targetted adversarial
         samples

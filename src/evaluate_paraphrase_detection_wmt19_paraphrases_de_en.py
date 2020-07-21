@@ -141,6 +141,7 @@ def main() -> None:
     # Start model based loop
     for model_path in model_paths:
         metadata = os.path.basename(os.path.dirname(model_path))
+        logging.info("Loading model: %s", metadata)
         # infer model type
         if "xlm-roberta" in metadata:
             args.model_type = "xlmr"
@@ -157,24 +158,24 @@ def main() -> None:
         model.to(args.device)
         # start data loop
         for input_file in input_files:
+            logging.info("Processing file: %s", input_file)
             with open(input_file, "r") as f:
                 store = json.load(f)
             eval_datasets = prepare_prediction_data(store, tokenizer,
                                                     max_seq_length)
-            for eval_dataset in eval_datasets:
+            for i, eval_dataset in enumerate(eval_datasets):
                 eval_sampler = SequentialSampler(eval_dataset)
                 eval_dataloader = DataLoader(eval_dataset,
                                              sampler=eval_sampler,
                                              batch_size=args.batch_size)
-                preds = predict(model, eval_dataloader, args)
-                print(preds)
+                preds = predict(model, eval_dataloader, args).tolist()
+                entry = "src" if i == 0 else "translated"
+                entry = "%s_%s" % (metadata, entry)
+                for j, key in enumerate(store.keys()):
+                    store[key].update({entry: preds[j]})
+            with open(input_file, "w") as f:
+                json.dump(store, ensure_ascii=False)
 
 
 if __name__ == "__main__":
     main()
-
-# Developments:
-# TODO think of how caching results could be done
-# TODO convert logits output to binary for easy caching
-# TODO provide logging definitions to indicate progress
-# TODO add documentation and pydocstrings into code

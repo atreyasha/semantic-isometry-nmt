@@ -174,7 +174,7 @@ def main() -> None:
                 for j, key in enumerate(store.keys()):
                     store[key].update({entry: preds[j]})
             with open(input_file, "w") as f:
-                json.dump(store, ensure_ascii=False)
+                json.dump(store, input_file, ensure_ascii=False)
 
 
 if __name__ == "__main__":

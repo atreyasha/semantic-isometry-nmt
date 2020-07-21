@@ -31,6 +31,9 @@ logging.config.fileConfig(os.path.join(os.path.dirname(__file__), "resources",
 
 
 def set_seed(args: Namespace) -> None:
+    """
+    Function to 
+"""
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -174,7 +177,7 @@ def main() -> None:
                 for j, key in enumerate(store.keys()):
                     store[key].update({entry: preds[j]})
             with open(input_file, "w") as f:
-                json.dump(store, input_file, ensure_ascii=False)
+                json.dump(store, f, ensure_ascii=False)
 
 
 if __name__ == "__main__":

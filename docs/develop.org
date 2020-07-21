@@ -2,7 +2,7 @@
     
 **** Evaluation
 ***** TODO add documentation and pydocstrings into code
-***** TODO update readme and add shell script
+***** TODO update readme and add shell script -> add slurm tags and test it on s3it
 ***** TODO find data loading lines which would need to be adapted -> load data as input examples and then process them directly to input features -> test out tokenization first on local system to see how it works
 ***** TODO add extra boolean-controlled section for prediction
 ***** TODO find model stats loading lines (~L1050)

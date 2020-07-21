@@ -4,7 +4,8 @@
 
     1.  **TODO** add documentation and pydocstrings into code
 
-    2.  **TODO** update readme and add shell script
+    2.  **TODO** update readme and add shell script -\> add
+        slurm tags and test it on s3it
 
     3.  **TODO** find data loading lines which would need to
         be adapted -\> load data as input examples and then process them

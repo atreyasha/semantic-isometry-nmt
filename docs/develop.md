@@ -2,56 +2,64 @@
 
 1.  Evaluation
 
-    1.  **TODO** reduce computational overhead by caching
-        source computations
+    1.  **TODO** add documentation and pydocstrings into code
 
-    2.  **TODO** add documentation and pydocstrings into code
-
-    3.  **TODO** update readme and add shell script -\> add
+    2.  **TODO** update readme and add shell script -\> add
         slurm tags and test it on s3it
 
-    4.  **TODO** find data loading lines which would need to
-        be adapted -\> load data as input examples and then process them
-        directly to input features -\> test out tokenization first on
-        local system to see how it works
+    3.  **TODO** reduce computational overhead by caching
+        source computations
 
-    5.  **TODO** add extra boolean-controlled section for
-        prediction
-
-    6.  **TODO** find model stats loading lines (\~L1050)
-
-    7.  look through xtreme-pawsx source code to tokenize and predict on
+    4.  look through xtreme-pawsx source code to tokenize and predict on
         translations -\> try to store prediction values and decisions in
         order to conduct numerical analyses
 
-    8.  use all three pawsx models to get some sense of agreement
+    5.  use all three pawsx models to get some sense of agreement
         between models for predictions
 
-    9.  perhaps reliably use paraphrase detection only in cases where
+    6.  perhaps reliably use paraphrase detection only in cases where
         initial German paraphrase is positively detected, to ensure some
         consistency for evaluation
 
-    10. consider using torch data processor class for next functions and
+    7.  consider using torch data processor class for next functions and
         to control batch sizes
 
-    11. check for possibly interesting correlations between XLM-R
+    8.  check for possibly interesting correlations between XLM-R
         prediction and chrF/BLEU scores
 
-    12. compute statistical tests for ascertaining significance of
+    9.  compute statistical tests for ascertaining significance of
         relationships
 
-    13. in rare cases, can do manual analysis and include this inside
+    10. in rare cases, can do manual analysis and include this inside
         report
 
-    14. report evaluation of fine-tuning paraphrase detector and weaker
+    11. report evaluation of fine-tuning paraphrase detector and weaker
         translation model
 
-    15. early conclusions/hypothese: hand-crafted adversarial paraphrase
+    12. early conclusions/hypothese: hand-crafted adversarial paraphrase
         robustness is handled well in SOTA models due to backtranslation
         reguralization, main vulnerability will be targetted adversarial
         samples
 
-2.  Clean-code and documentation
+2.  Translation
+
+    1.  **TODO** attempt continuing training and averaging
+        checkpoints later on -\> model performance can be improved
+
+    2.  strong model being WMT19 single and ensemble with back
+        translation (which adds robustness), while weak model being
+        transformer trained on WMT16 without back translation -\>
+        compare general performances and metrics
+
+    3.  consider also looking into extra references repo
+        \"evaluation-of-nmt-bt\"
+
+    4.  ****extra:**** train additional large model on wmt19
+        non-backtranslated data and similar transformer arch as fair
+        paper -\> to get slightly better performance for comparison -\>
+        this can also be done lar
+
+3.  Clean-code and documentation
 
     1.  create modular scripts with instructions in readme:
 
@@ -89,7 +97,7 @@
 
     7.  add final paper/presentation into repo with link in readme
 
-3.  Visualization
+4.  Visualization
 
     1.  run bleu and chrF comparisons on sources and targets with dual
         strategy -\> make nice plots of these using latex output from
@@ -115,7 +123,7 @@
     6.  update R dependencies in readme once all visualizations are
         finalized
 
-4.  Paraphrase detection
+5.  Paraphrase detection
 
     1.  consider roc and other evaluation metrics for pawsx model -\> in
         case these might be of more help
@@ -130,24 +138,6 @@
     4.  ****extra:**** fix and refine paws-x pipeline later on with
         patience, typing, better documentation, clean-code and possibly
         continuation of training, add roc auc on pawsx test data
-
-5.  Translation
-
-    1.  **TODO** attempt continuing training and averaging
-        checkpoints later on
-
-    2.  strong model being WMT19 single and ensemble with back
-        translation (which adds robustness), while weak model being
-        transformer trained on WMT16 without back translation -\>
-        compare general performances and metrics
-
-    3.  consider also looking into extra references repo
-        \"evaluation-of-nmt-bt\"
-
-    4.  ****extra:**** train additional large model on wmt19
-        non-backtranslated data and similar transformer arch as fair
-        paper -\> to get slightly better performance for comparison -\>
-        this can also be done later
 
 6.  Paper
 

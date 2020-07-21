@@ -38,11 +38,31 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
                             type=int,
                             default=256,
                             help="Batch size for translation")
-    elif subtype == "evaluate":
+    elif "evaluate" in subtype:
         parser.add_argument("--json-glob",
                             type=str,
                             default="./predictions/*/*.json",
                             help="Input glob to find json translation outputs")
+        if subtype == "evaluate_paraphrase_detection":
+            parser.add_argument("--model-glob",
+                                default="./models/*pawsx*/checkpoint-best",
+                                type=str,
+                                help="Input glob for finding models")
+            parser.add_argument("--batch-size",
+                                default=8,
+                                type=int,
+                                help="Batch size per GPU/CPU for evaluation")
+            parser.add_argument("--no_cuda",
+                                action="store_true",
+                                help="Avoid using CUDA when available")
+            parser.add_argument("--seed",
+                                type=int,
+                                default=42,
+                                help="Random seed for initialization")
+            parser.add_argument(
+                "--do_lower_case",
+                action="store_true",
+                help="Set this flag if you are using an uncased model.")
     parser.add_argument("--verbosity",
                         type=int,
                         default=1,

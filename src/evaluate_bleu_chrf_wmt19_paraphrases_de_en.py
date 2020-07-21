@@ -15,7 +15,7 @@ logging.config.fileConfig(os.path.join(os.path.dirname(__file__), "resources",
 
 
 def main() -> None:
-    args = parse_arguments(subtype="evaluate")
+    args = parse_arguments(subtype="evaluate_shallow_metrics")
     # get verbosity
     if args.verbosity == 1:
         logger = logging.getLogger('base')

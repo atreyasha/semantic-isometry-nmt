@@ -107,7 +107,8 @@
         csv\'s for nicer plotting -\> look into event log combination
         workflow
 
-    6.  update R dependencies in readme
+    6.  update R dependencies in readme once all visualizations are
+        finalized
 
 4.  Paraphrase detection
 

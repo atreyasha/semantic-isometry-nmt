@@ -32,8 +32,11 @@ logging.config.fileConfig(os.path.join(os.path.dirname(__file__), "resources",
 
 def set_seed(args: Namespace) -> None:
     """
-    Function to 
-"""
+    Function to set global random seed
+
+    Args:
+        args (Namespace): Argument namespace containing variables
+    """
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -44,6 +47,18 @@ def set_seed(args: Namespace) -> None:
 def prepare_prediction_data(store: Dict, tokenizer: Union[XLMRobertaTokenizer,
                                                           BertTokenizer],
                             max_seq_length: int) -> List[TensorDataset]:
+    """
+    Function to prepare WMT19 paraphrase data in appropriate format
+
+    Args:
+        store (Dict): Directly read dictionaries from json files
+        tokenizer (Union[XLMRobertaTokenizer, BertTokenizer]):
+        Tokenizer to use before prediction
+        max_seq_length (int): Maximum sequence length used in model
+
+    Returns:
+        data_out (List[TensorDataset]): Prepared prediction data
+    """
     examples_source = []
     examples_trans = []
     data_out = []
@@ -91,6 +106,19 @@ def prepare_prediction_data(store: Dict, tokenizer: Union[XLMRobertaTokenizer,
 def predict(model: Union[BertForSequenceClassification,
                          XLMRobertaForSequenceClassification],
             eval_dataloader: DataLoader, args: Namespace) -> np.ndarray:
+    """
+    Function to use model for prediction
+
+    Args:
+        model (Union[BertForSequenceClassification,
+        XLMRobertaForSequenceClassification]): Input model
+        eval_dataloader (DataLoader): DataLoader class for prediction
+        data
+
+    Returns:
+        preds (np.ndarray): Softmax output for paraphrase label (or paraphrase
+        probability)
+    """
     preds = None
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         model.eval()
@@ -115,6 +143,7 @@ def predict(model: Union[BertForSequenceClassification,
 
 
 def main() -> None:
+    """ Main function to conduct paraphrase detection on WMT19 paraphrases """
     # define global variable
     global MODEL_CLASSES
     global logger
@@ -144,7 +173,7 @@ def main() -> None:
     # Start model based loop
     for model_path in model_paths:
         metadata = os.path.basename(os.path.dirname(model_path))
-        logging.info("Loading model: %s", metadata)
+        logger.info("Loading model: %s", metadata)
         # infer model type
         if "xlm-roberta" in metadata:
             args.model_type = "xlmr"
@@ -161,7 +190,7 @@ def main() -> None:
         model.to(args.device)
         # start data loop
         for input_file in input_files:
-            logging.info("Processing file: %s", input_file)
+            logger.info("Processing file: %s", input_file)
             with open(input_file, "r") as f:
                 store = json.load(f)
             eval_datasets = prepare_prediction_data(store, tokenizer,

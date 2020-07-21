@@ -1,7 +1,6 @@
 *** Development
     
 **** Evaluation
-***** TODO transfer script to src instead of pawsx -> aim to have updated json results today
 ***** TODO find data loading lines which would need to be adapted -> load data as input examples and then process them directly to input features -> test out tokenization first on local system to see how it works
 ***** TODO add extra boolean-controlled section for prediction
 ***** TODO find model stats loading lines (~L1050)

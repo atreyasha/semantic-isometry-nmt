@@ -15,6 +15,7 @@ from transformers import (
 )
 from tqdm import tqdm
 from argparse import Namespace
+from scipy.special import softmax
 import random
 import numpy as np
 import glob
@@ -107,7 +108,7 @@ def predict(model: Union[BertForSequenceClassification,
             preds = logits.detach().cpu().numpy()
         else:
             preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
-    return preds
+    return softmax(preds, axis=1)[:, 1]
 
 
 def main() -> None:
@@ -146,7 +147,7 @@ def main() -> None:
         else:
             args.model_type = "bert"
         # infer maximum sequence length
-        max_seq_len = int(re.search(r"(ML)([0-9]*)", metadata).groups()[1])
+        max_seq_length = int(re.search(r"(ML)([0-9]*)", metadata).groups()[1])
         # load pretrained model and tokenizer
         config_class, model_class, tokenizer_class = MODEL_CLASSES[
             args.model_type]
@@ -159,7 +160,7 @@ def main() -> None:
             with open(input_file, "r") as f:
                 store = json.load(f)
             eval_datasets = prepare_prediction_data(store, tokenizer,
-                                                    max_seq_len)
+                                                    max_seq_length)
             for eval_dataset in eval_datasets:
                 eval_sampler = SequentialSampler(eval_dataset)
                 eval_dataloader = DataLoader(eval_dataset,
@@ -173,6 +174,7 @@ if __name__ == "__main__":
     main()
 
 # Developments:
-# TODO fix all remaining args variables that need to be extractd
 # TODO think of how caching results could be done
-# TODO provide logging definitions
+# TODO convert logits output to binary for easy caching
+# TODO provide logging definitions to indicate progress
+# TODO add documentation and pydocstrings into code

@@ -7,6 +7,7 @@
     1. [Training](#i-Training)
     2. [Translation](#ii-Translation)
     3. [Evaluation](#iii-Evaluation)
+    4. [Visualization](#iv-Visualization)
 5. [References](#References-sweat_drops)
 6. [Development](#Development-snail)
 
@@ -135,6 +136,28 @@ This script will analyze the translation `json` outputs and append the paraphras
 
 ```shell
 bash scripts/evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh
+```
+
+#### iv. Visualization
+
+##### BLEU and chrF
+
+In order to visualize the previously processed `BLEU` and `chrF` results, we provide `visualize_bleu_chrf_wmt19_paraphrases_de_en.sh`:
+
+```
+Usage: visualize_bleu_chrf_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
+Visualize shallow evaluation scores of WMT19 paraphrase translations
+
+Optional arguments:
+  -h, --help   Show this help message and exit
+  glob <glob>  Glob for finding input json translations, defaults to
+               "./predictions/*/*.json"
+```
+
+This script will produce (hopefully) fancy plots of the respective shallow evaluation scores and will save them as tikz-based `pdf` files in the `img` directory. To run this script, simply execute:
+
+```shell
+bash scripts/visualize_bleu_chrf_wmt19_paraphrases_de_en.sh
 ```
 
 ### References :sweat_drops:

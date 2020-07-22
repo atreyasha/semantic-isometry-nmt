@@ -1,14 +1,12 @@
 *** Development
 
-**** Evaluation
-***** TODO update readme and add shell script -> add slurm tags and test it on s3it
-***** perhaps reliably use paraphrase detection only in cases where initial German paraphrase is positively detected, to ensure some consistency for evaluation
-***** consider changing bleu to sacrebleu in json (read more about differences) and figure out why stating this might be important
-***** check for possibly interesting correlations between XLM-R prediction and chrF/BLEU scores -> this could be of interest in making additional statements to Michel et al. 2019's statements regarding chrF scores
-***** compute statistical tests for ascertaining significance of relationships
-***** in rare cases, can do manual analysis and include this inside report
-***** report evaluation of fine-tuning paraphrase detector and weaker translation model
-***** early conclusions/hypothese: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
+**** Visualization
+***** TODO add linear regression lines to plots later with respective parameters
+***** TODO add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
+***** run bleu and chrF comparisons on sources and targets with dual strategy -> make nice plots of these using latex output from ggplot+R -> use memory efficient pipelines and newer visualization techniques to assist in understanding
+***** think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas
+***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
+***** update R dependencies in readme once all visualizations are finalized
 
 **** Translation
 ***** TODO continue model training and save last 10 checkpoints -> consider averaging checkpoints later on to improve model performance
@@ -34,13 +32,15 @@
 ***** add citations in readme as per general standard
 ***** add final paper/presentation into repo with link in readme 
 
-**** Visualization
-***** run bleu and chrF comparisons on sources and targets with dual strategy -> make nice plots of these using latex output from ggplot+R -> use memory efficient pipelines and newer visualization techniques to assist in understanding
-***** add linear regression lines to plots later with respective parameters
-***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
-***** think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas
-***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
-***** update R dependencies in readme once all visualizations are finalized
+**** Evaluation
+***** TODO update readme with instructions and sbatch command on slurm branch
+***** TODO perhaps reliably use paraphrase detection only in cases where initial German paraphrase is positively detected, to ensure some consistency for evaluation
+***** TODO check for possibly interesting correlations between XLM-R prediction and chrF/BLEU scores -> this could be of interest in making additional statements to Michel et al. 2019's statements regarding chrF scores
+***** consider changing bleu to sacrebleu in json (read more about differences) and figure out why stating this might be important
+***** compute statistical tests for ascertaining significance of relationships
+***** in rare cases, can do manual analysis and include this inside report
+***** report evaluation of fine-tuning paraphrase detector and weaker translation model
+***** early conclusions/hypothese: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
 
 **** Paraphrase detection
 ***** consider roc and other evaluation metrics for pawsx model -> in case these might be of more help

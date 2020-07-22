@@ -2,7 +2,7 @@
 
 1. [Overview](#Overview-book)
 2. [Dependencies](#Dependencies-neckbeard)
-3. [Repository Initialization](#Repository-Initialization-fire)
+3. [Repository initialization](#Repository-initialization-fire)
 4. [Usage](#Usage-cyclone)
     1. [Training](#i-Training)
     2. [Translation](#ii-Translation)
@@ -12,7 +12,7 @@
 
 ### Overview :book:
 
-This repository investigates the performance of Neural Machine Translation (NMT) models in effectively and consistently transfering the semantics of hand-crafted adversarial paraphrases. Through this, we aim to interpret the robustness of said models to such adversarial paraphrases.
+This repository investigates the performance of Neural Machine Translation (NMT) models in effectively and consistently transferring the semantics of hand-crafted adversarial paraphrases. Through this, we aim to interpret the robustness of said models to such adversarial paraphrases.
 
 To approach this objective, we start by gathering hand-crafted [paraphrases](https://github.com/google/wmt19-paraphrased-references) of WMT19 `en-de` test data's legacy and additional references. We then translate these paraphrases in the reverse direction ie. `de-en` using both SOTA and non-SOTA NMT models to obtain various translation samples. We use Facebook's FAIR WMT19 winning (single) model from [Ng. et al., 2019](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based off [Ott et al., 2018](https://arxiv.org/abs/1806.00187) on reversed WMT16 data and utilize this model as our non-SOTA model.
 
@@ -32,7 +32,7 @@ Finally, to check the quality/consistency of the translated paraphrases; we trai
     install.packages(c("ggplot2","optparse","tikzDevice","rjson","ggpointdensity","viridis"))
     ```
 
-### Repository Initialization :fire:
+### Repository initialization :fire:
 
 1. Initialize the [xtreme-pawsx](https://github.com/atreyasha/xtreme-pawsx) git submodule by running the following command:
 
@@ -114,6 +114,27 @@ This script will analyze the translation `json` outputs and append `BLEU` and `c
 
 ```shell
 bash scripts/evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh
+```
+
+##### Paraphrase detection
+
+Next, we can run our pre-trained paraphrase detection models on the translations. For this, we provide `evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh`:
+
+```
+Usage: evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
+Conduct evaluation of WMT19 paraphrases using pre-trained paraphrase
+detection models
+
+Optional arguments:
+  -h, --help   Show this help message and exit
+  glob <glob>  Glob for finding input json translations, defaults to
+               "./predictions/*/*.json"
+```
+
+This script will analyze the translation `json` outputs and append the paraphrase detection model's `softmax` score for the paraphrase (or positive) label. The input `json` files will also be updated with these scores in-place. To run this script, simply execute:
+
+```shell
+bash scripts/evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh
 ```
 
 ### References :sweat_drops:

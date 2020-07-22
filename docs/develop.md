@@ -2,44 +2,40 @@
 
 1.  Evaluation
 
-    1.  **TODO** reduce computational overhead by caching
-        source computations
-
-    2.  **TODO** add documentation and pydocstrings into code
-
-    3.  **TODO** update readme and add shell script -\> add
+    1.  **TODO** update readme and add shell script -\> add
         slurm tags and test it on s3it
 
-    4.  perhaps reliably use paraphrase detection only in cases where
+    2.  perhaps reliably use paraphrase detection only in cases where
         initial German paraphrase is positively detected, to ensure some
         consistency for evaluation
 
-    5.  consider changing bleu to sacrebleu in json (read more about
+    3.  consider changing bleu to sacrebleu in json (read more about
         differences) and figure out why stating this might be important
 
-    6.  check for possibly interesting correlations between XLM-R
-        prediction and chrF/BLEU scores
+    4.  check for possibly interesting correlations between XLM-R
+        prediction and chrF/BLEU scores -\> this could be of interest in
+        making additional statements to Michel et al. 2019\'s statements
+        regarding chrF scores
 
-    7.  compute statistical tests for ascertaining significance of
+    5.  compute statistical tests for ascertaining significance of
         relationships
 
-    8.  in rare cases, can do manual analysis and include this inside
+    6.  in rare cases, can do manual analysis and include this inside
         report
 
-    9.  report evaluation of fine-tuning paraphrase detector and weaker
+    7.  report evaluation of fine-tuning paraphrase detector and weaker
         translation model
 
-    10. early conclusions/hypothese: hand-crafted adversarial paraphrase
+    8.  early conclusions/hypothese: hand-crafted adversarial paraphrase
         robustness is handled well in SOTA models due to backtranslation
         reguralization, main vulnerability will be targetted adversarial
         samples
 
 2.  Translation
 
-    1.  **TODO** continue model training and average
-        checkpoints later on -\> model performance should be slightly
-        improved for more fair comparison -\> or look for other
-        modelling frameworks or IWSLT\'14 workflow to use
+    1.  **TODO** continue model training and save last 10
+        checkpoints -\> consider averaging checkpoints later on to
+        improve model performance
 
     2.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being
@@ -157,67 +153,70 @@
 
 ### Completed
 
-1.  **DONE** make shell script which automatically filters
+1.  **DONE** reduce computational overhead by caching source
+    computations for paraphrase detection evaluation
+
+2.  **DONE** make shell script which automatically filters
     and compresses to tar gz
 
-2.  **DONE** Increase sequence lengths during training to
+3.  **DONE** Increase sequence lengths during training to
     accomodate for longer paraphrases, compute average seq lengths of
     wmt inputs to estimate model seq lengths for training paraphrase
     detector, work on keeping code simple
 
-3.  **DONE** consider making separate branch with sbatch
+4.  **DONE** consider making separate branch with sbatch
     parameters all present in files as necessary for reproducibility
 
-4.  **DONE** bug in XLM-R as it does not appear to learn -\>
+5.  **DONE** bug in XLM-R as it does not appear to learn -\>
     look through code
 
-5.  **DONE** multilingual BERT with de only -\> bug in how
+6.  **DONE** multilingual BERT with de only -\> bug in how
     test scripts are saved leads to wrong results
 
-6.  **DONE** maybe consider using German BERT for doing this
+7.  **DONE** maybe consider using German BERT for doing this
     task explicitly for German, for our end task -\> German BERT and
     RoBERTa for English to focus on exact task -\> perhaps just use
     xtreme repo and keep only paws-x task -\> clean up code and workflow
     for it -\> error might be arising due to gradient clipping for very
     large model
 
-7.  **DONE** look into ParaBank2 and universal
+8.  **DONE** look into ParaBank2 and universal
     decompositional semantics -\> not great paraphrases, no human
     curation
 
-8.  **DONE** look into Duolingo dataset for paraphrases -\>
+9.  **DONE** look into Duolingo dataset for paraphrases -\>
     no German target side
 
-9.  **DONE** add symbols for defaults in metavar default
+10. **DONE** add symbols for defaults in metavar default
     formatter, maybe add some other formatting tricks such as indents
     for defaults
 
-10. **DONE** try installing java locally instead of root, if
+11. **DONE** try installing java locally instead of root, if
     stanford parser is indeed necessary
 
-11. **DONE** paraphrasing with SGCP -\> very bad results on
+12. **DONE** paraphrasing with SGCP -\> very bad results on
     both original test and WMT data -\> very sensitive to exemplar
 
-12. **DONE** embed and cluser using universal sentence
+13. **DONE** embed and cluser using universal sentence
     encoder (eg. BERT or LASER) -\> use separate clusters for exemplar
     utility, make diverse collection and evaluate using metric or other
     NN
 
-13. **DONE** find other sentence with maximum similarity and
+14. **DONE** find other sentence with maximum similarity and
     use that as exemplar, useparaphrase of best as exemplar, use
     pos-tags of sentence
 
-14. **DONE** convert wmt datasets with derived exemplars into
+15. **DONE** convert wmt datasets with derived exemplars into
     format pipe-able into SGCP -\> needed before paraphrasing
 
-15. **DONE** add workflow to download laser models with
+16. **DONE** add workflow to download laser models with
     python -m laserembeddings download-models
 
-16. **DONE** set up WMT 17 dev/test data and basic repo
+17. **DONE** set up WMT 17 dev/test data and basic repo
 
-17. **DONE** convert all processes to makefile for ease
+18. **DONE** convert all processes to makefile for ease
 
-18. **DONE** set up data downloading for all wmt sets with
+19. **DONE** set up data downloading for all wmt sets with
     SacreBLEU
 
 ### Brainstorming and logs

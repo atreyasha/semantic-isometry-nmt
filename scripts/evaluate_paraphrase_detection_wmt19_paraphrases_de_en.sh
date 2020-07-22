@@ -30,7 +30,8 @@ check_help() {
 # define function
 evaluate_paraphrase_detection_wmt19_paraphrases_de_en() {
   local glob="${1:-"./predictions/*/*.json"}"
-  python3 -m src.evaluate_paraphrase_detection_wmt19_paraphrases_de_en --json-glob "$glob"
+  local GPU=0
+  CUDA_VISIBLE_DEVICES=$GPU python3 -m src.evaluate_paraphrase_detection_wmt19_paraphrases_de_en --json-glob "$glob"
 }
 
 # execute function

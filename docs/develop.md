@@ -1,50 +1,11 @@
 ### Development
 
-1.  Evaluation
+1.  Translation
 
-    1.  **TODO** add documentation and pydocstrings into code
-
-    2.  **TODO** update readme and add shell script -\> add
-        slurm tags and test it on s3it
-
-    3.  **TODO** reduce computational overhead by caching
-        source computations
-
-    4.  look through xtreme-pawsx source code to tokenize and predict on
-        translations -\> try to store prediction values and decisions in
-        order to conduct numerical analyses
-
-    5.  use all three pawsx models to get some sense of agreement
-        between models for predictions
-
-    6.  perhaps reliably use paraphrase detection only in cases where
-        initial German paraphrase is positively detected, to ensure some
-        consistency for evaluation
-
-    7.  consider using torch data processor class for next functions and
-        to control batch sizes
-
-    8.  check for possibly interesting correlations between XLM-R
-        prediction and chrF/BLEU scores
-
-    9.  compute statistical tests for ascertaining significance of
-        relationships
-
-    10. in rare cases, can do manual analysis and include this inside
-        report
-
-    11. report evaluation of fine-tuning paraphrase detector and weaker
-        translation model
-
-    12. early conclusions/hypothese: hand-crafted adversarial paraphrase
-        robustness is handled well in SOTA models due to backtranslation
-        reguralization, main vulnerability will be targetted adversarial
-        samples
-
-2.  Translation
-
-    1.  **TODO** attempt continuing training and averaging
-        checkpoints later on -\> model performance can be improved
+    1.  **TODO** continue model training and average
+        checkpoints later on -\> model performance should be slightly
+        improved for more fair comparison -\> or look for other
+        modelling frameworks or IWSLT\'14 workflow to use
 
     2.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being
@@ -58,6 +19,40 @@
         non-backtranslated data and similar transformer arch as fair
         paper -\> to get slightly better performance for comparison -\>
         this can also be done lar
+
+2.  Evaluation
+
+    1.  **TODO** add documentation and pydocstrings into code
+
+    2.  **TODO** update readme and add shell script -\> add
+        slurm tags and test it on s3it
+
+    3.  **TODO** reduce computational overhead by caching
+        source computations
+
+    4.  perhaps reliably use paraphrase detection only in cases where
+        initial German paraphrase is positively detected, to ensure some
+        consistency for evaluation
+
+    5.  consider changing bleu to sacrebleu in json (read more about
+        differences) and figure out why stating this might be important
+
+    6.  check for possibly interesting correlations between XLM-R
+        prediction and chrF/BLEU scores
+
+    7.  compute statistical tests for ascertaining significance of
+        relationships
+
+    8.  in rare cases, can do manual analysis and include this inside
+        report
+
+    9.  report evaluation of fine-tuning paraphrase detector and weaker
+        translation model
+
+    10. early conclusions/hypothese: hand-crafted adversarial paraphrase
+        robustness is handled well in SOTA models due to backtranslation
+        reguralization, main vulnerability will be targetted adversarial
+        samples
 
 3.  Clean-code and documentation
 

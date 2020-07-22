@@ -1,34 +1,14 @@
 ### Development
 
-1.  Translation
+1.  Evaluation
 
-    1.  **TODO** continue model training and average
-        checkpoints later on -\> model performance should be slightly
-        improved for more fair comparison -\> or look for other
-        modelling frameworks or IWSLT\'14 workflow to use
-
-    2.  strong model being WMT19 single and ensemble with back
-        translation (which adds robustness), while weak model being
-        transformer trained on WMT16 without back translation -\>
-        compare general performances and metrics
-
-    3.  consider also looking into extra references repo
-        \"evaluation-of-nmt-bt\"
-
-    4.  ****extra:**** train additional large model on wmt19
-        non-backtranslated data and similar transformer arch as fair
-        paper -\> to get slightly better performance for comparison -\>
-        this can also be done lar
-
-2.  Evaluation
-
-    1.  **TODO** add documentation and pydocstrings into code
-
-    2.  **TODO** update readme and add shell script -\> add
-        slurm tags and test it on s3it
-
-    3.  **TODO** reduce computational overhead by caching
+    1.  **TODO** reduce computational overhead by caching
         source computations
+
+    2.  **TODO** add documentation and pydocstrings into code
+
+    3.  **TODO** update readme and add shell script -\> add
+        slurm tags and test it on s3it
 
     4.  perhaps reliably use paraphrase detection only in cases where
         initial German paraphrase is positively detected, to ensure some
@@ -53,6 +33,26 @@
         robustness is handled well in SOTA models due to backtranslation
         reguralization, main vulnerability will be targetted adversarial
         samples
+
+2.  Translation
+
+    1.  **TODO** continue model training and average
+        checkpoints later on -\> model performance should be slightly
+        improved for more fair comparison -\> or look for other
+        modelling frameworks or IWSLT\'14 workflow to use
+
+    2.  strong model being WMT19 single and ensemble with back
+        translation (which adds robustness), while weak model being
+        transformer trained on WMT16 without back translation -\>
+        compare general performances and metrics
+
+    3.  consider also looking into extra references repo
+        \"evaluation-of-nmt-bt\"
+
+    4.  ****extra:**** train additional large model on wmt19
+        non-backtranslated data and similar transformer arch as fair
+        paper -\> to get slightly better performance for comparison -\>
+        this can also be done lar
 
 3.  Clean-code and documentation
 

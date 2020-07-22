@@ -189,18 +189,35 @@ def main() -> None:
         model = model_class.from_pretrained(model_path)
         model.to(args.device)
         # start data loop
+        wmt_src_cache = None
+        ar_src_cache = None
         for input_file in input_files:
+            filename = os.path.basename(input_file)
             logger.info("Processing file: %s", input_file)
             with open(input_file, "r") as f:
                 store = json.load(f)
             eval_datasets = prepare_prediction_data(store, tokenizer,
                                                     max_seq_length)
             for i, eval_dataset in enumerate(eval_datasets):
-                eval_sampler = SequentialSampler(eval_dataset)
-                eval_dataloader = DataLoader(eval_dataset,
-                                             sampler=eval_sampler,
-                                             batch_size=args.batch_size)
-                preds = predict(model, eval_dataloader, args).tolist()
+                # step for caching results
+                if (i == 1 or ("arp" in filename and ar_src_cache is None)
+                        or ("wmtp" in filename and wmt_src_cache is None)):
+                    eval_sampler = SequentialSampler(eval_dataset)
+                    eval_dataloader = DataLoader(eval_dataset,
+                                                 sampler=eval_sampler,
+                                                 batch_size=args.batch_size)
+                    preds = predict(model, eval_dataloader, args).tolist()
+                    if i == 0:
+                        if "arp" in filename:
+                            ar_src_cache = preds
+                        elif "wmtp" in filename:
+                            wmt_src_cache = preds
+                else:
+                    if "arp" in filename:
+                        preds = ar_src_cache
+                    elif "wmtp" in filename:
+                        preds = wmt_src_cache
+                # step for gracefully writing results
                 entry = "src" if i == 0 else "translated"
                 entry = "%s_%s" % (metadata, entry)
                 for j, key in enumerate(store.keys()):

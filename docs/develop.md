@@ -2,29 +2,30 @@
 
 1.  Visualization
 
-    1.  **TODO** add linear regression lines to plots later
-        with respective parameters
+    1.  **TODO** add figure mean/sd annotations
 
-    2.  **TODO** add various sub-routines with different
-        visualization shell scripts corresponding to different arguments
-        of python script -\> such as defining model paths to plot model
-        evolutions, etc. -\> make this more dynamic and practical where
-        possible
+    2.  **TODO** think of plotting schemes that could be used
+        on various results of analysis such as paraphrase detection
+        results from all three models -\> get creative with these ideas
+        -\> can already do this before newer translation model is
+        present
 
-    3.  run bleu and chrF comparisons on sources and targets with dual
-        strategy -\> make nice plots of these using latex output from
-        ggplot+R -\> use memory efficient pipelines and newer
-        visualization techniques to assist in understanding
+    3.  **TODO** re-run visualizations with improved NMT
+        model, but prepare pipelines based on current one
 
-    4.  think of plotting schemes that could be used on various results
-        of analysis such as paraphrase detection results from all three
-        models -\> get creative with these ideas
+    4.  use memory efficient pipelines and newer visualization
+        techniques to assist in understanding
 
     5.  think of effective ways of converting tensorflow event logs to
         csv\'s for nicer plotting -\> look into event log combination
         workflow
 
-    6.  update R dependencies in readme once all visualizations are
+    6.  add various sub-routines with different visualization shell
+        scripts corresponding to different arguments of python script
+        -\> such as defining model paths to plot model evolutions, etc.
+        -\> make this more dynamic and practical where possible
+
+    7.  update R dependencies in readme once all visualizations are
         finalized
 
 2.  Translation
@@ -33,15 +34,18 @@
         checkpoints -\> consider averaging checkpoints later on to
         improve model performance
 
-    2.  strong model being WMT19 single and ensemble with back
+    2.  **TODO** re-export and upload new model if
+        performance improves -\> update readme and relevant sections
+
+    3.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being
         transformer trained on WMT16 without back translation -\>
         compare general performances and metrics
 
-    3.  consider also looking into extra references repo
+    4.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
 
-    4.  ****extra:**** train additional large model on wmt19
+    5.  ****extra:**** train additional large model on wmt19
         non-backtranslated data and similar transformer arch as fair
         paper -\> to get slightly better performance for comparison -\>
         this can also be done lar
@@ -50,16 +54,16 @@
 
     1.  create modular scripts with instructions in readme:
 
-        1.  **TODO** evaluate using fine-tuned language model
+        1.  **TODO** visualize shallow metrics
 
-        2.  **TODO** visualize shallow metrics
+        2.  **TODO** visualize fine-tuned LM result
 
-        3.  **TODO** visualize fine-tuned LM result
-
-        4.  **TODO** visualize correlation of LM and shallow
+        3.  **TODO** visualize correlation of LM and shallow
             metrics
 
-        5.  **TODO** visualize model training evolutions
+        4.  **TODO** visualize model training evolutions
+
+        5.  **DONE** evaluate using fine-tuned language model
 
         6.  **DONE** train translation model
 
@@ -72,45 +76,45 @@
     2.  segment readme into training, translation and others categories
         with relevant usages
 
-    3.  replace relevant bash commands with sbatch in slurm-s3it branch
+    3.  add information on how long training took and what DL
+        settings/hardware were used
+
+    4.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    4.  update initial page of readme with overview/abstract of work
+    5.  update initial page of readme with overview/abstract of work
         including shallow metrics
 
-    5.  update TOC\'s in all readmes to reflect latest changes
+    6.  update TOC\'s in all readmes to reflect latest changes
 
-    6.  add citations in readme as per general standard
+    7.  add citations in readme as per general standard
 
-    7.  add final paper/presentation into repo with link in readme
+    8.  add final paper/presentation into repo with link in readme
 
 4.  Evaluation
 
-    1.  **TODO** update readme with instructions and sbatch
-        command on slurm branch
-
-    2.  **TODO** perhaps reliably use paraphrase detection
+    1.  **TODO** perhaps reliably use paraphrase detection
         only in cases where initial German paraphrase is positively
         detected, to ensure some consistency for evaluation
 
-    3.  **TODO** check for possibly interesting correlations
+    2.  **TODO** check for possibly interesting correlations
         between XLM-R prediction and chrF/BLEU scores -\> this could be
         of interest in making additional statements to Michel et al.
         2019\'s statements regarding chrF scores
 
-    4.  consider changing bleu to sacrebleu in json (read more about
+    3.  consider changing bleu to sacrebleu in json (read more about
         differences) and figure out why stating this might be important
 
-    5.  compute statistical tests for ascertaining significance of
+    4.  compute statistical tests for ascertaining significance of
         relationships
 
-    6.  in rare cases, can do manual analysis and include this inside
+    5.  in rare cases, can do manual analysis and include this inside
         report
 
-    7.  report evaluation of fine-tuning paraphrase detector and weaker
+    6.  report evaluation of fine-tuning paraphrase detector and weaker
         translation model
 
-    8.  early conclusions/hypothese: hand-crafted adversarial paraphrase
+    7.  early conclusions/hypothese: hand-crafted adversarial paraphrase
         robustness is handled well in SOTA models due to backtranslation
         reguralization, main vulnerability will be targetted adversarial
         samples

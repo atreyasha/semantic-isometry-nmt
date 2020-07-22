@@ -7,7 +7,7 @@ authors = ["Atreya Shankar <35427332+atreyasha@users.noreply.github.com>"]
 [tool.poetry.dependencies]
 python = "^3.7.0"
 torch = "1.4.0"
-sacrebleu = "^1.4.10"
+sacrebleu = "1.4.12"
 requests = "^2.24.0"
 sacremoses = "^0.0.43"
 fastBPE = "^0.1.0"

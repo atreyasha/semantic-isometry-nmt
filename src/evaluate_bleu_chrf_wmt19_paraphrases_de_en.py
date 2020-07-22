@@ -37,21 +37,21 @@ def main() -> None:
             trans_orig_en = store[key]["sentence_original"]["translated"]
             trans_para_en = store[key]["sentence_paraphrase"]["translated"]
             chrf_src = (sacrebleu.sentence_chrf(src_orig_de,
-                                                src_para_de).score +
+                                                [src_para_de]).score +
                         sacrebleu.sentence_chrf(src_para_de,
-                                                src_orig_de).score)/2
+                                                [src_orig_de]).score)/2
             chrf_trans = (sacrebleu.sentence_chrf(trans_orig_en,
-                                                  trans_para_en).score +
+                                                  [trans_para_en]).score +
                           sacrebleu.sentence_chrf(trans_para_en,
-                                                  trans_orig_en).score)/2
+                                                  [trans_orig_en]).score)/2
             bleu_src = (sacrebleu.sentence_bleu(src_orig_de,
-                                                src_para_de).score +
+                                                [src_para_de]).score +
                         sacrebleu.sentence_bleu(src_para_de,
-                                                src_orig_de).score)/2
+                                                [src_orig_de]).score)/2
             bleu_trans = (sacrebleu.sentence_bleu(trans_orig_en,
-                                                  trans_para_en).score +
+                                                  [trans_para_en]).score +
                           sacrebleu.sentence_bleu(trans_para_en,
-                                                  trans_orig_en).score)/2
+                                                  [trans_orig_en]).score)/2
             store[key]["chrf_src"] = chrf_src
             store[key]["chrf_translated"] = chrf_trans
             store[key]["bleu_src"] = bleu_src

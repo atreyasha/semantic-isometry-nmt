@@ -202,6 +202,7 @@ def main() -> None:
                 # step for caching results
                 if (i == 1 or ("arp" in filename and ar_src_cache is None)
                         or ("wmtp" in filename and wmt_src_cache is None)):
+                    logger.info("Initializing prediction")
                     eval_sampler = SequentialSampler(eval_dataset)
                     eval_dataloader = DataLoader(eval_dataset,
                                                  sampler=eval_sampler,
@@ -213,6 +214,7 @@ def main() -> None:
                         elif "wmtp" in filename:
                             wmt_src_cache = preds
                 else:
+                    logger.info("Using cached results instead of re-computing")
                     if "arp" in filename:
                         preds = ar_src_cache
                     elif "wmtp" in filename:

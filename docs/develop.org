@@ -18,10 +18,10 @@
 
 **** Clean-code and documentation
 ***** create modular scripts with instructions in readme: 
-****** TODO visualize shallow metrics
 ****** TODO visualize fine-tuned LM result
 ****** TODO visualize correlation of LM and shallow metrics
 ****** TODO visualize model training evolutions
+****** DONE visualize shallow metrics
 ****** DONE evaluate using fine-tuned language model
 ****** DONE train translation model 
 ****** DONE fine tune paraphrase detector

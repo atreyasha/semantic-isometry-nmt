@@ -56,14 +56,14 @@
 
     1.  create modular scripts with instructions in readme:
 
-        1.  **TODO** visualize shallow metrics
+        1.  **TODO** visualize fine-tuned LM result
 
-        2.  **TODO** visualize fine-tuned LM result
-
-        3.  **TODO** visualize correlation of LM and shallow
+        2.  **TODO** visualize correlation of LM and shallow
             metrics
 
-        4.  **TODO** visualize model training evolutions
+        3.  **TODO** visualize model training evolutions
+
+        4.  **DONE** visualize shallow metrics
 
         5.  **DONE** evaluate using fine-tuned language model
 

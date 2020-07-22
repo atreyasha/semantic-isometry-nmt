@@ -2,13 +2,17 @@
 
 1.  Visualization
 
-    1.  **TODO** add figure mean/sd annotations
-
-    2.  **TODO** think of plotting schemes that could be used
+    1.  **TODO** think of plotting schemes that could be used
         on various results of analysis such as paraphrase detection
         results from all three models -\> get creative with these ideas
         -\> can already do this before newer translation model is
         present
+
+    2.  **TODO** add various sub-routines with different
+        visualization shell scripts corresponding to different arguments
+        of python script -\> such as defining model paths to plot model
+        evolutions, etc. -\> make this more dynamic and practical where
+        possible
 
     3.  **TODO** re-run visualizations with improved NMT
         model, but prepare pipelines based on current one
@@ -20,13 +24,11 @@
         csv\'s for nicer plotting -\> look into event log combination
         workflow
 
-    6.  add various sub-routines with different visualization shell
-        scripts corresponding to different arguments of python script
-        -\> such as defining model paths to plot model evolutions, etc.
-        -\> make this more dynamic and practical where possible
-
-    7.  update R dependencies in readme once all visualizations are
+    6.  update R dependencies in readme once all visualizations are
         finalized
+
+    7.  ****extra:**** replace mean/sd annotations in plots with vector
+        for mean and covariance matrix for sd
 
 2.  Translation
 
@@ -48,7 +50,7 @@
     5.  ****extra:**** train additional large model on wmt19
         non-backtranslated data and similar transformer arch as fair
         paper -\> to get slightly better performance for comparison -\>
-        this can also be done lar
+        this can also be done later
 
 3.  Clean-code and documentation
 

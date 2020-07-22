@@ -33,9 +33,37 @@ every_nth <- function(x, nth, empty = TRUE, inverse = FALSE)
 
 plot_shallow_metrics <- function(input_glob){
   # internal re-usable plot function
-  internal_plot <- function(metric, custom_breaks){
-    g <- ggplot(subset(collection, Type==metric), aes(x=Source, y=Target)) +
+  internal_plot <- function(custom_breaks){
+    g <- ggplot(subcollection, aes(x=Source, y=Target)) +
       geom_pointdensity(adjust=0.1) +
+      geom_text(aes(x, y, label=lab),
+                data=data.frame(x=Inf, y=0, lab=paste0("$\\hat{\\mu}_{S} =",
+                                                       formatC(
+                                                         sapply(1:nrow(means),
+                                                                function(i){
+                                                                  means[i,c("Source")]}),
+                                                         digits=3, format="f"),
+                                                       "$\n","$\\hat{\\mu}_{T} =",
+                                                       formatC(
+                                                         sapply(1:nrow(means),
+                                                                function(i){
+                                                                  means[i,c("Target")]}),
+                                                         digits=3, format="f"),
+                                                       "$\n", "$\\hat{\\sigma}_{S} =",
+                                                         formatC(
+                                                           sapply(1:nrow(sds),
+                                                                  function(i){
+                                                                    sds[i,c("Source")]}),
+                                                           digits=3, format="f"),
+                                                       "$\n", "$\\hat{\\sigma}_{T} =",
+                                                         formatC(
+                                                           sapply(1:nrow(sds),
+                                                                  function(i){
+                                                                    sds[i,c("Target")]}),
+                                                           digits=3, format="f"),"$"),
+                                model_name=means[c("model_name")],
+                                data_name=means[c("data_name")]),
+                hjust=1.3,vjust=-0.1,size=5) +
       theme_bw() +
       theme(text = element_text(size=25),
             strip.background = element_blank(),
@@ -90,8 +118,17 @@ plot_shallow_metrics <- function(input_glob){
   # first plot with chrf
   metric = "chrF"
   custom_breaks <- seq(0.00, 1.00, 0.05)
+  subcollection <- subset(collection, Type == metric)
+  means <- aggregate(subcollection[c("Source","Target")],
+                     by=list(subcollection$data_name,
+                             subcollection$model_name), FUN=mean)
+  names(means)[c(1,2)] <- c("data_name", "model_name")
+  sds <- aggregate(subcollection[c("Source","Target")],
+                    by=list(subcollection$data_name,
+                            subcollection$model_name), FUN=sd)
+  names(sds)[c(1,2)] <- c("data_name", "model_name")
   tikz(paste0(metric, ".tex"), width=15, height=10, standAlone = TRUE)
-  g <- internal_plot(metric, NULL)
+  g <- internal_plot(NULL)
   print(g)
   dev.off()
   texi2pdf(paste0(metric,".tex"),clean=TRUE)
@@ -101,8 +138,17 @@ plot_shallow_metrics <- function(input_glob){
   # second plot with BLEU
   metric = "BLEU"
   custom_breaks <- seq(0, 100, 5)
+  subcollection <- subset(collection, Type == metric)
+  means <- aggregate(subcollection[c("Source","Target")],
+                     by=list(subcollection$data_name,
+                             subcollection$model_name), FUN=mean)
+  names(means)[c(1,2)] <- c("data_name", "model_name")
+  sds <- aggregate(subcollection[c("Source","Target")],
+                   by=list(subcollection$data_name,
+                           subcollection$model_name), FUN=sd)
+  names(sds)[c(1,2)] <- c("data_name", "model_name")
   tikz(paste0(metric, ".tex"), width=15, height=10, standAlone = TRUE)
-  g <- internal_plot(metric, NULL)
+  g <- internal_plot(NULL)
   print(g)
   dev.off()
   texi2pdf(paste0(metric,".tex"),clean=TRUE)

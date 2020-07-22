@@ -1,20 +1,20 @@
 *** Development
 
 **** Visualization
-***** TODO add figure mean/sd annotations
 ***** TODO think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas -> can already do this before newer translation model is present
+***** TODO add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
 ***** TODO re-run visualizations with improved NMT model, but prepare pipelines based on current one
 ***** use memory efficient pipelines and newer visualization techniques to assist in understanding
 ***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
-***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
 ***** update R dependencies in readme once all visualizations are finalized
+***** **extra:** replace mean/sd annotations in plots with vector for mean and covariance matrix for sd
 
 **** Translation
 ***** TODO continue model training and save last 10 checkpoints -> consider averaging checkpoints later on to improve model performance
 ***** TODO re-export and upload new model if performance improves -> update readme and relevant sections
 ***** strong model being WMT19 single and ensemble with back translation (which adds robustness), while weak model being transformer trained on WMT16 without back translation -> compare general performances and metrics
 ***** consider also looking into extra references repo "evaluation-of-nmt-bt"
-***** **extra:** train additional large model on wmt19 non-backtranslated data and similar transformer arch as fair paper -> to get slightly better performance for comparison -> this can also be done lar 
+***** **extra:** train additional large model on wmt19 non-backtranslated data and similar transformer arch as fair paper -> to get slightly better performance for comparison -> this can also be done later 
 
 **** Clean-code and documentation
 ***** create modular scripts with instructions in readme: 

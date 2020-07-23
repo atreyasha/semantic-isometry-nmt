@@ -10,8 +10,8 @@ library(ggpointdensity)
 library(viridis)
 
 every_nth <- function(x, nth, empty = TRUE, inverse = FALSE)
-# can be used to generate additional ticks
-# source: https://stackoverflow.com/a/34533473
+  # can be used to generate additional ticks
+  # source: https://stackoverflow.com/a/34533473
 {
   x = format(x)
   if (!inverse) {
@@ -41,14 +41,14 @@ plot_shallow_metrics <- function(input_glob){
                     f = list(subcollection$model_name, subcollection$data_name))
     variance <- do.call(rbind, lapply(1:length(groups),
                                       function(i)
-           {
-             x = groups[[i]]
-             variance = var(x)
-             name_split = strsplit(names(groups)[i], "\\.")[[1]]
-             data.frame(model_name = name_split[1], data_name = name_split[2],
-                        Source = variance[1,1], Target = variance[2,2],
-                        ST = variance[1,2])
-           }))
+                                      {
+                                        x = groups[[i]]
+                                        variance = var(x)
+                                        name_split = strsplit(names(groups)[i], "\\.")[[1]]
+                                        data.frame(model_name = name_split[1], data_name = name_split[2],
+                                                   Source = variance[1,1], Target = variance[2,2],
+                                                   ST = variance[1,2])
+                                      }))
     # plot object
     g <- ggplot(subcollection, aes(x=Source, y=Target)) +
       geom_pointdensity(adjust=0.1) +
@@ -57,37 +57,37 @@ plot_shallow_metrics <- function(input_glob){
                                                        "\\boldsymbol{\\mu} &= \\begin{bmatrix} ",
                                                        paste0(
                                                          paste0(
-                                                       formatC(
-                                                         sapply(1:nrow(means),
-                                                                function(i){
-                                                                  means[i,c("Source")]}),
-                                                         digits=3, format="f"), " & "),
-                                                       formatC(
-                                                         sapply(1:nrow(means),
-                                                                function(i){
-                                                                  means[i,c("Target")]}),
-                                                         digits=3, format="f")),
+                                                           formatC(
+                                                             sapply(1:nrow(means),
+                                                                    function(i){
+                                                                      means[i,c("Source")]}),
+                                                             digits=3, format="f"), " & "),
+                                                         formatC(
+                                                           sapply(1:nrow(means),
+                                                                  function(i){
+                                                                    means[i,c("Target")]}),
+                                                           digits=3, format="f")),
                                                        " \\end{bmatrix} \\\\",
                                                        "\\boldsymbol{\\Sigma} &= \\begin{bmatrix} ",
                                                        paste0(
                                                          paste0(
-                                                         formatC(
-                                                           sapply(1:nrow(means),
-                                                                  function(i){
-                                                                    variance[i,c("Source")]}),
-                                                           digits=3, format="f"), " & "),
+                                                           formatC(
+                                                             sapply(1:nrow(means),
+                                                                    function(i){
+                                                                      variance[i,c("Source")]}),
+                                                             digits=3, format="f"), " & "),
                                                          paste0(
-                                                         formatC(
-                                                           sapply(1:nrow(means),
-                                                                  function(i){
-                                                                    variance[i,c("ST")]}),
-                                                           digits=3, format="f"), " \\\\ "),
+                                                           formatC(
+                                                             sapply(1:nrow(means),
+                                                                    function(i){
+                                                                      variance[i,c("ST")]}),
+                                                             digits=3, format="f"), " \\\\ "),
                                                          paste0(
-                                                         formatC(
-                                                           sapply(1:nrow(means),
-                                                                  function(i){
-                                                                    variance[i,c("ST")]}),
-                                                           digits=3, format="f"), " & "),
+                                                           formatC(
+                                                             sapply(1:nrow(means),
+                                                                    function(i){
+                                                                      variance[i,c("ST")]}),
+                                                             digits=3, format="f"), " & "),
                                                          formatC(
                                                            sapply(1:nrow(means),
                                                                   function(i){
@@ -115,7 +115,7 @@ plot_shallow_metrics <- function(input_glob){
                                   labels = every_nth(custom_breaks, 5, inverse=TRUE))
       g <- g + scale_y_continuous(breaks = custom_breaks,
                                   labels = every_nth(custom_breaks, 5, inverse=TRUE))
-      }
+    }
     return(g)
   }
   files <- Sys.glob(input_glob)

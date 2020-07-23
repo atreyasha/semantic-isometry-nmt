@@ -1,166 +1,166 @@
 ### Development
 
-1.  Translation
+add failures for cases where compulsory arguments are null -\> evaluation and averaging
+=======================================================================================
 
-    1.  **TODO** add compound splitting to translation model
-        evaluation pipeline -\> average last 10 checkpoints and then
-        check BLEU score again -\> if still not good, can run again for
-        another round
+compute sacrebleu on custom dataset
+===================================
 
-    2.  **TODO** re-export and upload new model if
-        performance improves -\> update readme and relevant sections
+Translation
 
-    3.  strong model being WMT19 single and ensemble with back
-        translation (which adds robustness), while weak model being
-        transformer trained on WMT16 without back translation -\>
-        compare general performances and metrics
+1.  **TODO** average last 10 checkpoints -\> use sacrebleu
+    script from fairseq to compute detokenized bleu -\> if still not
+    good, can run again for another round
 
-    4.  consider also looking into extra references repo
-        \"evaluation-of-nmt-bt\"
+2.  **TODO** re-export and upload new model if performance
+    improves -\> update readme and relevant sections
 
-    5.  possibly keep backups of models at various development stages
+3.  strong model being WMT19 single and ensemble with back translation
+    (which adds robustness), while weak model being transformer trained
+    on WMT16 without back translation -\> compare general performances
+    and metrics
 
-    6.  ****extra:**** train additional large model on wmt19
-        non-backtranslated data and similar transformer arch as fair
-        paper -\> to get slightly better performance for comparison -\>
-        this can also be done later
+4.  consider also looking into extra references repo
+    \"evaluation-of-nmt-bt\"
 
-2.  Visualization
+5.  possibly keep backups of models at various development stages
 
-    1.  **TODO** think of plotting schemes that could be used
-        on various results of analysis such as paraphrase detection
-        results from all three models -\> get creative with these ideas
-        -\> can already do this before newer translation model is
-        present
+6.  ****extra:**** train additional large model on wmt19
+    non-backtranslated data and similar transformer arch as fair paper
+    -\> to get slightly better performance for comparison -\> this can
+    also be done later
 
-    2.  **TODO** add various sub-routines with different
-        visualization shell scripts corresponding to different arguments
-        of python script -\> such as defining model paths to plot model
-        evolutions, etc. -\> make this more dynamic and practical where
-        possible
+Visualization
 
-    3.  **TODO** re-run visualizations with improved NMT
-        model, but prepare pipelines based on current one
+1.  **TODO** think of plotting schemes that could be used on
+    various results of analysis such as paraphrase detection results
+    from all three models -\> get creative with these ideas -\> can
+    already do this before newer translation model is present
 
-    4.  use memory efficient pipelines and newer visualization
-        techniques to assist in understanding
+2.  **TODO** add various sub-routines with different
+    visualization shell scripts corresponding to different arguments of
+    python script -\> such as defining model paths to plot model
+    evolutions, etc. -\> make this more dynamic and practical where
+    possible
 
-    5.  think of effective ways of converting tensorflow event logs to
-        csv\'s for nicer plotting -\> look into event log combination
-        workflow
+3.  **TODO** re-run visualizations with improved NMT model,
+    but prepare pipelines based on current one
 
-    6.  update R dependencies in readme once all visualizations are
-        finalized
+4.  use memory efficient pipelines and newer visualization techniques to
+    assist in understanding
 
-3.  Clean-code and documentation
+5.  think of effective ways of converting tensorflow event logs to
+    csv\'s for nicer plotting -\> look into event log combination
+    workflow
 
-    1.  create modular scripts with instructions in readme:
+6.  update R dependencies in readme once all visualizations are
+    finalized
 
-        1.  **TODO** visualize fine-tuned LM result
+Clean-code and documentation
 
-        2.  **TODO** visualize correlation of LM and shallow
-            metrics
+1.  create modular scripts with instructions in readme:
 
-        3.  **TODO** visualize model training evolutions
+    1.  **TODO** visualize fine-tuned LM result
 
-        4.  **DONE** visualize shallow metrics
+    2.  **TODO** visualize correlation of LM and shallow
+        metrics
 
-        5.  **DONE** evaluate using fine-tuned language model
+    3.  **TODO** visualize model training evolutions
 
-        6.  **DONE** train translation model
+    4.  **DONE** visualize shallow metrics
 
-        7.  **DONE** fine tune paraphrase detector
+    5.  **DONE** evaluate using fine-tuned language model
 
-        8.  **DONE** translate sentences
+    6.  **DONE** train translation model
 
-        9.  **DONE** evaluate bleu & chrf
+    7.  **DONE** fine tune paraphrase detector
 
-    2.  **TODO** update training readme on any new
-        steps/documentation such as checkpoint averaging and add
-        respective scripts where/when necessary
+    8.  **DONE** translate sentences
 
-    3.  **TODO** add information on how long training took
-        and what DL settings/hardware were used
+    9.  **DONE** evaluate bleu & chrf
 
-    4.  segment readme into training, translation and others categories
-        with relevant usages
+2.  **TODO** update training readme on any new
+    steps/documentation such as checkpoint averaging and add respective
+    scripts where/when necessary
 
-    5.  replace relevant bash commands with sbatch in slurm-s3it branch
-        after repository is completed
+3.  **TODO** add information on how long training took and
+    what DL settings/hardware were used
 
-    6.  update initial page of readme with overview/abstract of work
-        including shallow metrics
+4.  segment readme into training, translation and others categories with
+    relevant usages
 
-    7.  update TOC\'s in all readmes to reflect latest changes
+5.  replace relevant bash commands with sbatch in slurm-s3it branch
+    after repository is completed
 
-    8.  add citations in readme as per general standard
+6.  update initial page of readme with overview/abstract of work
+    including shallow metrics
 
-    9.  add final paper/presentation into repo with link in readme
+7.  update TOC\'s in all readmes to reflect latest changes
 
-4.  Evaluation
+8.  add citations in readme as per general standard
 
-    1.  **TODO** perhaps reliably use paraphrase detection
-        only in cases where initial German paraphrase is positively
-        detected, to ensure some consistency for evaluation
+9.  add final paper/presentation into repo with link in readme
 
-    2.  **TODO** check for possibly interesting correlations
-        between XLM-R prediction and chrF/BLEU scores -\> this could be
-        of interest in making additional statements to Michel et al.
-        2019\'s statements regarding chrF scores
+Evaluation
 
-    3.  consider changing bleu to sacrebleu in json (read more about
-        differences) and figure out why stating this might be important
+1.  **TODO** perhaps reliably use paraphrase detection only
+    in cases where initial German paraphrase is positively detected, to
+    ensure some consistency for evaluation
 
-    4.  compute statistical tests for ascertaining significance of
-        relationships
+2.  **TODO** check for possibly interesting correlations
+    between XLM-R prediction and chrF/BLEU scores -\> this could be of
+    interest in making additional statements to Michel et al. 2019\'s
+    statements regarding chrF scores
 
-    5.  in rare cases, can do manual analysis and include this inside
-        report
+3.  consider changing bleu to sacrebleu in json (read more about
+    differences) and figure out why stating this might be important
 
-    6.  report evaluation of fine-tuning paraphrase detector and weaker
-        translation model
+4.  compute statistical tests for ascertaining significance of
+    relationships
 
-    7.  early conclusions/hypotheses: hand-crafted adversarial
-        paraphrase robustness is handled well in SORTA models due to
-        backtranslation reguralization, main vulnerability will be
-        targetted adversarial samples
+5.  in rare cases, can do manual analysis and include this inside report
 
-5.  Paraphrase detection
+6.  report evaluation of fine-tuning paraphrase detector and weaker
+    translation model
 
-    1.  consider roc and other evaluation metrics for pawsx model -\> in
-        case these might be of more help
+7.  early conclusions/hypotheses: hand-crafted adversarial paraphrase
+    robustness is handled well in SOTA models due to backtranslation
+    reguralization, main vulnerability will be targetted adversarial
+    samples
 
-    2.  fine-tune models with English and ensure no or little machine
-        translated data is present in training set
+Paraphrase detection
 
-    3.  better to work with human-curated data than back-translated ones
-        due to many errors -\> advantage in PAWS and PAWS-X English
-        data + WMT19 AR paraphrases
+1.  consider roc and other evaluation metrics for pawsx model -\> in
+    case these might be of more help
 
-    4.  ****extra:**** fix and refine paws-x pipeline later on with
-        patience, typing, better documentation, clean-code and possibly
-        continuation of training, add roc auc on pawsx test data
+2.  fine-tune models with English and ensure no or little machine
+    translated data is present in training set
 
-6.  Paper
+3.  better to work with human-curated data than back-translated ones due
+    to many errors -\> advantage in PAWS and PAWS-X English data + WMT19
+    AR paraphrases
 
-    1.  use two-column format for final paper, to prepare for paper
-        writing
+4.  ****extra:**** fix and refine paws-x pipeline later on with
+    patience, typing, better documentation, clean-code and possibly
+    continuation of training, add roc auc on pawsx test data
 
-    2.  think more about whether to include or exclude adversarial term
-        since this might be a grey area -\> qualify various means of
-        being adversarial ie. targetted through model or perhaps just an
-        intention
+Paper
 
-    3.  include semantic transferance equation in paper to introduce
-        some formalisms -\> show mathematical properties of isometric
-        functions/spaces and how this should hold for semantic vector
-        spaces
+1.  use two-column format for final paper, to prepare for paper writing
 
-    4.  describe processes that worked and did not work -\> talk about
-        all the hurdles and show some bad examples when they occurred
-        -\> summarized below in logs
+2.  think more about whether to include or exclude adversarial term
+    since this might be a grey area -\> qualify various means of being
+    adversarial ie. targetted through model or perhaps just an intention
 
-    5.  list hypotheses and how some were refuted by results
+3.  include semantic transferance equation in paper to introduce some
+    formalisms -\> show mathematical properties of isometric
+    functions/spaces and how this should hold for semantic vector spaces
+
+4.  describe processes that worked and did not work -\> talk about all
+    the hurdles and show some bad examples when they occurred -\>
+    summarized below in logs
+
+5.  list hypotheses and how some were refuted by results
 
 ### Completed
 

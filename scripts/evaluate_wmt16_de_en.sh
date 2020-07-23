@@ -33,6 +33,7 @@ evaluate_wmt16_de_en() {
   # declare variables
   local checkpoint_path="$1" subset="${2:-test}"
   local outfile="${checkpoint_path}.${subset}.out"
+  [ ! -f "$checkpoint_path" ] && usage && exit 1
   # process generations
   fairseq-generate \
     "data/wmt16_en_de_bpe32k/bin" \
@@ -40,6 +41,14 @@ evaluate_wmt16_de_en() {
     --beam 5 --lenpen 0.6 --remove-bpe \
     --gen-subset "$subset" \
     --max-tokens 3584 | tee "$outfile"
+  # detokenize and compute sacrebleu
+  grep ^H "$outfile" |
+    sed 's/^H\-//' |
+    sort -n -k 1 |
+    cut -f 3 |
+    sacremoses detokenize |
+    sacrebleu --test-set "wmt14/full" \
+      --language-pair "de-en" >"${outfile}.sacrebleu"
 }
 
 # execute function

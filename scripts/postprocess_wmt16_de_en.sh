@@ -36,6 +36,7 @@ postprocess_wmt16_de_en() {
     "${data_dir}/bin/dict.de.txt")
   [ -z "$directories" ] && usage && exit 1
   for direct in ${directories[@]}; do
+    [ ! -d "$direct" ] && printf "%s\n" "$direct does not exist" && continue
     mkdir -p "${direct}/bpe"
     cp "${bpe_path_array[@]}" "${direct}/bpe"
   done

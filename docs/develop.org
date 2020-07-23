@@ -21,6 +21,7 @@
 ****** DONE evaluate bleu & chrf
 ***** TODO update training readme on any new steps/documentation such as checkpoint averaging and add respective scripts where/when necessary
 ***** TODO add slurm tags in readme for averaging script
+***** TODO change translation default checkpoint in shell, python and readme if deemed better
 ***** TODO add information on how long training took and what DL settings/hardware were used
 ***** segment readme into training, translation and others categories with relevant usages
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed

@@ -170,8 +170,9 @@ def main() -> None:
                 data_name_or_path="./bpe/",
                 bpe_codes=os.path.join(os.path.dirname(model_name), "bpe",
                                        "bpe.32000"))
-            model_name = "local." + os.path.basename(
-                os.path.dirname(model_name))
+            model_name = "%s.%s.%s" % (
+                "local", os.path.basename(os.path.dirname(model_name)),
+                os.path.basename(model_name).replace(".pt", ""))
         # disable dropout for prediction
         model.eval()
         # enable GPU hardware acceleration if GPU/CUDA present

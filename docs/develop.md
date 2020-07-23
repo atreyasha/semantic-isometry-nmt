@@ -54,23 +54,26 @@
     3.  **TODO** add slurm tags in readme for averaging
         script
 
-    4.  **TODO** add information on how long training took
+    4.  **TODO** change translation default checkpoint in
+        shell, python and readme if deemed better
+
+    5.  **TODO** add information on how long training took
         and what DL settings/hardware were used
 
-    5.  segment readme into training, translation and others categories
+    6.  segment readme into training, translation and others categories
         with relevant usages
 
-    6.  replace relevant bash commands with sbatch in slurm-s3it branch
+    7.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    7.  update initial page of readme with overview/abstract of work
+    8.  update initial page of readme with overview/abstract of work
         including shallow metrics
 
-    8.  update TOC\'s in all readmes to reflect latest changes
+    9.  update TOC\'s in all readmes to reflect latest changes
 
-    9.  add citations in readme as per general standard
+    10. add citations in readme as per general standard
 
-    10. add final paper/presentation into repo with link in readme
+    11. add final paper/presentation into repo with link in readme
 
 3.  Visualization
 

@@ -24,11 +24,11 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
             choices=["local", "hub", "both"],
             help="Whether to use hub or local NMT models, or both")
         parser.add_argument(
-            "--local-model-glob",
+            "--checkpoints-glob",
             type=str,
             default=
-            "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573",
-            help="Input glob to find local models")
+            "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt",
+            help="Input glob for finding model checkpoint files")
         parser.add_argument("--wmt-references",
                             type=str,
                             default="both",
@@ -44,10 +44,10 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
                             default="./predictions/*/*.json",
                             help="Input glob to find json translation outputs")
         if subtype == "evaluate_paraphrase_detection":
-            parser.add_argument("--model-glob",
+            parser.add_argument("--checkpoints-dir-glob",
                                 default="./models/*pawsx*/checkpoint-best",
                                 type=str,
-                                help="Input glob for finding models")
+                                help="Input glob for finding model checkpoint directories")
             parser.add_argument("--batch-size",
                                 default=8,
                                 type=int,

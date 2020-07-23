@@ -79,8 +79,7 @@ def write_to_file(model_name: str, metadata: str, store: Dict) -> None:
         json.dump(store, json_file, ensure_ascii=False)
 
 
-def translate_process(model: GeneratorHubInterface,
-                      input_data: List[str],
+def translate_process(model: GeneratorHubInterface, input_data: List[str],
                       batch_size: int) -> Dict:
     """
     Translate source data and append outputs into neat dictionary
@@ -133,7 +132,7 @@ def main() -> None:
     # model subsets
     model_subset = args.model_subset
     # local model glob
-    local_model_glob = args.local_model_glob
+    model_checkpoints_glob = args.checkpoints_glob
     # initialize model names
     model_names = []
     # create path dictionary
@@ -150,7 +149,7 @@ def main() -> None:
     path_dict["both"] = path_dict["wmt"] + path_dict["ar"]
     # define available models for de-en
     if model_subset in ["local", "both"]:
-        model_names.extend(glob(local_model_glob))
+        model_names.extend(glob(model_checkpoints_glob))
     if model_subset in ["hub", "both"]:
         model_names.append("transformer.wmt19.de-en.single_model")
     # loop over respective models
@@ -164,13 +163,15 @@ def main() -> None:
             model_name = "torch_hub." + model_name
         else:
             model = TransformerModel.from_pretrained(
-                model_name,
-                checkpoint_file='checkpoint_best.pt',
+                os.path.dirname(model_name),
+                checkpoint_file=os.path.basename(model_name),
                 bpe="fastbpe",
                 tokenizer="moses",
                 data_name_or_path="./bpe/",
-                bpe_codes=os.path.join(model_name, "bpe", "bpe.32000"))
-            model_name = "local." + os.path.basename(model_name)
+                bpe_codes=os.path.join(os.path.dirname(model_name), "bpe",
+                                       "bpe.32000"))
+            model_name = "local." + os.path.basename(
+                os.path.dirname(model_name))
         # disable dropout for prediction
         model.eval()
         # enable GPU hardware acceleration if GPU/CUDA present

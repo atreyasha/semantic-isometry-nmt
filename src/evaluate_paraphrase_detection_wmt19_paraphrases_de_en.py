@@ -16,9 +16,9 @@ from transformers import (
 from tqdm import tqdm
 from argparse import Namespace
 from scipy.special import softmax
+from glob import glob
 import random
 import numpy as np
-import glob
 import json
 import torch
 import os
@@ -160,9 +160,9 @@ def main() -> None:
     else:
         logger = logging.getLogger('root')
     # find input json files
-    input_files = glob.glob(args.json_glob)
+    input_files = glob(args.json_glob)
     # find input model checkpoints
-    model_paths = glob.glob(args.model_glob)
+    model_paths = glob(args.checkpoints_dir_glob)
     # Setup CUDA and GPU
     device = torch.device(
         "cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")

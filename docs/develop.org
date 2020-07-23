@@ -1,15 +1,34 @@
 *** Development
 
-* add failures for cases where compulsory arguments are null -> evaluation and averaging
-* compute sacrebleu on custom dataset
-
 **** Translation
 ***** TODO average last 10 checkpoints -> use sacrebleu script from fairseq to compute detokenized bleu -> if still not good, can run again for another round
 ***** TODO re-export and upload new model if performance improves -> update readme and relevant sections
+***** TODO might need to add checkpoint definition inside python translation script
 ***** strong model being WMT19 single and ensemble with back translation (which adds robustness), while weak model being transformer trained on WMT16 without back translation -> compare general performances and metrics
 ***** consider also looking into extra references repo "evaluation-of-nmt-bt"
 ***** possibly keep backups of models at various development stages
 ***** **extra:** train additional large model on wmt19 non-backtranslated data and similar transformer arch as fair paper -> to get slightly better performance for comparison -> this can also be done later 
+
+**** Clean-code and documentation
+***** create modular scripts with instructions in readme: 
+****** TODO train translation model 
+****** TODO visualize fine-tuned LM result
+****** TODO visualize correlation of LM and shallow metrics
+****** TODO visualize model training evolutions
+****** DONE visualize shallow metrics
+****** DONE evaluate using fine-tuned language model
+****** DONE fine tune paraphrase detector
+****** translate sentences
+****** DONE evaluate bleu & chrf
+***** TODO update training readme on any new steps/documentation such as checkpoint averaging and add respective scripts where/when necessary
+***** TODO add slurm tags in readme for averaging script
+***** TODO add information on how long training took and what DL settings/hardware were used
+***** segment readme into training, translation and others categories with relevant usages
+***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
+***** update initial page of readme with overview/abstract of work including shallow metrics
+***** update TOC's in all readmes to reflect latest changes
+***** add citations in readme as per general standard
+***** add final paper/presentation into repo with link in readme 
 
 **** Visualization
 ***** TODO think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas -> can already do this before newer translation model is present
@@ -18,26 +37,6 @@
 ***** use memory efficient pipelines and newer visualization techniques to assist in understanding
 ***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
 ***** update R dependencies in readme once all visualizations are finalized
-
-**** Clean-code and documentation
-***** create modular scripts with instructions in readme: 
-****** TODO visualize fine-tuned LM result
-****** TODO visualize correlation of LM and shallow metrics
-****** TODO visualize model training evolutions
-****** DONE visualize shallow metrics
-****** DONE evaluate using fine-tuned language model
-****** DONE train translation model 
-****** DONE fine tune paraphrase detector
-****** DONE translate sentences
-****** DONE evaluate bleu & chrf
-***** TODO update training readme on any new steps/documentation such as checkpoint averaging and add respective scripts where/when necessary
-***** TODO add information on how long training took and what DL settings/hardware were used
-***** segment readme into training, translation and others categories with relevant usages
-***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
-***** update initial page of readme with overview/abstract of work including shallow metrics
-***** update TOC's in all readmes to reflect latest changes
-***** add citations in readme as per general standard
-***** add final paper/presentation into repo with link in readme 
 
 **** Evaluation
 ***** TODO perhaps reliably use paraphrase detection only in cases where initial German paraphrase is positively detected, to ensure some consistency for evaluation
@@ -49,6 +48,7 @@
 ***** early conclusions/hypotheses: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
 
 **** Paraphrase detection
+***** make formal analysis on lengths of WMT19 inputs vs. lengths of paws-x training data
 ***** consider roc and other evaluation metrics for pawsx model -> in case these might be of more help
 ***** fine-tune models with English and ensure no or little machine translated data is present in training set
 ***** better to work with human-curated data than back-translated ones due to many errors -> advantage in PAWS and PAWS-X English data + WMT19 AR paraphrases

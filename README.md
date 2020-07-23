@@ -84,8 +84,8 @@ model globs
 
 Optional arguments:
   -h, --help   Show this help message and exit
-  glob <glob>  Glob for finding local NMT models, defaults to
-               "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
+  glob <glob>  Glob for finding local NMT model checkpoints, defaults to
+               "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt"
 ```
 
 This script will run translation using Facebook FAIR'S winning WMT19 model as the SOTA model and the previously downloaded NMT model as the non-SOTA model. Translation results will be saved as `json` files in the `predictions` directory. To run this script using our defaults, simply execute:

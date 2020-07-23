@@ -11,8 +11,8 @@ model globs
 
 Optional arguments:
   -h, --help   Show this help message and exit
-  glob <glob>  Glob for finding local NMT models, defaults to
-               "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
+  glob <glob>  Glob for finding local NMT model checkpoints, defaults to
+               "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt"
 EOF
 }
 
@@ -28,8 +28,8 @@ check_help() {
 
 # define function
 translate_wmt19_paraphrases_de_en() {
-  local glob="${1:-"./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"}"
-  python3 -m src.translate_wmt19_paraphrases_de_en --local-model-glob "$glob"
+  local glob="${1:-"./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt"}"
+  python3 -m src.translate_wmt19_paraphrases_de_en --checkpoints-glob $glob"
 }
 
 # execute function

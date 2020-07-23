@@ -1,5 +1,13 @@
 *** Development
 
+**** Translation
+***** TODO add compound splitting to translation model evaluation pipeline -> average last 10 checkpoints and then check BLEU score again -> if still not good, can run again for another round
+***** TODO re-export and upload new model if performance improves -> update readme and relevant sections
+***** strong model being WMT19 single and ensemble with back translation (which adds robustness), while weak model being transformer trained on WMT16 without back translation -> compare general performances and metrics
+***** consider also looking into extra references repo "evaluation-of-nmt-bt"
+***** possibly keep backups of models at various development stages
+***** **extra:** train additional large model on wmt19 non-backtranslated data and similar transformer arch as fair paper -> to get slightly better performance for comparison -> this can also be done later 
+
 **** Visualization
 ***** TODO think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas -> can already do this before newer translation model is present
 ***** TODO add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
@@ -7,14 +15,6 @@
 ***** use memory efficient pipelines and newer visualization techniques to assist in understanding
 ***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
 ***** update R dependencies in readme once all visualizations are finalized
-***** **extra:** replace mean/sd annotations in plots with vector for mean and covariance matrix for sd
-
-**** Translation
-***** TODO continue model training and save last 10 checkpoints -> consider averaging checkpoints later on to improve model performance
-***** TODO re-export and upload new model if performance improves -> update readme and relevant sections
-***** strong model being WMT19 single and ensemble with back translation (which adds robustness), while weak model being transformer trained on WMT16 without back translation -> compare general performances and metrics
-***** consider also looking into extra references repo "evaluation-of-nmt-bt"
-***** **extra:** train additional large model on wmt19 non-backtranslated data and similar transformer arch as fair paper -> to get slightly better performance for comparison -> this can also be done later 
 
 **** Clean-code and documentation
 ***** create modular scripts with instructions in readme: 
@@ -27,8 +27,9 @@
 ****** DONE fine tune paraphrase detector
 ****** DONE translate sentences
 ****** DONE evaluate bleu & chrf
+***** TODO update training readme on any new steps/documentation such as checkpoint averaging and add respective scripts where/when necessary
+***** TODO add information on how long training took and what DL settings/hardware were used
 ***** segment readme into training, translation and others categories with relevant usages
-***** add information on how long training took and what DL settings/hardware were used
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
 ***** update initial page of readme with overview/abstract of work including shallow metrics
 ***** update TOC's in all readmes to reflect latest changes
@@ -42,7 +43,7 @@
 ***** compute statistical tests for ascertaining significance of relationships
 ***** in rare cases, can do manual analysis and include this inside report
 ***** report evaluation of fine-tuning paraphrase detector and weaker translation model
-***** early conclusions/hypothese: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
+***** early conclusions/hypotheses: hand-crafted adversarial paraphrase robustness is handled well in SORTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
 
 **** Paraphrase detection
 ***** consider roc and other evaluation metrics for pawsx model -> in case these might be of more help
@@ -58,6 +59,8 @@
 ***** list hypotheses and how some were refuted by results
       
 *** Completed
+***** DONE replace mean/sd annotations in plots with vector for mean and covariance matrix for sd
+      CLOSED: [2020-07-23 Thu 12:00]
 ***** DONE reduce computational overhead by caching source computations for paraphrase detection evaluation
       CLOSED: [2020-07-22 Wed 12:03]
 ***** DONE make shell script which automatically filters and compresses to tar gz
@@ -139,7 +142,7 @@
 ****** Pair-it [tensorflow, python3, poorly documented] -> has potential to work but requires major refactoring
 ****** SCPN [torch, python2.7, poorly documented] -> buggy, but some examples work
 
-**** Data augmenttion
+**** Data augmentation
 ***** look into nli adversarial datasets -> Nevin and Aatlantise
 ***** either look for paraphrase source and target pair which are closest to gold ones and augment data with these -> is safer to train with and can possibly improve overall translation quality
 ***** otherwise, find paraphrase which is close on source side but problematic on target side and augment these with gold target -> acts as a regularizing anchor and possibly adds some stability

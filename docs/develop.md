@@ -9,20 +9,17 @@
     2.  **TODO** re-export and upload new model if
         performance improves -\> update readme and relevant sections
 
-    3.  **TODO** might need to add checkpoint definition
-        inside python translation script
-
-    4.  strong model being WMT19 single and ensemble with back
+    3.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being
         transformer trained on WMT16 without back translation -\>
         compare general performances and metrics
 
-    5.  consider also looking into extra references repo
+    4.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
 
-    6.  possibly keep backups of models at various development stages
+    5.  possibly keep backups of models at various development stages
 
-    7.  ****extra:**** train additional large model on wmt19
+    6.  ****extra:**** train additional large model on wmt19
         non-backtranslated data and similar transformer arch as fair
         paper -\> to get slightly better performance for comparison -\>
         this can also be done later

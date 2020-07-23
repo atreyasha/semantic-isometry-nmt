@@ -9,17 +9,20 @@
     2.  **TODO** re-export and upload new model if
         performance improves -\> update readme and relevant sections
 
-    3.  strong model being WMT19 single and ensemble with back
+    3.  **TODO** rename average checkpoint to something more
+        descriptive with checkpoint bounds perhaps
+
+    4.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being
         transformer trained on WMT16 without back translation -\>
         compare general performances and metrics
 
-    4.  consider also looking into extra references repo
+    5.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
 
-    5.  possibly keep backups of models at various development stages
+    6.  possibly keep backups of models at various development stages
 
-    6.  ****extra:**** train additional large model on wmt19
+    7.  ****extra:**** train additional large model on wmt19
         non-backtranslated data and similar transformer arch as fair
         paper -\> to get slightly better performance for comparison -\>
         this can also be done later
@@ -51,8 +54,8 @@
         steps/documentation such as checkpoint averaging and add
         respective scripts where/when necessary
 
-    3.  **TODO** add slurm tags in readme for averaging
-        script
+    3.  **TODO** add slurm tags and sbatch command in readme
+        for averaging script
 
     4.  **TODO** change translation default checkpoint in
         shell, python and readme if deemed better
@@ -104,28 +107,31 @@
 
 4.  Evaluation
 
-    1.  **TODO** perhaps reliably use paraphrase detection
+    1.  **TODO** consider comparing across checkpoints if
+        this would be of interest
+
+    2.  **TODO** perhaps reliably use paraphrase detection
         only in cases where initial German paraphrase is positively
         detected, to ensure some consistency for evaluation
 
-    2.  **TODO** check for possibly interesting correlations
+    3.  **TODO** check for possibly interesting correlations
         between XLM-R prediction and chrF/BLEU scores -\> this could be
         of interest in making additional statements to Michel et al.
         2019\'s statements regarding chrF scores
 
-    3.  consider changing bleu to sacrebleu in json (read more about
+    4.  consider changing bleu to sacrebleu in json (read more about
         differences) and figure out why stating this might be important
 
-    4.  compute statistical tests for ascertaining significance of
+    5.  compute statistical tests for ascertaining significance of
         relationships
 
-    5.  in rare cases, can do manual analysis and include this inside
+    6.  in rare cases, can do manual analysis and include this inside
         report
 
-    6.  report evaluation of fine-tuning paraphrase detector and weaker
+    7.  report evaluation of fine-tuning paraphrase detector and weaker
         translation model
 
-    7.  early conclusions/hypotheses: hand-crafted adversarial
+    8.  early conclusions/hypotheses: hand-crafted adversarial
         paraphrase robustness is handled well in SOTA models due to
         backtranslation reguralization, main vulnerability will be
         targetted adversarial samples

@@ -124,8 +124,8 @@ plot_shallow_metrics <- function(input_glob){
     data_name = basename(files[i])
     model_name = basename(dirname(files[i]))
     filtered <- data.frame(do.call(rbind, lapply(data, function(x) {
-      as.numeric(x[4:7])})))
-    names(filtered) <- names(data[[1]])[4:7]
+      unlist(x[c("chrf_src","chrf_translated", "bleu_src",
+                 "bleu_translated")])})))
     if (grepl("ar", data_name)) {
       data_name <- "WMT19 Test AR"
     }
@@ -142,11 +142,11 @@ plot_shallow_metrics <- function(input_glob){
     return(filtered)
   })
   collection <- do.call(rbind, collection)
-  hold_out <- collection[-c(3,4)]
-  collection <- collection[-c(5,6)]
-  names(collection)[c(3,4)] <- c("Source", "Target")
+  hold_out <- collection[-(which(names(collection) %in% c("chrf_src","chrf_translated")))]
+  collection <- collection[-(which(names(collection) %in% c("bleu_src","bleu_translated")))]
+  names(collection)[which(names(collection) %in% c("chrf_src","chrf_translated"))] <- c("Source", "Target")
   collection["Type"] <- "chrF"
-  names(hold_out)[c(3,4)] <- c("Source", "Target")
+  names(hold_out)[which(names(hold_out) %in% c("bleu_src","bleu_translated"))] <- c("Source", "Target")
   hold_out["Type"] <- "BLEU"
   collection <- rbind(collection, hold_out)
   # first plot with chrf

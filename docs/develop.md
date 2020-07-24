@@ -37,9 +37,9 @@
         final (best) averaged checkpoint in shell, python and readme
         scripts if checkpoint is deemed better
 
-    6.  add information on how long training took and what DL
-        settings/hardware were used -\> can do this when everything is
-        finalized
+    6.  add information in readmes on how long training all models took
+        and what DL settings/hardware were used -\> can do this when
+        everything is finalized
 
     7.  segment readme into training, translation and others categories
         with relevant usages
@@ -56,27 +56,7 @@
 
     12. add final paper/presentation into repo with link in readme
 
-2.  Translation
-
-    1.  **TODO** average last 10 checkpoints and then check
-        model performance -\> think about when to stop training
-
-    2.  strong model being WMT19 single and ensemble with back
-        translation (which adds robustness), while weak model being
-        transformer trained on WMT16 without back translation -\>
-        compare general performances and metrics
-
-    3.  consider also looking into extra references repo
-        \"evaluation-of-nmt-bt\"
-
-    4.  possibly keep backups of models at various development stages
-
-    5.  ****extra:**** train additional large model on wmt19
-        non-backtranslated data and similar transformer arch as fair
-        paper -\> to get slightly better performance for comparison -\>
-        this can also be done later
-
-3.  Evaluation
+2.  Evaluation
 
     1.  **TODO** finalize results and start focusing on
         interpreting the results and what the possible statistical
@@ -110,6 +90,26 @@
         paraphrase robustness is handled well in SOTA models due to
         backtranslation reguralization, main vulnerability will be
         targetted adversarial samples
+
+3.  Translation
+
+    1.  **TODO** average last 10 checkpoints and then check
+        model performance -\> think about when to stop training
+
+    2.  strong model being WMT19 single and ensemble with back
+        translation (which adds robustness), while weak model being
+        transformer trained on WMT16 without back translation -\>
+        compare general performances and metrics
+
+    3.  consider also looking into extra references repo
+        \"evaluation-of-nmt-bt\"
+
+    4.  possibly keep backups of models at various development stages
+
+    5.  ****extra:**** train additional large model on wmt19
+        non-backtranslated data and similar transformer arch as fair
+        paper -\> to get slightly better performance for comparison -\>
+        this can also be done later
 
 4.  Visualization
 
@@ -178,78 +178,93 @@
 
 ### Completed
 
-1.  **DONE** replace mean/sd annotations in plots with vector
+1.  **DONE** clean up exporting script where user can specify
+    which checkpoint should be packaged
+
+2.  **DONE** replace mean/sd annotations in plots with vector
     for mean and covariance matrix for sd
 
-2.  **DONE** reduce computational overhead by caching source
+3.  **DONE** reduce computational overhead by caching source
     computations for paraphrase detection evaluation
 
-3.  **DONE** make shell script which automatically filters
+4.  **DONE** make shell script which automatically filters
     and compresses to tar gz
 
-4.  **DONE** Increase sequence lengths during training to
+5.  **DONE** Increase sequence lengths during training to
     accomodate for longer paraphrases, compute average seq lengths of
     wmt inputs to estimate model seq lengths for training paraphrase
     detector, work on keeping code simple
 
-5.  **DONE** consider making separate branch with sbatch
+6.  **DONE** consider making separate branch with sbatch
     parameters all present in files as necessary for reproducibility
 
-6.  **DONE** bug in XLM-R as it does not appear to learn -\>
+7.  **DONE** bug in XLM-R as it does not appear to learn -\>
     look through code
 
-7.  **DONE** multilingual BERT with de only -\> bug in how
+8.  **DONE** multilingual BERT with de only -\> bug in how
     test scripts are saved leads to wrong results
 
-8.  **DONE** maybe consider using German BERT for doing this
+9.  **DONE** maybe consider using German BERT for doing this
     task explicitly for German, for our end task -\> German BERT and
     RoBERTa for English to focus on exact task -\> perhaps just use
     xtreme repo and keep only paws-x task -\> clean up code and workflow
     for it -\> error might be arising due to gradient clipping for very
     large model
 
-9.  **DONE** look into ParaBank2 and universal
+10. **DONE** look into ParaBank2 and universal
     decompositional semantics -\> not great paraphrases, no human
     curation
 
-10. **DONE** look into Duolingo dataset for paraphrases -\>
+11. **DONE** look into Duolingo dataset for paraphrases -\>
     no German target side
 
-11. **DONE** add symbols for defaults in metavar default
+12. **DONE** add symbols for defaults in metavar default
     formatter, maybe add some other formatting tricks such as indents
     for defaults
 
-12. **DONE** try installing java locally instead of root, if
+13. **DONE** try installing java locally instead of root, if
     stanford parser is indeed necessary
 
-13. **DONE** paraphrasing with SGCP -\> very bad results on
+14. **DONE** paraphrasing with SGCP -\> very bad results on
     both original test and WMT data -\> very sensitive to exemplar
 
-14. **DONE** embed and cluser using universal sentence
+15. **DONE** embed and cluser using universal sentence
     encoder (eg. BERT or LASER) -\> use separate clusters for exemplar
     utility, make diverse collection and evaluate using metric or other
     NN
 
-15. **DONE** find other sentence with maximum similarity and
+16. **DONE** find other sentence with maximum similarity and
     use that as exemplar, useparaphrase of best as exemplar, use
     pos-tags of sentence
 
-16. **DONE** convert wmt datasets with derived exemplars into
+17. **DONE** convert wmt datasets with derived exemplars into
     format pipe-able into SGCP -\> needed before paraphrasing
 
-17. **DONE** add workflow to download laser models with
+18. **DONE** add workflow to download laser models with
     python -m laserembeddings download-models
 
-18. **DONE** set up WMT 17 dev/test data and basic repo
+19. **DONE** set up WMT 17 dev/test data and basic repo
 
-19. **DONE** convert all processes to makefile for ease
+20. **DONE** convert all processes to makefile for ease
 
-20. **DONE** set up data downloading for all wmt sets with
+21. **DONE** set up data downloading for all wmt sets with
     SacreBLEU
 
 ### Brainstorming and logs
 
-1.  LASER embeddings + dense layers
+1.  NMT training on S3IT GPUs
+
+    1.  V100-16GB safest option for fp16 fast training, tested with
+        3584:16 and now testing out 7168:8
+
+    2.  V100-32GB works great but many times slurms allocates it when it
+        has \~100s MB left
+
+    3.  K80 does not permit fp16 for faster training, goes into OOM when
+        using with max~tokens~ 7168 and update~freq~ 8 -\> although can
+        be used for PAWS-X
+
+2.  LASER embeddings + dense layers
 
     1.  not very useful by itself, needs a larger token-touching model
 
@@ -259,7 +274,7 @@
     3.  need to access larger token-based models to leverage full power
         of NLP model
 
-2.  Semantic similarity metrics
+3.  Semantic similarity metrics
 
     1.  multireference BLEU score, use multiple paraphrases and check
         for best BLEU score
@@ -276,7 +291,7 @@
         connecting, framenet, frame semantic parsing, brown clusters,
         AMR parsing, IWCS workshop for discussions
 
-3.  Paraphrase generation
+4.  Paraphrase generation
 
     1.  Ideas for self-paraphrasing
 
@@ -352,7 +367,7 @@
         2.  SCPN \[torch, python2.7, poorly documented\] -\> buggy, but
             some examples work
 
-4.  Data augmentation
+5.  Data augmentation
 
     1.  look into nli adversarial datasets -\> Nevin and Aatlantise
 

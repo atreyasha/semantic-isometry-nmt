@@ -5,15 +5,15 @@ set -e
 # usage function
 usage() {
   cat <<EOF
-Usage: export_tar_gz.sh [-h|--help] model_directory...
+Usage: export_tar_gz.sh [-h|--help] model_checkpoint...
 Export training logs and best checkpoint to tarball
 
 Optional arguments:
-  -h, --help              Show this help message and exit
+  -h, --help               Show this help message and exit
 
 Required arguments:
-  model_directory <path>  Path to directory containing model
-                          checkpoints
+  model_checkpoint <path>  Path corresponding to model checkpoint
+                           that should be exported
 EOF
 }
 
@@ -29,17 +29,19 @@ check_help() {
 
 # define function
 export_tar_gz() {
-  local directories="$@"
-  [ -z "$directories" ] && usage && exit 1
-  for direct in ${directories[@]}; do
-    [ ! -d "$direct" ] && printf "%s\n" "$direct does not exist" && continue
+  local checkpoints="$@"
+  [ -z "$checkpoints" ] && usage && exit 1
+  for checkpoint in ${checkpoints[@]}; do
+    [ ! -e "$checkpoint" ] && printf "%s\n" "$checkpoint does not exist" && continue
     (
-      parent_name="$(dirname $direct)"
-      child_name="$(basename $direct)"
+      local parent_name="$(dirname $(dirname $checkpoint))"
+      local child_name="$(basename $(dirname $checkpoint))"
+      local checkpoint_name="$(basename $checkpoint)"
       cd "$parent_name"
-      tar --exclude="*checkpoint_last*" \
-        --exclude="*checkpoint-training-end*" \
-        -zcvf "${child_name}.tar.gz" "$child_name"
+      local exclude_files=($(find "$child_name" -path "*checkpoint*" | grep --invert-match "$checkpoint_name"))
+      # source: https://superuser.com/questions/1052950/bash-loop-for-adding-exclude-list-to-tar
+      exclude_files=("${exclude_files[@]/#/--exclude=}")
+      tar "${exclude_files[@]}" -zcvf "${child_name}.tar.gz" "$child_name"
     )
   done
 }

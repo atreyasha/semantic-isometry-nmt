@@ -66,7 +66,7 @@ bash scripts/train_continue_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
 ```
 
-**iv.** Evaluate an existing checkpoint using `evaluate_wmt16_de_en.sh`:
+**iv.** Evaluate an existing checkpoint using `sacrebleu` with `evaluate_wmt16_de_en.sh`:
 
 ```
 Usage: evaluate_wmt16_de_en.sh [-h|--help] checkpoint [subset]
@@ -88,7 +88,29 @@ bash scripts/evaluate_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt"
 ```
 
-**v.** After choosing the best model, execute post-processing on the model directory using `postprocess_wmt16_de_en.sh`:
+**v.** Assuming a plateauing validation performance profile on the final `N` epochs, it is recommended to average the well performing last `N` checkpoints. This can be done with `average_checkpoints_wmt16_de_en.sh`:
+
+```
+Usage: average_checkpoints_wmt16_de_en [-h|--help] model_directory [number]
+Average the last N checkpoints from a model directory
+
+Optional arguments:
+  -h, --help              Show this help message and exit
+  number <int>            Number of last checkpoints to average,
+                          defaults to 10.
+
+Required arguments:
+  model_directory <path>  Path to directory containing model checkpoints
+```
+
+An example of running this script would be:
+
+```shell
+bash scripts/average_checkpoints_wmt16_de_en.sh \
+"./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
+```
+
+**vi.** After choosing the best model, execute post-processing on the model directory using `postprocess_wmt16_de_en.sh`:
 
 ```
 Usage: postprocess_wmt16_de_en.sh [-h|--help] model_directory...
@@ -102,7 +124,7 @@ Required arguments:
                           checkpoints
 ```
 
-This process copies over relevant `bpe` files into the model directory; which is necessary in order to export the model. An example of running this script would be:
+This process copies over relevant `bpe` files into the model directory; which is necessary in order to export the model and use it downstream with the `GeneratorHubInterface` from `fairseq`. An example of running this script would be:
 
 ```shell
 bash scripts/postprocess_wmt16_de_en.sh \
@@ -137,21 +159,21 @@ This script will automatically evaluate the model against the `dev` set during t
 To export the final models, you can use `export_tar_gz.sh`:
 
 ```
-Usage: export_tar_gz.sh [-h|--help] model_directory...
+Usage: export_tar_gz.sh [-h|--help] model_checkpoint...
 Export training logs and best checkpoint to tarball
 
 Optional arguments:
-  -h, --help              Show this help message and exit
+  -h, --help               Show this help message and exit
 
 Required arguments:
-  model_directory <path>  Path to directory containing model
-                          checkpoints
+  model_checkpoint <path>  Path corresponding to model checkpoint
+                           that should be exported
 ```
 
 This script will select and compress the best checkpoints along with logging information for deployment purposes downstream. An example of executing this script would be:
 
 ```shell
 bash scripts/export_tar_gz.sh \
-    "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573" \
-    "./models/bert-base-multilingual-cased.pawsx.ML128.1594737128"
+    "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt" \
+    "./models/bert-base-multilingual-cased.pawsx.ML128.1594737128/checkpoint-best"
 ```

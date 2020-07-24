@@ -85,9 +85,7 @@ def average_checkpoints(inputs):
     return new_state
 
 
-def last_n_checkpoints(paths, n, update_based, upper_bound=None):
-    assert len(paths) == 1
-    path = paths[0]
+def last_n_checkpoints(path, n, update_based, upper_bound=None):
     if update_based:
         pt_regexp = re.compile(r'checkpoint_\d+_(\d+)\.pt')
     else:
@@ -112,16 +110,16 @@ def last_n_checkpoints(paths, n, update_based, upper_bound=None):
 def main():
     parser = argparse.ArgumentParser(
         description='Tool to average the params of input checkpoints to '
-        'produce a new checkpoint', )
+        'produce a new checkpoint')
     # fmt: off
-    parser.add_argument('--inputs',
+    parser.add_argument('--input-directory',
+                        type=str,
                         required=True,
-                        nargs='+',
-                        help='Input checkpoint file paths.')
+                        help='Input directory containing model checkpoints.')
     parser.add_argument(
         '--output',
-        required=True,
-        metavar='FILE',
+        default=None,
+        type=str,
         help=
         'Write the new checkpoint containing the averaged weights to this path.'
     )
@@ -166,12 +164,22 @@ def main():
 
     if num is not None:
         args.inputs = last_n_checkpoints(
-            args.inputs,
+            args.input_directory,
             num,
             is_update_based,
             upper_bound=args.checkpoint_upper_bound,
         )
         print('averaging checkpoints: ', args.inputs)
+
+    if args.output is None:
+        range_checkpoints = sorted([
+            re.search(r".*checkpoint(.*)\.pt$", input_file).groups()[0]
+            for input_file in args.inputs
+        ])
+        start = range_checkpoints[0]
+        end = range_checkpoints[-1]
+        args.output = os.path.join(
+            args.input_directory, "checkpoint_average_%s_%s.pt" % (start, end))
 
     new_state = average_checkpoints(args.inputs)
     with PathManager.open(args.output, 'wb') as f:

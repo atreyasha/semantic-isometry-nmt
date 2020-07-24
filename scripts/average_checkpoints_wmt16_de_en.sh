@@ -35,9 +35,8 @@ average_checkpoints_wmt16_de_en() {
   [ ! -d "$direct" ] && usage && exit 1
   # average checkpoints
   python3 -m src.average_checkpoints \
-    --inputs "$direct" \
-    --num-epoch-checkpoints "$number" \
-    --output "${direct}/checkpoint_average_${number}.pt"
+    --input-directory "$direct" \
+    --num-epoch-checkpoints "$number"
 }
 
 # execute function

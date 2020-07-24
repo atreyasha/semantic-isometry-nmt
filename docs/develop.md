@@ -2,34 +2,41 @@
 
 1.  Translation
 
-    1.  **TODO** average last 10 checkpoints -\> use
-        sacrebleu script from fairseq to compute detokenized bleu -\> if
-        still not good, can run again for another round
+    1.  **TODO** average last 10 checkpoints -\> rename
+        average checkpoint to indicate which checkpoints were averaged
 
-    2.  **TODO** re-export and upload new model if
-        performance improves -\> update readme and relevant sections
-
-    3.  **TODO** rename average checkpoint to something more
-        descriptive with checkpoint bounds perhaps
-
-    4.  strong model being WMT19 single and ensemble with back
+    2.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being
         transformer trained on WMT16 without back translation -\>
         compare general performances and metrics
 
-    5.  consider also looking into extra references repo
+    3.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
 
-    6.  possibly keep backups of models at various development stages
+    4.  possibly keep backups of models at various development stages
 
-    7.  ****extra:**** train additional large model on wmt19
+    5.  ****extra:**** train additional large model on wmt19
         non-backtranslated data and similar transformer arch as fair
         paper -\> to get slightly better performance for comparison -\>
         this can also be done later
 
 2.  Clean-code and documentation
 
-    1.  create modular scripts with instructions in readme:
+    1.  **TODO** re-export and upload new model if
+        performance improves
+
+    2.  **TODO** update training readme on any new
+        steps/documentation such as checkpoint averaging and add
+        respective scripts where/when necessary
+
+    3.  **TODO** add slurm tags and sbatch command in readme
+        for averaging script
+
+    4.  **TODO** change translation default checkpoint to
+        final (best) averaged checkpoint in shell, python and readme
+        scripts if checkpoint is deemed better
+
+    5.  create modular scripts with instructions in readme:
 
         1.  **TODO** train translation model
 
@@ -46,54 +53,43 @@
 
         7.  **DONE** fine tune paraphrase detector
 
-        8.  translate sentences
+        8.  **DONE** translate sentences
 
         9.  **DONE** evaluate bleu & chrf
 
-    2.  **TODO** update training readme on any new
-        steps/documentation such as checkpoint averaging and add
-        respective scripts where/when necessary
+    6.  add information on how long training took and what DL
+        settings/hardware were used -\> can do this when everything is
+        finalized
 
-    3.  **TODO** add slurm tags and sbatch command in readme
-        for averaging script
-
-    4.  **TODO** change translation default checkpoint in
-        shell, python and readme if deemed better
-
-    5.  **TODO** add information on how long training took
-        and what DL settings/hardware were used
-
-    6.  segment readme into training, translation and others categories
+    7.  segment readme into training, translation and others categories
         with relevant usages
 
-    7.  replace relevant bash commands with sbatch in slurm-s3it branch
+    8.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    8.  update initial page of readme with overview/abstract of work
+    9.  update initial page of readme with overview/abstract of work
         including shallow metrics
 
-    9.  update TOC\'s in all readmes to reflect latest changes
+    10. update TOC\'s in all readmes to reflect latest changes
 
-    10. add citations in readme as per general standard
+    11. add citations in readme as per general standard
 
-    11. add final paper/presentation into repo with link in readme
+    12. add final paper/presentation into repo with link in readme
 
 3.  Visualization
 
-    1.  **TODO** think of plotting schemes that could be used
-        on various results of analysis such as paraphrase detection
-        results from all three models -\> get creative with these ideas
-        -\> can already do this before newer translation model is
-        present
+    1.  re-run visualizations with improved NMT model, but prepare
+        pipelines based on current one
 
-    2.  **TODO** add various sub-routines with different
-        visualization shell scripts corresponding to different arguments
-        of python script -\> such as defining model paths to plot model
-        evolutions, etc. -\> make this more dynamic and practical where
-        possible
+    2.  think of plotting schemes that could be used on various results
+        of analysis such as paraphrase detection results from all three
+        models -\> get creative with these ideas -\> can already do this
+        before newer translation model is present
 
-    3.  **TODO** re-run visualizations with improved NMT
-        model, but prepare pipelines based on current one
+    3.  add various sub-routines with different visualization shell
+        scripts corresponding to different arguments of python script
+        -\> such as defining model paths to plot model evolutions, etc.
+        -\> make this more dynamic and practical where possible
 
     4.  use memory efficient pipelines and newer visualization
         techniques to assist in understanding
@@ -107,31 +103,34 @@
 
 4.  Evaluation
 
-    1.  **TODO** consider comparing across checkpoints if
-        this would be of interest
+    1.  finalize results and start focusing on interpreting the results
+        and what the possible statistical conclusions could be
 
-    2.  **TODO** perhaps reliably use paraphrase detection
-        only in cases where initial German paraphrase is positively
-        detected, to ensure some consistency for evaluation
+    2.  perhaps reliably use paraphrase detection only in cases where
+        initial German paraphrase is positively detected, to ensure some
+        consistency for evaluation
 
-    3.  **TODO** check for possibly interesting correlations
-        between XLM-R prediction and chrF/BLEU scores -\> this could be
-        of interest in making additional statements to Michel et al.
-        2019\'s statements regarding chrF scores
+    3.  consider comparing across checkpoints if this would be of
+        interest
 
-    4.  consider changing bleu to sacrebleu in json (read more about
+    4.  check for possibly interesting correlations between XLM-R
+        prediction and chrF/BLEU scores -\> this could be of interest in
+        making additional statements to Michel et al. 2019\'s statements
+        regarding chrF scores
+
+    5.  consider changing bleu to sacrebleu in json (read more about
         differences) and figure out why stating this might be important
 
-    5.  compute statistical tests for ascertaining significance of
+    6.  compute statistical tests for ascertaining significance of
         relationships
 
-    6.  in rare cases, can do manual analysis and include this inside
+    7.  in rare cases, can do manual analysis and include this inside
         report
 
-    7.  report evaluation of fine-tuning paraphrase detector and weaker
+    8.  report evaluation of fine-tuning paraphrase detector and weaker
         translation model
 
-    8.  early conclusions/hypotheses: hand-crafted adversarial
+    9.  early conclusions/hypotheses: hand-crafted adversarial
         paraphrase robustness is handled well in SOTA models due to
         backtranslation reguralization, main vulnerability will be
         targetted adversarial samples

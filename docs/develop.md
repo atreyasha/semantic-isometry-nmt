@@ -2,8 +2,8 @@
 
 1.  Translation
 
-    1.  **TODO** average last 10 checkpoints -\> rename
-        average checkpoint to indicate which checkpoints were averaged
+    1.  **TODO** average last 10 checkpoints to check
+        performance
 
     2.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being

@@ -34,7 +34,7 @@ average_checkpoints_wmt16_de_en() {
   local direct="$1" number="${2:-10}"
   [ ! -d "$direct" ] && usage && exit 1
   # average checkpoints
-  python3 -m src.average_checkpoints \
+  python3 -m src.average_checkpoints_fairseq \
     --input-directory "$direct" \
     --num-epoch-checkpoints "$number"
 }

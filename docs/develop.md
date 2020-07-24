@@ -1,42 +1,15 @@
 ### Development
 
-1.  Translation
+1.  Clean-code and documentation
 
-    1.  **TODO** average last 10 checkpoints to check
-        performance
-
-    2.  strong model being WMT19 single and ensemble with back
-        translation (which adds robustness), while weak model being
-        transformer trained on WMT16 without back translation -\>
-        compare general performances and metrics
-
-    3.  consider also looking into extra references repo
-        \"evaluation-of-nmt-bt\"
-
-    4.  possibly keep backups of models at various development stages
-
-    5.  ****extra:**** train additional large model on wmt19
-        non-backtranslated data and similar transformer arch as fair
-        paper -\> to get slightly better performance for comparison -\>
-        this can also be done later
-
-2.  Clean-code and documentation
-
-    1.  **TODO** re-export and upload new model if
-        performance improves
-
-    2.  **TODO** update training readme on any new
+    1.  **TODO** update training readme on any new
         steps/documentation such as checkpoint averaging and add
         respective scripts where/when necessary
 
-    3.  **TODO** add slurm tags and sbatch command in readme
+    2.  **TODO** add slurm tags and sbatch command in readme
         for averaging script
 
-    4.  **TODO** change translation default checkpoint to
-        final (best) averaged checkpoint in shell, python and readme
-        scripts if checkpoint is deemed better
-
-    5.  create modular scripts with instructions in readme:
+    3.  create modular scripts with instructions in readme:
 
         1.  **TODO** train translation model
 
@@ -57,6 +30,13 @@
 
         9.  **DONE** evaluate bleu & chrf
 
+    4.  **TODO** re-export and upload new model if
+        performance improves -\> update readme links and sections
+
+    5.  **TODO** change translation default checkpoint to
+        final (best) averaged checkpoint in shell, python and readme
+        scripts if checkpoint is deemed better
+
     6.  add information on how long training took and what DL
         settings/hardware were used -\> can do this when everything is
         finalized
@@ -76,35 +56,31 @@
 
     12. add final paper/presentation into repo with link in readme
 
-3.  Visualization
+2.  Translation
 
-    1.  re-run visualizations with improved NMT model, but prepare
-        pipelines based on current one
+    1.  **TODO** average last 10 checkpoints and then check
+        model performance -\> think about when to stop training
 
-    2.  think of plotting schemes that could be used on various results
-        of analysis such as paraphrase detection results from all three
-        models -\> get creative with these ideas -\> can already do this
-        before newer translation model is present
+    2.  strong model being WMT19 single and ensemble with back
+        translation (which adds robustness), while weak model being
+        transformer trained on WMT16 without back translation -\>
+        compare general performances and metrics
 
-    3.  add various sub-routines with different visualization shell
-        scripts corresponding to different arguments of python script
-        -\> such as defining model paths to plot model evolutions, etc.
-        -\> make this more dynamic and practical where possible
+    3.  consider also looking into extra references repo
+        \"evaluation-of-nmt-bt\"
 
-    4.  use memory efficient pipelines and newer visualization
-        techniques to assist in understanding
+    4.  possibly keep backups of models at various development stages
 
-    5.  think of effective ways of converting tensorflow event logs to
-        csv\'s for nicer plotting -\> look into event log combination
-        workflow
+    5.  ****extra:**** train additional large model on wmt19
+        non-backtranslated data and similar transformer arch as fair
+        paper -\> to get slightly better performance for comparison -\>
+        this can also be done later
 
-    6.  update R dependencies in readme once all visualizations are
-        finalized
+3.  Evaluation
 
-4.  Evaluation
-
-    1.  finalize results and start focusing on interpreting the results
-        and what the possible statistical conclusions could be
+    1.  **TODO** finalize results and start focusing on
+        interpreting the results and what the possible statistical
+        conclusions could be
 
     2.  perhaps reliably use paraphrase detection only in cases where
         initial German paraphrase is positively detected, to ensure some
@@ -134,6 +110,31 @@
         paraphrase robustness is handled well in SOTA models due to
         backtranslation reguralization, main vulnerability will be
         targetted adversarial samples
+
+4.  Visualization
+
+    1.  re-run visualizations with improved NMT model, but prepare
+        pipelines based on current one
+
+    2.  think of plotting schemes that could be used on various results
+        of analysis such as paraphrase detection results from all three
+        models -\> get creative with these ideas -\> can already do this
+        before newer translation model is present
+
+    3.  add various sub-routines with different visualization shell
+        scripts corresponding to different arguments of python script
+        -\> such as defining model paths to plot model evolutions, etc.
+        -\> make this more dynamic and practical where possible
+
+    4.  use memory efficient pipelines and newer visualization
+        techniques to assist in understanding
+
+    5.  think of effective ways of converting tensorflow event logs to
+        csv\'s for nicer plotting -\> look into event log combination
+        workflow
+
+    6.  update R dependencies in readme once all visualizations are
+        finalized
 
 5.  Paraphrase detection
 

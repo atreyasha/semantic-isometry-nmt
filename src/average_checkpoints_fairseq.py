@@ -171,9 +171,9 @@ def main():
         )
         print('averaging checkpoints: ', args.inputs)
 
-    if args.output is None:
+    if args.output is None and args.num_epoch_checkpoints is not None:
         range_checkpoints = sorted([
-            re.search(r".*checkpoint(.*)\.pt$", input_file).groups()[0]
+            int(re.search(r".*checkpoint(.*)\.pt$", input_file).groups()[0])
             for input_file in args.inputs
         ])
         start = range_checkpoints[0]
@@ -181,6 +181,7 @@ def main():
         args.output = os.path.join(
             args.input_directory, "checkpoint_average_%s_%s.pt" % (start, end))
 
+    assert args.output is not None, "No output file specified, nor could it be deduced"
     new_state = average_checkpoints(args.inputs)
     with PathManager.open(args.output, 'wb') as f:
         torch.save(new_state, f)

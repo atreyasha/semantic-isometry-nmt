@@ -97,12 +97,13 @@ plot_shallow_metrics <- function(input_glob){
       facet_grid(data_name ~ model_name) +
       ## scale_color_viridis(name="Density") +
       scale_color_gradientn(colours = tim.colors(24),
-                            name="Density") +
+                            name="Point\nDensity") +
       ylab(paste0("Target"," \\textit{",metric,"} [En]","\n")) +
       xlab(paste0("\n","Source"," \\textit{",metric,"} [De]"))
     return(g)
   }
   files <- Sys.glob(input_glob)
+  if(length(files) != 4) stop("Number of json inputs not equal to 4")
   collection <- lapply(1:length(files), function(i){
     data <- fromJSON(file = files[i])
     data_name = basename(files[i])
@@ -116,7 +117,7 @@ plot_shallow_metrics <- function(input_glob){
     else {
       data_name <- "WMT19 Test Legacy"
     }
-    if (grepl("hub", model_name)){
+    if (grepl("torch_hub", model_name)){
       model_name <- "FAIR WMT19 Transformer"
     }
     else {
@@ -161,6 +162,7 @@ plot_shallow_metrics <- function(input_glob){
 
 plot_paraphrase_detector_outputs <- function(input_glob) {
   files <- Sys.glob(input_glob)
+  if(length(files) != 4) stop("Number of json inputs not equal to 4")
   collection <- lapply(1:length(files), function(i){
     data <- fromJSON(file = files[i])
     data_name = basename(files[i])

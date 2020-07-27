@@ -156,10 +156,30 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will produce (hopefully) fancy plots of the respective shallow evaluation scores and will save them as tikz-based `pdf` files in the `img` directory. To run this script, simply execute:
+This script will produce fancy plots of the respective shallow evaluation scores and will save them as tikz-based `pdf` files in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_bleu_chrf_wmt19_paraphrases_de_en.sh
+```
+
+##### Paraphrase detection
+
+In order to visualize the previously processed paraphrase detection results, we provide `visualize_paraphrase_detection_wmt19_paraphrases_de_en.sh`:
+
+```
+Usage: visualize_paraphrase_detection_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
+Visualize paraphrase detection predictions of WMT19 paraphrase translations
+
+Optional arguments:
+  -h, --help   Show this help message and exit
+  glob <glob>  Glob for finding input json translations, defaults to
+               "./predictions/*/*.json"
+```
+
+This script will produce fancy plots of the respective paraphrase detection `softmax` scores and will save them as a tikz-based `pdf` file in the `img` directory. To run this script, simply execute:
+
+```shell
+bash scripts/visualize_paraphrase_detection_wmt19_paraphrases_de_en.sh
 ```
 
 ### References :sweat_drops:

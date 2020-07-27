@@ -2,50 +2,38 @@
 
 1.  Visualization
 
-    1.  **TODO** keep only best model and discard other
-        models -\> add failsafe in globs to find this
-
-    2.  **TODO** re-run visualizations with improved NMT
-        model, but prepare pipelines based on current one
-
-    3.  **TODO** change shallow plot legend title to nearest
-        neighbour count
-
-    4.  **TODO** add visualization shell script for
+    1.  **TODO** add visualization shell script for
         paraphrase detector outputs
 
-    5.  **TODO** consider 4d plots of chrf to paraphrase
+    2.  **TODO** consider 4d plots of chrf to paraphrase
         detector output where possible
 
-    6.  **TODO** perform consistent score analysis with plots
+    3.  **TODO** perform consistent score analysis with plots
         to check for relationships between predictions of various models
         and what conclusions can be drawn from them -\> perhaps overlay
         points shaded with consistency and where they lie in comparison
 
-    7.  **TODO** check if chord or tree mapping plot could be
+    4.  **TODO** check if chord or tree mapping plot could be
         possible to see dependencies and functional mappings
 
-    8.  think about ggdensity share scale for more than two pairs of
+    5.  think about ggdensity share scale for more than two pairs of
         comparisons
 
-    9.  think of plotting schemes that could be used on various results
+    6.  think of plotting schemes that could be used on various results
         of analysis such as paraphrase detection results from all three
         models -\> get creative with these ideas -\> can already do this
         before newer translation model is present
 
-    10. add various sub-routines with different visualization shell
+    7.  add various sub-routines with different visualization shell
         scripts corresponding to different arguments of python script
         -\> such as defining model paths to plot model evolutions, etc.
         -\> make this more dynamic and practical where possible
 
-    11. use memory efficient pipelines and newer visualization
-        techniques to assist in understanding
-
-    12. think of effective ways of converting tensorflow event logs to
+    8.  think of effective ways of converting tensorflow event logs to
         csv\'s for nicer plotting -\> look into event log combination
         workflow
 
-    13. update R dependencies in readme once all visualizations are
+    9.  update R dependencies in readme once all visualizations are
         finalized
 
 2.  Clean-code and documentation

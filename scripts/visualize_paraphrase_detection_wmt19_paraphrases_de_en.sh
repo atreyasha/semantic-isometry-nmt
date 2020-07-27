@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Script to plot shallow evaluation scores of WMT19 paraphrase translations
+# Script to plot paraphrase detection predictions of WMT19 paraphrase translations
 set -e
 
 # usage function
 usage() {
   cat <<EOF
-Usage: visualize_bleu_chrf_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
-Visualize shallow evaluation scores of WMT19 paraphrase translations
+Usage: visualize_paraphrase_detection_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
+Visualize paraphrase detection predictions of WMT19 paraphrase translations
 
 Optional arguments:
   -h, --help   Show this help message and exit
@@ -26,11 +26,11 @@ check_help() {
 }
 
 # define function
-visualize_bleu_chrf_wmt19_paraphrases_de_en() {
+visualize_paraphrase_detection_wmt19_paraphrases_de_en() {
   local glob="${1:-"./predictions/*/*.json"}"
-  Rscript src/visualize_wmt19_paraphrases_de_en.R -s -j "$glob"
+  Rscript src/visualize_wmt19_paraphrases_de_en.R -p -j "$glob"
 }
 
 # execute function
 check_help "$@"
-visualize_bleu_chrf_wmt19_paraphrases_de_en "$@"
+visualize_paraphrase_detection_wmt19_paraphrases_de_en "$@"

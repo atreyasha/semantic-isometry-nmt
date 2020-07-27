@@ -16,7 +16,6 @@ subword_nmt = "^0.3.7"
 tensorboardX = "^2.1"
 tensorboard = "^2.2.2"
 fairseq = {git = "https://github.com/pytorch/fairseq.git", rev = "9f92b05e2a10f1c559d44dc1c264af31723d1d76"}
-kytea = "^0.1.5"
 transformers = {git = "https://github.com/huggingface/transformers.git", rev = "cefd51c50cc08be8146c1151544495968ce8f2ad"}
 sentencepiece = "0.1.91"
 scikit-learn = "^0.23.1"

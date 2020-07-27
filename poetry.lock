@@ -311,14 +311,6 @@ version = "0.16.0"
 
 [[package]]
 category = "main"
-description = "An text analysis toolkit KyTea binding"
-name = "kytea"
-optional = false
-python-versions = "*"
-version = "0.1.5"
-
-[[package]]
-category = "main"
 description = "Python implementation of Markdown."
 name = "markdown"
 optional = false
@@ -831,7 +823,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "51545506a151305325ee8deb099dbe01819f3a5716c1baea954b9d0b7618c937"
+content-hash = "87f2548f976fd8fa04290da38161418fa6934ffa46a6c5356ac00c3e8dc41e2b"
 lock-version = "1.0"
 python-versions = "^3.7.0"
 
@@ -1025,29 +1017,6 @@ jmespath = [
 joblib = [
     {file = "joblib-0.16.0-py3-none-any.whl", hash = "sha256:d348c5d4ae31496b2aa060d6d9b787864dd204f9480baaa52d18850cb43e9f49"},
     {file = "joblib-0.16.0.tar.gz", hash = "sha256:8f52bf24c64b608bf0b2563e0e47d6fcf516abc8cfafe10cfd98ad66d94f92d6"},
-]
-kytea = [
-    {file = "kytea-0.1.5-cp35-cp35m-macosx_10_13_x86_64.whl", hash = "sha256:f910b4d573ffe88d0ae0748f966ccc7150565dfe67f8f54472b88bd6475b10ce"},
-    {file = "kytea-0.1.5-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:7a31190fc7ccdc1ce164ec3c7fc71110ba2768a6080e3cc6ad138ed332892ce8"},
-    {file = "kytea-0.1.5-cp35-cp35m-win32.whl", hash = "sha256:432da7ed9f877e9fc6ca3963fb05bdd7bfe4624c22aa17ab9738e384964b2b7e"},
-    {file = "kytea-0.1.5-cp35-cp35m-win_amd64.whl", hash = "sha256:5cc439a2037143912d0e3a5cc4960d53e79610299c72016f775c9cf4b8eaeef4"},
-    {file = "kytea-0.1.5-cp36-cp36m-macosx_10_13_x86_64.whl", hash = "sha256:b342f1712235b5a8bf994b6a8b89fdaa2894493dd8cc2c193ff208c5fb24a47a"},
-    {file = "kytea-0.1.5-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:4a7fc3f0067b82cfe56cd48ea93472e964cbc62e6cce74f488c6021369eab891"},
-    {file = "kytea-0.1.5-cp36-cp36m-win32.whl", hash = "sha256:27e2f39133d55359df6d1f3da6da15b48b480bf41fb080bb9f464cd7ea335453"},
-    {file = "kytea-0.1.5-cp36-cp36m-win_amd64.whl", hash = "sha256:e154bee9cc464946b658488835a7c2ec67bec6c71ab614a71fdc69bb94b4a248"},
-    {file = "kytea-0.1.5-cp37-cp37m-macosx_10_13_x86_64.whl", hash = "sha256:ab3713993e4167d2446400319c2865d0b21c8b99463ec0a9682dea346877b450"},
-    {file = "kytea-0.1.5-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:c0d3598506f1318e4d3cbd61c799ef3f4dd511b006a382b7e95ca536eb707d25"},
-    {file = "kytea-0.1.5-cp37-cp37m-win32.whl", hash = "sha256:117bc8d09d3636e28c297f6a49d808cdd3f6712c1bf40316bcb4c711b5714c70"},
-    {file = "kytea-0.1.5-cp37-cp37m-win_amd64.whl", hash = "sha256:2ffe40e85fdf2dfe37bec71d987681c2a1589807168d8f85d7eec0083da14fe6"},
-    {file = "kytea-0.1.5-cp38-cp38-macosx_10_13_x86_64.whl", hash = "sha256:1955c77e185dee53b33e1603f24fa57041f67dc1dc2c941b36a0f9b65b1f7d52"},
-    {file = "kytea-0.1.5-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:ee260ada4226884902e455e429574f9f8e15372a6c3238ea5f2d46d588687a1b"},
-    {file = "kytea-0.1.5-cp38-cp38-win32.whl", hash = "sha256:456c3cf23bd921be58f7cf9986a2ef1e7422316c5c24b72d630d6db0b8f8fd5e"},
-    {file = "kytea-0.1.5-cp38-cp38-win_amd64.whl", hash = "sha256:b1b87039d588964eb300ff9b1ceeeb8f5177a8bfabd0a0e45a23562e4a0cb1da"},
-    {file = "kytea-0.1.5-py3.5-macosx-10.13-x86_64.egg", hash = "sha256:d288612b4df2668ce83c90f1b3f8d954a859e04c4096683d6891e50ecf8d70d3"},
-    {file = "kytea-0.1.5-py3.6-macosx-10.13-x86_64.egg", hash = "sha256:48afb2742c346ce6bb017844e133ae86821b7ffce6750a1581a2fd7fddcb1eed"},
-    {file = "kytea-0.1.5-py3.7-macosx-10.13-x86_64.egg", hash = "sha256:3064088785647801b8c463dd5c8f81511eca39ad102e53a1fe1c5c4b51f146de"},
-    {file = "kytea-0.1.5-py3.8-macosx-10.13-x86_64.egg", hash = "sha256:fcc928f5c57b6c1079fd053187db29281a8c2b68d25d64210e76e6a71e028c5f"},
-    {file = "kytea-0.1.5.tar.gz", hash = "sha256:52b5adcf7d85d0537aaff19d8f23c823c726e09504f0b9b7c5e15bcdf4a90f74"},
 ]
 markdown = [
     {file = "Markdown-3.2.2-py3-none-any.whl", hash = "sha256:c467cd6233885534bf0fe96e62e3cf46cfc1605112356c4f9981512b8174de59"},

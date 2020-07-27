@@ -1,60 +1,49 @@
 ### Development
 
-1.  Clean-code and documentation
+1.  Visualization
 
-    1.  **TODO** update training readme on any new
-        steps/documentation such as checkpoint averaging and add
-        respective scripts where/when necessary
+    1.  **TODO** keep only best model and discard other
+        models -\> add failsafe in globs to find this
 
-    2.  **TODO** add slurm tags and sbatch command in readme
-        for averaging script
+    2.  **TODO** re-run visualizations with improved NMT
+        model, but prepare pipelines based on current one
 
-    3.  create modular scripts with instructions in readme:
+    3.  **TODO** change shallow plot legend title to nearest
+        neighbour count
 
-        1.  **TODO** train translation model
+    4.  **TODO** consider 4d plots of chrf to paraphrase
+        detector output where possible
 
-        2.  **TODO** visualize fine-tuned LM result
+    5.  **TODO** perform consistent score analysis with plots
+        to check for relationships between predictions of various models
+        and what conclusions can be drawn from them -\> perhaps overlay
+        points shaded with consistency and where they lie in comparison
 
-        3.  **TODO** visualize correlation of LM and shallow
-            metrics
+    6.  **TODO** check if chord or tree mapping plot could be
+        possible to see dependencies and functional mappings
 
-        4.  **TODO** visualize model training evolutions
+    7.  think about ggdensity share scale for more than two pairs of
+        comparisons
 
-        5.  **DONE** visualize shallow metrics
+    8.  think of plotting schemes that could be used on various results
+        of analysis such as paraphrase detection results from all three
+        models -\> get creative with these ideas -\> can already do this
+        before newer translation model is present
 
-        6.  **DONE** evaluate using fine-tuned language model
+    9.  add various sub-routines with different visualization shell
+        scripts corresponding to different arguments of python script
+        -\> such as defining model paths to plot model evolutions, etc.
+        -\> make this more dynamic and practical where possible
 
-        7.  **DONE** fine tune paraphrase detector
+    10. use memory efficient pipelines and newer visualization
+        techniques to assist in understanding
 
-        8.  **DONE** translate sentences
+    11. think of effective ways of converting tensorflow event logs to
+        csv\'s for nicer plotting -\> look into event log combination
+        workflow
 
-        9.  **DONE** evaluate bleu & chrf
-
-    4.  **TODO** re-export and upload new model if
-        performance improves -\> update readme links and sections
-
-    5.  **TODO** change translation default checkpoint to
-        final (best) averaged checkpoint in shell, python and readme
-        scripts if checkpoint is deemed better
-
-    6.  add information in readmes on how long training all models took
-        and what DL settings/hardware were used -\> can do this when
-        everything is finalized
-
-    7.  segment readme into training, translation and others categories
-        with relevant usages
-
-    8.  replace relevant bash commands with sbatch in slurm-s3it branch
-        after repository is completed
-
-    9.  update initial page of readme with overview/abstract of work
-        including shallow metrics
-
-    10. update TOC\'s in all readmes to reflect latest changes
-
-    11. add citations in readme as per general standard
-
-    12. add final paper/presentation into repo with link in readme
+    12. update R dependencies in readme once all visualizations are
+        finalized
 
 2.  Evaluation
 
@@ -62,79 +51,111 @@
         interpreting the results and what the possible statistical
         conclusions could be
 
-    2.  perhaps reliably use paraphrase detection only in cases where
+    2.  **TODO** Main source of errors seems to be wrong
+        language insertion in scaling NMT model while not really the
+        case in FAIR SOTA model -\> check test data performance to see
+        if this is also the case -\> perhaps this is a systematic error
+        for non-backtranslated model
+
+    3.  perhaps reliably use paraphrase detection only in cases where
         initial German paraphrase is positively detected, to ensure some
         consistency for evaluation
 
-    3.  consider comparing across checkpoints if this would be of
+    4.  consider comparing across checkpoints if this would be of
         interest
 
-    4.  check for possibly interesting correlations between XLM-R
+    5.  check for possibly interesting correlations between XLM-R
         prediction and chrF/BLEU scores -\> this could be of interest in
         making additional statements to Michel et al. 2019\'s statements
         regarding chrF scores
 
-    5.  consider changing bleu to sacrebleu in json (read more about
+    6.  consider changing bleu to sacrebleu in json (read more about
         differences) and figure out why stating this might be important
 
-    6.  compute statistical tests for ascertaining significance of
+    7.  compute statistical tests for ascertaining significance of
         relationships
 
-    7.  in rare cases, can do manual analysis and include this inside
+    8.  in rare cases, can do manual analysis and include this inside
         report
 
-    8.  report evaluation of fine-tuning paraphrase detector and weaker
+    9.  report evaluation of fine-tuning paraphrase detector and weaker
         translation model
 
-    9.  early conclusions/hypotheses: hand-crafted adversarial
+    10. early conclusions/hypotheses: hand-crafted adversarial
         paraphrase robustness is handled well in SOTA models due to
         backtranslation reguralization, main vulnerability will be
         targetted adversarial samples
 
-3.  Translation
+    11. show that training with backtranslation helps for robustness to
+        paraphrases -\> through visualizations and perhaps some
+        statistical tests
 
-    1.  **TODO** average last 10 checkpoints and then check
-        model performance -\> think about when to stop training
+3.  Clean-code and documentation
 
-    2.  strong model being WMT19 single and ensemble with back
+    1.  create modular scripts with instructions in readme:
+
+        1.  **TODO** visualize fine-tuned LM result
+
+        2.  **TODO** visualize correlation of LM and shallow
+            metrics
+
+        3.  **TODO** visualize model training evolutions
+
+        4.  **TODO** train translation model (after better
+            NMT performance)
+
+        5.  **TODO** translate sentences (after better NMT
+            performance)
+
+        6.  **DONE** visualize shallow metrics
+
+        7.  **DONE** evaluate using fine-tuned language model
+
+        8.  **DONE** fine tune paraphrase detector
+
+        9.  **DONE** evaluate bleu & chrf
+
+    2.  **TODO** re-export and upload improved NMT model
+
+    3.  **TODO** change translation default checkpoint to
+        final (best) averaged checkpoint in shell, python and readme
+        scripts if checkpoint is deemed better
+
+    4.  add information in readmes on how long training all models took
+        and what DL settings/hardware were used -\> can do this when
+        everything is finalized
+
+    5.  segment readme into training, translation and others categories
+        with relevant usages
+
+    6.  replace relevant bash commands with sbatch in slurm-s3it branch
+        after repository is completed
+
+    7.  update initial page of readme with overview/abstract of work
+        including shallow metrics
+
+    8.  update TOC\'s in all readmes to reflect latest changes
+
+    9.  add citations in readme as per general standard
+
+    10. add final paper/presentation into repo with link in readme
+
+4.  Translation
+
+    1.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being
         transformer trained on WMT16 without back translation -\>
         compare general performances and metrics
 
-    3.  consider also looking into extra references repo
+    2.  consider also looking into extra references repo
         \"evaluation-of-nmt-bt\"
 
-    4.  possibly keep backups of models at various development stages
+    3.  possibly keep backups of models at various development stages
 
-    5.  ****extra:**** train additional large model on wmt19
+    4.  ****extra:**** train additional large model on wmt19
         non-backtranslated data and similar transformer arch as fair
         paper -\> to get slightly better performance for comparison -\>
         this can also be done later
-
-4.  Visualization
-
-    1.  re-run visualizations with improved NMT model, but prepare
-        pipelines based on current one
-
-    2.  think of plotting schemes that could be used on various results
-        of analysis such as paraphrase detection results from all three
-        models -\> get creative with these ideas -\> can already do this
-        before newer translation model is present
-
-    3.  add various sub-routines with different visualization shell
-        scripts corresponding to different arguments of python script
-        -\> such as defining model paths to plot model evolutions, etc.
-        -\> make this more dynamic and practical where possible
-
-    4.  use memory efficient pipelines and newer visualization
-        techniques to assist in understanding
-
-    5.  think of effective ways of converting tensorflow event logs to
-        csv\'s for nicer plotting -\> look into event log combination
-        workflow
-
-    6.  update R dependencies in readme once all visualizations are
-        finalized
 
 5.  Paraphrase detection
 
@@ -175,6 +196,8 @@
         -\> summarized below in logs
 
     5.  list hypotheses and how some were refuted by results
+
+    6.  add github repo to paperswithcode examples for relevant papers
 
 ### Completed
 

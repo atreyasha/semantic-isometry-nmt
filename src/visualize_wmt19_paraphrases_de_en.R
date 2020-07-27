@@ -216,7 +216,7 @@ plot_paraphrase_detector_outputs <- function(input_glob) {
           legend.key.width = unit(5, "cm"),
           text = element_text(size=14)) +
     guides(colour = guide_colourbar(title.position="left", title.hjust = 0.5,
-                                    title.vjust = 0.8))
+                                    title.vjust = 0.9))
   # get legend of dummy plot
   mylegend<-g_legend(q)
   # make actual plot

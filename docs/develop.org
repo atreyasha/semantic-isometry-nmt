@@ -4,6 +4,7 @@
 ***** TODO keep only best model and discard other models -> add failsafe in globs to find this
 ***** TODO re-run visualizations with improved NMT model, but prepare pipelines based on current one
 ***** TODO change shallow plot legend title to nearest neighbour count
+***** TODO add visualization shell script for paraphrase detector outputs
 ***** TODO consider 4d plots of chrf to paraphrase detector output where possible
 ***** TODO perform consistent score analysis with plots to check for relationships between predictions of various models and what conclusions can be drawn from them -> perhaps overlay points shaded with consistency and where they lie in comparison
 ***** TODO check if chord or tree mapping plot could be possible to see dependencies and functional mappings
@@ -13,19 +14,6 @@
 ***** use memory efficient pipelines and newer visualization techniques to assist in understanding
 ***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
 ***** update R dependencies in readme once all visualizations are finalized
-
-**** Evaluation
-***** TODO finalize results and start focusing on interpreting the results and what the possible statistical conclusions could be
-***** TODO Main source of errors seems to be wrong language insertion in scaling NMT model while not really the case in FAIR SOTA model -> check test data performance to see if this is also the case -> perhaps this is a systematic error for non-backtranslated model
-***** perhaps reliably use paraphrase detection only in cases where initial German paraphrase is positively detected, to ensure some consistency for evaluation
-***** consider comparing across checkpoints if this would be of interest
-***** check for possibly interesting correlations between XLM-R prediction and chrF/BLEU scores -> this could be of interest in making additional statements to Michel et al. 2019's statements regarding chrF scores
-***** consider changing bleu to sacrebleu in json (read more about differences) and figure out why stating this might be important
-***** compute statistical tests for ascertaining significance of relationships
-***** in rare cases, can do manual analysis and include this inside report
-***** report evaluation of fine-tuning paraphrase detector and weaker translation model
-***** early conclusions/hypotheses: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
-***** show that training with backtranslation helps for robustness to paraphrases -> through visualizations and perhaps some statistical tests
 
 **** Clean-code and documentation
 ***** create modular scripts with instructions in readme: 
@@ -38,21 +26,33 @@
 ****** DONE evaluate using fine-tuned language model
 ****** DONE fine tune paraphrase detector
 ****** DONE evaluate bleu & chrf
-***** TODO re-export and upload improved NMT model
-***** TODO change translation default checkpoint to final (best) averaged checkpoint in shell, python and readme scripts if checkpoint is deemed better
-***** add information in readmes on how long training all models took and what DL settings/hardware were used -> can do this when everything is finalized
 ***** segment readme into training, translation and others categories with relevant usages
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
 ***** update initial page of readme with overview/abstract of work including shallow metrics
 ***** update TOC's in all readmes to reflect latest changes
 ***** add citations in readme as per general standard
 ***** add final paper/presentation into repo with link in readme 
+***** add github repo to paperswithcode examples for relevant papers
 
-**** Translation
-***** strong model being WMT19 single and ensemble with back translation (which adds robustness), while weak model being transformer trained on WMT16 without back translation -> compare general performances and metrics
-***** consider also looking into extra references repo "evaluation-of-nmt-bt"
-***** possibly keep backups of models at various development stages
-***** **extra:** train additional large model on wmt19 non-backtranslated data and similar transformer arch as fair paper -> to get slightly better performance for comparison -> this can also be done later 
+**** Evaluation
+***** TODO finalize results and start focusing on interpreting the results and what the possible statistical conclusions could be
+***** TODO main source of errors seems to be wrong language insertion in scaling NMT model while not really the case in FAIR SOTA model -> check test data performance to see if this is also the case -> perhaps this is a systematic error for non-backtranslated model
+***** perhaps reliably use paraphrase detection only in cases where initial German paraphrase is positively detected, to ensure some consistency for evaluation
+***** consider comparing across checkpoints if this would be of interest
+***** check for possibly interesting correlations between XLM-R prediction and chrF/BLEU scores -> this could be of interest in making additional statements to Michel et al. 2019's statements regarding chrF scores
+***** consider changing bleu to sacrebleu in json (read more about differences) and figure out why stating this might be important
+***** compute statistical tests for ascertaining significance of relationships
+***** in rare cases, can do manual analysis and include this inside report
+***** report evaluation of fine-tuning paraphrase detector and weaker translation model
+***** early conclusions/hypotheses: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
+***** show that training with backtranslation helps for robustness to paraphrases -> through visualizations and perhaps some statistical tests
+
+**** Paper
+***** use two-column format for final paper, to prepare for paper writing
+***** think more about whether to include or exclude adversarial term since this might be a grey area -> qualify various means of being adversarial ie. targetted through model or perhaps just an intention
+***** include semantic transferance equation in paper to introduce some formalisms -> show mathematical properties of isometric functions/spaces and how this should hold for semantic vector spaces
+***** describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
+***** list hypotheses and how some were refuted by results
 
 **** Paraphrase detection
 ***** make formal analysis on lengths of WMT19 inputs vs. lengths of paws-x training data
@@ -61,13 +61,11 @@
 ***** better to work with human-curated data than back-translated ones due to many errors -> advantage in PAWS and PAWS-X English data + WMT19 AR paraphrases
 ***** **extra:** fix and refine paws-x pipeline later on with patience, typing, better documentation, clean-code and possibly continuation of training, add roc auc on pawsx test data
 
-**** Paper
-***** use two-column format for final paper, to prepare for paper writing
-***** think more about whether to include or exclude adversarial term since this might be a grey area -> qualify various means of being adversarial ie. targetted through model or perhaps just an intention
-***** include semantic transferance equation in paper to introduce some formalisms -> show mathematical properties of isometric functions/spaces and how this should hold for semantic vector spaces
-***** describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
-***** list hypotheses and how some were refuted by results
-***** add github repo to paperswithcode examples for relevant papers
+**** Translation
+***** strong model being WMT19 single and ensemble with back translation (which adds robustness), while weak model being transformer trained on WMT16 without back translation -> compare general performances and metrics
+***** consider also looking into extra references repo "evaluation-of-nmt-bt"
+***** possibly keep backups of models at various development stages
+***** **extra:** train additional large model on wmt19 non-backtranslated data and similar transformer arch as fair paper -> to get slightly better performance for comparison -> this can also be done later 
       
 *** Completed
 ***** DONE clean up exporting script where user can specify which checkpoint should be packaged

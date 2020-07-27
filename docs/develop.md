@@ -11,47 +11,92 @@
     3.  **TODO** change shallow plot legend title to nearest
         neighbour count
 
-    4.  **TODO** consider 4d plots of chrf to paraphrase
+    4.  **TODO** add visualization shell script for
+        paraphrase detector outputs
+
+    5.  **TODO** consider 4d plots of chrf to paraphrase
         detector output where possible
 
-    5.  **TODO** perform consistent score analysis with plots
+    6.  **TODO** perform consistent score analysis with plots
         to check for relationships between predictions of various models
         and what conclusions can be drawn from them -\> perhaps overlay
         points shaded with consistency and where they lie in comparison
 
-    6.  **TODO** check if chord or tree mapping plot could be
+    7.  **TODO** check if chord or tree mapping plot could be
         possible to see dependencies and functional mappings
 
-    7.  think about ggdensity share scale for more than two pairs of
+    8.  think about ggdensity share scale for more than two pairs of
         comparisons
 
-    8.  think of plotting schemes that could be used on various results
+    9.  think of plotting schemes that could be used on various results
         of analysis such as paraphrase detection results from all three
         models -\> get creative with these ideas -\> can already do this
         before newer translation model is present
 
-    9.  add various sub-routines with different visualization shell
+    10. add various sub-routines with different visualization shell
         scripts corresponding to different arguments of python script
         -\> such as defining model paths to plot model evolutions, etc.
         -\> make this more dynamic and practical where possible
 
-    10. use memory efficient pipelines and newer visualization
+    11. use memory efficient pipelines and newer visualization
         techniques to assist in understanding
 
-    11. think of effective ways of converting tensorflow event logs to
+    12. think of effective ways of converting tensorflow event logs to
         csv\'s for nicer plotting -\> look into event log combination
         workflow
 
-    12. update R dependencies in readme once all visualizations are
+    13. update R dependencies in readme once all visualizations are
         finalized
 
-2.  Evaluation
+2.  Clean-code and documentation
+
+    1.  create modular scripts with instructions in readme:
+
+        1.  **TODO** visualize fine-tuned LM result
+
+        2.  **TODO** visualize correlation of LM and shallow
+            metrics
+
+        3.  **TODO** visualize model training evolutions
+
+        4.  **TODO** train translation model (after better
+            NMT performance)
+
+        5.  **TODO** translate sentences (after better NMT
+            performance)
+
+        6.  **DONE** visualize shallow metrics
+
+        7.  **DONE** evaluate using fine-tuned language model
+
+        8.  **DONE** fine tune paraphrase detector
+
+        9.  **DONE** evaluate bleu & chrf
+
+    2.  segment readme into training, translation and others categories
+        with relevant usages
+
+    3.  replace relevant bash commands with sbatch in slurm-s3it branch
+        after repository is completed
+
+    4.  update initial page of readme with overview/abstract of work
+        including shallow metrics
+
+    5.  update TOC\'s in all readmes to reflect latest changes
+
+    6.  add citations in readme as per general standard
+
+    7.  add final paper/presentation into repo with link in readme
+
+    8.  add github repo to paperswithcode examples for relevant papers
+
+3.  Evaluation
 
     1.  **TODO** finalize results and start focusing on
         interpreting the results and what the possible statistical
         conclusions could be
 
-    2.  **TODO** Main source of errors seems to be wrong
+    2.  **TODO** main source of errors seems to be wrong
         language insertion in scaling NMT model while not really the
         case in FAIR SOTA model -\> check test data performance to see
         if this is also the case -\> perhaps this is a systematic error
@@ -90,93 +135,7 @@
         paraphrases -\> through visualizations and perhaps some
         statistical tests
 
-3.  Clean-code and documentation
-
-    1.  create modular scripts with instructions in readme:
-
-        1.  **TODO** visualize fine-tuned LM result
-
-        2.  **TODO** visualize correlation of LM and shallow
-            metrics
-
-        3.  **TODO** visualize model training evolutions
-
-        4.  **TODO** train translation model (after better
-            NMT performance)
-
-        5.  **TODO** translate sentences (after better NMT
-            performance)
-
-        6.  **DONE** visualize shallow metrics
-
-        7.  **DONE** evaluate using fine-tuned language model
-
-        8.  **DONE** fine tune paraphrase detector
-
-        9.  **DONE** evaluate bleu & chrf
-
-    2.  **TODO** re-export and upload improved NMT model
-
-    3.  **TODO** change translation default checkpoint to
-        final (best) averaged checkpoint in shell, python and readme
-        scripts if checkpoint is deemed better
-
-    4.  add information in readmes on how long training all models took
-        and what DL settings/hardware were used -\> can do this when
-        everything is finalized
-
-    5.  segment readme into training, translation and others categories
-        with relevant usages
-
-    6.  replace relevant bash commands with sbatch in slurm-s3it branch
-        after repository is completed
-
-    7.  update initial page of readme with overview/abstract of work
-        including shallow metrics
-
-    8.  update TOC\'s in all readmes to reflect latest changes
-
-    9.  add citations in readme as per general standard
-
-    10. add final paper/presentation into repo with link in readme
-
-4.  Translation
-
-    1.  strong model being WMT19 single and ensemble with back
-        translation (which adds robustness), while weak model being
-        transformer trained on WMT16 without back translation -\>
-        compare general performances and metrics
-
-    2.  consider also looking into extra references repo
-        \"evaluation-of-nmt-bt\"
-
-    3.  possibly keep backups of models at various development stages
-
-    4.  ****extra:**** train additional large model on wmt19
-        non-backtranslated data and similar transformer arch as fair
-        paper -\> to get slightly better performance for comparison -\>
-        this can also be done later
-
-5.  Paraphrase detection
-
-    1.  make formal analysis on lengths of WMT19 inputs vs. lengths of
-        paws-x training data
-
-    2.  consider roc and other evaluation metrics for pawsx model -\> in
-        case these might be of more help
-
-    3.  fine-tune models with English and ensure no or little machine
-        translated data is present in training set
-
-    4.  better to work with human-curated data than back-translated ones
-        due to many errors -\> advantage in PAWS and PAWS-X English
-        data + WMT19 AR paraphrases
-
-    5.  ****extra:**** fix and refine paws-x pipeline later on with
-        patience, typing, better documentation, clean-code and possibly
-        continuation of training, add roc auc on pawsx test data
-
-6.  Paper
+4.  Paper
 
     1.  use two-column format for final paper, to prepare for paper
         writing
@@ -197,7 +156,41 @@
 
     5.  list hypotheses and how some were refuted by results
 
-    6.  add github repo to paperswithcode examples for relevant papers
+5.  Paraphrase detection
+
+    1.  make formal analysis on lengths of WMT19 inputs vs. lengths of
+        paws-x training data
+
+    2.  consider roc and other evaluation metrics for pawsx model -\> in
+        case these might be of more help
+
+    3.  fine-tune models with English and ensure no or little machine
+        translated data is present in training set
+
+    4.  better to work with human-curated data than back-translated ones
+        due to many errors -\> advantage in PAWS and PAWS-X English
+        data + WMT19 AR paraphrases
+
+    5.  ****extra:**** fix and refine paws-x pipeline later on with
+        patience, typing, better documentation, clean-code and possibly
+        continuation of training, add roc auc on pawsx test data
+
+6.  Translation
+
+    1.  strong model being WMT19 single and ensemble with back
+        translation (which adds robustness), while weak model being
+        transformer trained on WMT16 without back translation -\>
+        compare general performances and metrics
+
+    2.  consider also looking into extra references repo
+        \"evaluation-of-nmt-bt\"
+
+    3.  possibly keep backups of models at various development stages
+
+    4.  ****extra:**** train additional large model on wmt19
+        non-backtranslated data and similar transformer arch as fair
+        paper -\> to get slightly better performance for comparison -\>
+        this can also be done later
 
 ### Completed
 

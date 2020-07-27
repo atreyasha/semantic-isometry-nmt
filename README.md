@@ -15,7 +15,7 @@
 
 This repository investigates the performance of Neural Machine Translation (NMT) models in effectively and consistently transferring the semantics of hand-crafted adversarial paraphrases. Through this, we aim to interpret the robustness of said models to such adversarial paraphrases.
 
-To approach this objective, we start by gathering hand-crafted [paraphrases](https://github.com/google/wmt19-paraphrased-references) of WMT19 `en-de` test data's legacy and additional references. We then translate these paraphrases in the reverse direction ie. `de-en` using both SOTA and non-SOTA NMT models to obtain various translation samples. We use Facebook's FAIR WMT19 winning (single) model from [Ng. et al., 2019](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based off [Ott et al., 2018](https://arxiv.org/abs/1806.00187) on reversed WMT16 data and utilize this model as our non-SOTA model.
+To approach this objective, we start by gathering hand-crafted [paraphrases](https://github.com/google/wmt19-paraphrased-references) of WMT19 `en-de` test data's legacy and additional references. We then translate these paraphrases in the reverse direction ie. `de-en` using both SOTA and non-SOTA NMT models to obtain various translation samples. We use Facebook's FAIR WMT19 winning (single) model from [Ng. et al., 2019](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based on the Scaling NMT methodology from [Ott et al., 2018](https://arxiv.org/abs/1806.00187) on reversed WMT16 data and utilize this model as our non-SOTA model.
 
 Finally, to check the quality/consistency of the translated paraphrases; we train a large paraphrase detection model based off Google's [XTREME](https://github.com/google-research/xtreme) benchmarks on the [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task and apply this model on the aforementioned translations. A detailed description of our methodologies and results can be found in our research paper. 
 
@@ -45,7 +45,7 @@ Finally, to check the quality/consistency of the translated paraphrases; we trai
 2. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory (~480 MB download size).
 
 3. Manually download the following four pre-trained models and place all of the tarballs in the `models` directory (~9 GB total download size):
-    1. [Large NMT Transformer](https://drive.google.com/uc?id=1xT082A30WkwWfxv-scYF2TrOopD1odUt&export=download) for non-SOTA `de-en` translation
+    1. [Scaling NMT WMT16 Transformer](https://drive.google.com/uc?id=16LGqlWYppOYVgy7EKMdL7H4j8pj_DXfV&export=download) for non-SOTA `de-en` translation
     2. [BERT-Multilingual-Base](https://drive.google.com/uc?id=1LFjYMo36RgcS8VDaWoHz1EKQsXgAq_u6&export=download) for multilingual paraphrase detection
     3. [XLM-R-Base](https://drive.google.com/uc?id=1g1KTF7K1rHUPfxmpLGCJ23JW10IHSZOc&export=download) for multilingual paraphrase detection
     4. [XLM-R-Large](https://drive.google.com/uc?id=10iestAbz2aCIOYGRYPAK_kpHukz_pEM4&export=download) for multilingual paraphrase detection

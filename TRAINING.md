@@ -131,9 +131,13 @@ bash scripts/postprocess_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
 ```
 
+**vii.** We trained our model for ~1 week on a NVIDIA Tesla V100-16GB GPU, specifically up until ~285k updates. During training, we enabled checkpoint saving and used the best performing checkpoint on the validation set as our final model.
+
+As a clarification, although we do provide a script for checkpoint averaging above; we observed no significant performance gain from checkpoint averaging and therefore did not use it for our final model. 
+
 ### 3. Fine-tuning multilingual transformer language model on PAWS-X
 
-Fine-tune a large multilingual transformer language model on the `PAWS-X` paraphrase detection task using `train_evaluate_pawsx.sh`:
+**i.** Fine-tune a large multilingual transformer language model on the `PAWS-X` paraphrase detection task using `train_evaluate_pawsx.sh`:
 
 ```
 Usage: train_evaluate_pawsx.sh [-h|--help] [model]
@@ -153,6 +157,8 @@ bash scripts/train_evaluate_pawsx.sh
 ```
 
 This script will automatically evaluate the model against the `dev` set during training and the `test` set after training. Therefore a separate evaluation step is not necessary.
+
+**ii.** We ran the script above once for each of the three provided models. The training process took for ~2 hours for `MULTILINGUAL-BERT` and ~3 hours for`XLM-R-BASE` on a NVIDIA GeForce GTX 1080 Ti-12GB GPU, and ~1.5 days for `XLM-R-LARGE` on a NVIDIA Tesla-K80 GPU. All models were trained for ~15k updates. We used the best performing checkpoint(s) on the validation dataset as our final model(s).
 
 ### 4. Exporting models
 

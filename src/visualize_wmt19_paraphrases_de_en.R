@@ -239,16 +239,16 @@ plot_paraphrase_detector_outputs <- function(input_glob) {
           panel.grid = element_line(size = 1),
           axis.ticks.length=unit(.15, "cm"),
           legend.margin=margin(c(1,5,5,15)))
-  tikz(paste0("paraphrase_detection_results.tex"), width=20, height=8,
+  tikz(paste0("paraphrase_detection_softmax.tex"), width=20, height=8,
        standAlone = TRUE, engine="luatex")
   grid.arrange(g, mylegend, nrow=2,heights=c(10, 1))
   dev.off()
-  texi2pdf("paraphrase_detection_results.tex",clean=TRUE,
+  texi2pdf("paraphrase_detection_softmax.tex",clean=TRUE,
            texi2dvi=Sys.which("lualatex"))
-  file.remove("paraphrase_detection_results.tex")
-  file.rename("paraphrase_detection_results.pdf",
-              "./img/paraphrase_detection_results.pdf")
-  unlink("paraphrase_detection_results*.png")
+  file.remove("paraphrase_detection_softmax.tex")
+  file.rename("paraphrase_detection_softmax.pdf",
+              "./img/paraphrase_detection_softmax.pdf")
+  unlink("paraphrase_detection_softmax*.png")
   unlink("Rplots.pdf")
 }
 

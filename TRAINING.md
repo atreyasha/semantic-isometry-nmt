@@ -158,7 +158,7 @@ bash scripts/train_evaluate_pawsx.sh
 
 This script will automatically evaluate the model against the `dev` set during training and the `test` set after training. Therefore a separate evaluation step is not necessary.
 
-**ii.** We ran the script above once for each of the three provided models. The training process took for ~2 hours for `MULTILINGUAL-BERT` and ~3 hours for`XLM-R-BASE` on a NVIDIA GeForce GTX 1080 Ti-12GB GPU, and ~1.5 days for `XLM-R-LARGE` on a NVIDIA Tesla-K80 GPU. All models were trained for ~15k updates. We used the best performing checkpoint(s) on the validation dataset as our final model(s).
+**ii.** We ran the script above once for each of the three provided models. The training process took for ~2 hours for `MULTILINGUAL-BERT` and ~3 hours for`XLM-R-BASE` on a NVIDIA GeForce GTX 1080 Ti-12GB GPU, and ~1.5 days for `XLM-R-LARGE` on a NVIDIA Tesla-K80 GPU. All models were trained up until ~15k updates. We used the best performing checkpoint(s) on the validation dataset as our final model(s).
 
 ### 4. Exporting models
 

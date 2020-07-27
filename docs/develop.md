@@ -2,8 +2,10 @@
 
 1.  Visualization
 
-    1.  **TODO** consider 4d plots of chrf to paraphrase
-        detector output where possible
+    1.  **TODO** plots next to each other with truncated
+        label -\> chrf and paraphrase detector 4 possible combinations
+        -\> use simple alpha to see density and plot this to get an
+        indication of any clustering at all
 
     2.  **TODO** perform consistent score analysis with plots
         to check for relationships between predictions of various models

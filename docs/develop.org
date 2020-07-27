@@ -1,7 +1,7 @@
 *** Development
 
 **** Visualization
-***** TODO consider 4d plots of chrf to paraphrase detector output where possible
+***** TODO plots next to each other with truncated label -> chrf and paraphrase detector 4 possible combinations -> use simple alpha to see density and plot this to get an indication of any clustering at all
 ***** TODO perform consistent score analysis with plots to check for relationships between predictions of various models and what conclusions can be drawn from them -> perhaps overlay points shaded with consistency and where they lie in comparison
 ***** TODO check if chord or tree mapping plot could be possible to see dependencies and functional mappings
 ***** think about ggdensity share scale for more than two pairs of comparisons

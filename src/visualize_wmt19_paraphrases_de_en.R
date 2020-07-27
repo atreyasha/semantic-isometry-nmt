@@ -212,7 +212,7 @@ plot_paraphrase_detector_outputs <- function(input_glob) {
   dummy <- data.frame(x = seq(0,1,0.01), y = seq(0,1,0.01))
   q <- ggplot(data=dummy, aes(x=x, y=y)) + geom_point(aes(color=x)) +
     scale_color_gradientn(colors = tim.colors(100),
-                          name="Normalized Density") +
+                          name="Normalized Contour Density") +
     theme(legend.position = "bottom",
           legend.box="horizontal",
           legend.key.width = unit(5, "cm"),

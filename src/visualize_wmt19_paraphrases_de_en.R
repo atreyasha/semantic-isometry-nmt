@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 library(tools)
+library(ggh4x)
 library(rjson)
 library(fields)
 library(ggplot2)
@@ -226,7 +227,7 @@ plot_paraphrase_detector_outputs <- function(input_glob) {
     geom_density_2d_filled(contour_var = "ndensity", binwidth=0.01) +
     scale_fill_manual(values = tim.colors(100),
                       name="Density") +
-    facet_grid(data_name ~ model_name + Type) +
+    facet_nested(data_name ~ model_name + Type) +
     coord_cartesian(expand = FALSE) +
     xlab("\nSource Paraphrase Softmax Score [De]") +
     ylab("Target Paraphrase Softmax Score [En]\n") +

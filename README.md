@@ -31,7 +31,8 @@ Finally, to check the quality/consistency of the translated paraphrases; we trai
 
     ```r
     install.packages(c("ggplot2","optparse","tikzDevice","rjson","ggpointdensity",
-                       "fields","gridExtra"))
+                       "fields","gridExtra","devtools"))
+    devtools::install_github("teunbrand/ggh4x")
     ```
 
 ### Repository initialization :fire:

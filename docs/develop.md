@@ -1,5 +1,8 @@
 ### Development
 
+-   Consider using facet combiner with gg4hx -\> add devtools to
+    dependencies -\> test out how this works
+
 1.  Visualization
 
     1.  **TODO** plots next to each other with truncated
@@ -7,16 +10,17 @@
         -\> use simple alpha to see density and plot this to get an
         indication of any clustering at all
 
-    2.  **TODO** perform consistent score analysis with plots
+    2.  **TODO** make multiple plots over chrf with single
+        model results side by side, and then combined model agreement
+        results to see if we can detect something better than noise
+
+    3.  **TODO** perform consistent score analysis with plots
         to check for relationships between predictions of various models
         and what conclusions can be drawn from them -\> perhaps overlay
         points shaded with consistency and where they lie in comparison
 
-    3.  **TODO** check if chord or tree mapping plot could be
+    4.  **TODO** check if chord or tree mapping plot could be
         possible to see dependencies and functional mappings
-
-    4.  think about ggdensity share scale for more than two pairs of
-        comparisons
 
     5.  think of plotting schemes that could be used on various results
         of analysis such as paraphrase detection results from all three
@@ -32,27 +36,27 @@
         csv\'s for nicer plotting -\> look into event log combination
         workflow
 
-    8.  update R dependencies in readme once all visualizations are
-        finalized
+    8.  think about ggdensity share scale for more than two pairs of
+        comparisons
 
 2.  Clean-code and documentation
 
     1.  create modular scripts with instructions in readme:
 
-        1.  **TODO** visualize fine-tuned LM result
+        1.  **TODO** visualize correlation of LM and shallow
+            metrics -\> linked to evaluation
 
-        2.  **TODO** visualize correlation of LM and shallow
-            metrics
+        2.  **TODO** visualize model training evolutions
 
-        3.  **TODO** visualize model training evolutions
+        3.  **DONE** visualize fine-tuned LM result
 
-        4.  **TODO** train translation model (after better
+        4.  **DONE** visualize shallow metrics
+
+        5.  **DONE** train translation model (after better
             NMT performance)
 
-        5.  **TODO** translate sentences (after better NMT
+        6.  **DONE** translate sentences (after better NMT
             performance)
-
-        6.  **DONE** visualize shallow metrics
 
         7.  **DONE** evaluate using fine-tuned language model
 
@@ -71,11 +75,14 @@
 
     5.  update TOC\'s in all readmes to reflect latest changes
 
-    6.  add citations in readme as per general standard
+    6.  update R dependencies in readme once all visualizations are
+        finalized
 
-    7.  add final paper/presentation into repo with link in readme
+    7.  add citations in readme as per general standard
 
-    8.  add github repo to paperswithcode examples for relevant papers
+    8.  add final paper/presentation into repo with link in readme
+
+    9.  add github repo to paperswithcode examples for relevant papers
 
 3.  Evaluation
 
@@ -125,23 +132,31 @@
 4.  Paper
 
     1.  use two-column format for final paper, to prepare for paper
-        writing
+        writing -\> download ACL 2020 format
 
-    2.  think more about whether to include or exclude adversarial term
+    2.  make less confident conclusion on relationship between
+        back-translation and translation consistency -\> could also be
+        linked to other differences between models
+
+    3.  explan that papers like volatility one might be making claims
+        based on weaker models that could be fixed by using larger
+        models
+
+    4.  think more about whether to include or exclude adversarial term
         since this might be a grey area -\> qualify various means of
         being adversarial ie. targetted through model or perhaps just an
         intention
 
-    3.  include semantic transferance equation in paper to introduce
+    5.  include semantic transferance equation in paper to introduce
         some formalisms -\> show mathematical properties of isometric
         functions/spaces and how this should hold for semantic vector
         spaces
 
-    4.  describe processes that worked and did not work -\> talk about
+    6.  describe processes that worked and did not work -\> talk about
         all the hurdles and show some bad examples when they occurred
         -\> summarized below in logs
 
-    5.  list hypotheses and how some were refuted by results
+    7.  list hypotheses and how some were refuted by results
 
 5.  Paraphrase detection
 

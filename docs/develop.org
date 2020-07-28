@@ -1,23 +1,25 @@
 *** Development
 
+- Consider using facet combiner with gg4hx -> add devtools to dependencies -> test out how this works
+
 **** Visualization
 ***** TODO plots next to each other with truncated label -> chrf and paraphrase detector 4 possible combinations -> use simple alpha to see density and plot this to get an indication of any clustering at all
+***** TODO make multiple plots over chrf with single model results side by side, and then combined model agreement results to see if we can detect something better than noise
 ***** TODO perform consistent score analysis with plots to check for relationships between predictions of various models and what conclusions can be drawn from them -> perhaps overlay points shaded with consistency and where they lie in comparison
 ***** TODO check if chord or tree mapping plot could be possible to see dependencies and functional mappings
-***** think about ggdensity share scale for more than two pairs of comparisons
 ***** think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas -> can already do this before newer translation model is present
 ***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
 ***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
-***** update R dependencies in readme once all visualizations are finalized
+***** think about ggdensity share scale for more than two pairs of comparisons
 
 **** Clean-code and documentation
 ***** create modular scripts with instructions in readme: 
-****** TODO visualize fine-tuned LM result
-****** TODO visualize correlation of LM and shallow metrics
+****** TODO visualize correlation of LM and shallow metrics -> linked to evaluation
 ****** TODO visualize model training evolutions
-****** TODO train translation model (after better NMT performance) 
-****** TODO translate sentences (after better NMT performance)
+****** DONE visualize fine-tuned LM result
 ****** DONE visualize shallow metrics
+****** DONE train translation model (after better NMT performance) 
+****** DONE translate sentences (after better NMT performance)
 ****** DONE evaluate using fine-tuned language model
 ****** DONE fine tune paraphrase detector
 ****** DONE evaluate bleu & chrf
@@ -25,6 +27,7 @@
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
 ***** update initial page of readme with overview/abstract of work including shallow metrics
 ***** update TOC's in all readmes to reflect latest changes
+***** update R dependencies in readme once all visualizations are finalized
 ***** add citations in readme as per general standard
 ***** add final paper/presentation into repo with link in readme 
 ***** add github repo to paperswithcode examples for relevant papers
@@ -43,7 +46,9 @@
 ***** show that training with backtranslation helps for robustness to paraphrases -> through visualizations and perhaps some statistical tests
 
 **** Paper
-***** use two-column format for final paper, to prepare for paper writing
+***** use two-column format for final paper, to prepare for paper writing -> download ACL 2020 format
+***** make less confident conclusion on relationship between back-translation and translation consistency -> could also be linked to other differences between models
+***** explan that papers like volatility one might be making claims based on weaker models that could be fixed by using larger models
 ***** think more about whether to include or exclude adversarial term since this might be a grey area -> qualify various means of being adversarial ie. targetted through model or perhaps just an intention
 ***** include semantic transferance equation in paper to introduce some formalisms -> show mathematical properties of isometric functions/spaces and how this should hold for semantic vector spaces
 ***** describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs

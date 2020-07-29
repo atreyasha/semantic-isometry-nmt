@@ -1,6 +1,7 @@
 *** Development
 
 **** Clean-code and documentation
+***** TODO fix git stashing properly with named stashing and popping
 ***** TODO add version numbers to R package dependencies
 ***** create modular scripts with instructions in readme: 
 ****** TODO visualize correlation of LM and shallow metrics -> linked to evaluation

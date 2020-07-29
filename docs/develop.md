@@ -2,10 +2,13 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** add version numbers to R package
+    1.  **TODO** fix git stashing properly with named
+        stashing and popping
+
+    2.  **TODO** add version numbers to R package
         dependencies
 
-    2.  create modular scripts with instructions in readme:
+    3.  create modular scripts with instructions in readme:
 
         1.  **TODO** visualize correlation of LM and shallow
             metrics -\> linked to evaluation
@@ -28,25 +31,25 @@
 
         9.  **DONE** evaluate bleu & chrf
 
-    3.  segment readme into training, translation and others categories
+    4.  segment readme into training, translation and others categories
         with relevant usages
 
-    4.  replace relevant bash commands with sbatch in slurm-s3it branch
+    5.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    5.  update initial page of readme with overview/abstract of work
+    6.  update initial page of readme with overview/abstract of work
         including shallow metrics
 
-    6.  update TOC\'s in all readmes to reflect latest changes
+    7.  update TOC\'s in all readmes to reflect latest changes
 
-    7.  update R dependencies in readme once all visualizations are
+    8.  update R dependencies in readme once all visualizations are
         finalized
 
-    8.  add citations in readme as per general standard
+    9.  add citations in readme as per general standard
 
-    9.  add final paper/presentation into repo with link in readme
+    10. add final paper/presentation into repo with link in readme
 
-    10. add github repo to paperswithcode examples for relevant papers
+    11. add github repo to paperswithcode examples for relevant papers
 
 2.  Visualization
 

@@ -14,5 +14,8 @@ if [ "$current_branch" == "master" ]; then
   git push --force origin "$MIRROR"
   git checkout master
   stash_entry=$(git stash list | grep "$local_hash" | grep -Eo "stash@{[0-9]+}")
-  [ -z "$stash_entry" ] || git stash apply "$stash_entry" && git stash drop "$stash_entry"
+  if [ -n "$stash_entry" ]; then
+    git stash apply "$stash_entry"
+    git stash drop "$stash_entry"
+  fi
 fi

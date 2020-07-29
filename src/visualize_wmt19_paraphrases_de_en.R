@@ -305,7 +305,7 @@ plot_shallow_deep_correlations <- function(input_glob) {
   ## for(axis in left_axes){
   ##   g[["grobs"]][[axis]][["children"]][[2]]$grobs[[1]] <- nullGrob()
   ## }
-  tikz(tex_file, width=25, height=11, standAlone = TRUE, engine="luatex")
+  tikz(tex_file, width=26, height=11, standAlone = TRUE, engine="luatex")
   print(grid.arrange(g))
   dev.off()
   post_process(tex_file)

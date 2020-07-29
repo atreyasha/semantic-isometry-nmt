@@ -1,18 +1,17 @@
 *** Development
 
 **** Clean-code and documentation
-***** TODO fix git stashing properly with named stashing and popping
-***** TODO add version numbers to R package dependencies
 ***** create modular scripts with instructions in readme: 
-****** TODO visualize correlation of LM and shallow metrics -> linked to evaluation
+****** TODO visualize fine-tuned LM result -> joint view
+****** TODO visualize correlation of LM and shallow metrics -> joint view
 ****** TODO visualize model training evolutions
-****** DONE visualize fine-tuned LM result
 ****** DONE visualize shallow metrics
 ****** DONE train translation model (after better NMT performance) 
 ****** DONE translate sentences (after better NMT performance)
 ****** DONE evaluate using fine-tuned language model
 ****** DONE fine tune paraphrase detector
 ****** DONE evaluate bleu & chrf
+***** add version numbers to R package dependencies
 ***** segment readme into training, translation and others categories with relevant usages
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
 ***** update initial page of readme with overview/abstract of work including shallow metrics

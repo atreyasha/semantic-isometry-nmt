@@ -2,20 +2,15 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** fix git stashing properly with named
-        stashing and popping
+    1.  create modular scripts with instructions in readme:
 
-    2.  **TODO** add version numbers to R package
-        dependencies
+        1.  **TODO** visualize fine-tuned LM result -\> joint
+            view
 
-    3.  create modular scripts with instructions in readme:
+        2.  **TODO** visualize correlation of LM and shallow
+            metrics -\> joint view
 
-        1.  **TODO** visualize correlation of LM and shallow
-            metrics -\> linked to evaluation
-
-        2.  **TODO** visualize model training evolutions
-
-        3.  **DONE** visualize fine-tuned LM result
+        3.  **TODO** visualize model training evolutions
 
         4.  **DONE** visualize shallow metrics
 
@@ -31,25 +26,27 @@
 
         9.  **DONE** evaluate bleu & chrf
 
-    4.  segment readme into training, translation and others categories
+    2.  add version numbers to R package dependencies
+
+    3.  segment readme into training, translation and others categories
         with relevant usages
 
-    5.  replace relevant bash commands with sbatch in slurm-s3it branch
+    4.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    6.  update initial page of readme with overview/abstract of work
+    5.  update initial page of readme with overview/abstract of work
         including shallow metrics
 
-    7.  update TOC\'s in all readmes to reflect latest changes
+    6.  update TOC\'s in all readmes to reflect latest changes
 
-    8.  update R dependencies in readme once all visualizations are
+    7.  update R dependencies in readme once all visualizations are
         finalized
 
-    9.  add citations in readme as per general standard
+    8.  add citations in readme as per general standard
 
-    10. add final paper/presentation into repo with link in readme
+    9.  add final paper/presentation into repo with link in readme
 
-    11. add github repo to paperswithcode examples for relevant papers
+    10. add github repo to paperswithcode examples for relevant papers
 
 2.  Visualization
 

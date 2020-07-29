@@ -1,18 +1,7 @@
 *** Development
 
-- Consider using facet combiner with gg4hx -> add devtools to dependencies -> test out how this works
-
-**** Visualization
-***** TODO plots next to each other with truncated label -> chrf and paraphrase detector 4 possible combinations -> use simple alpha to see density and plot this to get an indication of any clustering at all
-***** TODO make multiple plots over chrf with single model results side by side, and then combined model agreement results to see if we can detect something better than noise
-***** TODO perform consistent score analysis with plots to check for relationships between predictions of various models and what conclusions can be drawn from them -> perhaps overlay points shaded with consistency and where they lie in comparison
-***** TODO check if chord or tree mapping plot could be possible to see dependencies and functional mappings
-***** think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas -> can already do this before newer translation model is present
-***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
-***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
-***** think about ggdensity share scale for more than two pairs of comparisons
-
 **** Clean-code and documentation
+***** TODO add version numbers to R package dependencies
 ***** create modular scripts with instructions in readme: 
 ****** TODO visualize correlation of LM and shallow metrics -> linked to evaluation
 ****** TODO visualize model training evolutions
@@ -32,9 +21,21 @@
 ***** add final paper/presentation into repo with link in readme 
 ***** add github repo to paperswithcode examples for relevant papers
 
+**** Visualization
+***** TODO look at contour plot and think of joint decision contour for easier look -> use logical symbols like intersections etc.
+***** TODO plots next to each other with truncated label -> chrf and paraphrase detector 4 possible combinations -> use simple alpha to see density and plot this to get an indication of any clustering at all
+***** TODO make multiple plots over chrf with single model results side by side, and then combined model agreement results to see if we can detect something better than noise
+***** TODO perform consistent score analysis with plots to check for relationships between predictions of various models and what conclusions can be drawn from them -> perhaps overlay points shaded with consistency and where they lie in comparison
+***** TODO check if chord or tree mapping plot could be possible to see dependencies and functional mappings
+***** think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas -> can already do this before newer translation model is present
+***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
+***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
+***** think about ggdensity share scale for more than two pairs of comparisons
+
 **** Evaluation
 ***** TODO finalize results and start focusing on interpreting the results and what the possible statistical conclusions could be
 ***** TODO main source of errors seems to be wrong language insertion in scaling NMT model while not really the case in FAIR SOTA model -> check test data performance to see if this is also the case -> perhaps this is a systematic error for non-backtranslated model
+***** TODO look into interesting cases in regards to paraphrase output results, such as (0,1) etc.
 ***** perhaps reliably use paraphrase detection only in cases where initial German paraphrase is positively detected, to ensure some consistency for evaluation
 ***** consider comparing across checkpoints if this would be of interest
 ***** check for possibly interesting correlations between XLM-R prediction and chrF/BLEU scores -> this could be of interest in making additional statements to Michel et al. 2019's statements regarding chrF scores

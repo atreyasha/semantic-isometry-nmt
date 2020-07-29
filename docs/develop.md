@@ -1,47 +1,11 @@
 ### Development
 
--   Consider using facet combiner with gg4hx -\> add devtools to
-    dependencies -\> test out how this works
+1.  Clean-code and documentation
 
-1.  Visualization
+    1.  **TODO** add version numbers to R package
+        dependencies
 
-    1.  **TODO** plots next to each other with truncated
-        label -\> chrf and paraphrase detector 4 possible combinations
-        -\> use simple alpha to see density and plot this to get an
-        indication of any clustering at all
-
-    2.  **TODO** make multiple plots over chrf with single
-        model results side by side, and then combined model agreement
-        results to see if we can detect something better than noise
-
-    3.  **TODO** perform consistent score analysis with plots
-        to check for relationships between predictions of various models
-        and what conclusions can be drawn from them -\> perhaps overlay
-        points shaded with consistency and where they lie in comparison
-
-    4.  **TODO** check if chord or tree mapping plot could be
-        possible to see dependencies and functional mappings
-
-    5.  think of plotting schemes that could be used on various results
-        of analysis such as paraphrase detection results from all three
-        models -\> get creative with these ideas -\> can already do this
-        before newer translation model is present
-
-    6.  add various sub-routines with different visualization shell
-        scripts corresponding to different arguments of python script
-        -\> such as defining model paths to plot model evolutions, etc.
-        -\> make this more dynamic and practical where possible
-
-    7.  think of effective ways of converting tensorflow event logs to
-        csv\'s for nicer plotting -\> look into event log combination
-        workflow
-
-    8.  think about ggdensity share scale for more than two pairs of
-        comparisons
-
-2.  Clean-code and documentation
-
-    1.  create modular scripts with instructions in readme:
+    2.  create modular scripts with instructions in readme:
 
         1.  **TODO** visualize correlation of LM and shallow
             metrics -\> linked to evaluation
@@ -64,25 +28,65 @@
 
         9.  **DONE** evaluate bleu & chrf
 
-    2.  segment readme into training, translation and others categories
+    3.  segment readme into training, translation and others categories
         with relevant usages
 
-    3.  replace relevant bash commands with sbatch in slurm-s3it branch
+    4.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    4.  update initial page of readme with overview/abstract of work
+    5.  update initial page of readme with overview/abstract of work
         including shallow metrics
 
-    5.  update TOC\'s in all readmes to reflect latest changes
+    6.  update TOC\'s in all readmes to reflect latest changes
 
-    6.  update R dependencies in readme once all visualizations are
+    7.  update R dependencies in readme once all visualizations are
         finalized
 
-    7.  add citations in readme as per general standard
+    8.  add citations in readme as per general standard
 
-    8.  add final paper/presentation into repo with link in readme
+    9.  add final paper/presentation into repo with link in readme
 
-    9.  add github repo to paperswithcode examples for relevant papers
+    10. add github repo to paperswithcode examples for relevant papers
+
+2.  Visualization
+
+    1.  **TODO** look at contour plot and think of joint
+        decision contour for easier look -\> use logical symbols like
+        intersections etc.
+
+    2.  **TODO** plots next to each other with truncated
+        label -\> chrf and paraphrase detector 4 possible combinations
+        -\> use simple alpha to see density and plot this to get an
+        indication of any clustering at all
+
+    3.  **TODO** make multiple plots over chrf with single
+        model results side by side, and then combined model agreement
+        results to see if we can detect something better than noise
+
+    4.  **TODO** perform consistent score analysis with plots
+        to check for relationships between predictions of various models
+        and what conclusions can be drawn from them -\> perhaps overlay
+        points shaded with consistency and where they lie in comparison
+
+    5.  **TODO** check if chord or tree mapping plot could be
+        possible to see dependencies and functional mappings
+
+    6.  think of plotting schemes that could be used on various results
+        of analysis such as paraphrase detection results from all three
+        models -\> get creative with these ideas -\> can already do this
+        before newer translation model is present
+
+    7.  add various sub-routines with different visualization shell
+        scripts corresponding to different arguments of python script
+        -\> such as defining model paths to plot model evolutions, etc.
+        -\> make this more dynamic and practical where possible
+
+    8.  think of effective ways of converting tensorflow event logs to
+        csv\'s for nicer plotting -\> look into event log combination
+        workflow
+
+    9.  think about ggdensity share scale for more than two pairs of
+        comparisons
 
 3.  Evaluation
 
@@ -96,36 +100,39 @@
         if this is also the case -\> perhaps this is a systematic error
         for non-backtranslated model
 
-    3.  perhaps reliably use paraphrase detection only in cases where
+    3.  **TODO** look into interesting cases in regards to
+        paraphrase output results, such as (0,1) etc.
+
+    4.  perhaps reliably use paraphrase detection only in cases where
         initial German paraphrase is positively detected, to ensure some
         consistency for evaluation
 
-    4.  consider comparing across checkpoints if this would be of
+    5.  consider comparing across checkpoints if this would be of
         interest
 
-    5.  check for possibly interesting correlations between XLM-R
+    6.  check for possibly interesting correlations between XLM-R
         prediction and chrF/BLEU scores -\> this could be of interest in
         making additional statements to Michel et al. 2019\'s statements
         regarding chrF scores
 
-    6.  consider changing bleu to sacrebleu in json (read more about
+    7.  consider changing bleu to sacrebleu in json (read more about
         differences) and figure out why stating this might be important
 
-    7.  compute statistical tests for ascertaining significance of
+    8.  compute statistical tests for ascertaining significance of
         relationships
 
-    8.  in rare cases, can do manual analysis and include this inside
+    9.  in rare cases, can do manual analysis and include this inside
         report
 
-    9.  report evaluation of fine-tuning paraphrase detector and weaker
+    10. report evaluation of fine-tuning paraphrase detector and weaker
         translation model
 
-    10. early conclusions/hypotheses: hand-crafted adversarial
+    11. early conclusions/hypotheses: hand-crafted adversarial
         paraphrase robustness is handled well in SOTA models due to
         backtranslation reguralization, main vulnerability will be
         targetted adversarial samples
 
-    11. show that training with backtranslation helps for robustness to
+    12. show that training with backtranslation helps for robustness to
         paraphrases -\> through visualizations and perhaps some
         statistical tests
 

@@ -11,7 +11,7 @@ library(optparse)
 library(ggpointdensity)
 library(gridExtra)
 
-g_legend<-function(a.gplot){
+g_legend <- function(a.gplot){
   # source: https://stackoverflow.com/a/13650878
   # extract legend from custom ggplot object
   tmp <- ggplot_gtable(ggplot_build(a.gplot))
@@ -20,7 +20,19 @@ g_legend<-function(a.gplot){
   return(legend)
 }
 
-plot_shallow_metrics <- function(input_glob){
+post_process <- function(tex_file){
+  # plots post-processing
+  no_ext_name <- gsub("\\.tex", "", tex_file)
+  pdf_file <- paste0(no_ext_name, ".pdf")
+  texi2pdf(tex_file,clean=TRUE,
+           texi2dvi=Sys.which("lualatex"))
+  file.remove(tex_file)
+  file.rename(pdf_file, paste0("./img/", pdf_file))
+  unlink(paste0(no_ext_name, "*.png"))
+  unlink("Rplots.pdf")
+}
+
+plot_shallow_metrics <- function(input_glob, return_early=FALSE){
   # internal re-usable plot function
   internal_plot <- function(){
     # compute summary statistics
@@ -135,33 +147,30 @@ plot_shallow_metrics <- function(input_glob){
   names(hold_out)[which(names(hold_out) %in% c("bleu_src","bleu_translated"))] <- c("Source", "Target")
   hold_out["Type"] <- "BLEU"
   collection <- rbind(collection, hold_out)
+  if(return_early) return(collection)
   # first plot with chrf
   metric = "chrF"
+  tex_file = paste0(tolower(metric), "_nmt.tex")
   subcollection <- subset(collection, Type == metric)
   g <- internal_plot()
-  tikz(paste0(metric, ".tex"), width=15, height=10, standAlone = TRUE,
-       packages =  paste0(getOption("tikzLatexPackages"),"\\usepackage{amsmath}\n"), engine="luatex")
+  tikz(tex_file, width=15, height=10, standAlone = TRUE,
+       packages = paste0(getOption("tikzLatexPackages"),"\\usepackage{amsmath}\n"), engine="luatex")
   print(g)
   dev.off()
-  texi2pdf(paste0(metric,".tex"),clean=TRUE,texi2dvi=Sys.which("lualatex"))
-  file.remove(paste0(metric,".tex"))
-  file.rename(paste0(metric,".pdf"), paste0("./img/", metric, ".pdf"))
-  unlink(paste0(metric,"*png"))
+  post_process(tex_file)
   # second plot with BLEU
   metric = "BLEU"
+  tex_file = paste0(tolower(metric), "_nmt.tex")
   subcollection <- subset(collection, Type == metric)
   g <- internal_plot()
-  tikz(paste0(metric, ".tex"), width=15, height=10, standAlone = TRUE,
-       packages =  paste0(getOption("tikzLatexPackages"),"\\usepackage{amsmath}\n"), engine="luatex")
+  tikz(tex_file, width=15, height=10, standAlone = TRUE,
+       packages = paste0(getOption("tikzLatexPackages"),"\\usepackage{amsmath}\n"), engine="luatex")
   print(g)
   dev.off()
-  texi2pdf(paste0(metric,".tex"),clean=TRUE,texi2dvi=Sys.which("lualatex"))
-  file.remove(paste0(metric,".tex"))
-  file.rename(paste0(metric,".pdf"), paste0("./img/", metric, ".pdf"))
-  unlink(paste0(metric,"*png"))
+  post_process(tex_file)
 }
 
-plot_paraphrase_detector_outputs <- function(input_glob) {
+plot_paraphrase_detector_outputs <- function(input_glob, return_early=FALSE) {
   files <- Sys.glob(input_glob)
   if(length(files) != 4) stop("Number of json inputs not equal to 4")
   collection <- lapply(1:length(files), function(i){
@@ -209,6 +218,7 @@ plot_paraphrase_detector_outputs <- function(input_glob) {
   new_collection <- rbind(collection[-(which(names(collection)
                                              %in% c("model_name","data_name")))], xlmr, xlmr_large)
   collection <- cbind(collection[c("model_name", "data_name")], new_collection)
+  if(return_early) return(collection)
   # make dummy plot
   dummy <- data.frame(x = seq(0,1,0.01), y = seq(0,1,0.01))
   q <- ggplot(data=dummy, aes(x=x, y=y)) + geom_point(aes(color=x)) +
@@ -217,7 +227,7 @@ plot_paraphrase_detector_outputs <- function(input_glob) {
     theme(legend.position = "bottom",
           legend.box="horizontal",
           legend.key.width = unit(5, "cm"),
-          text = element_text(size=14)) +
+          text = element_text(size=18)) +
     guides(colour = guide_colourbar(title.position="left", title.hjust = 0.5,
                                     title.vjust = 0.9))
   # get legend of dummy plot
@@ -232,7 +242,7 @@ plot_paraphrase_detector_outputs <- function(input_glob) {
     xlab("\nSource Paraphrase Softmax Score [De]") +
     ylab("Target Paraphrase Softmax Score [En]\n") +
     theme_bw() +
-    theme(text = element_text(size=14),
+    theme(text = element_text(size=18),
           strip.background = element_blank(),
           ## legend.key.height = unit(0.01, "cm"),
           legend.position = "none",
@@ -240,27 +250,78 @@ plot_paraphrase_detector_outputs <- function(input_glob) {
           panel.grid = element_line(size = 1),
           axis.ticks.length=unit(.15, "cm"),
           legend.margin=margin(c(1,5,5,15)))
-  tikz(paste0("paraphrase_detection_softmax.tex"), width=20, height=8,
+  tex_file = "paraphrase_detection_softmax_all.tex"
+  tikz(tex_file, width=20, height=8,
        standAlone = TRUE, engine="luatex")
-  grid.arrange(g, mylegend, nrow=2,heights=c(10, 1))
+  print(grid.arrange(g, mylegend, nrow=2,heights=c(10, 1)))
   dev.off()
-  texi2pdf("paraphrase_detection_softmax.tex",clean=TRUE,
-           texi2dvi=Sys.which("lualatex"))
-  file.remove("paraphrase_detection_softmax.tex")
-  file.rename("paraphrase_detection_softmax.pdf",
-              "./img/paraphrase_detection_softmax.pdf")
-  unlink("paraphrase_detection_softmax*.png")
-  unlink("Rplots.pdf")
+  post_process(tex_file)
+}
+
+plot_shallow_deep_correlations <- function(input_glob) {
+  shallow <- subset(plot_shallow_metrics(input_glob, return_early = TRUE),
+                    Type=="chrF")
+  deep <- plot_paraphrase_detector_outputs(input_glob, return_early = TRUE)
+  # extract paraphrase detection scores and convert them to factors
+  rounded <- sapply(deep[c("Source","Target")], round)
+  discrete <- as.factor(paste0("$P_{st} = [",apply(rounded,1,paste,collapse=","),"]$"))
+  deep <- deep[-which(names(deep) %in% c("Source","Target"))]
+  deep["Discrete"] <- discrete
+  collection <- cbind(deep, shallow[c("Source","Target")])
+  # plot all results
+  tex_file = "chrf_paraphrase_detection_all.tex"
+  g <- ggplot(collection, aes(x = Source, y = Target)) +
+    geom_pointdensity(aes(x = Source, y = Target), adjust=0.1) +
+    theme_bw() +
+    theme(text = element_text(size=18),
+          strip.background = element_blank(),
+          legend.position = "bottom",
+          legend.key.width = unit(6, "cm"),
+          strip.text = element_text(face="bold"),
+          panel.grid = element_line(size = 1),
+          axis.ticks.length = unit(.125, "cm"),
+          plot.title = element_text(hjust=0.5),
+          axis.text = element_text(size=13),
+          ## axis.text.x = element_text(angle=45, vjust=0.6)
+          ) +
+    scale_color_gradientn(colours = tim.colors(24),
+                          name="Point Density") +
+    scale_x_continuous(breaks = c(0.25,0.50,0.75)) +
+    scale_y_continuous(breaks = c(0.25,0.50,0.75)) +
+    facet_nested(model_name+data_name ~ Type+Discrete) +
+    guides(colour = guide_colourbar(title.position="left", title.hjust = 0.5,
+                                    title.vjust = 0.9)) +
+    ylab(paste0("Target"," \\textit{chrF} [En]","\n")) +
+    xlab(paste0("\n","Source"," \\textit{chrF} [De]"))
+  # post-processing hacks on ggplot grob to alternate axis text
+  ## g <- ggplotGrob(g)
+  ## bottom_axes <- grep("axis-b", g$layout$name)
+  ## left_axes <- grep("axis-l", g$layout$name)
+  ## bottom_axes <- bottom_axes[c(FALSE,TRUE)]
+  ## left_axes <- left_axes[c(FALSE,TRUE)]
+  ## for(axis in bottom_axes){
+  ##   g[["grobs"]][[axis]][["children"]][[2]]$grobs[[2]] <- nullGrob()
+  ## }
+  ## for(axis in left_axes){
+  ##   g[["grobs"]][[axis]][["children"]][[2]]$grobs[[1]] <- nullGrob()
+  ## }
+  tikz(tex_file, width=25, height=11, standAlone = TRUE, engine="luatex")
+  print(grid.arrange(g))
+  dev.off()
+  post_process(tex_file)
 }
 
 # parse command-line arguments
 parser <- OptionParser()
 parser <- add_option(parser, c("-s", "--shallow-metrics"), action="store_true",
                      default=FALSE,
-                     help="Flag for plotting shallow metrics")
+                     help="Flag for plotting shallow metrics [default: %default]")
 parser <- add_option(parser, c("-p", "--paraphrase-detector-outputs"),
                      action="store_true", default=FALSE,
-                     help="Flag for plotting paraphrase detector outputs")
+                     help="Flag for plotting paraphrase detector outputs [default: %default]")
+parser <- add_option(parser, c("-m", "--mixed"),
+                     action="store_true", default=FALSE,
+                     help="Flag for plotting a mix of shallow and deep metrics [default: %default]")
 parser <- add_option(parser, c("-j", "--json-glob"),
                      type="character",
                      default="./predictions/*/*.json",
@@ -270,4 +331,6 @@ if(args$s){
   plot_shallow_metrics(args$j)
 } else if(args$p){
   plot_paraphrase_detector_outputs(args$j)
+} else if(args$m){
+  plot_shallow_deep_correlations(args$j)
 }

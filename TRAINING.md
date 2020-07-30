@@ -180,6 +180,6 @@ This script will select and compress the best checkpoints along with logging inf
 
 ```shell
 bash scripts/export_tar_gz.sh \
-    "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt" \
-    "./models/bert-base-multilingual-cased.pawsx.ML128.1594737128/checkpoint-best"
+"./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt" \
+"./models/bert-base-multilingual-cased.pawsx.ML128.1594737128/checkpoint-best"
 ```

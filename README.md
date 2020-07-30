@@ -57,7 +57,7 @@ Finally, to check the quality/consistency of the translated paraphrases; we trai
     bash scripts/prepare_data_models.sh
     ```
 
-4. **Optional:** We provide a mirror branch `slurm-s3it` for executing computationally heavy workflows (eg. training, evaluating) on the `s3it` server with `slurm`. This readme inside the `slurm-s3it` branch further recommends which commands to run on the `s3it` server with `sbatch` and which ones to run on your personal computer. To use the `slurm-s3it` branch, simply execute:
+4. **Optional:** We provide a mirror branch `slurm-s3it` for executing computationally heavy workflows (eg. training, evaluating) on the `s3it` server with `slurm`. To use this branch, simply execute:
 
     ```
     git checkout slurm-s3it

@@ -370,18 +370,7 @@ plot_shallow_deep_correlations <- function(input_glob) {
                                     title.vjust = 0.9)) +
     ylab(paste0("Target"," \\textit{chrF} [En]","\n")) +
     xlab(paste0("\n","Source"," \\textit{chrF} [De]"))
-  # post-processing hacks on ggplot grob to alternate axis text
-  ## g <- ggplotGrob(g)
-  ## bottom_axes <- grep("axis-b", g$layout$name)
-  ## left_axes <- grep("axis-l", g$layout$name)
-  ## bottom_axes <- bottom_axes[c(FALSE,TRUE)]
-  ## left_axes <- left_axes[c(FALSE,TRUE)]
-  ## for(axis in bottom_axes){
-  ##   g[["grobs"]][[axis]][["children"]][[2]]$grobs[[2]] <- nullGrob()
-  ## }
-  ## for(axis in left_axes){
-  ##   g[["grobs"]][[axis]][["children"]][[2]]$grobs[[1]] <- nullGrob()
-  ## }
+  # print to file
   tikz(tex_file, width=26, height=11, standAlone = TRUE, engine="luatex")
   print(grid.arrange(g))
   dev.off()

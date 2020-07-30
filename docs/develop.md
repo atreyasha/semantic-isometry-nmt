@@ -1,16 +1,30 @@
 ### Development
 
-1.  Clean-code and documentation
+1.  Visualization
+
+    1.  **TODO** think of effective ways of converting
+        tensorflow event logs to csv\'s for nicer plotting -\> look into
+        event log combination workflow and model evolution plots
+
+    2.  add various sub-routines with different visualization shell
+        scripts corresponding to different arguments of python script
+        -\> such as defining model paths to plot model evolutions, etc.
+        -\> make this more dynamic and practical where possible
+
+    3.  ****extra**** check if chord or tree mapping plot could be
+        possible to see dependencies and functional mappings
+
+2.  Clean-code and documentation
 
     1.  create modular scripts with instructions in readme:
 
-        1.  **TODO** visualize fine-tuned LM result -\> joint
+        1.  **TODO** visualize model training evolutions
+
+        2.  **DONE** visualize fine-tuned LM result -\> joint
             view
 
-        2.  **TODO** visualize correlation of LM and shallow
+        3.  **DONE** visualize correlation of LM and shallow
             metrics -\> joint view
-
-        3.  **TODO** visualize model training evolutions
 
         4.  **DONE** visualize shallow metrics
 
@@ -48,47 +62,39 @@
 
     10. add github repo to paperswithcode examples for relevant papers
 
-2.  Visualization
+3.  Paper
 
-    1.  **TODO** look at contour plot and think of joint
-        decision contour for easier look -\> use logical symbols like
-        intersections etc.
+    1.  **TODO** start writing paper soon once main plots
+        with all/joint results are done
 
-    2.  **TODO** plots next to each other with truncated
-        label -\> chrf and paraphrase detector 4 possible combinations
-        -\> use simple alpha to see density and plot this to get an
-        indication of any clustering at all
+    2.  use two-column format for final paper, to prepare for paper
+        writing -\> download ACL 2020 format
 
-    3.  **TODO** make multiple plots over chrf with single
-        model results side by side, and then combined model agreement
-        results to see if we can detect something better than noise
+    3.  make less confident conclusion on relationship between
+        back-translation and translation consistency -\> could also be
+        linked to other differences between models
 
-    4.  **TODO** perform consistent score analysis with plots
-        to check for relationships between predictions of various models
-        and what conclusions can be drawn from them -\> perhaps overlay
-        points shaded with consistency and where they lie in comparison
+    4.  explan that papers like volatility one might be making claims
+        based on weaker models that could be fixed by using larger
+        models
 
-    5.  **TODO** check if chord or tree mapping plot could be
-        possible to see dependencies and functional mappings
+    5.  think more about whether to include or exclude adversarial term
+        since this might be a grey area -\> qualify various means of
+        being adversarial ie. targetted through model or perhaps just an
+        intention
 
-    6.  think of plotting schemes that could be used on various results
-        of analysis such as paraphrase detection results from all three
-        models -\> get creative with these ideas -\> can already do this
-        before newer translation model is present
+    6.  include semantic transferance equation in paper to introduce
+        some formalisms -\> show mathematical properties of isometric
+        functions/spaces and how this should hold for semantic vector
+        spaces
 
-    7.  add various sub-routines with different visualization shell
-        scripts corresponding to different arguments of python script
-        -\> such as defining model paths to plot model evolutions, etc.
-        -\> make this more dynamic and practical where possible
+    7.  describe processes that worked and did not work -\> talk about
+        all the hurdles and show some bad examples when they occurred
+        -\> summarized below in logs
 
-    8.  think of effective ways of converting tensorflow event logs to
-        csv\'s for nicer plotting -\> look into event log combination
-        workflow
+    8.  list hypotheses and how some were refuted by results
 
-    9.  think about ggdensity share scale for more than two pairs of
-        comparisons
-
-3.  Evaluation
+4.  Evaluation
 
     1.  **TODO** finalize results and start focusing on
         interpreting the results and what the possible statistical
@@ -101,7 +107,8 @@
         for non-backtranslated model
 
     3.  **TODO** look into interesting cases in regards to
-        paraphrase output results, such as (0,1) etc.
+        paraphrase output results, such as (0,1) etc. -\> check what
+        these outputs represent in terms of actual sentences
 
     4.  perhaps reliably use paraphrase detection only in cases where
         initial German paraphrase is positively detected, to ensure some
@@ -135,35 +142,6 @@
     12. show that training with backtranslation helps for robustness to
         paraphrases -\> through visualizations and perhaps some
         statistical tests
-
-4.  Paper
-
-    1.  use two-column format for final paper, to prepare for paper
-        writing -\> download ACL 2020 format
-
-    2.  make less confident conclusion on relationship between
-        back-translation and translation consistency -\> could also be
-        linked to other differences between models
-
-    3.  explan that papers like volatility one might be making claims
-        based on weaker models that could be fixed by using larger
-        models
-
-    4.  think more about whether to include or exclude adversarial term
-        since this might be a grey area -\> qualify various means of
-        being adversarial ie. targetted through model or perhaps just an
-        intention
-
-    5.  include semantic transferance equation in paper to introduce
-        some formalisms -\> show mathematical properties of isometric
-        functions/spaces and how this should hold for semantic vector
-        spaces
-
-    6.  describe processes that worked and did not work -\> talk about
-        all the hurdles and show some bad examples when they occurred
-        -\> summarized below in logs
-
-    7.  list hypotheses and how some were refuted by results
 
 5.  Paraphrase detection
 

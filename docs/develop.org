@@ -1,10 +1,15 @@
 *** Development
 
+**** Visualization
+***** TODO think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow and model evolution plots
+***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
+***** **extra** check if chord or tree mapping plot could be possible to see dependencies and functional mappings
+
 **** Clean-code and documentation
 ***** create modular scripts with instructions in readme: 
-****** TODO visualize fine-tuned LM result -> joint view
-****** TODO visualize correlation of LM and shallow metrics -> joint view
 ****** TODO visualize model training evolutions
+****** DONE visualize fine-tuned LM result -> joint view
+****** DONE visualize correlation of LM and shallow metrics -> joint view
 ****** DONE visualize shallow metrics
 ****** DONE train translation model (after better NMT performance) 
 ****** DONE translate sentences (after better NMT performance)
@@ -21,21 +26,20 @@
 ***** add final paper/presentation into repo with link in readme 
 ***** add github repo to paperswithcode examples for relevant papers
 
-**** Visualization
-***** TODO look at contour plot and think of joint decision contour for easier look -> use logical symbols like intersections etc.
-***** TODO plots next to each other with truncated label -> chrf and paraphrase detector 4 possible combinations -> use simple alpha to see density and plot this to get an indication of any clustering at all
-***** TODO make multiple plots over chrf with single model results side by side, and then combined model agreement results to see if we can detect something better than noise
-***** TODO perform consistent score analysis with plots to check for relationships between predictions of various models and what conclusions can be drawn from them -> perhaps overlay points shaded with consistency and where they lie in comparison
-***** TODO check if chord or tree mapping plot could be possible to see dependencies and functional mappings
-***** think of plotting schemes that could be used on various results of analysis such as paraphrase detection results from all three models -> get creative with these ideas -> can already do this before newer translation model is present
-***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
-***** think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow
-***** think about ggdensity share scale for more than two pairs of comparisons
+**** Paper
+***** TODO start writing paper soon once main plots with all/joint results are done
+***** use two-column format for final paper, to prepare for paper writing -> download ACL 2020 format
+***** make less confident conclusion on relationship between back-translation and translation consistency -> could also be linked to other differences between models
+***** explan that papers like volatility one might be making claims based on weaker models that could be fixed by using larger models
+***** think more about whether to include or exclude adversarial term since this might be a grey area -> qualify various means of being adversarial ie. targetted through model or perhaps just an intention
+***** include semantic transferance equation in paper to introduce some formalisms -> show mathematical properties of isometric functions/spaces and how this should hold for semantic vector spaces
+***** describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
+***** list hypotheses and how some were refuted by results
 
 **** Evaluation
 ***** TODO finalize results and start focusing on interpreting the results and what the possible statistical conclusions could be
 ***** TODO main source of errors seems to be wrong language insertion in scaling NMT model while not really the case in FAIR SOTA model -> check test data performance to see if this is also the case -> perhaps this is a systematic error for non-backtranslated model
-***** TODO look into interesting cases in regards to paraphrase output results, such as (0,1) etc.
+***** TODO look into interesting cases in regards to paraphrase output results, such as (0,1) etc. -> check what these outputs represent in terms of actual sentences
 ***** perhaps reliably use paraphrase detection only in cases where initial German paraphrase is positively detected, to ensure some consistency for evaluation
 ***** consider comparing across checkpoints if this would be of interest
 ***** check for possibly interesting correlations between XLM-R prediction and chrF/BLEU scores -> this could be of interest in making additional statements to Michel et al. 2019's statements regarding chrF scores
@@ -45,15 +49,6 @@
 ***** report evaluation of fine-tuning paraphrase detector and weaker translation model
 ***** early conclusions/hypotheses: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
 ***** show that training with backtranslation helps for robustness to paraphrases -> through visualizations and perhaps some statistical tests
-
-**** Paper
-***** use two-column format for final paper, to prepare for paper writing -> download ACL 2020 format
-***** make less confident conclusion on relationship between back-translation and translation consistency -> could also be linked to other differences between models
-***** explan that papers like volatility one might be making claims based on weaker models that could be fixed by using larger models
-***** think more about whether to include or exclude adversarial term since this might be a grey area -> qualify various means of being adversarial ie. targetted through model or perhaps just an intention
-***** include semantic transferance equation in paper to introduce some formalisms -> show mathematical properties of isometric functions/spaces and how this should hold for semantic vector spaces
-***** describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
-***** list hypotheses and how some were refuted by results
 
 **** Paraphrase detection
 ***** make formal analysis on lengths of WMT19 inputs vs. lengths of paws-x training data

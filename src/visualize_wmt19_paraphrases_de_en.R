@@ -308,7 +308,7 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early=FALSE) {
   post_process(tex_file)
   # make compressed plot
   g <- ggplot(compressed_collection, aes(x=Label, fill=Type)) +
-    geom_bar(color="black", size = 0.5, alpha = 0.75) +
+    geom_bar(color="black", size = 0.5, alpha = 0.75, width = 0.75) +
     theme_bw() +
     theme(text = element_text(size=18),
           strip.background = element_blank(),

@@ -3,6 +3,7 @@
 **** Visualization
 ***** TODO think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow and model evolution plots
 ***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
+***** **extra** consider plotting out agreement statistics sampled from uniform distribution within bar chart and if this would be of use
 ***** **extra** check if chord or tree mapping plot could be possible to see dependencies and functional mappings
 
 **** Clean-code and documentation
@@ -35,6 +36,7 @@
 ***** include semantic transferance equation in paper to introduce some formalisms -> show mathematical properties of isometric functions/spaces and how this should hold for semantic vector spaces
 ***** describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
 ***** list hypotheses and how some were refuted by results
+***** paraphrase detection as a form of isometry quantification as well as evaluation metric for NMT systems
 
 **** Evaluation
 ***** TODO finalize results and start focusing on interpreting the results and what the possible statistical conclusions could be
@@ -111,7 +113,7 @@
 **** NMT training on S3IT GPUs
 ***** V100-16GB safest option for fp16 fast training, tested with 3584:16 and now testing out 7168:8
 ***** V100-32GB works great but many times slurms allocates it when it has ~100s MB left
-***** K80 does not permit fp16 for faster training, goes into OOM when using with max_tokens 7168 and update_freq 8 -> although can be used for PAWS-X
+***** K80 does not permit fp16 for faster training, goes into OOM when using with max-tokens 7168 and update-freq 8 -> although can be used for PAWS-X
 
 **** LASER embeddings + dense layers
 ***** not very useful by itself, needs a larger token-touching model
@@ -164,3 +166,4 @@
 ***** noise is not problematic since there is already noise present in normal training data
 ***** meaning preserving + adversarial outcome -> then useful
 ***** augmentation is important if adversarial attack is successful, maybe syntax real-life frequency has effect
+      

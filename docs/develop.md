@@ -11,7 +11,11 @@
         -\> such as defining model paths to plot model evolutions, etc.
         -\> make this more dynamic and practical where possible
 
-    3.  ****extra**** check if chord or tree mapping plot could be
+    3.  ****extra**** consider plotting out agreement statistics sampled
+        from uniform distribution within bar chart and if this would be
+        of use
+
+    4.  ****extra**** check if chord or tree mapping plot could be
         possible to see dependencies and functional mappings
 
 2.  Clean-code and documentation
@@ -93,6 +97,9 @@
         -\> summarized below in logs
 
     8.  list hypotheses and how some were refuted by results
+
+    9.  paraphrase detection as a form of isometry quantification as
+        well as evaluation metric for NMT systems
 
 4.  Evaluation
 
@@ -264,8 +271,8 @@
         has \~100s MB left
 
     3.  K80 does not permit fp16 for faster training, goes into OOM when
-        using with max~tokens~ 7168 and update~freq~ 8 -\> although can
-        be used for PAWS-X
+        using with max-tokens 7168 and update-freq 8 -\> although can be
+        used for PAWS-X
 
 2.  LASER embeddings + dense layers
 

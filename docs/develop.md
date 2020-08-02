@@ -11,11 +11,11 @@
         -\> such as defining model paths to plot model evolutions, etc.
         -\> make this more dynamic and practical where possible
 
-    3.  ****extra**** consider plotting out agreement statistics sampled
-        from uniform distribution within bar chart and if this would be
-        of use
+    3.  ****extra:**** consider plotting out agreement statistics
+        sampled from uniform distribution within bar chart and if this
+        would be of use
 
-    4.  ****extra**** check if chord or tree mapping plot could be
+    4.  ****extra:**** check if chord or tree mapping plot could be
         possible to see dependencies and functional mappings
 
 2.  Clean-code and documentation
@@ -44,21 +44,21 @@
 
         9.  **DONE** evaluate bleu & chrf
 
-    2.  add version numbers to R package dependencies
-
-    3.  segment readme into training, translation and others categories
+    2.  segment readme into training, translation and others categories
         with relevant usages
 
-    4.  replace relevant bash commands with sbatch in slurm-s3it branch
+    3.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    5.  update initial page of readme with overview/abstract of work
+    4.  update initial page of readme with overview/abstract of work
         including shallow metrics
 
-    6.  update TOC\'s in all readmes to reflect latest changes
+    5.  update TOC\'s in all readmes to reflect latest changes
 
-    7.  update R dependencies in readme once all visualizations are
+    6.  update R dependencies in readme once all visualizations are
         finalized
+
+    7.  add version numbers to R package dependencies for posterity
 
     8.  add citations in readme as per general standard
 
@@ -92,63 +92,57 @@
         functions/spaces and how this should hold for semantic vector
         spaces
 
-    7.  describe processes that worked and did not work -\> talk about
+    7.  report evaluation of fine-tuning paraphrase detector and weaker
+        translation model
+
+    8.  describe processes that worked and did not work -\> talk about
         all the hurdles and show some bad examples when they occurred
         -\> summarized below in logs
 
-    8.  list hypotheses and how some were refuted by results
+    9.  list hypotheses and how some were refuted by results
 
-    9.  paraphrase detection as a form of isometry quantification as
+    10. paraphrase detection as a form of isometry quantification as
         well as evaluation metric for NMT systems
 
 4.  Evaluation
 
-    1.  **TODO** finalize results and start focusing on
-        interpreting the results and what the possible statistical
-        conclusions could be
-
-    2.  **TODO** main source of errors seems to be wrong
+    1.  **TODO** main source of errors seems to be wrong
         language insertion in scaling NMT model while not really the
         case in FAIR SOTA model -\> check test data performance to see
         if this is also the case -\> perhaps this is a systematic error
         for non-backtranslated model
 
-    3.  **TODO** look into interesting cases in regards to
-        paraphrase output results, such as (0,1) etc. -\> check what
-        these outputs represent in terms of actual sentences
+    2.  **TODO** look into interesting cases in regards to
+        paraphrase output results, such as (0,1) and (1,0) etc. -\>
+        check what these outputs represent in terms of actual sentences
+        and what observations can be drawn from these -\> for eg. (0,1)
+        behaviour of FAIR model could point to some regularizing
+        capabilities acquired from good model training and/or
+        backtranslation -\> exclude cases of mixed languages
 
-    4.  perhaps reliably use paraphrase detection only in cases where
-        initial German paraphrase is positively detected, to ensure some
-        consistency for evaluation
-
-    5.  consider comparing across checkpoints if this would be of
-        interest
-
-    6.  check for possibly interesting correlations between XLM-R
+    3.  check for possibly interesting correlations between XLM-R
         prediction and chrF/BLEU scores -\> this could be of interest in
         making additional statements to Michel et al. 2019\'s statements
         regarding chrF scores
 
-    7.  consider changing bleu to sacrebleu in json (read more about
-        differences) and figure out why stating this might be important
-
-    8.  compute statistical tests for ascertaining significance of
-        relationships
-
-    9.  in rare cases, can do manual analysis and include this inside
+    4.  in rare cases, can do manual analysis and include this inside
         report
 
-    10. report evaluation of fine-tuning paraphrase detector and weaker
-        translation model
-
-    11. early conclusions/hypotheses: hand-crafted adversarial
+    5.  early conclusions/hypotheses: hand-crafted adversarial
         paraphrase robustness is handled well in SOTA models due to
         backtranslation reguralization, main vulnerability will be
         targetted adversarial samples
 
-    12. show that training with backtranslation helps for robustness to
+    6.  show that training with backtranslation helps for robustness to
         paraphrases -\> through visualizations and perhaps some
         statistical tests
+
+    7.  ****extra:**** compute statistical tests for ascertaining
+        significance of relationships
+
+    8.  ****extra:**** consider changing bleu to sacrebleu in json (read
+        more about differences) and figure out why stating this might be
+        important
 
 5.  Paraphrase detection
 

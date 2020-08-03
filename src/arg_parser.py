@@ -63,6 +63,11 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
                 "--do_lower_case",
                 action="store_true",
                 help="Set this flag if you are using an uncased model.")
+    elif subtype == "tensorboard":
+        parser.add_argument("--tensorboard-log-dir-glob",
+                            default="./models/*/{train,train_inner,valid}",
+                            type=str,
+                            help="Input glob for finding tensorboard log directories")
     parser.add_argument("--verbosity",
                         type=int,
                         default=1,

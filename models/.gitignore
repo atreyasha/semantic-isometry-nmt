@@ -1,12 +1,12 @@
-events*
 *.pt
 *.json
 *.bin
 *.txt
 *.log
+*.model
+*.tar.gz
+*.sacrebleu
+*.csv
 *f1
-*model
-*tar.gz
+events*
 bpe.32000
-*txt
-*sacrebleu

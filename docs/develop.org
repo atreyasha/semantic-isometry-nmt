@@ -1,15 +1,16 @@
 *** Development
 
 **** Paper
-***** TODO use two-column format for final paper, to prepare for paper writing -> download ACL 2020 format
+***** TODO work on writing paper in succinct manner
+***** TODO include semantic transferance equation in paper to introduce some formalisms -> show mathematical properties of isometric functions/spaces and how this should hold for semantic vector spaces
 ***** make less confident conclusion on relationship between back-translation and translation consistency -> could also be linked to other differences between models
 ***** explan that papers like volatility one might be making claims based on weaker models that could be fixed by using larger models
 ***** think more about whether to include or exclude adversarial term since this might be a grey area -> qualify various means of being adversarial ie. targetted through model or perhaps just an intention
-***** include semantic transferance equation in paper to introduce some formalisms -> show mathematical properties of isometric functions/spaces and how this should hold for semantic vector spaces
 ***** report evaluation of fine-tuning paraphrase detector and weaker translation model
 ***** describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
 ***** list hypotheses and how some were refuted by results
 ***** paraphrase detection as a form of isometry quantification as well as evaluation metric for NMT systems
+***** add pawsx training on de+en as future task to see how much this would change things
 
 **** Evaluation
 ***** TODO main source of errors seems to be wrong language insertion in scaling NMT model while not really the case in FAIR SOTA model -> check test data performance to see if this is also the case -> perhaps this is a systematic error for non-backtranslated model

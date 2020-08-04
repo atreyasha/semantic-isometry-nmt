@@ -2,26 +2,25 @@
 
 1.  Paper
 
-    1.  **TODO** use two-column format for final paper, to
-        prepare for paper writing -\> download ACL 2020 format
+    1.  **TODO** work on writing paper in succinct manner
 
-    2.  make less confident conclusion on relationship between
+    2.  **TODO** include semantic transferance equation in
+        paper to introduce some formalisms -\> show mathematical
+        properties of isometric functions/spaces and how this should
+        hold for semantic vector spaces
+
+    3.  make less confident conclusion on relationship between
         back-translation and translation consistency -\> could also be
         linked to other differences between models
 
-    3.  explan that papers like volatility one might be making claims
+    4.  explan that papers like volatility one might be making claims
         based on weaker models that could be fixed by using larger
         models
 
-    4.  think more about whether to include or exclude adversarial term
+    5.  think more about whether to include or exclude adversarial term
         since this might be a grey area -\> qualify various means of
         being adversarial ie. targetted through model or perhaps just an
         intention
-
-    5.  include semantic transferance equation in paper to introduce
-        some formalisms -\> show mathematical properties of isometric
-        functions/spaces and how this should hold for semantic vector
-        spaces
 
     6.  report evaluation of fine-tuning paraphrase detector and weaker
         translation model
@@ -34,6 +33,9 @@
 
     9.  paraphrase detection as a form of isometry quantification as
         well as evaluation metric for NMT systems
+
+    10. add pawsx training on de+en as future task to see how much this
+        would change things
 
 2.  Evaluation
 

@@ -5,18 +5,30 @@
 # check for various dependency executables
 test_poetry=$(command -v poetry)
 test_shfmt=$(command -v shfmt)
+test_R_styler=$(
+  Rscript -e 'styler::style_file()' &>/dev/null
+  echo $?
+)
 
 # check if poetry files have been staged for commit
 poetry_change=$(
   git diff --cached --exit-code pyproject.toml poetry.lock \
-    >/dev/null
+    &>/dev/null
   echo $?
 )
 
 # check if develop.org has been staged for commit
 develop_change=$(
   git diff --cached --exit-code ./docs/develop.org \
-    >/dev/null
+    &>/dev/null
+  echo $?
+)
+
+# check if R src files have been staged for commit
+R_change=$(
+  git diff --cached --exit-code ./src/visualize_wmt19_paraphrases_de_en.R \
+    &>/dev/ &
+  null
   echo $?
 )
 
@@ -47,4 +59,11 @@ if [ -n "$test_shfmt" ] && [ "${#scripts_change[@]}" -ne "0" ]; then
   printf "%s\n" "Formatting shell scripts"
   shfmt -w -i 2 "${scripts_change[@]}"
   git add "${scripts_change[@]}"
+fi
+
+# format R files
+if [ "$test_R_styler" -eq "0" ] && [ "$R_change" -eq "1" ]; then
+  printf "%s\n" "Formatting R scripts"
+  Rscript -e 'styler::style_file("./src/visualize_wmt19_paraphrases_de_en.R")'
+  git add "./src/visualize_wmt19_paraphrases_de_en.R"
 fi

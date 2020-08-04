@@ -91,7 +91,8 @@ Optional arguments:
                checkpoint_best.pt"
 ```
 
-This script will run translation using Facebook FAIR'S winning WMT19 model as the SOTA model and the previously downloaded NMT model as the non-SOTA model. Translation results will be saved as `json` files in the `predictions` directory. To run this script using our defaults, simply execute:
+This script will run translation using Facebook FAIR's winning WMT19 model as the SOTA model and the previously downloaded NMT model as the non-SOTA model. Translation results will be saved as `json` files in the `predictions` directory. To run this script using our defaults, simply execute:
+
 
 ```shell
 bash scripts/translate_wmt19_paraphrases_de_en.sh 
@@ -135,7 +136,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will analyze the translation `json` outputs and append the paraphrase detection model's `softmax` score for the paraphrase (or positive) label. The input `json` files will also be updated with these scores in-place. To run this script, simply execute:
+This script will analyze the translation `json` outputs and append the paraphrase detection models' `softmax` scores for the paraphrase (or positive) label. The input `json` files will also be updated with these scores in-place. To run this script, simply execute:
 
 ```shell
 bash scripts/evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh
@@ -158,7 +159,7 @@ Optional arguments:
                "./models/*/{train,train_inner,valid}"
 ```
 
-Running this script will aggregate/convert tensorboard event logs into `csv` files and will then plot them in `pdf` format within the `img` directory. To use this script, simply execute:
+This script will aggregate/convert tensorboard event logs into `csv` files and produce/save fancy plots of model evolutions as tikz-based `pdf` files in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_model_evolutions.sh

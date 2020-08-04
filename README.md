@@ -63,7 +63,7 @@ Finally, to check the quality/consistency of the translated paraphrases; we trai
     git checkout slurm-s3it
     ```
 
-5. **Optional:** If you want to further develop this repository; you can auto-format shell scripts and synchronize python dependencies, the development log and the `slurm-s3it` branch by initializing our pre-commit and pre-push `git` hooks:
+5. **Optional:** If you want to further develop this repository; you can auto-format shell/R scripts and synchronize python dependencies, the development log and the `slurm-s3it` branch by initializing our pre-commit and pre-push `git` hooks:
 
     ```shell
     bash scripts/setup_git_hooks.sh

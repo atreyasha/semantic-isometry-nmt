@@ -16,6 +16,7 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
       args (argparse.Namespace): Namespace object for downstream functions
     """
     parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
+    required = parser.add_argument_group('required arguments')
     if subtype == "translate":
         parser.add_argument(
             "--model-subset",
@@ -64,10 +65,10 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
                 action="store_true",
                 help="Set this flag if you are using an uncased model.")
     elif subtype == "tensorboard":
-        parser.add_argument("--tensorboard-log-dir-glob",
-                            default="./models/*/{train,train_inner,valid}",
-                            type=str,
-                            help="Input glob for finding tensorboard log directories")
+        required.add_argument("--tb-log-dir",
+                              required=True,
+                              type=str,
+                              help="Input glob for finding tensorboard log directories")
     parser.add_argument("--verbosity",
                         type=int,
                         default=1,

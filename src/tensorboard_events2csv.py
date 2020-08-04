@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# Sourced and adapted from https://stackoverflow.com/a/52095336
 
 from .arg_parser import parse_arguments
 from typing import Dict, List
 from collections import defaultdict
 from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
-from braceexpand import braceexpand
 from glob import glob
 import os
 import csv
@@ -22,7 +22,7 @@ def dict2csv(out: Dict[str, List], dpath: str) -> None:
     Function to write dictionary object as csv file
 
     Args:
-        out (Dict[str, List): Dictionary containing values/steps to write
+        out (Dict[str, List]): Dictionary containing values/steps to write
         dpath (str): Path of the directory containing tensoboard logs
     """
     with open(os.path.join(dpath, "%s.csv" % os.path.basename(dpath)),
@@ -94,12 +94,8 @@ def main() -> None:
     else:
         logger = logging.getLogger('root')
     # parse for tensoboard logs
-    tensorboard_log_dir_Glob = args.tensorboard_log_dir_glob
-    tensorboard_log_dir_Glob = list(braceexpand(tensorboard_log_dir_Glob))
-    tensorboard_log_dirs = [
-        log_dir for tensorboard_log_dir_glob in tensorboard_log_dir_Glob
-        for log_dir in glob(tensorboard_log_dir_glob)
-    ]
+    tensorboard_log_dir_glob = args.tb_log_dir
+    tensorboard_log_dirs = glob(tensorboard_log_dir_glob)
     # loop over log directories
     for tensorboard_log_dir in tensorboard_log_dirs:
         logger.info("Processing: %s", tensorboard_log_dir)

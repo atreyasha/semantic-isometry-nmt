@@ -42,7 +42,7 @@ if [ -f "./poetry.lock" ] && [ -n "$test_poetry" ] && [ "$poetry_change" -eq "1"
 fi
 
 # update develop.md given conditions
-if [ -f ./docs/develop.org ] && [ "$develop_change" -eq "1" ]; then
+if [ -f "./docs/develop.org" ] && [ "$develop_change" -eq "1" ]; then
   printf "%s\n" "Syncing develop.md with develop.org"
   # convert todos.org to todos.md
   pandoc -f org -t markdown -o ./docs/develop.md ./docs/develop.org

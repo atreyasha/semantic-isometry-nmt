@@ -4,10 +4,10 @@
 
     1.  **TODO** work on writing paper in succinct manner
 
-    2.  **TODO** include semantic transferance equation in
-        paper to introduce some formalisms -\> show mathematical
-        properties of isometric functions/spaces and how this should
-        hold for semantic vector spaces
+    2.  include semantic transferance equation in paper to introduce
+        some formalisms -\> show mathematical properties of isometric
+        functions/spaces and how this should hold for semantic vector
+        spaces
 
     3.  make less confident conclusion on relationship between
         back-translation and translation consistency -\> could also be

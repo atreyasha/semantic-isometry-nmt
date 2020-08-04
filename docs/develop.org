@@ -2,7 +2,7 @@
 
 **** Paper
 ***** TODO work on writing paper in succinct manner
-***** TODO include semantic transferance equation in paper to introduce some formalisms -> show mathematical properties of isometric functions/spaces and how this should hold for semantic vector spaces
+***** include semantic transferance equation in paper to introduce some formalisms -> show mathematical properties of isometric functions/spaces and how this should hold for semantic vector spaces
 ***** make less confident conclusion on relationship between back-translation and translation consistency -> could also be linked to other differences between models
 ***** explan that papers like volatility one might be making claims based on weaker models that could be fixed by using larger models
 ***** think more about whether to include or exclude adversarial term since this might be a grey area -> qualify various means of being adversarial ie. targetted through model or perhaps just an intention

@@ -65,7 +65,7 @@ def parse_arguments(subtype: str) -> argparse.Namespace:
                 action="store_true",
                 help="Set this flag if you are using an uncased model.")
     elif subtype == "tensorboard":
-        required.add_argument("--tb-log-dir",
+        required.add_argument("--tb-log-dir-glob",
                               required=True,
                               type=str,
                               help="Input glob for finding tensorboard log directories")

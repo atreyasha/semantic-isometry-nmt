@@ -94,7 +94,7 @@ def main() -> None:
     else:
         logger = logging.getLogger('root')
     # parse for tensoboard logs
-    tensorboard_log_dir_glob = args.tb_log_dir
+    tensorboard_log_dir_glob = args.tb_log_dir_glob
     tensorboard_log_dirs = glob(tensorboard_log_dir_glob)
     # loop over log directories
     for tensorboard_log_dir in tensorboard_log_dirs:

@@ -143,7 +143,7 @@ bash scripts/evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh
 
 #### iv. Visualization
 
-##### Model training
+##### Model evolutions
 
 In order to plot the evolutions of model training parameters, we provide `visualize_model_evolutions.sh`:
 

@@ -27,8 +27,7 @@ develop_change=$(
 # check if R src files have been staged for commit
 R_change=$(
   git diff --cached --exit-code ./src/visualize_wmt19_paraphrases_de_en.R \
-    &>/dev/ &
-  null
+    &>/dev/null
   echo $?
 )
 

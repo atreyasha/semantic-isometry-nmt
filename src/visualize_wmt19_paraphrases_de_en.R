@@ -216,8 +216,8 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early=FALSE) {
   names(xlmr_large)[grep("translated",names(xlmr_large))] <- "Target"
   # rbind everything together
   tmp_collection <- rbind(long_collection[-(which(names(long_collection)
-                                             %in% c("model_name","data_name")))],
-                           xlmr, xlmr_large)
+                                                  %in% c("model_name","data_name")))],
+                          xlmr, xlmr_large)
   long_collection <- cbind(long_collection[c("model_name", "data_name")], tmp_collection)
   # make rounding analysis
   rounded <- as.data.frame(lapply(collection, function(x)
@@ -228,11 +228,11 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early=FALSE) {
   xlmr_indices <- grep("roberta\\.base", names(collection))
   xlmr_large_indices <- grep("roberta\\.large", names(collection))
   bert <- as.factor(paste0("(",rounded[,bert_indices[1]],
-                          ",",rounded[,bert_indices[2]],")"))
+                           ",",rounded[,bert_indices[2]],")"))
   xlmr <- as.factor(paste0("(",rounded[,xlmr_indices[1]],
-                          ",",rounded[,xlmr_indices[2]],")"))
+                           ",",rounded[,xlmr_indices[2]],")"))
   xlmr_large <- as.factor(paste0("(",rounded[,xlmr_large_indices[1]],
-                                ",",rounded[,xlmr_large_indices[2]],")"))
+                                 ",",rounded[,xlmr_large_indices[2]],")"))
   compressed_collection <- cbind(bert,xlmr,xlmr_large)
   compressed_collection <- lapply(1:nrow(compressed_collection), function(i)
   {
@@ -410,6 +410,144 @@ plot_shallow_deep_correlations <- function(input_glob) {
   post_process(tex_file)
 }
 
+plot_model_evolutions <- function(){
+  # get list of all files
+  train_files <- Sys.glob("./models/transformer*/train_inner/*.csv")
+  valid_files <- Sys.glob("./models/transformer*/valid/*.csv")
+  if(length(train_files) != 1 || length(valid_files) != 1){
+    stop("Only two csv files can be processed for NMT evolution")
+  }
+  # plot for translation evolution
+  train <- read.csv(train_files, stringsAsFactors = FALSE)
+  valid <- read.csv(valid_files, stringsAsFactors = FALSE)
+  train$type <- "Train"
+  valid$type <- "Validation"
+  collection <- rbind(train[,c("steps","type","loss")], valid[,c("steps","type","loss")])
+  stop_point <- valid[which(valid[,"loss"] == min(valid[,"loss"])),"steps"]
+  # plot object
+  g <- ggplot(collection, aes(x=steps, y=loss)) +
+    geom_line(aes(color=type), size=0.7, alpha=0.8) +
+    geom_vline(aes(xintercept = stop_point, color = "Best Checkpoint",
+                   linetype = "Best Checkpoint"),
+               linetype="dashed", alpha=0.8,show.legend = FALSE) +
+    theme_bw() +
+    ggtitle("Scaling NMT WMT16 Transformer Training") +
+    scale_color_manual(values = c("Train"="red",
+                                  "Validation"="blue",
+                                  "Best Checkpoint"="black"),
+                       breaks = c("Train", "Validation",
+                                  "Best Checkpoint")) +
+    theme(text = element_text(size=14),
+          strip.background = element_blank(),
+          legend.title = element_blank(),
+          legend.position=c(0.88,0.88),
+          legend.background = element_blank(),
+          legend.key = element_rect(fill=NA),
+          legend.key.width = unit(0.8, "cm"),
+          strip.text = element_text(face="bold"),
+          panel.grid = element_line(size = 1),
+          axis.ticks.length = unit(.125, "cm"),
+          plot.title = element_text(hjust=0.5, size=14),
+          axis.text = element_text(size=12)) +
+    scale_x_continuous(labels = function(x) paste0(x/1000, "k"),
+                       n.breaks = 20) +
+    guides(colour = guide_legend(override.aes = list(linetype=c("Train" = "solid",
+                                                                "Validation" = "solid",
+                                                                "Best Checkpoint" = "dashed")))) +
+    xlab("\nTraining Steps") +
+    ylab("Cross Entropy Loss\n")
+  tex_file = "transformer_nmt_evolution.tex"
+  tikz(tex_file, width=9, height=6, standAlone = TRUE, engine="luatex")
+  print(g)
+  dev.off()
+  post_process(tex_file)
+  # get list of all files
+  train_files <- Sys.glob("./models/*pawsx*/train/*.csv")
+  valid_files <- Sys.glob("./models/*pawsx*/valid/*.csv")
+  if(length(train_files) != 3 || length(valid_files) != 3){
+    stop("Only six csv files can be processed for paraphrase detection evolution")
+  }
+  # plot for paraphrase detection evolution combined
+  train_bert <- read.csv(grep("bert-base", train_files, value=TRUE),
+                         stringsAsFactors = FALSE)
+  train_xlmr <- read.csv(grep("roberta-base", train_files, value=TRUE),
+                         stringsAsFactors = FALSE)
+  train_xlmrl <- read.csv(grep("roberta-large", train_files, value=TRUE),
+                          stringsAsFactors = FALSE)
+  train_bert$model <- "BERT"
+  train_xlmr$model <- "XLM-R$_{B}$"
+  train_xlmrl$model <- "XLM-R$_{L}$"
+  train <- rbind(train_bert,train_xlmr,train_xlmrl)
+  train <- train[,c("steps", "loss", "model")]
+  train$type <- "Training Cross Entropy Loss"
+  names(train) <- c("steps","value","model","type")
+  # validation dataframe
+  valid_bert <- read.csv(grep("bert-base", valid_files, value=TRUE), stringsAsFactors = FALSE)
+  valid_xlmr <- read.csv(grep("roberta-base", valid_files, value=TRUE), stringsAsFactors = FALSE)
+  valid_xlmrl <- read.csv(grep("roberta-large", valid_files, value=TRUE), stringsAsFactors = FALSE)
+  valid_bert$model <- "BERT"
+  valid_xlmr$model <- "XLM-R$_{B}$"
+  valid_xlmrl$model <- "XLM-R$_{L}$"
+  valid <- rbind(valid_bert,valid_xlmr,valid_xlmrl)
+  valid <- valid[,c("steps","model","eval_acc")]
+  valid$type <- "Validation Accuracy"
+  names(valid) <- c("steps","model","value","type")
+  # combine dataframes
+  collection <- rbind(train,valid)
+  bert <- subset(valid, model == "BERT")
+  bert_max <- bert[which.max(bert$value),1]
+  xlmr <- subset(valid, model == "XLM-R$_{B}$")
+  xlmr_max <- xlmr[which.max(xlmr$value),1]
+  xlmr_l <- subset(valid, model == "XLM-R$_{L}$")
+  xlmr_l_max <- xlmr_l[which.max(xlmr_l$value),1]
+  # plot object
+  g <- ggplot(data=collection, aes(x=steps, y=value)) +
+    geom_line(aes(color=model), size=0.7, alpha=0.8) +
+    geom_vline(aes(xintercept = bert_max, color = "BERT Best Checkpoint",
+                   linetype = "Best Checkpoint_1"),
+               linetype="dotted", alpha=0.7, size=0.8, show.legend = FALSE) +
+    geom_vline(aes(xintercept = xlmr_max, color = "XLM-R$_{B}$ Best Checkpoint",
+                   linetype = "Best Checkpoint_2"),
+               linetype="dotdash", alpha=0.7, show.legend = FALSE) +
+    geom_vline(aes(xintercept = xlmr_l_max, color = "XLM-R$_{L}$ Best Checkpoint",
+                   linetype = "Best Checkpoint_3"),
+               linetype="dashed", alpha=0.7, show.legend = FALSE) +
+    theme_bw() +
+    ggtitle("Paraphrase Detection Model Training") +
+    scale_color_manual(values = c("BERT"="red",
+                                  "XLM-R$_{B}$"="blue",
+                                  "XLM-R$_{L}$"="darkorange",
+                                  "BERT Best Checkpoint"="black",
+                                  "XLM-R$_{B}$ Best Checkpoint"="black",
+                                  "XLM-R$_{L}$ Best Checkpoint"="black")) +
+    theme(text = element_text(size=14),
+          strip.background = element_blank(),
+          legend.title = element_blank(),
+          legend.position="bottom",
+          legend.background = element_blank(),
+          legend.key = element_rect(fill=NA),
+          legend.key.width = unit(0.8, "cm"),
+          strip.text = element_text(face="bold"),
+          panel.grid = element_line(size = 1),
+          axis.ticks.length = unit(.125, "cm"),
+          plot.title = element_text(hjust=0.5, size=14),
+          axis.text = element_text(size=11)) +
+    scale_x_continuous(labels = function(x) paste0(x/1000, "k"),
+                       n.breaks = 20) +
+    facet_wrap(~type, scales = "free_y") +
+    guides(colour = guide_legend(override.aes = list(linetype=c("solid","dotted",
+                                                                "solid","dotdash",
+                                                                "solid","dashed"
+                                                                )))) +
+    xlab("\nTraining Steps") +
+    ylab("")
+  tex_file = "paraphrase_detection_models_evolution.tex"
+  tikz(tex_file, width=15, height=6, standAlone = TRUE, engine="luatex")
+  print(g)
+  dev.off()
+  post_process(tex_file)
+}
+
 # parse command-line arguments
 parser <- OptionParser()
 parser <- add_option(parser, c("-s", "--shallow-metrics"), action="store_true",
@@ -421,6 +559,9 @@ parser <- add_option(parser, c("-p", "--paraphrase-detector-outputs"),
 parser <- add_option(parser, c("-m", "--mixed"),
                      action="store_true", default=FALSE,
                      help="Flag for plotting a mix of shallow and deep metrics [default: %default]")
+parser <- add_option(parser, c("-e", "--evolutions"),
+                     action="store_true", default=FALSE,
+                     help="Flag for plotting all model evolutions [default: %default]")
 parser <- add_option(parser, c("-j", "--json-glob"),
                      type="character",
                      default="./predictions/*/*.json",
@@ -432,4 +573,6 @@ if(args$s){
   plot_paraphrase_detector_outputs(args$j)
 } else if(args$m){
   plot_shallow_deep_correlations(args$j)
+} else if(args$e){
+  plot_model_evolutions()
 }

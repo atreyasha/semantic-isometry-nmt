@@ -143,6 +143,27 @@ bash scripts/evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh
 
 #### iv. Visualization
 
+##### Model training
+
+In order to plot the evolutions of model training parameters, we provide `visualize_model_evolutions.sh`:
+
+```
+Usage: visualize_model_evolutions.sh [-h|--help] [glob]
+Visualize model evolutions for translation and paraphrase detection models
+
+Optional arguments:
+  -h, --help   Show this help message and exit
+  glob <glob>  Glob for finding tensorboard log directories, which will
+               be converted to csv's and then plotted. Defaults to
+               "./models/*/{train,train_inner,valid}"
+```
+
+Running this script will aggregate/convert tensorboard event logs into `csv` files and will then plot them in `pdf` format within the `img` directory. To use this script, simply execute:
+
+```shell
+bash scripts/visualize_model_evolutions.sh
+```
+
 ##### BLEU and chrF
 
 In order to visualize the previously processed `BLEU` and `chrF` results, we provide `visualize_bleu_chrf_wmt19_paraphrases_de_en.sh`:

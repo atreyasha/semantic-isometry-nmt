@@ -81,8 +81,7 @@ In order to translate WMT19 legacy and additional references with corresponding 
 
 ```
 Usage: translate_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
-Translate WMT19 paraphrases using both torch-hub and local
-model globs
+Translate WMT19 paraphrases using both torch-hub and local models
 
 Optional arguments:
   -h, --help   Show this help message and exit

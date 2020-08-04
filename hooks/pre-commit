@@ -6,7 +6,7 @@
 test_poetry=$(command -v poetry)
 test_shfmt=$(command -v shfmt)
 test_R_styler=$(
-  Rscript -e 'styler::style_file()' &>/dev/null
+  Rscript -e 'styler::style_file' &>/dev/null
   echo $?
 )
 

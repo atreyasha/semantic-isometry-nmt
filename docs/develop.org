@@ -1,35 +1,7 @@
 *** Development
 
-**** Visualization
-***** TODO think of effective ways of converting tensorflow event logs to csv's for nicer plotting -> look into event log combination workflow and model evolution plots
-***** add various sub-routines with different visualization shell scripts corresponding to different arguments of python script -> such as defining model paths to plot model evolutions, etc. -> make this more dynamic and practical where possible
-***** **extra:** consider plotting out agreement statistics sampled from uniform distribution within bar chart and if this would be of use
-***** **extra:** check if chord or tree mapping plot could be possible to see dependencies and functional mappings
-
-**** Clean-code and documentation
-***** create modular scripts with instructions in readme: 
-****** TODO visualize model training evolutions
-****** DONE visualize fine-tuned LM result -> joint view
-****** DONE visualize correlation of LM and shallow metrics -> joint view
-****** DONE visualize shallow metrics
-****** DONE train translation model (after better NMT performance) 
-****** DONE translate sentences (after better NMT performance)
-****** DONE evaluate using fine-tuned language model
-****** DONE fine tune paraphrase detector
-****** DONE evaluate bleu & chrf
-***** segment readme into training, translation and others categories with relevant usages
-***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
-***** update initial page of readme with overview/abstract of work including shallow metrics
-***** update TOC's in all readmes to reflect latest changes
-***** update R dependencies in readme once all visualizations are finalized
-***** add version numbers to R package dependencies for posterity
-***** add citations in readme as per general standard
-***** add final paper/presentation into repo with link in readme 
-***** add github repo to paperswithcode examples for relevant papers
-
 **** Paper
-***** TODO start writing paper soon once main plots with all/joint results are done
-***** use two-column format for final paper, to prepare for paper writing -> download ACL 2020 format
+***** TODO use two-column format for final paper, to prepare for paper writing -> download ACL 2020 format
 ***** make less confident conclusion on relationship between back-translation and translation consistency -> could also be linked to other differences between models
 ***** explan that papers like volatility one might be making claims based on weaker models that could be fixed by using larger models
 ***** think more about whether to include or exclude adversarial term since this might be a grey area -> qualify various means of being adversarial ie. targetted through model or perhaps just an intention
@@ -49,6 +21,17 @@
 ***** **extra:** compute statistical tests for ascertaining significance of relationships
 ***** **extra:** consider changing bleu to sacrebleu in json (read more about differences) and figure out why stating this might be important
 
+**** Clean-code and documentation
+***** segment readme into training, translation and others categories with relevant usages
+***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
+***** update initial page of readme with overview/abstract of work including shallow metrics
+***** update TOC's in all readmes to reflect latest changes
+***** update R dependencies in readme once all visualizations are finalized
+***** add version numbers to R package dependencies for posterity
+***** add citations in readme as per general standard
+***** add final paper/presentation into repo with link in readme 
+***** add github repo to paperswithcode examples for relevant papers
+
 **** Paraphrase detection
 ***** make formal analysis on lengths of WMT19 inputs vs. lengths of paws-x training data
 ***** consider roc and other evaluation metrics for pawsx model -> in case these might be of more help
@@ -61,8 +44,22 @@
 ***** consider also looking into extra references repo "evaluation-of-nmt-bt"
 ***** possibly keep backups of models at various development stages
 ***** **extra:** train additional large model on wmt19 non-backtranslated data and similar transformer arch as fair paper -> to get slightly better performance for comparison -> this can also be done later 
+
+**** Visualization
+***** **extra:** consider plotting out agreement statistics sampled from uniform distribution within bar chart and if this would be of use
+***** **extra:** check if chord or tree mapping plot could be possible to see dependencies and functional mappings
       
 *** Completed
+***** create modular scripts with instructions in readme: 
+****** DONE visualize model training evolutions
+****** DONE visualize fine-tuned LM result -> joint view
+****** DONE visualize correlation of LM and shallow metrics -> joint view
+****** DONE visualize shallow metrics
+****** DONE train translation model (after better NMT performance) 
+****** DONE translate sentences (after better NMT performance)
+****** DONE evaluate using fine-tuned language model
+****** DONE fine tune paraphrase detector
+****** DONE evaluate bleu & chrf
 ***** DONE clean up exporting script where user can specify which checkpoint should be packaged
       CLOSED: [2020-07-24 Fri 15:55]
 ***** DONE replace mean/sd annotations in plots with vector for mean and covariance matrix for sd

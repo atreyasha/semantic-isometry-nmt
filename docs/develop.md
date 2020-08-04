@@ -1,110 +1,41 @@
 ### Development
 
-1.  Visualization
+1.  Paper
 
-    1.  **TODO** think of effective ways of converting
-        tensorflow event logs to csv\'s for nicer plotting -\> look into
-        event log combination workflow and model evolution plots
+    1.  **TODO** use two-column format for final paper, to
+        prepare for paper writing -\> download ACL 2020 format
 
-    2.  add various sub-routines with different visualization shell
-        scripts corresponding to different arguments of python script
-        -\> such as defining model paths to plot model evolutions, etc.
-        -\> make this more dynamic and practical where possible
-
-    3.  ****extra:**** consider plotting out agreement statistics
-        sampled from uniform distribution within bar chart and if this
-        would be of use
-
-    4.  ****extra:**** check if chord or tree mapping plot could be
-        possible to see dependencies and functional mappings
-
-2.  Clean-code and documentation
-
-    1.  create modular scripts with instructions in readme:
-
-        1.  **TODO** visualize model training evolutions
-
-        2.  **DONE** visualize fine-tuned LM result -\> joint
-            view
-
-        3.  **DONE** visualize correlation of LM and shallow
-            metrics -\> joint view
-
-        4.  **DONE** visualize shallow metrics
-
-        5.  **DONE** train translation model (after better
-            NMT performance)
-
-        6.  **DONE** translate sentences (after better NMT
-            performance)
-
-        7.  **DONE** evaluate using fine-tuned language model
-
-        8.  **DONE** fine tune paraphrase detector
-
-        9.  **DONE** evaluate bleu & chrf
-
-    2.  segment readme into training, translation and others categories
-        with relevant usages
-
-    3.  replace relevant bash commands with sbatch in slurm-s3it branch
-        after repository is completed
-
-    4.  update initial page of readme with overview/abstract of work
-        including shallow metrics
-
-    5.  update TOC\'s in all readmes to reflect latest changes
-
-    6.  update R dependencies in readme once all visualizations are
-        finalized
-
-    7.  add version numbers to R package dependencies for posterity
-
-    8.  add citations in readme as per general standard
-
-    9.  add final paper/presentation into repo with link in readme
-
-    10. add github repo to paperswithcode examples for relevant papers
-
-3.  Paper
-
-    1.  **TODO** start writing paper soon once main plots
-        with all/joint results are done
-
-    2.  use two-column format for final paper, to prepare for paper
-        writing -\> download ACL 2020 format
-
-    3.  make less confident conclusion on relationship between
+    2.  make less confident conclusion on relationship between
         back-translation and translation consistency -\> could also be
         linked to other differences between models
 
-    4.  explan that papers like volatility one might be making claims
+    3.  explan that papers like volatility one might be making claims
         based on weaker models that could be fixed by using larger
         models
 
-    5.  think more about whether to include or exclude adversarial term
+    4.  think more about whether to include or exclude adversarial term
         since this might be a grey area -\> qualify various means of
         being adversarial ie. targetted through model or perhaps just an
         intention
 
-    6.  include semantic transferance equation in paper to introduce
+    5.  include semantic transferance equation in paper to introduce
         some formalisms -\> show mathematical properties of isometric
         functions/spaces and how this should hold for semantic vector
         spaces
 
-    7.  report evaluation of fine-tuning paraphrase detector and weaker
+    6.  report evaluation of fine-tuning paraphrase detector and weaker
         translation model
 
-    8.  describe processes that worked and did not work -\> talk about
+    7.  describe processes that worked and did not work -\> talk about
         all the hurdles and show some bad examples when they occurred
         -\> summarized below in logs
 
-    9.  list hypotheses and how some were refuted by results
+    8.  list hypotheses and how some were refuted by results
 
-    10. paraphrase detection as a form of isometry quantification as
+    9.  paraphrase detection as a form of isometry quantification as
         well as evaluation metric for NMT systems
 
-4.  Evaluation
+2.  Evaluation
 
     1.  **TODO** main source of errors seems to be wrong
         language insertion in scaling NMT model while not really the
@@ -144,7 +75,31 @@
         more about differences) and figure out why stating this might be
         important
 
-5.  Paraphrase detection
+3.  Clean-code and documentation
+
+    1.  segment readme into training, translation and others categories
+        with relevant usages
+
+    2.  replace relevant bash commands with sbatch in slurm-s3it branch
+        after repository is completed
+
+    3.  update initial page of readme with overview/abstract of work
+        including shallow metrics
+
+    4.  update TOC\'s in all readmes to reflect latest changes
+
+    5.  update R dependencies in readme once all visualizations are
+        finalized
+
+    6.  add version numbers to R package dependencies for posterity
+
+    7.  add citations in readme as per general standard
+
+    8.  add final paper/presentation into repo with link in readme
+
+    9.  add github repo to paperswithcode examples for relevant papers
+
+4.  Paraphrase detection
 
     1.  make formal analysis on lengths of WMT19 inputs vs. lengths of
         paws-x training data
@@ -163,7 +118,7 @@
         patience, typing, better documentation, clean-code and possibly
         continuation of training, add roc auc on pawsx test data
 
-6.  Translation
+5.  Translation
 
     1.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being
@@ -180,78 +135,111 @@
         paper -\> to get slightly better performance for comparison -\>
         this can also be done later
 
+6.  Visualization
+
+    1.  ****extra:**** consider plotting out agreement statistics
+        sampled from uniform distribution within bar chart and if this
+        would be of use
+
+    2.  ****extra:**** check if chord or tree mapping plot could be
+        possible to see dependencies and functional mappings
+
 ### Completed
 
-1.  **DONE** clean up exporting script where user can specify
+1.  create modular scripts with instructions in readme:
+
+    1.  **DONE** visualize model training evolutions
+
+    2.  **DONE** visualize fine-tuned LM result -\> joint
+        view
+
+    3.  **DONE** visualize correlation of LM and shallow
+        metrics -\> joint view
+
+    4.  **DONE** visualize shallow metrics
+
+    5.  **DONE** train translation model (after better NMT
+        performance)
+
+    6.  **DONE** translate sentences (after better NMT
+        performance)
+
+    7.  **DONE** evaluate using fine-tuned language model
+
+    8.  **DONE** fine tune paraphrase detector
+
+    9.  **DONE** evaluate bleu & chrf
+
+2.  **DONE** clean up exporting script where user can specify
     which checkpoint should be packaged
 
-2.  **DONE** replace mean/sd annotations in plots with vector
+3.  **DONE** replace mean/sd annotations in plots with vector
     for mean and covariance matrix for sd
 
-3.  **DONE** reduce computational overhead by caching source
+4.  **DONE** reduce computational overhead by caching source
     computations for paraphrase detection evaluation
 
-4.  **DONE** make shell script which automatically filters
+5.  **DONE** make shell script which automatically filters
     and compresses to tar gz
 
-5.  **DONE** Increase sequence lengths during training to
+6.  **DONE** Increase sequence lengths during training to
     accomodate for longer paraphrases, compute average seq lengths of
     wmt inputs to estimate model seq lengths for training paraphrase
     detector, work on keeping code simple
 
-6.  **DONE** consider making separate branch with sbatch
+7.  **DONE** consider making separate branch with sbatch
     parameters all present in files as necessary for reproducibility
 
-7.  **DONE** bug in XLM-R as it does not appear to learn -\>
+8.  **DONE** bug in XLM-R as it does not appear to learn -\>
     look through code
 
-8.  **DONE** multilingual BERT with de only -\> bug in how
+9.  **DONE** multilingual BERT with de only -\> bug in how
     test scripts are saved leads to wrong results
 
-9.  **DONE** maybe consider using German BERT for doing this
+10. **DONE** maybe consider using German BERT for doing this
     task explicitly for German, for our end task -\> German BERT and
     RoBERTa for English to focus on exact task -\> perhaps just use
     xtreme repo and keep only paws-x task -\> clean up code and workflow
     for it -\> error might be arising due to gradient clipping for very
     large model
 
-10. **DONE** look into ParaBank2 and universal
+11. **DONE** look into ParaBank2 and universal
     decompositional semantics -\> not great paraphrases, no human
     curation
 
-11. **DONE** look into Duolingo dataset for paraphrases -\>
+12. **DONE** look into Duolingo dataset for paraphrases -\>
     no German target side
 
-12. **DONE** add symbols for defaults in metavar default
+13. **DONE** add symbols for defaults in metavar default
     formatter, maybe add some other formatting tricks such as indents
     for defaults
 
-13. **DONE** try installing java locally instead of root, if
+14. **DONE** try installing java locally instead of root, if
     stanford parser is indeed necessary
 
-14. **DONE** paraphrasing with SGCP -\> very bad results on
+15. **DONE** paraphrasing with SGCP -\> very bad results on
     both original test and WMT data -\> very sensitive to exemplar
 
-15. **DONE** embed and cluser using universal sentence
+16. **DONE** embed and cluser using universal sentence
     encoder (eg. BERT or LASER) -\> use separate clusters for exemplar
     utility, make diverse collection and evaluate using metric or other
     NN
 
-16. **DONE** find other sentence with maximum similarity and
+17. **DONE** find other sentence with maximum similarity and
     use that as exemplar, useparaphrase of best as exemplar, use
     pos-tags of sentence
 
-17. **DONE** convert wmt datasets with derived exemplars into
+18. **DONE** convert wmt datasets with derived exemplars into
     format pipe-able into SGCP -\> needed before paraphrasing
 
-18. **DONE** add workflow to download laser models with
+19. **DONE** add workflow to download laser models with
     python -m laserembeddings download-models
 
-19. **DONE** set up WMT 17 dev/test data and basic repo
+20. **DONE** set up WMT 17 dev/test data and basic repo
 
-20. **DONE** convert all processes to makefile for ease
+21. **DONE** convert all processes to makefile for ease
 
-21. **DONE** set up data downloading for all wmt sets with
+22. **DONE** set up data downloading for all wmt sets with
     SacreBLEU
 
 ### Brainstorming and logs

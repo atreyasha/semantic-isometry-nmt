@@ -51,7 +51,7 @@
         and what observations can be drawn from these -\> for eg. (0,1)
         behaviour of FAIR model could point to some regularizing
         capabilities acquired from good model training and/or
-        backtranslation -\> exclude cases of mixed languages
+        backtranslation -\> find and exclude cases of mixed languages
 
     3.  check for possibly interesting correlations between XLM-R
         prediction and chrF/BLEU scores -\> this could be of interest in

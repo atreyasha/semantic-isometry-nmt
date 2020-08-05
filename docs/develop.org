@@ -14,7 +14,7 @@
 
 **** Evaluation
 ***** TODO main source of errors seems to be wrong language insertion in scaling NMT model while not really the case in FAIR SOTA model -> check test data performance to see if this is also the case -> perhaps this is a systematic error for non-backtranslated model
-***** TODO look into interesting cases in regards to paraphrase output results, such as (0,1) and (1,0) etc. -> check what these outputs represent in terms of actual sentences and what observations can be drawn from these -> for eg. (0,1) behaviour of FAIR model could point to some regularizing capabilities acquired from good model training and/or backtranslation -> exclude cases of mixed languages
+***** TODO look into interesting cases in regards to paraphrase output results, such as (0,1) and (1,0) etc. -> check what these outputs represent in terms of actual sentences and what observations can be drawn from these -> for eg. (0,1) behaviour of FAIR model could point to some regularizing capabilities acquired from good model training and/or backtranslation -> find and exclude cases of mixed languages
 ***** check for possibly interesting correlations between XLM-R prediction and chrF/BLEU scores -> this could be of interest in making additional statements to Michel et al. 2019's statements regarding chrF scores
 ***** in rare cases, can do manual analysis and include this inside report
 ***** early conclusions/hypotheses: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples

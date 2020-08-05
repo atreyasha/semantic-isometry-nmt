@@ -25,7 +25,7 @@ To approach this objective, we start by gathering hand-crafted (semantically equ
 
 We then quantify (and simplify) the notion of a semantic distance metric into a binary decision problem; specifically between semantic equality and inequality. For this, we train and utilize paraphrase detection models; where a positive result for paraphrase detection corresponds to semantic equality while a negative result corresponds to semantic inequality.
 
-Specifically, we train large paraphrase detection models based off Google's [XTREME](https://github.com/google-research/xtreme) benchmarks on the [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task and apply these models on the aforementioned translations. A more detailed description of our methodologies and results can be found in our research paper. 
+To realize this concept, we train large paraphrase detection models based off Google's [XTREME](https://github.com/google-research/xtreme) benchmarks on the [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task and apply these models on the aforementioned translations. A more detailed description of our methodologies and results can be found in our research paper. 
 
 ### Dependencies :neckbeard:
 

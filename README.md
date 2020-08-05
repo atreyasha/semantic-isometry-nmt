@@ -15,7 +15,7 @@
 
 Isometry can be defined as a distance-preserving transformation between metric spaces. This repository investigates the isometric properties of Neural Machine Translation (NMT) functions (and thereby models) on semantic metric spaces.
 
-To motivate this investigation, we postulate that well-performing NMT models should preserve a supposed semantic distance metric on both the source and target-side. That is to say; if two sentences are semantically equivalent on the source side, they should also be semantically equivalent after translation on the target side. This concept of isometry in a semantic metric space can be stated more explicitly with the following mathematical description:
+To motivate this investigation, we postulate that well-performing NMT models should preserve a supposed semantic distance metric on both the source and target-side. That is to say; if two sentences are semantically equivalent on the source side, they should also be semantically equivalent after translation on the target side. This concept of isometry in semantic metric spaces can be stated more explicitly with the following mathematical description:
 
 <p align="center">
 <img src="./img/basic_eqn.svg" width="400">

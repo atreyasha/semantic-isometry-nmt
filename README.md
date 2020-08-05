@@ -15,13 +15,13 @@
 
 Isometry can be defined as a distance-preserving transformation between metric spaces. This repository investigates the isometric properties of Neural Machine Translation (NMT) functions (and thereby models) on semantic metric spaces.
 
-To motivate this investigation, we postulate that well-performing NMT models should preserve the semantic distance metric on both the source and target semantic spaces. That is to say; if two sentences are semantically equalivalent on the source side, they should also be semantically equivalent on the target side. This concept of semantic isometry can be stated more explicitly with the following mathematical description:
+To motivate this investigation, we postulate that well-performing NMT models should preserve a supposed semantic distance metric on both the source and target-side. That is to say; if two sentences are semantically equalivalent on the source side, they should also be semantically equivalent after translation on the target side. This concept of semantic isometry can be stated more explicitly with the following mathematical description:
 
 <p align="center">
-<img src="./img/basic_eqn.svg" width="300">
+<img src="./img/basic_eqn.svg" width="350">
 </p>
 
-To approach this objective, we start by gathering hand-crafted (semantically equivalent) [paraphrases](https://github.com/google/wmt19-paraphrased-references) of WMT19 `en-de` test data's legacy and additional references. We then translate these paraphrases in the reverse direction ie. `de-en` using both SOTA and non-SOTA NMT models to obtain various translation samples. We use Facebook's FAIR WMT19 winning (single) model from [Ng. et al., 2019](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based on the Scaling NMT methodology from [Ott et al., 2018](https://arxiv.org/abs/1806.00187) on reversed WMT16 data and utilize this model as our non-SOTA model.
+To approach this objective, we start by gathering hand-crafted (semantically equivalent) [paraphrases](https://github.com/google/wmt19-paraphrased-references) of WMT19 `en-de` test data's legacy and additional references. We then translate these paraphrases in the reverse direction ie. `de-en` using both SOTA and non-SOTA NMT models to introduce variance in translation samples. We use Facebook's FAIR WMT19 winning (single) model from [Ng. et al., 2019](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based on the Scaling NMT methodology from [Ott et al., 2018](https://arxiv.org/abs/1806.00187) on reversed WMT16 data and utilize this model as our non-SOTA model.
 
 Finally, to check the quality/consistency of the translated paraphrases; we train a large paraphrase detection model based off Google's [XTREME](https://github.com/google-research/xtreme) benchmarks on the [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task and apply this model on the aforementioned translations. A detailed description of our methodologies and results can be found in our research paper. 
 

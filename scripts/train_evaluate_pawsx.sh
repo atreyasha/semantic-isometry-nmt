@@ -47,7 +47,7 @@ train_evaluate_pawsx() {
   local TASK="pawsx"
   local EPOCH=10
   local MAXL=128
-  local LANGS="de,en,es,fr,ja,ko,zh"
+  local LANGS="en,de,es,fr,ja,ko,zh"
   local UNIX_EPOCH="$(date +%s)"
   local SAVE_DIR="${OUT_DIR}/${MODEL}.${TASK}.ML${MAXL}.${UNIX_EPOCH}"
   local BATCH_SIZE=32
@@ -70,7 +70,7 @@ train_evaluate_pawsx() {
   CUDA_VISIBLE_DEVICES=$GPU python3 -m src.paws_x.run_classify \
     --model_type $MODEL_TYPE \
     --model_name_or_path $MODEL \
-    --train_language en \
+    --train_language "en,de" \
     --task_name $TASK \
     --do_train \
     --do_predict \

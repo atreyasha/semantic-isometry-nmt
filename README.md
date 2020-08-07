@@ -13,7 +13,7 @@
 
 ### Overview :book:
 
-Isometry is defined mathematically as a distance-preserving transformation between two metric spaces. This repository investigates the isometric properties of Neural Machine Translation (NMT) models on semantic metric spaces.
+Isometry is defined mathematically as a distance-preserving transformation between two metric spaces. This repository investigates the isometric properties of Neural Machine Translation (NMT) models on discrete semantic spaces.
 
 To motivate this investigation, we postulate that well-performing NMT models produce isometric outputs on semantic metric spaces. That is to say; if two sentences are semantically equivalent on the source side, they should also be semantically equivalent after translation on the target side. This concept of isometry in semantic metric spaces can be stated more explicitly with the following mathematical description:
 
@@ -23,7 +23,7 @@ To motivate this investigation, we postulate that well-performing NMT models pro
 
 To approach this objective, we start by gathering hand-crafted (semantically equivalent) [paraphrases](https://github.com/google/wmt19-paraphrased-references) of WMT19 `en-de` test data's legacy and additional references. We then translate these paraphrases in the reverse direction ie. `de-en` using both SOTA and non-SOTA NMT models to introduce performance-dependent variance into translation samples. We use Facebook's FAIR WMT19 winning (single) model from [Ng. et al., 2019](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based on the Scaling NMT methodology from [Ott et al., 2018](https://arxiv.org/abs/1806.00187) on reversed WMT16 data and utilize this model as our non-SOTA model.
 
-We then quantify (and simplify) the notion of a semantic distance metric into a binary decision problem, specifically between semantic equality and inequality. For this, we train and utilize paraphrase detection models; where a positive result for paraphrase detection corresponds to semantic equality while a negative result corresponds to semantic inequality.
+We then quantify (and simplify) the notion of a semantic distance metric into a discrete binary-decision problem, specifically between semantic equality and inequality. For this, we train and utilize paraphrase detection models; where a positive result for paraphrase detection corresponds to semantic equality while a negative result corresponds to semantic inequality.
 
 To realize this concept, we train large paraphrase detection models based off Google's [XTREME](https://github.com/google-research/xtreme) benchmarks on the [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task and apply these models on the aforementioned translations.
 

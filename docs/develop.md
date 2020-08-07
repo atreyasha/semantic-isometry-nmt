@@ -37,7 +37,36 @@
     10. add pawsx training on de+en as future task to see how much this
         would change things
 
-2.  Evaluation
+2.  Clean-code and documentation
+
+    1.  **TODO** retrain pawsx models on both de and en to
+        check for improvements in performance -\> update base and
+        training readme with new information pertaining to model
+        training, statistics etc.
+
+    2.  segment readme into training, translation and others categories
+        with relevant usages
+
+    3.  replace relevant bash commands with sbatch in slurm-s3it branch
+        after repository is completed
+
+    4.  update initial page of readme with overview/abstract of work
+        including shallow metrics
+
+    5.  update TOC\'s in all readmes to reflect latest changes
+
+    6.  update R dependencies in readme once all visualizations are
+        finalized
+
+    7.  add version numbers to R package dependencies for posterity
+
+    8.  add citations in readme as per general standard
+
+    9.  add final paper/presentation into repo with link in readme
+
+    10. add github repo to paperswithcode examples for relevant papers
+
+3.  Evaluation
 
     1.  **TODO** main source of errors seems to be wrong
         language insertion in scaling NMT model while not really the
@@ -53,53 +82,32 @@
         capabilities acquired from good model training and/or
         backtranslation -\> find and exclude cases of mixed languages
 
-    3.  check for possibly interesting correlations between XLM-R
+    3.  **TODO** consider error rates on isometric inference
+        comparisons related to paraphrase detection error
+
+    4.  check for possibly interesting correlations between XLM-R
         prediction and chrF/BLEU scores -\> this could be of interest in
         making additional statements to Michel et al. 2019\'s statements
         regarding chrF scores
 
-    4.  in rare cases, can do manual analysis and include this inside
+    5.  in rare cases, can do manual analysis and include this inside
         report
 
-    5.  early conclusions/hypotheses: hand-crafted adversarial
+    6.  early conclusions/hypotheses: hand-crafted adversarial
         paraphrase robustness is handled well in SOTA models due to
         backtranslation reguralization, main vulnerability will be
         targetted adversarial samples
 
-    6.  show that training with backtranslation helps for robustness to
+    7.  show that training with backtranslation helps for robustness to
         paraphrases -\> through visualizations and perhaps some
         statistical tests
 
-    7.  ****extra:**** compute statistical tests for ascertaining
+    8.  ****extra:**** compute statistical tests for ascertaining
         significance of relationships
 
-    8.  ****extra:**** consider changing bleu to sacrebleu in json (read
+    9.  ****extra:**** consider changing bleu to sacrebleu in json (read
         more about differences) and figure out why stating this might be
         important
-
-3.  Clean-code and documentation
-
-    1.  segment readme into training, translation and others categories
-        with relevant usages
-
-    2.  replace relevant bash commands with sbatch in slurm-s3it branch
-        after repository is completed
-
-    3.  update initial page of readme with overview/abstract of work
-        including shallow metrics
-
-    4.  update TOC\'s in all readmes to reflect latest changes
-
-    5.  update R dependencies in readme once all visualizations are
-        finalized
-
-    6.  add version numbers to R package dependencies for posterity
-
-    7.  add citations in readme as per general standard
-
-    8.  add final paper/presentation into repo with link in readme
-
-    9.  add github repo to paperswithcode examples for relevant papers
 
 4.  Paraphrase detection
 

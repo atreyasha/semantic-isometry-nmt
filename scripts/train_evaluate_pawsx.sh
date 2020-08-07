@@ -47,7 +47,8 @@ train_evaluate_pawsx() {
   local TASK="pawsx"
   local EPOCH=10
   local MAXL=128
-  local LANGS="en,de,es,fr,ja,ko,zh"
+  local TRAIN_LANGS="en,de"
+  local TEST_LANGS="en,de,es,fr,ja,ko,zh"
   local UNIX_EPOCH="$(date +%s)"
   local SAVE_DIR="${OUT_DIR}/${MODEL}.${TASK}.ML${MAXL}.${UNIX_EPOCH}"
   local BATCH_SIZE=32
@@ -70,13 +71,13 @@ train_evaluate_pawsx() {
   CUDA_VISIBLE_DEVICES=$GPU python3 -m src.paws_x.run_classify \
     --model_type $MODEL_TYPE \
     --model_name_or_path $MODEL \
-    --train_language "en,de" \
+    --train_language $TRAIN_LANGS \
     --task_name $TASK \
     --do_train \
     --do_predict \
     --do_predict_dev \
-    --train_split train \
-    --test_split test \
+    --train_split "train" \
+    --test_split "test" \
     --data_dir $DATA_DIR \
     --gradient_accumulation_steps $GRAD_ACC \
     --save_steps 200 \
@@ -85,8 +86,8 @@ train_evaluate_pawsx() {
     --num_train_epochs $EPOCH \
     --max_seq_length $MAXL \
     --output_dir $SAVE_DIR \
-    --log_file 'train.log' \
-    --predict_languages $LANGS \
+    --log_file "train.log" \
+    --predict_languages $TEST_LANGS \
     --save_only_best_checkpoint
 }
 

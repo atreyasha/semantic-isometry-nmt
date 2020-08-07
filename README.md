@@ -1,4 +1,4 @@
-## Investigating the isometric properties of Neural Machine Translation models on semantic metric spaces
+## Investigating the isometric properties of Neural Machine Translation models on discrete semantic spaces
 
 1. [Overview](#Overview-book)
 2. [Dependencies](#Dependencies-neckbeard)

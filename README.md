@@ -1,4 +1,4 @@
-## Investigating the isometric properties of Neural Machine Translation models on discrete semantic spaces
+## Investigating the isometric properties of Neural Machine Translation models on binary semantic-equivalence spaces
 
 1. [Overview](#Overview-book)
 2. [Dependencies](#Dependencies-neckbeard)
@@ -13,7 +13,7 @@
 
 ### Overview :book:
 
-Isometry is defined mathematically as a distance-preserving transformation between two metric spaces. This repository investigates the isometric properties of Neural Machine Translation (NMT) models on discrete semantic spaces.
+Isometry is defined mathematically as a distance-preserving transformation between two metric spaces. This repository investigates the isometric properties of Neural Machine Translation (NMT) models on binary semantic-equivalence spaces.
 
 To motivate this investigation, we postulate that well-performing NMT models produce isometric outputs on semantic metric spaces. That is to say; if two sentences are semantically equivalent on the source side, they should also be semantically equivalent after translation on the target side. This concept of isometry in semantic metric spaces can be stated more explicitly with the following mathematical description:
 

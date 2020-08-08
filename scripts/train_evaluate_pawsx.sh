@@ -47,7 +47,7 @@ train_evaluate_pawsx() {
   local TASK="pawsx"
   local EPOCH=10
   local MAXL=128
-  local TRAIN_LANGS="en,de"
+  local TRAIN_LANGS="en,de,es,fr,ja,ko,zh"
   local TEST_LANGS="en,de,es,fr,ja,ko,zh"
   local UNIX_EPOCH="$(date +%s)"
   local SAVE_DIR="${OUT_DIR}/${MODEL}.${TASK}.ML${MAXL}.${UNIX_EPOCH}"

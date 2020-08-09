@@ -1,72 +1,41 @@
 ### Development
 
-1.  Paper
+1.  Clean-code and documentation
 
-    1.  **TODO** work on writing paper in succinct manner
+    1.  **TODO** retrain pawsx models on de+en and
+        ****all**** to check for improvements in performance -\> update
+        base and training readme with new information pertaining to
+        model training, statistics etc.
 
-    2.  include semantic transferance equation in paper to introduce
-        some formalisms -\> show mathematical properties of isometric
-        functions/spaces and how this should hold for semantic vector
-        spaces
+    2.  **TODO** if deemed viable, export new models to
+        google drive, produce new plots and look into changes
 
-    3.  make less confident conclusion on relationship between
-        back-translation and translation consistency -\> could also be
-        linked to other differences between models
+    3.  **TODO** consider changing paraphrase detection
+        terminology to something more semantic related
 
-    4.  explan that papers like volatility one might be making claims
-        based on weaker models that could be fixed by using larger
-        models
-
-    5.  think more about whether to include or exclude adversarial term
-        since this might be a grey area -\> qualify various means of
-        being adversarial ie. targetted through model or perhaps just an
-        intention
-
-    6.  report evaluation of fine-tuning paraphrase detector and weaker
-        translation model
-
-    7.  describe processes that worked and did not work -\> talk about
-        all the hurdles and show some bad examples when they occurred
-        -\> summarized below in logs
-
-    8.  list hypotheses and how some were refuted by results
-
-    9.  paraphrase detection as a form of isometry quantification as
-        well as evaluation metric for NMT systems
-
-    10. add pawsx training on de+en as future task to see how much this
-        would change things
-
-2.  Clean-code and documentation
-
-    1.  **TODO** retrain pawsx models on both de and en to
-        check for improvements in performance -\> update base and
-        training readme with new information pertaining to model
-        training, statistics etc.
-
-    2.  segment readme into training, translation and others categories
+    4.  segment readme into training, translation and others categories
         with relevant usages
 
-    3.  replace relevant bash commands with sbatch in slurm-s3it branch
+    5.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    4.  update initial page of readme with overview/abstract of work
+    6.  update initial page of readme with overview/abstract of work
         including shallow metrics
 
-    5.  update TOC\'s in all readmes to reflect latest changes
+    7.  update TOC\'s in all readmes to reflect latest changes
 
-    6.  update R dependencies in readme once all visualizations are
+    8.  update R dependencies in readme once all visualizations are
         finalized
 
-    7.  add version numbers to R package dependencies for posterity
+    9.  add version numbers to R package dependencies for posterity
 
-    8.  add citations in readme as per general standard
+    10. add citations in readme as per general standard
 
-    9.  add final paper/presentation into repo with link in readme
+    11. add final paper/presentation into repo with link in readme
 
-    10. add github repo to paperswithcode examples for relevant papers
+    12. add github repo to paperswithcode examples for relevant papers
 
-3.  Evaluation
+2.  Evaluation
 
     1.  **TODO** main source of errors seems to be wrong
         language insertion in scaling NMT model while not really the
@@ -85,31 +54,36 @@
     3.  **TODO** consider error rates on isometric inference
         comparisons related to paraphrase detection error
 
-    4.  check for possibly interesting correlations between XLM-R
+    4.  **TODO** look into frequency of isometric vs
+        non-isometric behaviour -\> consider changing paraphrase
+        detection scores to semantic distance metric which would need
+        minor revision of symbols used
+
+    5.  check for possibly interesting correlations between XLM-R
         prediction and chrF/BLEU scores -\> this could be of interest in
         making additional statements to Michel et al. 2019\'s statements
         regarding chrF scores
 
-    5.  in rare cases, can do manual analysis and include this inside
+    6.  in rare cases, can do manual analysis and include this inside
         report
 
-    6.  early conclusions/hypotheses: hand-crafted adversarial
+    7.  early conclusions/hypotheses: hand-crafted adversarial
         paraphrase robustness is handled well in SOTA models due to
         backtranslation reguralization, main vulnerability will be
         targetted adversarial samples
 
-    7.  show that training with backtranslation helps for robustness to
+    8.  show that training with backtranslation helps for robustness to
         paraphrases -\> through visualizations and perhaps some
         statistical tests
 
-    8.  ****extra:**** compute statistical tests for ascertaining
+    9.  ****extra:**** compute statistical tests for ascertaining
         significance of relationships
 
-    9.  ****extra:**** consider changing bleu to sacrebleu in json (read
+    10. ****extra:**** consider changing bleu to sacrebleu in json (read
         more about differences) and figure out why stating this might be
         important
 
-4.  Paraphrase detection
+3.  Paraphrase detection
 
     1.  make formal analysis on lengths of WMT19 inputs vs. lengths of
         paws-x training data
@@ -128,7 +102,7 @@
         patience, typing, better documentation, clean-code and possibly
         continuation of training, add roc auc on pawsx test data
 
-5.  Translation
+4.  Translation
 
     1.  strong model being WMT19 single and ensemble with back
         translation (which adds robustness), while weak model being
@@ -145,7 +119,7 @@
         paper -\> to get slightly better performance for comparison -\>
         this can also be done later
 
-6.  Visualization
+5.  Visualization
 
     1.  ****extra:**** consider plotting out agreement statistics
         sampled from uniform distribution within bar chart and if this

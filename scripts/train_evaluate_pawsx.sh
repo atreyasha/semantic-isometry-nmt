@@ -49,6 +49,7 @@ train_evaluate_pawsx() {
   local MAXL=128
   local TRAIN_LANGS="en,de,es,fr,ja,ko,zh"
   local TEST_LANGS="en,de,es,fr,ja,ko,zh"
+  local SAVE_STEPS=1000
   local UNIX_EPOCH="$(date +%s)"
   local SAVE_DIR="${OUT_DIR}/${MODEL}.${TASK}.ML${MAXL}.${UNIX_EPOCH}"
   local BATCH_SIZE=32
@@ -80,7 +81,7 @@ train_evaluate_pawsx() {
     --test_split "test" \
     --data_dir $DATA_DIR \
     --gradient_accumulation_steps $GRAD_ACC \
-    --save_steps 200 \
+    --save_steps $SAVE_STEPS \
     --per_gpu_train_batch_size $BATCH_SIZE \
     --learning_rate $LR \
     --num_train_epochs $EPOCH \

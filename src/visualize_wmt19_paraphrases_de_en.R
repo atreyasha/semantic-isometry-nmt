@@ -566,7 +566,7 @@ plot_model_evolutions <- function() {
     xlab("\nTraining Steps") +
     ylab("Cross Entropy Loss\n")
   tex_file <- "transformer_nmt_evolution.tex"
-  tikz(tex_file, width = 9, height = 6, standAlone = TRUE, engine = "luatex")
+  tikz(tex_file, width = 9, height = 5, standAlone = TRUE, engine = "luatex")
   print(g)
   dev.off()
   post_process(tex_file)
@@ -659,7 +659,7 @@ plot_model_evolutions <- function() {
     ) +
     scale_x_continuous(
       labels = function(x) paste0(x / 1000, "k"),
-      n.breaks = 20
+      n.breaks = 10
     ) +
     facet_wrap(~type, scales = "free_y") +
     guides(colour = guide_legend(override.aes = list(linetype = c(

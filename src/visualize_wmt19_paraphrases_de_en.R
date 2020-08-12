@@ -255,13 +255,13 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
   long_collection <- collection
   xlmr_indices <- grep("roberta\\.base", names(long_collection))
   xlmr <- long_collection[xlmr_indices]
-  xlmr["Type"] <- "XLM-R-Base"
+  xlmr["Type"] <- "XLM-R\\textsubscript{Base}"
   long_collection <- long_collection[-xlmr_indices]
   xlmr_large_indices <- grep("roberta\\.large", names(long_collection))
   xlmr_large <- long_collection[xlmr_large_indices]
-  xlmr_large["Type"] <- "XLM-R-Large"
+  xlmr_large["Type"] <- "XLM-R\\textsubscript{Large}"
   long_collection <- long_collection[-xlmr_large_indices]
-  long_collection["Type"] <- "Multilingual-BERT-Base"
+  long_collection["Type"] <- "mBERT\\textsubscript{Base}"
   bert_indices <- grep("bert\\.base", names(long_collection))
   # rename columns
   names(long_collection)[grep("src", names(long_collection))] <- "Source"
@@ -308,11 +308,11 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
         number <- as.numeric(names(which.max(table(x))))
         indices <- as.numeric(which(x == number))
         if (all(indices == c(1, 2))) {
-          c(number, "Majority Agreement: \\{BERT $\\cap$ XLM-R$_{B}\\}$")
+          c(number, "Majority Agreement: \\{mBERT\\textsubscript{Base} $\\cap$ XLM-R\\textsubscript{Base}\\}")
         } else if (all(indices == c(2, 3))) {
-          c(number, "Majority Agreement: \\{XLM-R$_{B}$ $\\cap$ XLM-R$_{L}\\}$")
+          c(number, "Majority Agreement: \\{XLM-R\\textsubscript{Base} $\\cap$ XLM-R\\textsubscript{Large}\\}")
         } else if (all(indices == c(1, 3))) {
-          c(number, "Majority Agreement: \\{BERT $\\cap$ XLM-R$_{L}\\}$")
+          c(number, "Majority Agreement: \\{mBERT\\textsubscript{Base} $\\cap$ XLM-R\\textsubscript{Large}\\}")
         }
       }
     }
@@ -402,9 +402,10 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
       axis.text.x = element_text(vjust = -1.5, size = 14),
       axis.title.x = element_text(vjust = -1.5),
       axis.ticks.length = unit(.15, "cm"),
-      legend.margin = margin(c(10, 5, 5, 1))
+      legend.margin = margin(c(10, 5, 5, 1)),
     ) +
     scale_fill_brewer(palette = "RdYlBu") +
+    guides(fill = guide_legend(nrow = 3, byrow = FALSE)) +
     facet_grid(data_name ~ model_name) +
     xlab("\nJoint Prediction Decision") +
     ylab("Prediction Count\n")
@@ -586,9 +587,9 @@ plot_model_evolutions <- function() {
   train_xlmrl <- read.csv(grep("roberta-large", train_files, value = TRUE),
     stringsAsFactors = FALSE
   )
-  train_bert$model <- "BERT"
-  train_xlmr$model <- "XLM-R$_{B}$"
-  train_xlmrl$model <- "XLM-R$_{L}$"
+  train_bert$model <- "mBERT\\textsubscript{Base}"
+  train_xlmr$model <- "XLM-R\\textsubscript{Base}"
+  train_xlmrl$model <- "XLM-R\\textsubscript{Large}"
   train <- rbind(train_bert, train_xlmr, train_xlmrl)
   train <- train[, c("steps", "loss", "model")]
   train$type <- "Training Cross Entropy Loss"
@@ -597,38 +598,38 @@ plot_model_evolutions <- function() {
   valid_bert <- read.csv(grep("bert-base", valid_files, value = TRUE), stringsAsFactors = FALSE)
   valid_xlmr <- read.csv(grep("roberta-base", valid_files, value = TRUE), stringsAsFactors = FALSE)
   valid_xlmrl <- read.csv(grep("roberta-large", valid_files, value = TRUE), stringsAsFactors = FALSE)
-  valid_bert$model <- "BERT"
-  valid_xlmr$model <- "XLM-R$_{B}$"
-  valid_xlmrl$model <- "XLM-R$_{L}$"
+  valid_bert$model <- "mBERT\\textsubscript{Base}"
+  valid_xlmr$model <- "XLM-R\\textsubscript{Base}"
+  valid_xlmrl$model <- "XLM-R\\textsubscript{Large}"
   valid <- rbind(valid_bert, valid_xlmr, valid_xlmrl)
   valid <- valid[, c("steps", "model", "eval_acc")]
   valid$type <- "Validation Accuracy"
   names(valid) <- c("steps", "model", "value", "type")
   # combine dataframes
   collection <- rbind(train, valid)
-  bert <- subset(valid, model == "BERT")
+  bert <- subset(valid, model == "mBERT\\textsubscript{Base}")
   bert_max <- bert[which.max(bert$value), 1]
-  xlmr <- subset(valid, model == "XLM-R$_{B}$")
+  xlmr <- subset(valid, model == "XLM-R\\textsubscript{Base}")
   xlmr_max <- xlmr[which.max(xlmr$value), 1]
-  xlmr_l <- subset(valid, model == "XLM-R$_{L}$")
+  xlmr_l <- subset(valid, model == "XLM-R\\textsubscript{Large}")
   xlmr_l_max <- xlmr_l[which.max(xlmr_l$value), 1]
   # plot object
   g <- ggplot(data = collection, aes(x = steps, y = value)) +
     geom_line(aes(color = model), size = 0.7, alpha = 0.8) +
     geom_vline(aes(
-      xintercept = bert_max, color = "BERT Best Checkpoint",
+      xintercept = bert_max, color = "mBERT\\textsubscript{Base} Best Checkpoint",
       linetype = "Best Checkpoint_1"
     ),
     linetype = "dotted", alpha = 0.7, size = 0.8, show.legend = FALSE
     ) +
     geom_vline(aes(
-      xintercept = xlmr_max, color = "XLM-R$_{B}$ Best Checkpoint",
+      xintercept = xlmr_max, color = "XLM-R\\textsubscript{Base} Best Checkpoint",
       linetype = "Best Checkpoint_2"
     ),
     linetype = "dotdash", alpha = 0.7, show.legend = FALSE
     ) +
     geom_vline(aes(
-      xintercept = xlmr_l_max, color = "XLM-R$_{L}$ Best Checkpoint",
+      xintercept = xlmr_l_max, color = "XLM-R\\textsubscript{Large} Best Checkpoint",
       linetype = "Best Checkpoint_3"
     ),
     linetype = "dashed", alpha = 0.7, show.legend = FALSE
@@ -636,12 +637,12 @@ plot_model_evolutions <- function() {
     theme_bw() +
     ggtitle("Paraphrase Detection Model Training") +
     scale_color_manual(values = c(
-      "BERT" = "red",
-      "XLM-R$_{B}$" = "blue",
-      "XLM-R$_{L}$" = "darkorange",
-      "BERT Best Checkpoint" = "black",
-      "XLM-R$_{B}$ Best Checkpoint" = "black",
-      "XLM-R$_{L}$ Best Checkpoint" = "black"
+      "mBERT\\textsubscript{Base}" = "red",
+      "XLM-R\\textsubscript{Base}" = "blue",
+      "XLM-R\\textsubscript{Large}" = "darkorange",
+      "mBERT\\textsubscript{Base} Best Checkpoint" = "black",
+      "XLM-R\\textsubscript{Base} Best Checkpoint" = "black",
+      "XLM-R\\textsubscript{Large} Best Checkpoint" = "black"
     )) +
     theme(
       text = element_text(size = 14),

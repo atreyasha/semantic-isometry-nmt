@@ -395,6 +395,7 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
       text = element_text(size = 18),
       strip.background = element_blank(),
       ## legend.key.height = unit(0.01, "cm"),
+      legend.spacing.y = unit(0.2, "cm"),
       legend.position = "bottom",
       legend.title = element_blank(),
       strip.text = element_text(face = "bold"),
@@ -405,7 +406,7 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
       legend.margin = margin(c(10, 5, 5, 1)),
     ) +
     scale_fill_brewer(palette = "RdYlBu") +
-    guides(fill = guide_legend(nrow = 3, byrow = FALSE)) +
+    guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
     facet_grid(data_name ~ model_name) +
     xlab("\nJoint Prediction Decision") +
     ylab("Prediction Count\n")

@@ -131,7 +131,7 @@ bash scripts/postprocess_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
 ```
 
-**vii.** We trained our model for ~1 week on a NVIDIA Tesla V100-16GB GPU, specifically up until ~285k updates. During training, we enabled checkpoint saving and used the best performing checkpoint on the validation set as our final model.
+**vii.** We trained our model for ~1 week on a NVIDIA Tesla V100-16GB GPU, specifically up until ~285k updates. During training, we enabled checkpoint saving and used the best performing checkpoint on the validation set as our final model. The best checkpoint performs with a `BLEU` score of `31.0` when evaluated against the WMT16 `de-en` test set.
 
 As a clarification, although we do provide a script for checkpoint averaging above; we observed no significant performance gain from checkpoint averaging and therefore did not use it for our final model. 
 
@@ -158,7 +158,19 @@ bash scripts/train_evaluate_pawsx.sh
 
 This script will automatically evaluate the model against the `dev` set during training and the `test` set after training. Therefore a separate evaluation step is not necessary.
 
-**ii.** We ran the script above once for each of the three provided models. The training process took ~2 hours for `MULTILINGUAL-BERT` and ~3 hours for`XLM-R-BASE` on a NVIDIA GeForce GTX 1080 Ti-12GB GPU, and ~1.5 days for `XLM-R-LARGE` on a NVIDIA Tesla-K80 GPU. All models were trained up until ~15k updates. We used the best performing checkpoint(s) on the validation dataset as our final model(s).
+**ii.** We ran the script above once for each of the three provided models. The training process took ~14 hours for *mBERT<sub>Base</sub>*, ~15 hours for *XLM-R<sub>Base</sub>*, and ~2.5 days for *XLM-R<sub>Large</sub>* on a NVIDIA GeForce GTX 1080 Ti-12GB GPU. All models were trained up until ~110k updates. The table below shows a breakdown of model F<sub>1</sub> performance on the respective `PAWS-X` test datasets. We used the best performing checkpoint(s) on the validation dataset as our final model(s).
+
+| Language            | mBERT<sub>Base</sub> | XLM-R<sub>Base</sub> | XLM-R<sub>Large</sub> |
+| ---                 |                  --- | ---                  | -----                 |
+| en                  |                0.940 | 0.946                | 0.960                 |
+| de                  |                0.898 | 0.900                | 0.912                 |
+| es                  |                0.908 | 0.922                | 0.928                 |
+| fr                  |                0.922 | 0.917                | 0.933                 |
+| ja                  |                0.836 | 0.836                | 0.859                 |
+| ko                  |                0.841 | 0.847                | 0.870                 |
+| zh                  |                0.854 | 0.861                | 0.876                 |
+| macro-F<sub>1</sub> |                0.886 | 0.890                | **0.906**             |
+
 
 ### 4. Exporting models
 

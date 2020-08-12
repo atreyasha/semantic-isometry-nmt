@@ -21,7 +21,7 @@ To motivate this investigation, we postulate that well-performing NMT models pro
 <img src="./img/basic_eqn.svg" width="400">
 </p>
 
-To approach this objective, we start by gathering hand-crafted (semantically equivalent) [paraphrases](https://github.com/google/wmt19-paraphrased-references) of WMT19 `en-de` test data's legacy and additional references. We then translate these paraphrases in the reverse direction ie. `de-en` using both SOTA and non-SOTA NMT models to introduce performance-dependent variance into translation samples. We use Facebook's FAIR WMT19 winning (single) model from [Ng. et al., 2019](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based on the Scaling NMT methodology from [Ott et al., 2018](https://arxiv.org/abs/1806.00187) on reversed WMT16 data and utilize this model as our non-SOTA model.
+To approach this objective, we start by gathering hand-crafted (semantically equivalent) [paraphrases](https://github.com/google/wmt19-paraphrased-references) of WMT19 `en-de` test data's legacy and additional references. We then translate these paraphrases in the reverse direction ie. `de-en` using both SOTA and non-SOTA NMT models to introduce performance-dependent variance into translation samples. We use Facebook's FAIR WMT19 winning (single) model from [Ng. et al., 2019](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based on the Scaling NMT methodology from [Ott et al., 2018](https://arxiv.org/abs/1806.00187) on WMT16 data and utilize this model as our non-SOTA model.
 
 We then quantify (and simplify) the notion of a semantic distance metric into a discrete binary-decision problem, specifically between semantic equality and inequality. For this, we train and utilize paraphrase detection models; where a positive result for paraphrase detection corresponds to semantic equality while a negative result corresponds to semantic inequality.
 
@@ -56,10 +56,10 @@ A more detailed description of our methodologies and results can be found in our
 2. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory (~480 MB download size).
 
 3. Manually download the following four pre-trained models and place all of the tarballs in the `models` directory (~9 GB total download size):
-    1. [Scaling NMT WMT16 Transformer](https://drive.google.com/uc?id=16LGqlWYppOYVgy7EKMdL7H4j8pj_DXfV&export=download) for non-SOTA `de-en` translation
-    2. [BERT-Multilingual-Base](https://drive.google.com/uc?id=1LFjYMo36RgcS8VDaWoHz1EKQsXgAq_u6&export=download) for multilingual paraphrase detection
-    3. [XLM-R-Base](https://drive.google.com/uc?id=1g1KTF7K1rHUPfxmpLGCJ23JW10IHSZOc&export=download) for multilingual paraphrase detection
-    4. [XLM-R-Large](https://drive.google.com/uc?id=10iestAbz2aCIOYGRYPAK_kpHukz_pEM4&export=download) for multilingual paraphrase detection
+    1. [Scaling NMT WMT16 Transformer](https://drive.google.com/uc?id=16LGqlWYppOYVgy7EKMdL7H4j8pj_DXfV&export=download) for non-SOTA `de-en` translation. Model achieved `BLEU` score of `31.0` on WMT16 `de-en` test dataset.
+    2. [mBERT<sub>Base</sub>](https://drive.google.com/uc?id=18thE9bc-SVfwpAoeuOiZequp5YgckCA5&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.886`.
+    3. [XLM-R<sub>Base</sub>](https://drive.google.com/uc?id=1jSeopFJwKly7uk57mxLpQ9I5C5Fl3P1v&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.890`. 
+    4. [XLM-R<sub>Large</sub>](https://drive.google.com/uc?id=1h6DUEpm173w_4aznMOdRFGtr6hi1bfdT&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.906`.
 
 3. To download/prepare `PAWS-X` and `WMT19` original + additional references + paraphrased test data, as well as prepare the previously downloaded `WMT16` data and pre-trained models, run the command below:
 

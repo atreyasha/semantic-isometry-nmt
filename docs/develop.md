@@ -2,16 +2,16 @@
 
 1.  Clean-code and documentation
 
-    1.  **TODO** retrain pawsx models on de+en and
-        ****all**** to check for improvements in performance -\> update
-        base and training readme with new information pertaining to
-        model training, statistics etc.
+    1.  **TODO** change visualization variables to correct
+        ones from P to S, depending on how this evolves in paper
 
-    2.  **TODO** if deemed viable, export new models to
-        google drive, produce new plots and look into changes
+    2.  **TODO** consider changing paraphrase detection
+        terminology to something more semantic related -\> or leave it
+        as a practical alternative
 
-    3.  **TODO** consider changing paraphrase detection
-        terminology to something more semantic related
+    3.  **TODO** update readme math equation and nice visuals
+        to reflect paper -\> update title and related descriptions by
+        emulating from paper
 
     4.  segment readme into training, translation and others categories
         with relevant usages
@@ -37,13 +37,18 @@
 
 2.  Evaluation
 
-    1.  **TODO** main source of errors seems to be wrong
+    1.  **TODO** check for possibly interesting statistical
+        correlations between XLM-R prediction and chrF/BLEU scores -\>
+        this could be of interest in making additional statements to
+        Michel et al. 2019\'s statements regarding chrF scores
+
+    2.  **TODO** main source of errors seems to be wrong
         language insertion in scaling NMT model while not really the
         case in FAIR SOTA model -\> check test data performance to see
         if this is also the case -\> perhaps this is a systematic error
         for non-backtranslated model
 
-    2.  **TODO** look into interesting cases in regards to
+    3.  **TODO** look into interesting cases in regards to
         paraphrase output results, such as (0,1) and (1,0) etc. -\>
         check what these outputs represent in terms of actual sentences
         and what observations can be drawn from these -\> for eg. (0,1)
@@ -51,18 +56,13 @@
         capabilities acquired from good model training and/or
         backtranslation -\> find and exclude cases of mixed languages
 
-    3.  **TODO** consider error rates on isometric inference
+    4.  **TODO** consider error rates on isometric inference
         comparisons related to paraphrase detection error
 
-    4.  **TODO** look into frequency of isometric vs
+    5.  **TODO** look into frequency of isometric vs
         non-isometric behaviour -\> consider changing paraphrase
         detection scores to semantic distance metric which would need
         minor revision of symbols used
-
-    5.  check for possibly interesting correlations between XLM-R
-        prediction and chrF/BLEU scores -\> this could be of interest in
-        making additional statements to Michel et al. 2019\'s statements
-        regarding chrF scores
 
     6.  in rare cases, can do manual analysis and include this inside
         report

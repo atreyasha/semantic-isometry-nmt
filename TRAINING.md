@@ -131,7 +131,7 @@ bash scripts/postprocess_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
 ```
 
-**vii.** We trained our model for ~1 week on a NVIDIA Tesla V100-16GB GPU, specifically up until ~285k updates. During training, we enabled checkpoint saving and used the best performing checkpoint on the validation set as our final model. The best checkpoint performs with a `BLEU` score of `31.0` when evaluated against the WMT16 `de-en` test set.
+**vii.** We trained our model for ~1 week on a NVIDIA Tesla V100-16GB GPU, specifically up until ~285k updates. During training, we enabled checkpoint saving and used the best performing checkpoint on the validation set as our final model. The best checkpoint performs with a `BLEU` score of `31.0` when evaluated against the  `newstest2014` test set with the following `sacrebleu` signature: `BLEU+case.mixed+lang.de-en+numrefs.1+smooth.exp+test.wmt14/full+tok.13a+version.1.4.12`.
 
 As a clarification, although we do provide a script for checkpoint averaging above; we observed no significant performance gain from checkpoint averaging and therefore did not use it for our final model. 
 

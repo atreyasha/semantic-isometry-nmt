@@ -1,52 +1,13 @@
 ### Development
 
-1.  Clean-code and documentation
+1.  Evaluation
 
-    1.  **TODO** change visualization variables to correct
-        ones from P to S, depending on how this evolves in paper
+    1.  **TODO** try to implement as many statistical tests
+        as possible given correct assumptions -\> use this in discussion
+        or results section of paper
 
-    2.  **TODO** consider changing paraphrase detection
-        terminology to something more semantic related -\> or leave it
-        as a practical alternative
-
-    3.  **TODO** update readme math equation and nice visuals
-        to reflect paper -\> update title and related descriptions by
-        emulating from paper
-
-    4.  segment readme into training, translation and others categories
-        with relevant usages
-
-    5.  replace relevant bash commands with sbatch in slurm-s3it branch
-        after repository is completed
-
-    6.  update initial page of readme with overview/abstract of work
-        including shallow metrics
-
-    7.  update TOC\'s in all readmes to reflect latest changes
-
-    8.  update R dependencies in readme once all visualizations are
-        finalized
-
-    9.  add version numbers to R package dependencies for posterity
-
-    10. add citations in readme as per general standard
-
-    11. add final paper/presentation into repo with link in readme
-
-    12. add github repo to paperswithcode examples for relevant papers
-
-2.  Evaluation
-
-    1.  **TODO** check for possibly interesting statistical
-        correlations between XLM-R prediction and chrF/BLEU scores -\>
-        this could be of interest in making additional statements to
-        Michel et al. 2019\'s statements regarding chrF scores
-
-    2.  **TODO** main source of errors seems to be wrong
-        language insertion in scaling NMT model while not really the
-        case in FAIR SOTA model -\> check test data performance to see
-        if this is also the case -\> perhaps this is a systematic error
-        for non-backtranslated model
+    2.  **TODO** correlate isometry and general model
+        performance -\> think of statistical tests for this
 
     3.  **TODO** look into interesting cases in regards to
         paraphrase output results, such as (0,1) and (1,0) etc. -\>
@@ -56,32 +17,82 @@
         capabilities acquired from good model training and/or
         backtranslation -\> find and exclude cases of mixed languages
 
-    4.  **TODO** consider error rates on isometric inference
+    4.  **TODO** main source of errors seems to be wrong
+        language insertion in scaling NMT model while not really the
+        case in FAIR SOTA model -\> check test data performance to see
+        if this is also the case -\> perhaps this is a systematic error
+        for non-backtranslated model
+
+    5.  **TODO** check for possibly interesting statistical
+        correlations between XLM-R prediction and chrF/BLEU scores -\>
+        this could be of interest in making additional statements to
+        Michel et al. 2019\'s statements regarding chrF scores
+
+    6.  **TODO** consider error rates on isometric inference
         comparisons related to paraphrase detection error
 
-    5.  **TODO** look into frequency of isometric vs
+    7.  **TODO** look into frequency of isometric vs
         non-isometric behaviour -\> consider changing paraphrase
         detection scores to semantic distance metric which would need
         minor revision of symbols used
 
-    6.  in rare cases, can do manual analysis and include this inside
+    8.  in rare cases, can do manual analysis and include this inside
         report
 
-    7.  early conclusions/hypotheses: hand-crafted adversarial
+    9.  early conclusions/hypotheses: hand-crafted adversarial
         paraphrase robustness is handled well in SOTA models due to
         backtranslation reguralization, main vulnerability will be
         targetted adversarial samples
 
-    8.  show that training with backtranslation helps for robustness to
+    10. show that training with backtranslation helps for robustness to
         paraphrases -\> through visualizations and perhaps some
         statistical tests
 
-    9.  ****extra:**** compute statistical tests for ascertaining
+    11. ****extra:**** compute statistical tests for ascertaining
         significance of relationships
 
-    10. ****extra:**** consider changing bleu to sacrebleu in json (read
+    12. ****extra:**** consider changing bleu to sacrebleu in json (read
         more about differences) and figure out why stating this might be
         important
+
+2.  Clean-code and documentation
+
+    1.  **TODO** run wmt16 model on wmt19 de-en task and get
+        BLEU score -\> update this in readme for consistency
+
+    2.  **TODO** change visualization variables to correct
+        ones from P to S, depending on how this evolves in paper
+
+    3.  **TODO** consider changing paraphrase detection
+        terminology to something more semantic related -\> or leave it
+        as a practical alternative
+
+    4.  **TODO** update readme math equation and nice visuals
+        to reflect paper -\> update title and related descriptions by
+        emulating from paper -\> update all details to be consistent
+        with paper
+
+    5.  segment readme into training, translation and others categories
+        with relevant usages
+
+    6.  replace relevant bash commands with sbatch in slurm-s3it branch
+        after repository is completed
+
+    7.  update initial page of readme with overview/abstract of work
+        including shallow metrics
+
+    8.  update TOC\'s in all readmes to reflect latest changes
+
+    9.  update R dependencies in readme once all visualizations are
+        finalized
+
+    10. add version numbers to R package dependencies for posterity
+
+    11. add citations in readme as per general standard
+
+    12. add final paper/presentation into repo with link in readme
+
+    13. add github repo to paperswithcode examples for relevant papers
 
 3.  Paraphrase detection
 

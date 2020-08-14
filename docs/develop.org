@@ -1,9 +1,24 @@
 *** Development
 
+**** Evaluation
+***** TODO try to implement as many statistical tests as possible given correct assumptions -> use this in discussion or results section of paper
+***** TODO correlate isometry and general model performance -> think of statistical tests for this
+***** TODO look into interesting cases in regards to paraphrase output results, such as (0,1) and (1,0) etc. -> check what these outputs represent in terms of actual sentences and what observations can be drawn from these -> for eg. (0,1) behaviour of FAIR model could point to some regularizing capabilities acquired from good model training and/or backtranslation -> find and exclude cases of mixed languages
+***** TODO main source of errors seems to be wrong language insertion in scaling NMT model while not really the case in FAIR SOTA model -> check test data performance to see if this is also the case -> perhaps this is a systematic error for non-backtranslated model
+***** TODO check for possibly interesting statistical correlations between XLM-R prediction and chrF/BLEU scores -> this could be of interest in making additional statements to Michel et al. 2019's statements regarding chrF scores
+***** TODO consider error rates on isometric inference comparisons related to paraphrase detection error
+***** TODO look into frequency of isometric vs non-isometric behaviour -> consider changing paraphrase detection scores to semantic distance metric which would need minor revision of symbols used
+***** in rare cases, can do manual analysis and include this inside report
+***** early conclusions/hypotheses: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
+***** show that training with backtranslation helps for robustness to paraphrases -> through visualizations and perhaps some statistical tests
+***** **extra:** compute statistical tests for ascertaining significance of relationships
+***** **extra:** consider changing bleu to sacrebleu in json (read more about differences) and figure out why stating this might be important
+
 **** Clean-code and documentation
+***** TODO run wmt16 model on wmt19 de-en task and get BLEU score -> update this in readme for consistency
 ***** TODO change visualization variables to correct ones from P to S, depending on how this evolves in paper
 ***** TODO consider changing paraphrase detection terminology to something more semantic related -> or leave it as a practical alternative
-***** TODO update readme math equation and nice visuals to reflect paper -> update title and related descriptions by emulating from paper
+***** TODO update readme math equation and nice visuals to reflect paper -> update title and related descriptions by emulating from paper -> update all details to be consistent with paper
 ***** segment readme into training, translation and others categories with relevant usages
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
 ***** update initial page of readme with overview/abstract of work including shallow metrics
@@ -13,18 +28,6 @@
 ***** add citations in readme as per general standard
 ***** add final paper/presentation into repo with link in readme 
 ***** add github repo to paperswithcode examples for relevant papers
-
-**** Evaluation
-***** TODO check for possibly interesting statistical correlations between XLM-R prediction and chrF/BLEU scores -> this could be of interest in making additional statements to Michel et al. 2019's statements regarding chrF scores
-***** TODO main source of errors seems to be wrong language insertion in scaling NMT model while not really the case in FAIR SOTA model -> check test data performance to see if this is also the case -> perhaps this is a systematic error for non-backtranslated model
-***** TODO look into interesting cases in regards to paraphrase output results, such as (0,1) and (1,0) etc. -> check what these outputs represent in terms of actual sentences and what observations can be drawn from these -> for eg. (0,1) behaviour of FAIR model could point to some regularizing capabilities acquired from good model training and/or backtranslation -> find and exclude cases of mixed languages
-***** TODO consider error rates on isometric inference comparisons related to paraphrase detection error
-***** TODO look into frequency of isometric vs non-isometric behaviour -> consider changing paraphrase detection scores to semantic distance metric which would need minor revision of symbols used
-***** in rare cases, can do manual analysis and include this inside report
-***** early conclusions/hypotheses: hand-crafted adversarial paraphrase robustness is handled well in SOTA models due to backtranslation reguralization, main vulnerability will be targetted adversarial samples
-***** show that training with backtranslation helps for robustness to paraphrases -> through visualizations and perhaps some statistical tests
-***** **extra:** compute statistical tests for ascertaining significance of relationships
-***** **extra:** consider changing bleu to sacrebleu in json (read more about differences) and figure out why stating this might be important
 
 **** Paraphrase detection
 ***** make formal analysis on lengths of WMT19 inputs vs. lengths of paws-x training data

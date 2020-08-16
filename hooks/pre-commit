@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # This script sets up a pre-commit hook to keep the development log
-# and pythonic dependencies up-to-date, as well as format shell scripts
+# and pythonic dependencies up-to-date, as well as format shell/R scripts
 
 # check for various dependency executables
 test_poetry=$(command -v poetry)

@@ -43,7 +43,7 @@ evaluate_wmt16_de_en() {
     --gen-subset "$subset" \
     --max-tokens 3584 | tee "$outfile"
   # detokenize and compute sacrebleu
-  grep ^H "$outfile" |
+  grep ^D "$outfile" |
     sed 's/^D\-//' |
     sort -n -k 1 |
     cut -f 3 |

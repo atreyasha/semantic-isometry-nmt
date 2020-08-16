@@ -44,7 +44,7 @@ evaluate_wmt19_de_en() {
     --beam 5 --lenpen 0.6 --remove-bpe \
     --batch-size 128 --buffer-size 256 \
     --tokenizer "moses" | tee "$outfile"
-  # detokenize and compute sacrebleu
+  # grep and compute sacrebleu
   grep ^D "$outfile" |
     sed 's/^D\-//' |
     sort -n -k 1 |

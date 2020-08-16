@@ -42,7 +42,7 @@ evaluate_wmt16_de_en() {
     --tokenizer "moses" \
     --gen-subset "$subset" \
     --max-tokens 3584 | tee "$outfile"
-  # detokenize and compute sacrebleu
+  # grep and compute sacrebleu
   grep ^D "$outfile" |
     sed 's/^D\-//' |
     sort -n -k 1 |

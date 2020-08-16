@@ -5,13 +5,11 @@ set -e
 # usage function
 usage() {
   cat <<EOF
-Usage: evaluate_wmt16_de_en.sh [-h|--help] checkpoint [subset]
-Evaluate trained fairseq model on WMT16 de-en data
+Usage: evaluate_wmt19_de_en.sh [-h|--help] checkpoint
+Evaluate trained fairseq model on WMT19 de-en data
 
 Optional arguments:
   -h, --help         Show this help message and exit
-  subset <str>       Which subset to evaluate in {train, valid, test},
-                     defaults to "test"
 
 Required arguments:
   checkpoint <path>  Path to checkpoint which should be used
@@ -29,28 +27,32 @@ check_help() {
 }
 
 # define function
-evaluate_wmt16_de_en() {
+evaluate_wmt19_de_en() {
   # declare variables
   local checkpoint_path="$1" subset="${2:-test}"
-  local outfile="${checkpoint_path}.${subset}_wmt16.out"
+  local outfile="${checkpoint_path}.${subset}_wmt19.out"
+  local datapath="data/wmt16_en_de_bpe32k"
   [ ! -f "$checkpoint_path" ] && usage && exit 1
   # process generations
-  fairseq-generate \
-    "data/wmt16_en_de_bpe32k/bin" \
+  sacrebleu --test-set "wmt19" \
+    --language-pair "de-en" \
+    --echo "src" | fairseq-interactive \
+    "${datapath}/bin" \
     --path "$checkpoint_path" \
+    --source-lang "de" --target-lang "en" \
+    --bpe "fastbpe" --bpe-codes "${datapath}/bpe.32000" \
     --beam 5 --lenpen 0.6 --remove-bpe \
-    --tokenizer "moses" \
-    --gen-subset "$subset" \
-    --max-tokens 3584 | tee "$outfile"
+    --batch-size 128 --buffer-size 256 \
+    --tokenizer "moses" | tee "$outfile"
   # detokenize and compute sacrebleu
   grep ^D "$outfile" |
     sed 's/^D\-//' |
     sort -n -k 1 |
     cut -f 3 |
-    sacrebleu --test-set "wmt14/full" --language-pair "de-en" \
+    sacrebleu --test-set "wmt19" --language-pair "de-en" \
       --force >"${outfile}.sacrebleu"
 }
 
 # execute function
 check_help "$@"
-evaluate_wmt16_de_en "$@"
+evaluate_wmt19_de_en "$@"

@@ -15,7 +15,6 @@
 ***** **extra:** consider changing bleu to sacrebleu in json (read more about differences) and figure out why stating this might be important
 
 **** Clean-code and documentation
-***** TODO run wmt16 model on wmt19 de-en task and get BLEU score -> update this in readme for consistency
 ***** TODO change visualization variables to correct ones from P to S, depending on how this evolves in paper
 ***** TODO consider changing paraphrase detection terminology to something more semantic related -> or leave it as a practical alternative
 ***** TODO update readme math equation and nice visuals to reflect paper -> update title and related descriptions by emulating from paper -> update all details to be consistent with paper

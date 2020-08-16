@@ -57,42 +57,39 @@
 
 2.  Clean-code and documentation
 
-    1.  **TODO** run wmt16 model on wmt19 de-en task and get
-        BLEU score -\> update this in readme for consistency
-
-    2.  **TODO** change visualization variables to correct
+    1.  **TODO** change visualization variables to correct
         ones from P to S, depending on how this evolves in paper
 
-    3.  **TODO** consider changing paraphrase detection
+    2.  **TODO** consider changing paraphrase detection
         terminology to something more semantic related -\> or leave it
         as a practical alternative
 
-    4.  **TODO** update readme math equation and nice visuals
+    3.  **TODO** update readme math equation and nice visuals
         to reflect paper -\> update title and related descriptions by
         emulating from paper -\> update all details to be consistent
         with paper
 
-    5.  segment readme into training, translation and others categories
+    4.  segment readme into training, translation and others categories
         with relevant usages
 
-    6.  replace relevant bash commands with sbatch in slurm-s3it branch
+    5.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    7.  update initial page of readme with overview/abstract of work
+    6.  update initial page of readme with overview/abstract of work
         including shallow metrics
 
-    8.  update TOC\'s in all readmes to reflect latest changes
+    7.  update TOC\'s in all readmes to reflect latest changes
 
-    9.  update R dependencies in readme once all visualizations are
+    8.  update R dependencies in readme once all visualizations are
         finalized
 
-    10. add version numbers to R package dependencies for posterity
+    9.  add version numbers to R package dependencies for posterity
 
-    11. add citations in readme as per general standard
+    10. add citations in readme as per general standard
 
-    12. add final paper/presentation into repo with link in readme
+    11. add final paper/presentation into repo with link in readme
 
-    13. add github repo to paperswithcode examples for relevant papers
+    12. add github repo to paperswithcode examples for relevant papers
 
 3.  Paraphrase detection
 

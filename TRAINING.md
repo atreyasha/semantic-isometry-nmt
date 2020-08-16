@@ -66,7 +66,7 @@ bash scripts/train_continue_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
 ```
 
-**iv.** Evaluate an existing checkpoint using `sacrebleu` with `evaluate_wmt16_de_en.sh`:
+**iv.** Evaluate an existing checkpoint on `newstest2014` using `sacrebleu` with `evaluate_wmt16_de_en.sh`:
 
 ```
 Usage: evaluate_wmt16_de_en.sh [-h|--help] checkpoint [subset]
@@ -88,7 +88,27 @@ bash scripts/evaluate_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt"
 ```
 
-**v.** Assuming a plateauing validation performance profile on the final `N` epochs, it is recommended to average the well performing last `N` checkpoints. This can be done with `average_checkpoints_wmt16_de_en.sh`:
+**v.** Evaluate an existing checkpoint on `newstest2019` using `sacrebleu` with `evaluate_wmt19_de_en.sh`:
+
+```
+Usage: evaluate_wmt19_de_en.sh [-h|--help] checkpoint
+Evaluate trained fairseq model on WMT19 de-en data
+
+Optional arguments:
+  -h, --help         Show this help message and exit
+
+Required arguments:
+  checkpoint <path>  Path to checkpoint which should be used
+```
+
+An example of running this script would be:
+
+```shell
+bash scripts/evaluate_wmt19_de_en.sh \
+"./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt"
+```
+
+**vi.** Assuming a plateauing validation performance profile on the final `N` epochs, it is recommended to average the well performing last `N` checkpoints. This can be done with `average_checkpoints_wmt16_de_en.sh`:
 
 ```
 Usage: average_checkpoints_wmt16_de_en [-h|--help] model_directory [number]
@@ -110,7 +130,7 @@ bash scripts/average_checkpoints_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
 ```
 
-**vi.** After choosing the best model, execute post-processing on the model directory using `postprocess_wmt16_de_en.sh`:
+**vii.** After choosing the best model, execute post-processing on the model directory using `postprocess_wmt16_de_en.sh`:
 
 ```
 Usage: postprocess_wmt16_de_en.sh [-h|--help] model_directory...
@@ -131,9 +151,9 @@ bash scripts/postprocess_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
 ```
 
-**vii.** We trained our model for ~1 week on a NVIDIA Tesla V100-16GB GPU, specifically up until ~285k updates. During training, we enabled checkpoint saving and used the best performing checkpoint on the validation set as our final model. The best checkpoint performs with a `BLEU` score of `31.0` when evaluated against the  `newstest2014` test set with the following `sacrebleu` signature: `BLEU+case.mixed+lang.de-en+numrefs.1+smooth.exp+test.wmt14/full+tok.13a+version.1.4.12`.
+**viii.** We trained our model for ~1 week on a NVIDIA Tesla V100-16GB GPU, specifically up until ~285k updates. During training, we enabled checkpoint saving and used the best performing checkpoint on the validation set as our final model. The best checkpoint performs with a `BLEU` score of `31.0` when evaluated against the  `newstest2014` test set with the following `sacrebleu` signature: `BLEU+case.mixed+lang.de-en+numrefs.1+smooth.exp+test.wmt14/full+tok.13a+version.1.4.12`.
 
-As a clarification, although we do provide a script for checkpoint averaging above; we observed no significant performance gain from checkpoint averaging and therefore did not use it for our final model. 
+**Note:** Although we do provide a script for checkpoint averaging above; we observed no significant performance gain from checkpoint averaging and therefore did not use it for our final model. 
 
 ### 3. Fine-tuning multilingual transformer language model on PAWS-X
 

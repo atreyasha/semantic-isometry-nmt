@@ -174,10 +174,10 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
       )])
     })))
     if (grepl("ar", data_name)) {
-      data_name <- "WMT19 Test AR"
+      data_name <- "WMT19 AR"
     }
     else {
-      data_name <- "WMT19 Test Legacy"
+      data_name <- "WMT19 Legacy"
     }
     if (grepl("torch_hub", model_name)) {
       model_name <- "FAIR WMT19 Transformer"
@@ -237,10 +237,10 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
       unlist(x[indices])
     })))
     if (grepl("ar", data_name)) {
-      data_name <- "WMT19 Test AR"
+      data_name <- "WMT19 AR"
     }
     else {
-      data_name <- "WMT19 Test Legacy"
+      data_name <- "WMT19 Legacy"
     }
     if (grepl("hub", model_name)) {
       model_name <- "FAIR WMT19 Transformer"

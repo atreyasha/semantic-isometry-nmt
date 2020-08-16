@@ -42,8 +42,7 @@ evaluate_wmt16_de_en() {
     --bpe fastbpe --bpe-codes "data/wmt16_en_de_bpe32k/bpe.32000" \
     --beam 5 --lenpen 0.6 --remove-bpe \
     --batch-size 512 --buffer-size 1028 \
-    --sacrebleu \
-    --tokenizer moses --input ./data/wmt19/*ref | tee "$outfile
+    --sacrebleu --tokenizer moses --input ./data/wmt19/*ref | tee "$outfile"
   # TODO add sacrebleu evaluation here as well
   # TODO run both wmt16 and wmt19 evaluations to check new tokenizer
 }

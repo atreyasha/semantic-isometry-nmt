@@ -178,7 +178,7 @@ bash scripts/train_evaluate_pawsx.sh
 
 This script will automatically evaluate the model against the `dev` set during training and the `test` set after training. Therefore a separate evaluation step is not necessary.
 
-**ii.** We ran the script above once for each of the three provided models. The training process took ~14 hours for *mBERT<sub>Base</sub>*, ~15 hours for *XLM-R<sub>Base</sub>*, and ~2.5 days for *XLM-R<sub>Large</sub>* on a NVIDIA GeForce GTX 1080 Ti-12GB GPU. All models were trained up until ~110k updates. The table below shows a breakdown of model F<sub>1</sub> performance on the respective `PAWS-X` test datasets. We used the best performing checkpoint(s) on the validation dataset as our final model(s).
+**ii.** We ran the script above once for each of the three provided models. The training process took ~14 hours for mBERT<sub>Base</sub>, ~15 hours for XLM-R<sub>Base</sub>, and ~2.5 days for XLM-R<sub>Large</sub> on a NVIDIA GeForce GTX 1080 Ti-12GB GPU. All models were trained up until ~110k updates. The table below shows a breakdown of model F<sub>1</sub> performance on the respective `PAWS-X` test datasets. We used the best performing checkpoint(s) on the validation dataset as our final model(s).
 
 | Language            | mBERT<sub>Base</sub> | XLM-R<sub>Base</sub> | XLM-R<sub>Large</sub> |
 | ---                 |                  --- | ---                  | -----                 |

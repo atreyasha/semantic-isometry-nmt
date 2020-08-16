@@ -2,6 +2,7 @@ auto/
 *.aux
 *.bbl
 *.blg
+*.bst
 *.fdb_latexmk
 *.fls
 *.log

@@ -66,7 +66,7 @@ bash scripts/train_continue_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
 ```
 
-**iv.** Evaluate an existing checkpoint on `newstest2014` using `sacrebleu` with `evaluate_wmt16_de_en.sh`:
+**iv.** Evaluate an existing checkpoint on pre-processed `train`, `valid (newstest2013)` or `test (newstest2014)` data using `sacrebleu` with `evaluate_wmt16_de_en.sh`:
 
 ```
 Usage: evaluate_wmt16_de_en.sh [-h|--help] checkpoint [subset]

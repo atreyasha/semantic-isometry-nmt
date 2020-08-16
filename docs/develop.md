@@ -67,27 +67,29 @@
     3.  **TODO** update readme math equation and nice visuals
         to reflect paper -\> update title and related descriptions by
         emulating from paper -\> update all details to be consistent
-        with paper
+        with paper -\> update overview segment on hand-crafted
+        paraphrases segment
 
-    4.  segment readme into training, translation and others categories
+    4.  **TODO** add final paper/presentation into repo with
+        link in readme
+
+    5.  segment readme into training, translation and others categories
         with relevant usages
 
-    5.  replace relevant bash commands with sbatch in slurm-s3it branch
+    6.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    6.  update initial page of readme with overview/abstract of work
+    7.  update initial page of readme with overview/abstract of work
         including shallow metrics
 
-    7.  update TOC\'s in all readmes to reflect latest changes
+    8.  update TOC\'s in all readmes to reflect latest changes
 
-    8.  update R dependencies in readme once all visualizations are
+    9.  update R dependencies in readme once all visualizations are
         finalized
 
-    9.  add version numbers to R package dependencies for posterity
+    10. add version numbers to R package dependencies for posterity
 
-    10. add citations in readme as per general standard
-
-    11. add final paper/presentation into repo with link in readme
+    11. add citations in readme as per general standard
 
     12. add github repo to paperswithcode examples for relevant papers
 

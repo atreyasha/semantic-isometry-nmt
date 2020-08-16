@@ -32,19 +32,26 @@ check_help() {
 evaluate_wmt16_de_en() {
   # declare variables
   local checkpoint_path="$1" subset="${2:-test}"
-  local outfile="${checkpoint_path}.${subset}_trial.out"
+  local outfile="${checkpoint_path}.${subset}_wmt19.out"
+  local datapath="data/wmt16_en_de_bpe32k"
   [ ! -f "$checkpoint_path" ] && usage && exit 1
   # process generations
   fairseq-interactive \
-    "data/wmt16_en_de_bpe32k/bin" \
+    "${datapath}/bin" \
     --path "$checkpoint_path" \
-    --source-lang de --target-lang en \
-    --bpe fastbpe --bpe-codes "data/wmt16_en_de_bpe32k/bpe.32000" \
+    --source-lang "de" --target-lang "en" \
+    --bpe "fastbpe" --bpe-codes "${datapath}/bpe.32000" \
     --beam 5 --lenpen 0.6 --remove-bpe \
     --batch-size 128 --buffer-size 256 \
-    --sacrebleu --tokenizer moses --input ./data/wmt19/*ref | tee "$outfile"
-  # TODO add sacrebleu evaluation here as well
-  # TODO run both wmt16 and wmt19 evaluations to check new tokenizer
+    --tokenizer "moses" \
+    --input "./data/wmt19/wmt19.test.truecased.de.ref" | tee "$outfile"
+  # detokenize and compute sacrebleu
+  grep ^D "$outfile" |
+    sed 's/^D\-//' |
+    sort -n -k 1 |
+    cut -f 3 |
+    sacrebleu --test-set "wmt19" \
+      --language-pair "en-de" >"${outfile}.sacrebleu"
 }
 
 # execute function

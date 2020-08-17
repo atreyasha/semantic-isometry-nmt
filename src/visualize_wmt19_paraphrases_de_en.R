@@ -522,7 +522,7 @@ plot_model_evolutions <- function() {
   stop_point <- valid[which(valid[, "loss"] == min(valid[, "loss"])), "steps"]
   # plot object
   g <- ggplot(collection, aes(x = steps, y = loss)) +
-    geom_line(aes(color = type), size = 0.7, alpha = 0.8) +
+    geom_line(aes(color = type), size = 1, alpha = 0.9) +
     geom_vline(aes(
       xintercept = stop_point, color = "Best Checkpoint",
       linetype = "Best Checkpoint"
@@ -530,7 +530,7 @@ plot_model_evolutions <- function() {
     linetype = "dashed", alpha = 0.8, show.legend = FALSE
     ) +
     theme_bw() +
-    ggtitle("Scaling NMT WMT16 Transformer Training") +
+    ## ggtitle("Scaling NMT WMT16 Transformer Training") +
     scale_color_manual(
       values = c(
         "Train" = "red",
@@ -546,7 +546,7 @@ plot_model_evolutions <- function() {
       text = element_text(size = 14),
       strip.background = element_blank(),
       legend.title = element_blank(),
-      legend.position = c(0.88, 0.88),
+      legend.position = c(0.88, 0.85),
       legend.background = element_blank(),
       legend.key = element_rect(fill = NA),
       legend.key.width = unit(0.8, "cm"),
@@ -554,7 +554,9 @@ plot_model_evolutions <- function() {
       panel.grid = element_line(size = 1),
       axis.ticks.length = unit(.125, "cm"),
       plot.title = element_text(hjust = 0.5, size = 14),
-      axis.text = element_text(size = 12)
+      axis.text = element_text(size = 12),
+      axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0)),
+      axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0))
     ) +
     scale_x_continuous(
       labels = function(x) paste0(x / 1000, "k"),
@@ -565,10 +567,10 @@ plot_model_evolutions <- function() {
       "Validation" = "solid",
       "Best Checkpoint" = "dashed"
     )))) +
-    xlab("\nTraining Steps") +
-    ylab("Cross Entropy Loss\n")
+    xlab("Training Steps") +
+    ylab("Cross Entropy Loss")
   tex_file <- "transformer_nmt_evolution.tex"
-  tikz(tex_file, width = 9, height = 5, standAlone = TRUE, engine = "luatex")
+  tikz(tex_file, width = 9, height = 3, standAlone = TRUE, engine = "luatex")
   print(g)
   dev.off()
   post_process(tex_file)
@@ -621,22 +623,22 @@ plot_model_evolutions <- function() {
       xintercept = bert_max, color = "mBERT\\textsubscript{Base} Best Checkpoint",
       linetype = "Best Checkpoint_1"
     ),
-    linetype = "dotted", alpha = 0.7, size = 0.8, show.legend = FALSE
+    linetype = "dotted", alpha = 0.8, size = 1.5, show.legend = FALSE
     ) +
     geom_vline(aes(
       xintercept = xlmr_max, color = "XLM-R\\textsubscript{Base} Best Checkpoint",
       linetype = "Best Checkpoint_2"
     ),
-    linetype = "dotdash", alpha = 0.7, show.legend = FALSE
+    linetype = "dotdash", alpha = 0.8, size = 1, show.legend = FALSE
     ) +
     geom_vline(aes(
       xintercept = xlmr_l_max, color = "XLM-R\\textsubscript{Large} Best Checkpoint",
       linetype = "Best Checkpoint_3"
     ),
-    linetype = "dashed", alpha = 0.7, show.legend = FALSE
+    linetype = "dashed", alpha = 0.8, size = 1, show.legend = FALSE
     ) +
     theme_bw() +
-    ggtitle("Paraphrase Detection Model Training") +
+    ## ggtitle("Paraphrase Detection Model Training") +
     scale_color_manual(values = c(
       "mBERT\\textsubscript{Base}" = "red",
       "XLM-R\\textsubscript{Base}" = "blue",
@@ -646,33 +648,34 @@ plot_model_evolutions <- function() {
       "XLM-R\\textsubscript{Large} Best Checkpoint" = "black"
     )) +
     theme(
-      text = element_text(size = 14),
+      text = element_text(size = 19),
       strip.background = element_blank(),
       legend.title = element_blank(),
       legend.position = "bottom",
       legend.background = element_blank(),
       legend.key = element_rect(fill = NA),
       legend.key.width = unit(0.8, "cm"),
-      strip.text = element_text(face = "bold"),
+      strip.text = element_text(face = "bold", size = 18),
       panel.grid = element_line(size = 1),
       axis.ticks.length = unit(.125, "cm"),
+      axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0)),
       plot.title = element_text(hjust = 0.5, size = 14),
-      axis.text = element_text(size = 11)
+      axis.text = element_text(size = 16)
     ) +
     scale_x_continuous(
       labels = function(x) paste0(x / 1000, "k"),
-      n.breaks = 10
+      n.breaks = 8
     ) +
     facet_wrap(~type, scales = "free_y") +
     guides(colour = guide_legend(override.aes = list(linetype = c(
       "solid", "dotted",
       "solid", "dotdash",
       "solid", "dashed"
-    )))) +
-    xlab("\nTraining Steps") +
+    ), size = 2))) +
+    xlab("Training Steps") +
     ylab("")
   tex_file <- "paraphrase_detection_models_evolution.tex"
-  tikz(tex_file, width = 15, height = 6, standAlone = TRUE, engine = "luatex")
+  tikz(tex_file, width = 12, height = 5, standAlone = TRUE, engine = "luatex")
   print(g)
   dev.off()
   post_process(tex_file)

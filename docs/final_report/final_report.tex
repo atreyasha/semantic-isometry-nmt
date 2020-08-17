@@ -6,7 +6,6 @@
 \usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{latexsym}
-\usepackage{lipsum}
 \usepackage{graphicx}
 \graphicspath{{../../img/}}
 \renewcommand{\UrlFont}{\ttfamily\small}
@@ -50,14 +49,17 @@ In order to conduct our investigation, we start by acquiring semantically equiva
 
 Next, we utilize three well-performing paraphrase detection models to approximate isometry in the NMT models' translations. These paraphrase detection models are based off mBERT\textsubscript{Base} \cite{devlin-etal-2019-bert}, XLM-R\textsubscript{Base} and XLM-R\textsubscript{Large} \cite{conneau2019unsupervised} pre-trained multilingual language models; which are correspondingly fine-tuned on Google's PAWS-X paraphrase detection task \cite{pawsx2019emnlp, hu2020xtreme}.
  
-Using the outputs of the paraphrase detection models, we finally investigate the frequency and composition of semantically isometric behaviour in the NMT models' inputs and outputs.
+Using the outputs of the paraphrase detection models, we finally investigate the frequency and composition of semantically isometric behaviour in the NMT models' inputs and outputs. We document our investigation and provide relevant source code in our public GitHub repository\footnote{\url{https://github.com/atreyasha/semantic-isometry-nmt}}.
 
 % 1. Introduction
-% TODO add post-paper contributions as concretely as possible -> also add into abstract -> can be done at the end after everything is made clear
+% TODO add post-paper contributions as concretely as possible -> add into abstract as well
 % TODO state expectations more concretely here and in abstract
 % TODO state hypothesis more clearly that isometry is positively correlated with general performance of a model -> perhaps show this statistically where possible with appropriate statistical test
 % TODO think of title and how this links up with everything -> change it to reflect content of paper if necessary
-% make abstract more similar to introduction where possibl diversee
+% TODO make abstract more similar to introduction where possible
+% TODO add github repository and any other important links inside paper
+% look up fairseq API and whether this is correct usage
+% fix "based off" and change to something else to get diversity
 
 \section{Isometry and approximations}
 
@@ -141,15 +143,15 @@ Below we describe the key data sets that we were used in our research.
 
 \citet{freitag-bleu-paraphrase-references-2020} builds on the premise that while automatic evaluation metrics, such as \texttt{BLEU}, are important for NMT model evaluation; the presence of diverse translation references is also critical. Motivated by the observation that typical references show poor diversity, \citet{freitag-bleu-paraphrase-references-2020} focuses on two goals; namely creating additional high quality WMT19 test references, as well as paraphrasing both existing (or legacy) and additional WMT19 test references in the \texttt{en$\rightarrow$de} translation direction. These services were ultimately rendered by a professional translation service using different sets of linguists for different tasks to reduce systematic bias. Below are the key resulting data sets for \texttt{en$\rightarrow$de} that were used in our research.
 
-\paragraph{WMT19 legacy test references:} This refers to the existing \texttt{newstest2019} translation references without any additional references or paraphrasing. For abbrevation purposes, we refer to this dataset as \texttt{WMT}. 
+\paragraph{WMT19 legacy test references:} This refers to the existing \texttt{newstest2019} translation references without any additional references or paraphrasing. For abbrevation purposes, we refer to this data set as \texttt{WMT}. 
 
-\paragraph{WMT19 additional test references:} This refers to additional references produced as a result of \citet{freitag-bleu-paraphrase-references-2020}. For abbrevation purposes, we refer to this dataset as \texttt{AR}. 
+\paragraph{WMT19 additional test references:} This refers to additional references produced as a result of \citet{freitag-bleu-paraphrase-references-2020}. For abbrevation purposes, we refer to this data set as \texttt{AR}. 
 
-\paragraph{WMT19 legacy test paraphrased references:} This refers to the paraphrased version of the existing \texttt{newstest2019} translation references produced as a result of \citet{freitag-bleu-paraphrase-references-2020}. For abbrevation purposes, we refer to this dataset as \texttt{WMT.p}. 
+\paragraph{WMT19 legacy test paraphrased references:} This refers to the paraphrased version of the existing \texttt{newstest2019} translation references produced as a result of \citet{freitag-bleu-paraphrase-references-2020}. For abbrevation purposes, we refer to this data set as \texttt{WMT.p}. 
 
-\paragraph{WMT19 additional test paraphrased references:}This refers to the paraphrased version of the additional translation references produced as a result of \citet{freitag-bleu-paraphrase-references-2020}. For abbrevation purposes, we refer to this dataset as \texttt{AR.p}.
+\paragraph{WMT19 additional test paraphrased references:}This refers to the paraphrased version of the additional translation references produced as a result of \citet{freitag-bleu-paraphrase-references-2020}. For abbrevation purposes, we refer to this data set as \texttt{AR.p}.
 
-For brevity, we further simplify the aforementioned datasets as follows:
+For brevity, we further simplify the aforementioned data sets as follows:
 
 \vspace{-10pt}
 \begin{align}
@@ -159,41 +161,81 @@ For brevity, we further simplify the aforementioned datasets as follows:
 
 \subsubsection{PAWS-X}
 
-PAWS-X is a cross-lingual adversarial dataset for paraphrase identification released by Google Research \citep{pawsx2019emnlp}. PAWS-X stems originally from the PAWS dataset released by \citet{zhang2019paws} which is an abbreviation for \textbf{P}araphrase \textbf{A}dversaries from \textbf{W}ord \textbf{S}crambling.
+PAWS-X is a cross-lingual adversarial data set for paraphrase identification released by Google Research \citep{pawsx2019emnlp}. PAWS-X stems originally from the PAWS data set released by \citet{zhang2019paws} which is an abbreviation for \textbf{P}araphrase \textbf{A}dversaries from \textbf{W}ord \textbf{S}crambling.
 
-The original motivation behind the PAWS dataset was that existing paraphrase detection datasets lacked non-paraphrase sentence pairs with high lexical overlap. The PAWS dataset was therefore released to drive progress in creating models that utilize fine-grained structure and context of sentence pairs.
+The original motivation behind the PAWS data set was that existing paraphrase detection data sets lacked non-paraphrase sentence pairs with high lexical overlap. The PAWS data set was therefore released to drive progress in creating models that utilize fine-grained structure and context of sentence pairs.
 
-The PAWS dataset contains 108,463 paraphrase and non-paraphrase sentence pairs with high lexical overlap. These sentence pairs were bulk sourced from Wikipedia and Quora Question Pairs; followed by controlled word swapping and back translation to create challenging sentence pairs for paraphrase detection. The generated sentence pairs were finally evaluated for fluency and general quality by human raters.
+The PAWS data set contains 108,463 paraphrase and non-paraphrase sentence pairs with high lexical overlap. These sentence pairs were bulk sourced from Wikipedia and Quora Question Pairs; followed by controlled word swapping and back translation to create challenging sentence pairs for paraphrase detection. The generated sentence pairs were finally evaluated for fluency and general quality by human raters.
 
-As noted in \citet{pawsx2019emnlp}, one limitation of adversarially generated datasets such as PAWS is their pre-dominant focus on the English language. In order to address this issue, \citet{pawsx2019emnlp} released PAWS-X; which consists of 23,659 human translated PAWS evaluation sentence pairs and 296,406 machine-translated training sentence pairs derived from the Wikipedia subset of the original PAWS dataset. These sentence pairs were translated from English to six typologically distinct languages; namely French, Spanish, German, Chinese, Japanese and Korean.
+As noted in \citet{pawsx2019emnlp}, one limitation of adversarially generated data sets such as PAWS is their pre-dominant focus on the English language. In order to address this issue, \citet{pawsx2019emnlp} released PAWS-X; which consists of 23,659 human translated evaluation sentence pairs and 296,406 machine-translated training sentence pairs derived from the Wikipedia subset of the original PAWS data set. These sentence pairs were translated from English to six typologically distinct languages; namely French, Spanish, German, Chinese, Japanese and Korean.
 
-The release of PAWS-X provides many advantages to the field of NLP, particularly the creation of a new benchmark to promote research in multilingual and zero-shot paraphrase detection. This can already be seen by the incorporation of PAWS-X into Google's recent Cross-lingual TRansfer Evaluation of Multilingual Encoders (XTREME) benchmark system \cite{hu2020xtreme}. 
+\begin{figure*}
+  \centering 
+  \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{transformer_nmt_evolution.pdf}
+  \caption{Training and validation cross entropy loss for Scaling NMT WMT16 Transformer}
+  \label{transformer_nmt_evolution}
+\end{figure*}
+
+The release of PAWS-X provides many advantages to the field of NLP, particularly the creation of a new benchmark to promote research in multilingual and zero-shot paraphrase detection. This can already be seen by the incorporation of PAWS-X into Google's recent Cross-lingual TRansfer Evaluation of Multilingual Encoders (XTREME) benchmark system \cite{hu2020xtreme}.
 
 \subsubsection{WMT16 de-en}
 
-As mentioned previously, we replicate a non-SOTA NMT model from scratch based off the Scaling NMT WMT16 workflow \cite{ott2018scaling}. While the original implementation in \citet{ott2018scaling} is based on the \texttt{en$\rightarrow$de} translation direction, our implementation trains a NMT model in the reverse translation direction; specifically \texttt{de$\rightarrow$en}.
+In this study, we replicate a non-SOTA NMT model from scratch based off the Scaling NMT WMT16 workflow \cite{ott2018scaling}. While the original implementation in \citet{ott2018scaling} is based on the \texttt{en$\rightarrow$de} translation direction, our implementation trains a NMT model in the reverse translation direction; specifically \texttt{de$\rightarrow$en}.
 
-For this, we use WMT16 \texttt{en$\rightarrow$de} training data with $\sim$4.5M sentence pairs and reverse it to the desired \texttt{de$\rightarrow$en} translation direction. Furthermore, we use \texttt{newstest2013} as our validation set and \texttt{newstest2014} as our test set. We utilize a vocabulary of 32K symbols based off a joint source and target byte-pair encoding (BPE; \citealt{sennrich2015neural}).   
+For this, we use WMT16 \texttt{de$\rightarrow$en} training data with $\sim$4.5M sentence pairs, \texttt{newstest2013} as our validation set and \texttt{newstest2014} as our test set. We utilize a vocabulary of 32K symbols based off a joint source and target byte-pair encoding (BPE; \citealt{sennrich2015neural}).   
 
-% 4.1. Datasets
-% TODO be as clear as possible about translation direction -> check for consistency throughout paper and that all mentions are correct
-% bring up actual examples of paraphrases and detection tasks -> to give some perspective
+% 4.1. Data sets
+% TODO check consistent spelling of data sets across paper
+% TODO be clear about translation direction -> check for consistency throughout paper on direction
 % explain why AR was used, to provide additional paraphrases on top of legacy data since legacy WMT19 test data was shown to be poorly sourced -> talk about paraphrasing done very strongly which is why some were zeros on the source side already
+% bring up actual examples of paraphrases and detection tasks -> to give some perspective
 
-% 4.2. Methodologies
-% TODO state expectations about outcomes, some basic ideas
-% TODO clearly mention translation directions and motivate them where necessary
+\subsection{Models}
+
+Below we describe the key models that were used in our research.
+
+\subsubsection{FAIR WMT19 Transformer}
+
+We utilize FAIR's winning WMT19 single Transformer model as our SOTA NMT model. Focusing particularly on the \texttt{de$\rightarrow$en} translation direction, the FAIR WMT19 Transformer was the top performing model in WMT19 with a SacreBLEU score of 40.8.
+
+As per \citet{ng2019facebook}, the key factors that led to SOTA performance include \texttt{langid} filtering of crawled bitext data, large-scale back translation as a form of data augmentation and noisy channel model reranking. We utilized this model directly from the \texttt{fairseq} API \cite{ott2019fairseq}. 
+
+\subsubsection{Scaling NMT WMT16 Transformer}
+
+We replicate the Scaling NMT WMT16 Transformer based on \citet{ott2018scaling} by training it from scratch. However, we swap the translation direction from \texttt{en$\rightarrow$de} to \texttt{de$\rightarrow$en}; such that we can ultimately use this model to translate WMT19 paraphrases from \texttt{de$\rightarrow$en}. We intentionally choose this workflow since it would produce a non-SOTA transformer which would be useful for us downstream to introduce performance-dependent variance in the translation of WMT19 paraphrases.
+
+Besides the aforementioned modification, we follow the same setup as per \citet{ott2018scaling}. Specifically, we use a ``big'' transformer model based off \citet{vaswani2017attention}; with 6 blocks in the encoder and decoder networks. This model has a total of 210M parameters.
+
+During training, we apply dropout \cite{srivastava2014dropout} with probability 0.3. We utilize the Adam optimizer \cite{kingma2014adam} with $\beta_1 = 0.90$ and $\beta_2=0.98$. We use a learning rate schedule where the learning rate increases linearly for 4,000 steps until 1e-3. The learning rate then decays proportionally to the inverse square root of the number of training steps. We utilize label smoothing with 0.1 weight for the uniform prior distribution over the vocabulary \cite{pereyra2017regularizing}.
+
+We use large batch sizes with the maximum number of tokens per batch being 7168. Furthermore, we apply gradient accumulation for 8 steps before updating the model; which is known as \texttt{update-freq} within the \texttt{fairseq} API. We also exploit \texttt{fairseq}'s half precision floating point (FP16) functionality for faster training.
+
+\begin{figure*}
+  \centering 
+  \includegraphics[trim={0.7cm 0cm 0cm 0cm},clip,width=\textwidth]{paraphrase_detection_models_evolution.pdf}
+  \caption{Training loss and validation accuracy w.r.t. training steps for paraphrase detection models}
+  \label{paraphrase_detection_model_evolution}
+\end{figure*}
+
+Finally, we train this model for $\sim$6 days on a single NVIDIA Tesla-V100 16GB GPU. During training, we monitor both the training and validation losses; and enable checkpoint-saving for the best performing checkpoint on the validation set. We train the model up until $\sim$285K updates.
+
+Our best performing checkpoint was saved at $\sim$180K updates as seen in Figure \ref{transformer_nmt_evolution}. For evaluation on the test set, we utilize beam search with a beam width of 5 and length penalty of 0.6. Our final Scaling NMT WMT16 Transformer achieved a SacreBLEU score\footnote{SacreBLEU signature:\\BLEU+case.mixed+lang.de-en+numrefs.1+smooth.exp+test.wmt14/full+tok.13a+version.1.4.12} of 31.0 on the \texttt{newstest2014} test set.
+
+
+% 4.2. Models
+% TODO add tables for PAWS-X performance -> mention/cite huggingface transformers as model-base
+% TODO mention that paraphrase detection models can compute S_L -> link back to theory
+% TODO define probability threshold epsilon in paper when necessary
 % TODO consider refining and synchronizing model names as was done with data -> update plots
-% TODO run wmt16 model on wmt19 de-en task and get BLEU score -> update this in readme for consistency -> or otherwise justify why we do not report such a comparison
-% TODO compare results with WMT19 de->en BLEU scores and list out sacrebleu signatures
-% datasets, what models are used, protocols for evaluation
-% TODO use some logical symbols to show mode function and other interesting characteristics
-% model training performance -> this is more a setup than a result of this research -> think of where exactly to put this
-% go into techniques used, how isometric properties would be determined -> would need to be thought of more
-% correlations to chrF to compare with Michel et al. 2019
-% define probability threshold epsilon in paper when necessary
-% change model names in plots to reflect descriptions as well as score labels with P/S -> define in paper
 % report evaluation of fine-tuning paraphrase detector and weaker translation model
+
+% 4.3 Evaluation protocols
+% TODO change score labels with P/S -> define in paper
+% TODO use some logical symbols to show mode function and other interesting characteristics
+% TODO list out protocols for evaluation
+% TODO state expectations about outcomes, some basic ideas
+% go into techniques used, how isometric properties would be determined -> would need to be thought of more
+% correlations to chrF to compare with Michel et al. 2019 -> how this would be done
 
 % 5. Results (facts)
 % bring in main charts and show results
@@ -218,6 +260,7 @@ For this, we use WMT16 \texttt{en$\rightarrow$de} training data with $\sim$4.5M 
 % summarize everything and list contributions of this paper
 
 % 8. Recommendations
+% WMT16 transformer optimized for short sentences -> might make comparison also not good
 % paraphrase detection models are not commutative -> not logical in that sense -> maybe cosine similarity comparisons could help but might affect performance
 % describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
 % limitation of system is that WMT19 might be more advantageous to FAIR model, which might have led to bad results in general for non-SOTA model

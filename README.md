@@ -57,7 +57,7 @@ A more detailed description of our methodologies and results can be found in our
 
 3. Manually download the following four pre-trained models and place all of the tarballs in the `models` directory (~9 GB total download size):
     1. [Scaling NMT WMT16 Transformer](https://drive.google.com/uc?id=1IqoRGIqTv9MVbV7EiyAZ7Ol0y4xAy0th&export=download) for non-SOTA `de-en` translation. Model achieved `BLEU` score of `31.0` on the `newstest2014` test dataset.
-    u
+
     2. [mBERT<sub>Base</sub>](https://drive.google.com/uc?id=18thE9bc-SVfwpAoeuOiZequp5YgckCA5&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.886`.
     3. [XLM-R<sub>Base</sub>](https://drive.google.com/uc?id=1jSeopFJwKly7uk57mxLpQ9I5C5Fl3P1v&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.890`. 
     4. [XLM-R<sub>Large</sub>](https://drive.google.com/uc?id=1h6DUEpm173w_4aznMOdRFGtr6hi1bfdT&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.906`.

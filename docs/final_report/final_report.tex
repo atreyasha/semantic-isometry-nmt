@@ -50,7 +50,7 @@ In order to conduct our investigation, we start by acquiring semantically equiva
 
 Next, we utilize three well-performing paraphrase detection models to approximate isometry in the NMT models' translations. These paraphrase detection models are based off mBERT\textsubscript{Base} \cite{devlin-etal-2019-bert}, XLM-R\textsubscript{Base} \cite{conneau2019unsupervised} and XLM-R\textsubscript{Large} \cite{conneau2019unsupervised} pre-trained multilingual language models; which are correspondingly fine-tuned on Google's PAWS-X paraphrase detection task \cite{pawsx2019emnlp, hu2020xtreme}.
  
-Using the outputs of the paraphrase detection models, we finally investigate the frequency and composition of semantically isometric behaviour in the NMT models' inputs and outputs. We document our investigation and provide relevant source code in our public GitHub repository\footnote{\url{https://github.com/atreyasha/semantic-isometry-nmt}}.
+Using the outputs of the paraphrase detection models, we finally investigate the frequency and composition of semantically isometric behaviour in the NMT models' inputs and outputs. We release our latest models and source code in our public GitHub repository\footnote{\url{https://github.com/atreyasha/semantic-isometry-nmt}}.
 
 % 1. Introduction
 % TODO add post-paper contributions as concretely as possible -> add into abstract as well
@@ -59,16 +59,17 @@ Using the outputs of the paraphrase detection models, we finally investigate the
 % TODO think of title and how this links up with everything -> change it to reflect content of paper if necessary
 % TODO make abstract more similar to introduction where possible
 % TODO add github repository and any other important links inside paper
+% add information of chrF_2 comparisons/tests
 % look up fairseq API and whether this is correct usage
 % fix "based off" and change to something else to get diversity
 
 \section{Isometry and approximations}
 
-The concept of isometry in the context of semantic metric spaces can be \textit{exactly} expressed as follows; where $s_i \in \mathbb{R}^{V \times N}$ refers to an input sentence's tokenized matrix-form for vocabulary size $V$ and sentence length $N$, $f: \mathbb{R}^{V \times N} \to \mathbb{R}^{V' \times N'}$ refers to the NMT model's inference function and $D_L: \mathbb{R}^{V \times 2N} \to \mathbb{R}_+$ refers to a semantic distance metric function for language $L$ corresponding to the language of the respective sentences:
+The concept of isometry in the context of semantic metric spaces can be \textit{exactly} expressed as follows; where $s_i \in \mathbb{R}^{V \times N}$ refers to an input sentence's tokenized matrix-form for vocabulary size $V$ and maximum sentence length $N$, $f: \mathbb{R}^{V \times N} \to \mathbb{R}^{V' \times N'}$ refers to the NMT model's inference function and $D_L: \mathbb{R}^{V \times 2N} \to \mathbb{R}_+$ refers to a semantic distance metric function for language $L$ corresponding to the language of the respective sentences:
 
 \begin{equation}  
   \label{exact_isometry_eqn}
-  D_Y(f(s_1),f(s_2)) = D_X(s_1,s_2)
+  D_X(s_1,s_2) = D_Y(f(s_1),f(s_2))
 \end{equation}
 
 While elegant, this representation of isometry and a semantic distance metric is problematic. Firstly, exact isometry might not be a practical condition to achieve given real-life data instances with stochastic noise. Next, constructing continuous semantic metric spaces from discrete textual data is a difficult task and is in itself a developing field of research \cite{cer2017semeval}.
@@ -77,7 +78,7 @@ While elegant, this representation of isometry and a semantic distance metric is
 
 \begin{equation} 
   \label{approx_isometry_eqn}
-  D_Y(f(s_1),f(s_2)) \approx D_X(s_1,s_2) 
+  D_X(s_1,s_2) \approx D_Y(f(s_1),f(s_2)) 
 \end{equation}
 
 With this approximation, we can simplify the isometric relationship further into a binary semantic-equivalence function $S_L: \mathbb{R}^{V \times 2N} \to \{0,1\}$, which compresses semantic distance metrics to semantic equality ($S_L=1$) or inequality ($S_L=0$) depending on some variable threshold $\delta_L \in \mathbb{R}_+$:
@@ -108,7 +109,7 @@ With the aforementioned simplifications, we now re-write our equation for approx
 
 \begin{equation}  
   \label{exact_approx_isometry_eqn}
-  S_Y(f(s_1),f(s_2)) = S_X(s_1,s_2)
+  S_X(s_1,s_2) = S_Y(f(s_1),f(s_2))
 \end{equation}
 
 % 2. Motivation (or more thematic title)
@@ -126,7 +127,7 @@ Based on a survey of recent literature in Natural Language Processing (NLP) and 
 
 In this sense, the study of adversarial paraphrasing in machine translation could be interpreted as a targetted probe into semantic \textit{anisometry} of NMT models, compared to our research which would be an untargetted probe into semantic isometry of NMT models. Therefore adversarial paraphrasing, while having the opposite intent, is still highly similar to our research.
 
-\paragraph{\citet{michel2019evaluation}:} This research lays out the framework for evaluating adversarial perturbations in sequence-to-sequence models. Additonally, this research compared three automatic sequence evaluation metrics, specifically \texttt{BLEU} \cite{papineni2002bleu}, \texttt{METEOR} \cite{denkowski2014meteor} and \texttt{chrF} \cite{popovic2015chrf}, against human judgment for evaluating semantic similarity. Results from their experiments showed that \texttt{chrF} correlates best out of the three similarity metrics with human judgment for semantic similarity detection. We utilize this finding in later parts of our study and attempt to compare the outputs of our paraphrase detection models with respective \texttt{chrF} scores.
+\paragraph{\citet{michel2019evaluation}:} This research lays out the framework for evaluating adversarial perturbations in sequence-to-sequence models. Additonally, this research compared three automatic sequence evaluation metrics, specifically BLEU \cite{papineni2002bleu}, METEOR \cite{denkowski2014meteor} and chrF$_2$ \cite{popovic2015chrf}, against human judgment for evaluating semantic similarity. Results from their experiments showed that chrF$_2$ correlates best out of the three similarity metrics with human judgment for semantic similarity detection. We utilize this finding in later parts of our study and attempt to compare the outputs of our paraphrase detection models with respective chrF$_2$ scores.
 
 \paragraph{\citet{fadaee2020unreasonable}:} This research lays out a simple framework for constructing adversarial paraphrases through logical operations such as word insertion/deletion and numerical/gender substitution. The research correspondingly showed that such minor modifications could lead to disproportionately larger changes in translation outputs; thereby showing an adversarial effect. This research ultimately claimed that modern NMT models are generally \textit{volatile}, or vulnerable, to targetted adversarial attacks. We attempt to compare this claim with our findings in later parts of this study. 
 
@@ -142,7 +143,7 @@ Below we describe the key data sets that we were used in our research.
 
 \subsubsection{WMT19 en-de references and corresponding paraphrases}
 
-\citet{freitag-bleu-paraphrase-references-2020} builds on the premise that while automatic evaluation metrics, such as \texttt{BLEU}, are important for NMT model evaluation; the presence of diverse translation references is also critical. Motivated by the observation that typical references show poor diversity, \citet{freitag-bleu-paraphrase-references-2020} focuses on two goals; namely creating additional high quality WMT19 test references, as well as paraphrasing both existing (or legacy) and additional WMT19 test references in the \texttt{en$\rightarrow$de} translation direction.
+\citet{freitag-bleu-paraphrase-references-2020} builds on the premise that while automatic evaluation metrics, such as BLEU, are important for NMT model evaluation; the presence of diverse translation references is also critical. Motivated by the observation that typical references show poor diversity, \citet{freitag-bleu-paraphrase-references-2020} focuses on two goals; namely creating additional high quality WMT19 test references, as well as paraphrasing both existing (or legacy) and additional WMT19 test references in the \texttt{en$\rightarrow$de} translation direction.
 
 These services were ultimately rendered by a professional translation service using different sets of linguists for different tasks to reduce systematic bias. While these additional references serve the purpose of diversifying evaluation references, we see them as a source of high-quality semantically equivalent paraphrases with varied lexical and syntactical features. We therefore use these additional references as our input paraphrase sentences to investigate semantic isometry. Below are the key resulting data sets for \texttt{en$\rightarrow$de} that were used in our research.
 
@@ -158,8 +159,8 @@ For brevity, we further simplify the aforementioned data sets as follows:
 
 \vspace{-10pt}
 \begin{align}
-  \text{WMT19 Legacy} &= \{\text{WMT} \cup \text{WMT.p} \} \\
-  \text{WMT19 AR} &= \{\text{AR} \cup \text{AR.p} \}
+  \text{WMT19 Legacy} &= \{\text{WMT} \cup \text{WMT.p} \} \label{wmt19legacy} \\
+  \text{WMT19 AR} &= \{\text{AR} \cup \text{AR.p} \} \label{wmt19ar}
 \end{align}
 
 \subsubsection{PAWS-X}
@@ -199,7 +200,7 @@ Below we describe the key models that were used in our research.
 
 \subsubsection{FAIR WMT19 Transformer}
 
-We utilize FAIR's winning WMT19 single Transformer model as our SOTA NMT model. Focusing particularly on the \texttt{de$\rightarrow$en} translation direction, the FAIR WMT19 Transformer was the top performing model in WMT19 with a SacreBLEU score of 40.8.
+We utilize FAIR's winning WMT19 single Transformer model as our SOTA NMT model. Focusing particularly on the \texttt{de$\rightarrow$en} translation direction, the FAIR WMT19 Transformer was the top performing model in WMT19 with a SacreBLEU \cite{post-2018-call} score of 40.8.
 
 As per \citet{ng2019facebook}, the key factors that led to SOTA performance include \texttt{langid} filtering of crawled bitext data, large-scale back translation as a form of data augmentation and noisy channel model reranking. We utilized this model directly from the \texttt{fairseq} API \cite{ott2019fairseq}. 
 
@@ -216,11 +217,11 @@ We replicate the Scaling NMT WMT16 Transformer based on \citet{ott2018scaling} b
 
 Besides the aforementioned modification, we follow the same setup as per \citet{ott2018scaling}. Specifically, we use a ``big'' transformer model based off \citet{vaswani2017attention}; with 6 blocks in the encoder and decoder networks. This model has a total of 210M parameters.
 
-During training, we apply dropout \cite{srivastava2014dropout} with probability 0.3 and utilize the Adam optimizer \cite{kingma2014adam} with $\beta_1 = 0.90$ and $\beta_2=0.98$. We use a learning rate schedule where the learning rate increases linearly for 4,000 steps from 1e-7 until 1e-3. The learning rate then decays proportionally to the inverse square root of the number of training steps. We utilize label smoothing with weight 0.1 for the uniform prior distribution over the vocabulary \cite{pereyra2017regularizing}. We use large batch sizes with the maximum number of tokens per batch being 7168. Furthermore, we apply gradient accumulation for 8 steps before updating the model; which is known as \texttt{update-freq} in the \texttt{fairseq} API. We also exploit \texttt{fairseq}'s half precision floating point (FP16) functionality for more efficient training.
+During training, we apply dropout \cite{srivastava2014dropout} with probability 0.3 and utilize the Adam optimizer \cite{kingma2014adam} with $\beta_1 = 0.9$ and $\beta_2=0.98$. We use a learning rate schedule where the learning rate increases linearly for 4,000 steps from 1e-7 until 1e-3. The learning rate then decays proportionally to the inverse square root of the number of training steps. We utilize label smoothing with weight 0.1 for the uniform prior distribution over the vocabulary \cite{pereyra2017regularizing}. We use large batch sizes with the maximum number of tokens per batch being 7168. Furthermore, we apply gradient accumulation for 8 steps before updating the model; which is known as \texttt{update-freq} in the \texttt{fairseq} API. We also exploit \texttt{fairseq}'s half precision floating point (FP16) functionality for more efficient training.
 
 Finally, we train this model for 6 days on a single NVIDIA Tesla-V100 16GB GPU. During training, we monitor the validation loss and enable checkpoint-saving for the best performing checkpoint on the validation set. We train the model up until $\sim$285K updates.
 
-Our best performing checkpoint was saved at $\sim$180K updates as seen in Figure \ref{transformer_nmt_evolution}. For evaluation on the test set, we utilize beam search with a beam width of 5. Our final Scaling NMT WMT16 Transformer achieved a SacreBLEU score\footnote{\footnotesize SacreBLEU signature:\\BLEU+case.mixed+lang.de$\nobreakdash$en+numrefs.1+smooth.exp+\\test.wmt14/full+tok.13a+version.1.4.12} of 31.0 on the \texttt{newstest2014} test set.
+Our best performing checkpoint was saved at $\sim$180K updates as seen in Figure \ref{transformer_nmt_evolution}. For evaluation on the test set, we utilize beam search with a beam width of 5. Our final Scaling NMT WMT16 Transformer achieved a SacreBLEU \cite{post-2018-call} score\footnote{\footnotesize SacreBLEU signature:\\BLEU+case.mixed+lang.de\nobreakdash-en+numrefs.1+smooth.exp+\\test.wmt14/full+tok.13a+version.1.4.12} of 31.0 on the \texttt{newstest2014} test set.
 
 \subsubsection{Paraphrase detection models}
 
@@ -245,44 +246,120 @@ While our implementation is similar to that of Google's XTREME benchmark, we mod
     $\mu$ & 0.886 & 0.890 & \textbf{0.906} \\
     \hline
   \end{tabular} 
-  \caption{Language-specific summary of macro-F\textsubscript{1} scores of paraphrase detection models on the PAWS-X test set; B and L refer to base and large respectively}
+  \caption{Language-specific summary of macro-F\textsubscript{1} scores of paraphrase detection models on the PAWS-X test set; languages are abbreviated based on ISO 639-1; B and L refer to base and large respectively}
   \label{pawsx_score_breakdown}
 \end{table}
 
-For all models, we enforce a maximum sequence length of 128 tokens since PAWS-X sentence pairs generally fit it into this range. We train all models for 10 epochs or $\sim$110K updates with a global batch size of 32. We also use a linearly decaying learning rate schedule without warmup steps. Lastly, we monitor accuracy on the PAWS-X validation set for all languages in order to determine the best performing checkpoint.
+For all models, we enforce a maximum sequence length of 128 tokens since PAWS-X sentence pairs generally fit it into this range. We use a modified Adam optimizer with decoupled weight decay regularization \cite{DBLP:journals/corr/abs-1711-05101} with $\beta_1 = 0.9$ and $\beta_2=0.999$. We train all models for 10 epochs or $\sim$110K updates with a global batch size of 32. We also use a linearly decaying learning rate schedule without warmup steps. Lastly, we monitor accuracy on the PAWS-X validation set for all languages in order to determine the best performing checkpoint.
 
 Specific to mBERT\textsubscript{Base} and XLM-R\textsubscript{Base}, we use a batch size of 32 without gradient accumulation and an initial learning rate of 2e-5. As for XLM-R\textsubscript{Large}, we use an initial learning rate of 1e-6 and local batch size of 8 with 4 gradient accumulation steps to curb GPU out-of-memory (OOM) issues.
 
-We fine-tune mBERT\textsubscript{Base}, XLM-R\textsubscript{Base} and XLM-R\textsubscript{Large} for 14 hours, 15 hours and 2.5 days on a single NVIDIA Gefore GTX 1080 Ti-12GB GPU respectively. The best checkpoints are achieved and saved at $\sim$20K, $\sim$80K and $\sim$40K updates respectively, as seen in Figure \ref{paraphrase_detection_model_evolution}.
+We fine-tune mBERT\textsubscript{Base}, XLM-R\textsubscript{Base} and XLM-R\textsubscript{Large} for 14 hours, 15 hours and 2.5 days on a single NVIDIA Geforce GTX 1080-Ti 12GB GPU respectively. The best checkpoints are achieved and saved at $\sim$20K, $\sim$80K and $\sim$40K updates respectively, as seen in Figure \ref{paraphrase_detection_model_evolution}.
 
 As seen in Table \ref{pawsx_score_breakdown}, all three models perform well especially on our target languages of \texttt{en} and \texttt{de}. Overall, the best performing model on the PAWS-X test set is XLM-R\textsubscript{Large} with a macro-F\textsubscript{1} of 0.906.
 
+% 4.2. Models
+% check and refine GPU naming scheme, ie. with copyright and where to put dashes
+
 \subsection{Evaluation protocols}
 
-% 4.3 Evaluation protocols
-% TODO motivate why we use multiple models instead of one
-% TODO change score labels with P/S -> define in paper
-% TODO use some logical symbols to show mode function and other interesting characteristics
-% TODO list out protocols for evaluation
-% TODO state expectations about outcomes, some basic ideas
+Given our WMT19 Legacy and WMT19 AR paraphrase datasets defined in equations \ref{wmt19legacy} and \ref{wmt19ar}, we then translate all the aforementioned pairs of paraphrases using both the FAIR WMT19 Transformer and the Scaling NMT WMT16 Transformer. With this, we have the source paraphrases along with their target-side translations. We then use these samples for further investigation. 
+
+\subsubsection{Isometry on binary semantic-equivalence spaces}
+
+Here we present our evaluation protocols for investigating the isometric properties of NMT models on binary semantic-equivalence spaces.
+
+\paragraph{Vector representation:} We modify our representation of the $S_L$ relations in equation \ref{exact_approx_isometry_eqn} in order to have a more concise vectorized form of the relationship. We assign the probability threshold $\epsilon$ from equation \ref{bounded_isometry_probability_eqn} a constant value of 0.5 for all computations of $S_L$ in this research.
+
+\vspace{-5pt}
+\begin{gather}
+  \mathbf{S_{XY}} = \begin{bmatrix} S_X(s_1, s_2) \\[5pt] S_Y(f(s_1), f(s_2)) \end{bmatrix} \\[10pt] 
+  \mathbf{S_{XY}^{\mathsf{T}}} = \begin{bmatrix} S_X(s_1, s_2) & S_Y(f(s_1), f(s_2)) \end{bmatrix}
+\end{gather}
+
+\paragraph{Multi-model decisions:} Given this formulation of $\mathbf{S_{XY}^{\mathsf{T}}}$, it is worth noting that each of the three paraphrase detection models would compute a separate $\mathbf{S_{XY}^{\mathsf{T}}}$ term. Since our paraphrase detection models were evaluated to have a non-zero (albeit small and similar) error rates, we decide to use the $\mathbf{S_{XY}^{\mathsf{T}}}$ outputs of all three models and compute the statistical mode of the three outputs. Such a majority decision would provide more confidence in any particular decision from the models. For simplicity, we assign the statistical mode function with the symbol $\mathbf{M}$. We therefore compute $\mathbf{M(S_{XY}^{\mathsf{T}}})$ to check for a majority decision over the three paraphrase detection models. We assign the empty set $\emptyset$ in case no majority decision exists.
+
+\paragraph{Discrete possibilities:} Since the output of $S_L$ falls in the binary set of $\{0,1\}$, we can effectively compute all five possibilities of the consequent majority decision $\mathbf{M(S_{XY}^{\mathsf{T}}})$. We describe these below.
+
+\begin{enumerate}
+\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [0, 0]$: Both the source and target pairs of sentences were evaluated to not be paraphrases and are therefore not semantically equivalent on both sides. This qualifies as isometric behaviour.
+\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [1, 1]$: Both the source and target pairs of sentences were evaluated to be paraphrases and are therefore semantically equivalent on both sides. This qualifies as isometric behaviour. 
+\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [0, 1]$: The source sentences are evaluated to not be paraphrases while the target sentences are evaluated to be paraphrases. This implies that translation resulted in the sentence pair becoming semantically equivalent while they were not before. This qualifies as anisometric behaviour and could be an interesting scenario to investigate further.
+\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [1, 0]$: The source sentences are evaluated to be paraphrases while the target sentences are evaluated to not be paraphrases. This implies that translation resulted in the sentence pair becoming semantically inequivalent while they were not before. This qualifies as anisometric behaviour and could imply weak performance of the model on one of the sentences; or possibly some adversarial paraphrasing.
+\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = \emptyset$: This implies that all models had different decisions and therefore no majority decision was reached. 
+\end{enumerate}
+
+\begin{figure*}
+  \centering 
+  \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{paraphrase_detection_softmax_all.pdf}
+  \caption{Normalized contour densities for target paraphrase softmax score against source paraphrase softmax score; grouped by NMT models (top), paraphrase detection models (top) and input data sets (right)}
+  \label{paraphrase_detection_softmax_all}
+\end{figure*}
+
+\paragraph{Frequency analysis:} Given the five aforementioned possibilties of $\mathbf{M(S_{XY}^{\mathsf{T}}})$, we measure the frequency of each possibility in each model's input and output sentences. This give us an insight into the isometric behaviour of each model and would also allow us to compare both models.
+
+\paragraph{Sentence-level analysis:} As mentioned before, some anisometric possibilities of $\mathbf{M(S_{XY}^{\mathsf{T}}})$, such as $[0,1]$ and $[1,0]$, could prove interesting for further investigation. For such cases, we probe further and analyze sentences individually.
+
+\subsubsection{Relationship between chrF$_2$ and semantic-equivalence}
+
+We return to one of the observations from \citet{michel2019evaluation}, specifically that the chrF$_2$ automatic evaluation metric \cite{popovic2015chrf} tends to correlate most positively with human judgment of semantic similarity compared to BLEU \cite{papineni2002bleu} and METEOR \cite{denkowski2014meteor}. We attempt to use our investigation of isometry on semantic-equivalence spaces to further investigate the relationship between semantic equality and the chrF$_2$ score. We replicate the chrF$_2$ setup from \citet{michel2019evaluation} by using the default \texttt{sacrebleu} implementation \cite{post-2018-call} with a $n$-gram upper limit of 6 and $\beta$ value of 2.
+
+\paragraph{Non-commutativity of chrF$_2$:} While replicating the chrF$_2$ setup of \citet{michel2019evaluation}, we observe that this particular formulation with $\beta = 2$ results in the chrF$_2$ metric being non-commutative:
+
+\begin{equation}
+  \text{chrF}_{2}(s_1,s_2) \neq \text{chrF}_{2}(s_2,s_1)
+\end{equation}
+
+Non-commutativity is an emergent property of chrF$_2$ with $\beta = 2$ since this would assign two times more weight to recall than precision \cite{popovic2015chrf}; which places an internal bias on input order. While this non-commutative formulation of chrF$_2$ would be useful for evaluating NMT models with explicit hypotheses and references, this would not be optimal as a semantic similarity metric since one would expect a semantic similarity metric to be commutative and unbiased towards input order.
+
+\paragraph{Commutative variant of chrF$_2$:} As an alternative, we simulate commutativity by averaging the chrF$_2$ values for both input orders and introduce $\overline{\text{chrF}_2}$ as a commutatitve variant for chrF$_2$.
+
+\begin{gather}
+  \overline{\text{chrF}_2}(s_1,s_2) = \dfrac{\text{chrF}_2(s_1,s_2) + \text{chrF}_2(s_2,s_1)}{2} \\[5pt]
+  \therefore \quad \overline{\text{chrF}_2}(s_1,s_2) = \overline{\text{chrF}_2}(s_2,s_1)
+\end{gather}
+
+We see this as a more optimal alternative than changing $\beta$ to 1 since this might veer further away from the experimental setup of \citet{michel2019evaluation}. Such commutative variants of automatic similarity metrics have also been considered for BLEU and METEOR in \citet{wieting-etal-2019-beyond} and were termed \textit{symmetric} instead of commutative.
+
+\begin{figure*}
+  \centering 
+  \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{paraphrase_detection_joint_decision.pdf}
+  \caption{Overview of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ decisions and frequencies w.r.t. NMT models (top) and input data sets (right); filling colors indicate finer details on the type of majority decision}
+  \label{paraphrase_detection_joint_decision}
+\end{figure*}
+
+\paragraph{Mapping $\overline{\text{chrF}_2}$ to $S_L$:} In order to investigate the relationship between $\overline{\text{chrF}_2}$ and semantic-equivalence (or $S_L$), we start by assigning sentence pairs with respective paired $\overline{\text{chrF}_2}$ and $S_L$ values. In order to do this, we refer back to the majority decisions of the paraphrase detection models and remove all sentence pairs where $\mathbf{M(S_{XY}^{\mathsf{T}}}) = \emptyset$.
+
+We assume all remaining sentence pairs have been \textit{confidently} tagged by the paraphrase detection models and we correspondingly assign each sentence pair with respective $S_L$ and $\overline{\text{chrF}_2}$ values for source and target sides.
+
+\paragraph{Correlation between $\overline{\text{chrF}_2}$ and $S_L$:} Finally, we replicate a similar statistical procedure as per \citet{michel2019evaluation} and compute the Pearson correlation coefficient $r$ and the corresponding statistical significance $t$-test. For the $t$-test, we set the null hypothesis $H_0$ to be that there exists a non-positive correlation between $\overline{\text{chrF}_2}$ and $S_L$; while the alternative hypothesis $H_1$ is that there exists a positive correlation between $\overline{\text{chrF}_2}$ and $S_L$.
+
+% 4.3. Evaluation protocols
+% 4.3.2. Correlation between chrF and semantic equality
+% TODO state expectations about outcomes, some basic ideas -> can be done post-paper
 % TODO consider refining and synchronizing model names as was done with data -> update plots
-% TODO define probability threshold epsilon in paper when necessary
-% go into techniques used, how isometric properties would be determined -> would need to be thought of more
-% correlations to chrF to compare with Michel et al. 2019 -> how this would be done
+% groups <- split(hold[c("label", "value")], f = list(hold$model_name, hold$data_name))
+% cor.test(as.numeric(as.character(groups[[4]]$label)), groups[[4]]$value, method="pearson", alternative="greater")
+
+\subsection{Results}
 
 % 5. Results (facts)
-% bring in main charts and show results
-% correlations to chrF to compare with Michel et al. 2019
-% keep it simple and facts-ish
+% TODO softmax chart, bar chart, frequency analysis, basic examples -> ensure de/en are lowercased in plots
+% TODO make boxplot with label vs chrf and see what this tells us
+% TODO try new plot for continuous softmax visualizations -> with ggpubr compare means
+% TODO make new plot with {0|1} split for chrF by 4 facets and find correlations -> use ggpubr -> update in readme and elsewhere
+% TODO use S_L as x-axis and can use bar plot with fancy sig diffs
+% bring in main charts and show results -> have hard results
 % show tables with chrF inter-comparisons and possibly BLEU -> try to enumerate as many results as possible -> mention why this was done to simulate commutivity of similarity metrics
 
 % 6. Discussion (interpretation & comparisons)
-% go into some examples for interpretations
+% go into some examples for interpretations -> use examples of each category which can be interesting -> use actual examples instead of going into statistical tests
 % look into statistical test between isometry and model performance in general
 % hard to prove this unless we re-train the SOTA model without backtranslation -> possible future task
 % contributions to Michel et al. 2019 analysis where possible
 % go into discussion regarding chrF and semantic equality -> try to make statistical claims where possible and use statistical tests to show that chrF is only useful for edge cases and otherwise not really -> use plots where possible and otherwise add abc annotations via ggplot if necessary
 % explain that papers like volatility one might be making claims based on weaker models that could be fixed by using larger models with better training -> hard to say exactly but based on our paraphrases which are non-adversarial and non-targetted, this seems to be the case but also no hard conclusion -> depends on also which model they used
+% we can say chrF is not a measure of semantic equality but might still be correlated to semantic similarity
 % list hypotheses and how some were refuted by results
 % make less confident conclusion on relationship between back-translation and translation consistency -> could also be linked to other differences between models
 % there are many possible contributions to better performance compared to non-SOTA -> could be langids to help prevent language mixing (observed in non-SOTA), could be backtranslation for syntactical and lexical diversity which contributes to paraphrase robustness

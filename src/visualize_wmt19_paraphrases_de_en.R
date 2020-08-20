@@ -439,7 +439,7 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
     theme(
       text = element_text(size = 27),
       strip.background = element_blank(),
-      ## legend.key.height = unit(0.01, "cm"),
+      legend.key.width = unit(0.65, "cm"),
       legend.spacing.y = unit(0.2, "cm"),
       legend.position = "bottom",
       legend.title = element_blank(),
@@ -460,7 +460,7 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
     xlab("$\\mathbf{M(S_{XY}^{\\mathsf{T}})}$") +
     ylab("Prediction Count")
   tex_file <- "paraphrase_detection_joint_decision.tex"
-  tikz(tex_file, width = 18, height = 9, standAlone = TRUE, engine = "luatex")
+  tikz(tex_file, width = 18.5, height = 9, standAlone = TRUE, engine = "luatex")
   print(g)
   dev.off()
   post_process(tex_file)

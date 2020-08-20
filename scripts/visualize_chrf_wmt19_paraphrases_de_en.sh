@@ -5,7 +5,7 @@ set -e
 # usage function
 usage() {
   cat <<EOF
-Usage: visualize_bleu_chrf_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
+Usage: visualize_chrf_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
 Visualize shallow evaluation scores of WMT19 paraphrase translations
 
 Optional arguments:
@@ -26,11 +26,11 @@ check_help() {
 }
 
 # define function
-visualize_bleu_chrf_wmt19_paraphrases_de_en() {
+visualize_chrf_wmt19_paraphrases_de_en() {
   local glob="${1:-"./predictions/*/*.json"}"
   Rscript src/visualize_wmt19_paraphrases_de_en.R -s -j "$glob"
 }
 
 # execute function
 check_help "$@"
-visualize_bleu_chrf_wmt19_paraphrases_de_en "$@"
+visualize_chrf_wmt19_paraphrases_de_en "$@"

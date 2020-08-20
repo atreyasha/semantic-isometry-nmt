@@ -10,6 +10,7 @@ library(tikzDevice)
 library(optparse)
 library(ggpointdensity)
 library(gridExtra)
+library(reshape2)
 
 g_legend <- function(a.gplot) {
   # source: https://stackoverflow.com/a/13650878
@@ -33,6 +34,42 @@ post_process <- function(tex_file) {
   unlink(paste0(no_ext_name, "*.png"))
   unlink("Rplots.pdf")
 }
+
+# source: https://stackoverflow.com/a/45614547
+GeomSplitViolin <- ggproto("GeomSplitViolin", GeomViolin,
+  draw_group = function(self, data, ..., draw_quantiles = NULL) {
+    data <- transform(data, xminv = x - violinwidth * (x - xmin), xmaxv = x + violinwidth * (xmax - x))
+    grp <- data[1, "group"]
+    newdata <- plyr::arrange(transform(data, x = if (grp %% 2 == 1) xminv else xmaxv), if (grp %% 2 == 1) y else -y)
+    newdata <- rbind(newdata[1, ], newdata, newdata[nrow(newdata), ], newdata[1, ])
+    newdata[c(1, nrow(newdata) - 1, nrow(newdata)), "x"] <- round(newdata[1, "x"])
+    if (length(draw_quantiles) > 0 & !scales::zero_range(range(data$y))) {
+      stopifnot(all(draw_quantiles >= 0), all(draw_quantiles <=
+        1))
+      quantiles <- ggplot2:::create_quantile_segment_frame(data, draw_quantiles)
+      aesthetics <- data[rep(1, nrow(quantiles)), setdiff(names(data), c("x", "y")), drop = FALSE]
+      aesthetics$alpha <- rep(1, nrow(quantiles))
+      both <- cbind(quantiles, aesthetics)
+      quantile_grob <- GeomPath$draw_panel(both, ...)
+      ggplot2:::ggname("geom_split_violin", grid::grobTree(GeomPolygon$draw_panel(newdata, ...), quantile_grob))
+    }
+    else {
+      ggplot2:::ggname("geom_split_violin", GeomPolygon$draw_panel(newdata, ...))
+    }
+  }
+)
+
+# source: https://stackoverflow.com/a/45614547
+geom_split_violin <- function(mapping = NULL, data = NULL, stat = "ydensity", position = "identity", ...,
+                              draw_quantiles = NULL, trim = TRUE, scale = "area", na.rm = FALSE,
+                              show.legend = NA, inherit.aes = TRUE) {
+  layer(
+    data = data, mapping = mapping, stat = stat, geom = GeomSplitViolin,
+    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    params = list(trim = trim, scale = scale, draw_quantiles = draw_quantiles, na.rm = na.rm, ...)
+  )
+}
+
 
 plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
   # internal re-usable plot function
@@ -143,22 +180,31 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
       ) +
       theme_bw() +
       theme(
-        text = element_text(size = 25),
+        text = element_text(size = 27),
         strip.background = element_blank(),
-        legend.key.height = unit(3, "cm"),
+        ## legend.key.height = unit(3, "cm"),
+        legend.key.width = unit(5, "cm"),
+        legend.position = "bottom",
         strip.text = element_text(face = "bold"),
         panel.grid = element_line(size = 1),
         axis.ticks.length = unit(.15, "cm"),
-        legend.margin = margin(c(1, 5, 5, 15))
+        legend.margin = margin(c(1, 5, 5, 15)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 5))
       ) +
-      facet_grid(data_name ~ model_name) +
+      facet_nested(~ model_name + data_name) +
       ## scale_color_viridis(name="Density") +
       scale_color_gradientn(
         colours = tim.colors(24),
-        name = "Point\nDensity"
+        name = "Point Density"
       ) +
-      ylab(paste0("Target", " \\textit{", metric, "} [En]", "\n")) +
-      xlab(paste0("\n", "Source", " \\textit{", metric, "} [De]"))
+      guides(colour = guide_colourbar(
+        title.position = "left", title.hjust = 0.5,
+        title.vjust = 1.1
+      )) +
+      scale_x_continuous(breaks = c(0.25, 0.50, 0.75)) +
+      ylab(paste0("Target ", metric, " [en]")) +
+      xlab(paste0("Source ", metric, " [de]"))
     return(g)
   }
   files <- Sys.glob(input_glob)
@@ -192,32 +238,20 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
   hold_out <- collection[-(which(names(collection) %in% c("chrf_src", "chrf_translated")))]
   collection <- collection[-(which(names(collection) %in% c("bleu_src", "bleu_translated")))]
   names(collection)[which(names(collection) %in% c("chrf_src", "chrf_translated"))] <- c("Source", "Target")
-  collection["Type"] <- "chrF"
+  collection["Type"] <- "$\\overline{\\text{chrF}_2}$"
   names(hold_out)[which(names(hold_out) %in% c("bleu_src", "bleu_translated"))] <- c("Source", "Target")
-  hold_out["Type"] <- "BLEU"
+  hold_out["Type"] <- "$\\overline{\\text{BLEU}}$"
   collection <- rbind(collection, hold_out)
   if (return_early) {
     return(collection)
   }
   # first plot with chrf
-  metric <- "chrF"
-  tex_file <- paste0(tolower(metric), "_nmt.tex")
+  metric <- "$\\overline{\\text{chrF}_2}$"
+  tex_file <- "chrf_nmt.tex"
   subcollection <- subset(collection, Type == metric)
   g <- internal_plot()
   tikz(tex_file,
-    width = 15, height = 10, standAlone = TRUE,
-    packages = paste0(getOption("tikzLatexPackages"), "\\usepackage{amsmath}\n"), engine = "luatex"
-  )
-  print(g)
-  dev.off()
-  post_process(tex_file)
-  # second plot with BLEU
-  metric <- "BLEU"
-  tex_file <- paste0(tolower(metric), "_nmt.tex")
-  subcollection <- subset(collection, Type == metric)
-  g <- internal_plot()
-  tikz(tex_file,
-    width = 15, height = 10, standAlone = TRUE,
+    width = 20, height = 7.5, standAlone = TRUE,
     packages = paste0(getOption("tikzLatexPackages"), "\\usepackage{amsmath}\n"), engine = "luatex"
   )
   print(g)
@@ -308,11 +342,11 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
         number <- as.numeric(names(which.max(table(x))))
         indices <- as.numeric(which(x == number))
         if (all(indices == c(1, 2))) {
-          c(number, "Majority Agreement: \\{mBERT\\textsubscript{Base} $\\cap$ XLM-R\\textsubscript{Base}\\}")
+          c(number, "Majority: \\{mBERT\\textsubscript{Base} $\\cap$ XLM-R\\textsubscript{Base}\\}")
         } else if (all(indices == c(2, 3))) {
-          c(number, "Majority Agreement: \\{XLM-R\\textsubscript{Base} $\\cap$ XLM-R\\textsubscript{Large}\\}")
+          c(number, "Majority: \\{XLM-R\\textsubscript{Base} $\\cap$ XLM-R\\textsubscript{Large}\\}")
         } else if (all(indices == c(1, 3))) {
-          c(number, "Majority Agreement: \\{mBERT\\textsubscript{Base} $\\cap$ XLM-R\\textsubscript{Large}\\}")
+          c(number, "Majority: \\{mBERT\\textsubscript{Base} $\\cap$ XLM-R\\textsubscript{Large}\\}")
         }
       }
     }
@@ -325,18 +359,27 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
   names(compressed_collection)[which(names(compressed_collection)
   %in% c("1", "2"))] <- c("Label", "Type")
   compressed_collection[, "Label"] <- as.factor(compressed_collection[, "Label"])
-  repeated_string <- "$\\big\\{P_{st}^{i}\\big\\}_{i}^{n} = "
-  levels(compressed_collection$Label) <- paste0(repeated_string, c(
+  levels(compressed_collection$Label) <- paste0(
+    "$\\mathbf{M(S_{XY}^{\\mathsf{T}})}=",
+    c(
+      "\\emptyset$",
+      "[0,0]$",
+      "[0,1]$",
+      "[1,0]$",
+      "[1,1]$"
+    )
+  )
+  # stop here if necessary and return everything
+  if (return_early) {
+    return(list(long_collection, compressed_collection))
+  }
+  levels(compressed_collection$Label) <- paste0("$", c(
     "\\emptyset$",
     "[0,0]$",
     "[0,1]$",
     "[1,0]$",
     "[1,1]$"
   ))
-  # stop here if necessary and return everything
-  if (return_early) {
-    return(list(long_collection, compressed_collection))
-  }
   # make dummy plot
   dummy <- data.frame(x = seq(0, 1, 0.01), y = seq(0, 1, 0.01))
   q <- ggplot(data = dummy, aes(x = x, y = y)) +
@@ -349,11 +392,11 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
       legend.position = "bottom",
       legend.box = "horizontal",
       legend.key.width = unit(5, "cm"),
-      text = element_text(size = 18)
+      text = element_text(size = 27)
     ) +
     guides(colour = guide_colourbar(
       title.position = "left", title.hjust = 0.5,
-      title.vjust = 0.9
+      title.vjust = 1.1
     ))
   # get legend of dummy plot
   mylegend <- g_legend(q)
@@ -366,18 +409,20 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
     ) +
     facet_nested(data_name ~ model_name + Type) +
     coord_cartesian(expand = FALSE) +
-    xlab("\nSource Paraphrase Softmax Score [De]") +
-    ylab("Target Paraphrase Softmax Score [En]\n") +
+    xlab("Source Paraphrase Softmax Score [de]") +
+    ylab("Target Paraphrase Softmax Score [en]") +
     theme_bw() +
     theme(
-      text = element_text(size = 18),
+      text = element_text(size = 27),
       strip.background = element_blank(),
       ## legend.key.height = unit(0.01, "cm"),
       legend.position = "none",
       strip.text = element_text(face = "bold"),
       panel.grid = element_line(size = 1),
       axis.ticks.length = unit(.15, "cm"),
-      legend.margin = margin(c(1, 5, 5, 15))
+      legend.margin = margin(c(1, 5, 5, 15)),
+      axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 5, l = 0)),
+      axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0))
     )
   tex_file <- "paraphrase_detection_softmax_all.tex"
   tikz(tex_file,
@@ -389,10 +434,10 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
   post_process(tex_file)
   # make compressed plot
   g <- ggplot(compressed_collection, aes(x = Label, fill = Type)) +
-    geom_bar(color = "black", size = 0.5, alpha = 0.75, width = 0.75) +
+    geom_bar(color = "black", size = 0.5, alpha = 0.75, width = 0.70) +
     theme_bw() +
     theme(
-      text = element_text(size = 18),
+      text = element_text(size = 27),
       strip.background = element_blank(),
       ## legend.key.height = unit(0.01, "cm"),
       legend.spacing.y = unit(0.2, "cm"),
@@ -400,18 +445,22 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
       legend.title = element_blank(),
       strip.text = element_text(face = "bold"),
       panel.grid = element_line(size = 1),
-      axis.text.x = element_text(vjust = -1.5, size = 14),
-      axis.title.x = element_text(vjust = -1.5),
+      axis.text.x = element_text(vjust = -1.5, size = 22),
       axis.ticks.length = unit(.15, "cm"),
       legend.margin = margin(c(10, 5, 5, 1)),
+      axis.title.x = element_text(
+        margin = margin(t = 20, r = 0, b = 20, l = 0),
+        vjust = -1.5
+      ),
+      axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0))
     ) +
     scale_fill_brewer(palette = "RdYlBu") +
     guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
     facet_grid(data_name ~ model_name) +
-    xlab("\nJoint Prediction Decision") +
-    ylab("Prediction Count\n")
+    xlab("$\\mathbf{M(S_{XY}^{\\mathsf{T}})}$") +
+    ylab("Prediction Count")
   tex_file <- "paraphrase_detection_joint_decision.tex"
-  tikz(tex_file, width = 18, height = 10, standAlone = TRUE, engine = "luatex")
+  tikz(tex_file, width = 18, height = 9, standAlone = TRUE, engine = "luatex")
   print(g)
   dev.off()
   post_process(tex_file)
@@ -420,18 +469,68 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
 plot_shallow_deep_correlations <- function(input_glob) {
   shallow <- subset(
     plot_shallow_metrics(input_glob, return_early = TRUE),
-    Type == "chrF"
+    Type == "$\\overline{\\text{chrF}_2}$"
   )
   deep <- plot_paraphrase_detector_outputs(input_glob, return_early = TRUE)
   deep_all <- deep[[1]]
   deep_compressed <- deep[[2]]
-  # extract paraphrase detection scores and convert them to factors
   rounded <- sapply(deep_all[c("Source", "Target")], round)
-  discrete <- as.factor(paste0("$P_{st} = [", apply(rounded, 1, paste, collapse = ","), "]$"))
+  discrete <- as.factor(paste0(
+    "$\\mathbf{S_{XY}^{\\mathsf{T}}} = [",
+    apply(rounded, 1, paste, collapse = ","), "]$"
+  ))
   deep_all <- deep_all[-which(names(deep_all) %in% c("Source", "Target"))]
   deep_all["Discrete"] <- discrete
-  collection <- cbind(deep_all, shallow[c("Source", "Target")])
+  # first collection variant
+  collection <- cbind(rounded, shallow)
+  names(collection)[c(1, 2)] <- c("label", "label")
+  collection_1 <- collection[c(1, 3, 4, 5, 7)]
+  collection_2 <- collection[c(2, 3, 4, 6, 7)]
+  collection <- rbind(
+    melt(collection_1, measure.vars = "Source"),
+    melt(collection_2, measure.vars = "Target")
+  )
+  collection$label <- as.factor(collection$label)
+  # plot object
+  g <- ggplot(collection, aes(x = label, y = value, fill = variable)) +
+    geom_split_violin(width = 0.7, alpha = 0.8, size = 1, color = "black") +
+    geom_boxplot(
+      width = 0.1, fill = "white", size = 1,
+      outlier.shape = 1, outlier.size = 2.5
+    ) +
+    geom_text(aes(x, y, label = lab),
+      data = data.frame(
+        x = 1.5, y = 0.95, lab = "***",
+        variable = levels(collection$variable)
+      ), size = 7
+    ) +
+    theme_bw() +
+    theme(
+      text = element_text(size = 27),
+      strip.background = element_blank(),
+      legend.key.width = unit(0.8, "cm"),
+      legend.spacing.y = unit(0.2, "cm"),
+      legend.title = element_blank(),
+      legend.position = "bottom",
+      strip.text = element_text(face = "bold"),
+      panel.grid = element_line(size = 1),
+      axis.ticks.length = unit(.15, "cm"),
+      axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10))
+    ) +
+    scale_fill_brewer(palette = "Reds") +
+    facet_nested(. ~ model_name + data_name) +
+    xlab("$S_L$") +
+    ylab("$\\overline{\\text{chrF}_2}$")
+  tex_file <- "chrf_paraphrase_detection_violin_joint.tex"
+  tikz(tex_file,
+    width = 18, height = 8, standAlone = TRUE, engine = "luatex",
+    packages = paste0(getOption("tikzLatexPackages"), "\\usepackage{amsmath}\n")
+  )
+  print(g)
+  dev.off()
+  post_process(tex_file)
   # plot all results
+  collection <- cbind(deep_all, shallow[c("Source", "Target")])
   tex_file <- "chrf_paraphrase_detection_all.tex"
   g <- ggplot(collection, aes(x = Source, y = Target)) +
     geom_pointdensity(aes(x = Source, y = Target), adjust = 0.1) +
@@ -459,10 +558,13 @@ plot_shallow_deep_correlations <- function(input_glob) {
       title.position = "left", title.hjust = 0.5,
       title.vjust = 0.9
     )) +
-    ylab(paste0("Target", " \\textit{chrF} [En]", "\n")) +
-    xlab(paste0("\n", "Source", " \\textit{chrF} [De]"))
+    ylab(paste0("Target", " $\\overline{\\text{chrF}_2}$ [en]", "\n")) +
+    xlab(paste0("\n", "Source", " $\\overline{\\text{chrF}_2}$ [de]"))
   # print to file
-  tikz(tex_file, width = 26, height = 11, standAlone = TRUE, engine = "luatex")
+  tikz(tex_file,
+    width = 26, height = 11, standAlone = TRUE, engine = "luatex",
+    packages = paste0(getOption("tikzLatexPackages"), "\\usepackage{amsmath}\n")
+  )
   print(grid.arrange(g))
   dev.off()
   post_process(tex_file)
@@ -498,9 +600,12 @@ plot_shallow_deep_correlations <- function(input_glob) {
       title.position = "left", title.hjust = 0.5,
       title.vjust = 0.9
     )) +
-    ylab(paste0("Target", " \\textit{chrF} [En]", "\n")) +
-    xlab(paste0("\n", "Source", " \\textit{chrF} [De]"))
-  tikz(tex_file, width = 20, height = 7, standAlone = TRUE, engine = "luatex")
+    ylab(paste0("Target", " $\\overline{\\text{chrF}_2}$ [en]", "\n")) +
+    xlab(paste0("\n", "Source", " $\\overline{\\text{chrF}_2}$ [de]"))
+  tikz(tex_file,
+    width = 20, height = 7, standAlone = TRUE, engine = "luatex",
+    packages = paste0(getOption("tikzLatexPackages"), "\\usepackage{amsmath}\n")
+  )
   print(grid.arrange(g))
   dev.off()
   post_process(tex_file)

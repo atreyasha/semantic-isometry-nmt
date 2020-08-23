@@ -189,7 +189,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will produce fancy plots of the `chrF` scores and will save them as tikz-based `pdf` files in the `img` directory. To run this script, simply execute:
+This script will produce a fancy plot of the `chrF` scores and will save it as tikz-based `pdf` file in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_chrf_wmt19_paraphrases_de_en.sh

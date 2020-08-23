@@ -66,7 +66,29 @@ bash scripts/train_continue_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
 ```
 
-**iv.** Evaluate an existing checkpoint on pre-processed `train`, `valid (newstest2013)` or `test (newstest2014)` data using `sacrebleu` with `evaluate_wmt16_de_en.sh`:
+**iv.** Assuming a plateauing validation performance profile on the final `N` epochs, it is recommended to average the well performing last `N` checkpoints. This can be done with `average_checkpoints_wmt16_de_en.sh`:
+
+```
+Usage: average_checkpoints_wmt16_de_en [-h|--help] model_directory [number]
+Average the last N checkpoints from a model directory
+
+Optional arguments:
+  -h, --help              Show this help message and exit
+  number <int>            Number of last checkpoints to average,
+                          defaults to 10.
+
+Required arguments:
+  model_directory <path>  Path to directory containing model checkpoints
+```
+
+An example of running this script would be:
+
+```shell
+bash scripts/average_checkpoints_wmt16_de_en.sh \
+"./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
+```
+
+**v.** Evaluate an existing checkpoint on pre-processed `train`, `valid (newstest2013)` or `test (newstest2014)` data using `sacrebleu` with `evaluate_wmt16_de_en.sh`:
 
 ```
 Usage: evaluate_wmt16_de_en.sh [-h|--help] checkpoint [subset]
@@ -88,7 +110,7 @@ bash scripts/evaluate_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt"
 ```
 
-**v.** Evaluate an existing checkpoint on `newstest2019` using `sacrebleu` with `evaluate_wmt19_de_en.sh`:
+**vi.** Evaluate an existing checkpoint on `newstest2019` using `sacrebleu` with `evaluate_wmt19_de_en.sh`:
 
 ```
 Usage: evaluate_wmt19_de_en.sh [-h|--help] checkpoint
@@ -106,28 +128,6 @@ An example of running this script would be:
 ```shell
 bash scripts/evaluate_wmt19_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573/checkpoint_best.pt"
-```
-
-**vi.** Assuming a plateauing validation performance profile on the final `N` epochs, it is recommended to average the well performing last `N` checkpoints. This can be done with `average_checkpoints_wmt16_de_en.sh`:
-
-```
-Usage: average_checkpoints_wmt16_de_en [-h|--help] model_directory [number]
-Average the last N checkpoints from a model directory
-
-Optional arguments:
-  -h, --help              Show this help message and exit
-  number <int>            Number of last checkpoints to average,
-                          defaults to 10.
-
-Required arguments:
-  model_directory <path>  Path to directory containing model checkpoints
-```
-
-An example of running this script would be:
-
-```shell
-bash scripts/average_checkpoints_wmt16_de_en.sh \
-"./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
 ```
 
 **vii.** After choosing the best model, execute post-processing on the model directory using `postprocess_wmt16_de_en.sh`:

@@ -440,7 +440,7 @@ plot_shallow_deep_correlations <- function(input_glob) {
     facet_nested(. ~ model_name + data_name) +
     xlab("$S_L$") +
     ylab("$\\overline{\\text{chrF}_2}$")
-  tex_file <- "chrf_paraphrase_detection_violin_joint.tex"
+  tex_file <- "chrf_paraphrase_detection_violin_joint_decision.tex"
   tikz(tex_file,
     width = 18, height = 8, standAlone = TRUE, engine = "luatex",
     packages = paste0(getOption("tikzLatexPackages"), "\\usepackage{amsmath}\n")

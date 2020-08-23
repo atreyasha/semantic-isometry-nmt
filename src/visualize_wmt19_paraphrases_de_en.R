@@ -97,87 +97,6 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
     # plot object
     g <- ggplot(subcollection, aes(x = Source, y = Target)) +
       geom_pointdensity(adjust = 0.1) +
-      geom_text(aes(x, y, label = lab),
-        data = data.frame(
-          x = Inf, y = 0, lab = paste0(
-            "$\\begin{aligned}",
-            "\\boldsymbol{\\mu} &= \\begin{bmatrix} ",
-            paste0(
-              paste0(
-                formatC(
-                  sapply(
-                    1:nrow(means),
-                    function(i) {
-                      means[i, c("Source")]
-                    }
-                  ),
-                  digits = 3, format = "f"
-                ), " & "
-              ),
-              formatC(
-                sapply(
-                  1:nrow(means),
-                  function(i) {
-                    means[i, c("Target")]
-                  }
-                ),
-                digits = 3, format = "f"
-              )
-            ),
-            " \\end{bmatrix} \\\\",
-            "\\boldsymbol{\\Sigma} &= \\begin{bmatrix} ",
-            paste0(
-              paste0(
-                formatC(
-                  sapply(
-                    1:nrow(means),
-                    function(i) {
-                      variance[i, c("Source")]
-                    }
-                  ),
-                  digits = 3, format = "f"
-                ), " & "
-              ),
-              paste0(
-                formatC(
-                  sapply(
-                    1:nrow(means),
-                    function(i) {
-                      variance[i, c("ST")]
-                    }
-                  ),
-                  digits = 3, format = "f"
-                ), " \\\\ "
-              ),
-              paste0(
-                formatC(
-                  sapply(
-                    1:nrow(means),
-                    function(i) {
-                      variance[i, c("ST")]
-                    }
-                  ),
-                  digits = 3, format = "f"
-                ), " & "
-              ),
-              formatC(
-                sapply(
-                  1:nrow(means),
-                  function(i) {
-                    variance[i, c("Target")]
-                  }
-                ),
-                digits = 3, format = "f"
-              )
-            ),
-            " \\end{bmatrix}",
-            " \\end{aligned}$"
-          ),
-          model_name = means[c("model_name")],
-          data_name = means[c("data_name")]
-        ),
-        hjust = 1.1, vjust = -2, size = 5
-      ) +
       theme_bw() +
       theme(
         text = element_text(size = 27),
@@ -500,7 +419,7 @@ plot_shallow_deep_correlations <- function(input_glob) {
     ) +
     geom_text(aes(x, y, label = lab),
       data = data.frame(
-        x = 1.5, y = 0.95, lab = "***",
+        x = 1.5, y = 0.93, lab = "$\\begin{gathered} r>0 \\\\ *** \\end{gathered}$",
         variable = levels(collection$variable)
       ), size = 7
     ) +
@@ -517,7 +436,7 @@ plot_shallow_deep_correlations <- function(input_glob) {
       axis.ticks.length = unit(.15, "cm"),
       axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10))
     ) +
-    scale_fill_brewer(palette = "Reds") +
+    scale_fill_brewer(palette = "Set1", direction = -1) +
     facet_nested(. ~ model_name + data_name) +
     xlab("$S_L$") +
     ylab("$\\overline{\\text{chrF}_2}$")

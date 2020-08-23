@@ -169,7 +169,7 @@ Optional arguments:
                "./models/*/{train,train_inner,valid}"
 ```
 
-This script will aggregate/convert tensorboard event logs into `csv` files and produce/save fancy plots of model evolutions as tikz-based `pdf` files in the `img` directory. To run this script, simply execute:
+This script will aggregate/convert tensorboard event logs into `csv` files and produce tikz-based plots of model evolutions as `pdf` files in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_model_evolutions.sh
@@ -189,7 +189,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will produce a fancy plot of the `chrF` scores and will save it as tikz-based `pdf` file in the `img` directory. To run this script, simply execute:
+This script will produce a tikz-based plot of the `chrF` scores and will save it as `pdf` file in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_chrf_wmt19_paraphrases_de_en.sh
@@ -209,7 +209,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will produce fancy plots of the respective paraphrase detection `softmax` scores and will save them as tikz-based `pdf` files in the `img` directory. To run this script, simply execute:
+This script will produce tikz-based plots of the respective paraphrase detection `softmax` scores and will save them as `pdf` files in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_paraphrase_detection_wmt19_paraphrases_de_en.sh
@@ -229,7 +229,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will produce fancy plots of correlations between `chrF` and paraphrase detection predictions and will save them as tikz-based `pdf` files in the `img` directory. To run this script, simply execute:
+This script will produce tikz-based plots of correlations between `chrF` and paraphrase detection predictions and will save them as `pdf` files in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_chrf_paraphrase_detection_wmt19_paraphrases_de_en.sh

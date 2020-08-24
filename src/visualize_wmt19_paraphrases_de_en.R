@@ -125,6 +125,9 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
   names(hold_out)[which(names(hold_out) %in% c("bleu_src", "bleu_translated"))] <- c("Source", "Target")
   hold_out["Type"] <- "$\\overline{\\text{BLEU}}$"
   collection <- rbind(collection, hold_out)
+  collection$data_name <- factor(collection$data_name,
+    levels = c("WMT19 Legacy", "WMT19 AR")
+  )
   if (return_early) {
     return(collection)
   }
@@ -251,6 +254,12 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
       "[1,0]$",
       "[1,1]$"
     )
+  )
+  compressed_collection$data_name <- factor(compressed_collection$data_name,
+    levels = c("WMT19 Legacy", "WMT19 AR")
+  )
+  long_collection$data_name <- factor(long_collection$data_name,
+    levels = c("WMT19 Legacy", "WMT19 AR")
   )
   # stop here if necessary and return everything
   if (return_early) {

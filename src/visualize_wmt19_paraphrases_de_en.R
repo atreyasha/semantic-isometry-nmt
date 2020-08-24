@@ -35,42 +35,6 @@ post_process <- function(tex_file) {
   unlink("Rplots.pdf")
 }
 
-# source: https://stackoverflow.com/a/45614547
-GeomSplitViolin <- ggproto("GeomSplitViolin", GeomViolin,
-  draw_group = function(self, data, ..., draw_quantiles = NULL) {
-    data <- transform(data, xminv = x - violinwidth * (x - xmin), xmaxv = x + violinwidth * (xmax - x))
-    grp <- data[1, "group"]
-    newdata <- plyr::arrange(transform(data, x = if (grp %% 2 == 1) xminv else xmaxv), if (grp %% 2 == 1) y else -y)
-    newdata <- rbind(newdata[1, ], newdata, newdata[nrow(newdata), ], newdata[1, ])
-    newdata[c(1, nrow(newdata) - 1, nrow(newdata)), "x"] <- round(newdata[1, "x"])
-    if (length(draw_quantiles) > 0 & !scales::zero_range(range(data$y))) {
-      stopifnot(all(draw_quantiles >= 0), all(draw_quantiles <=
-        1))
-      quantiles <- ggplot2:::create_quantile_segment_frame(data, draw_quantiles)
-      aesthetics <- data[rep(1, nrow(quantiles)), setdiff(names(data), c("x", "y")), drop = FALSE]
-      aesthetics$alpha <- rep(1, nrow(quantiles))
-      both <- cbind(quantiles, aesthetics)
-      quantile_grob <- GeomPath$draw_panel(both, ...)
-      ggplot2:::ggname("geom_split_violin", grid::grobTree(GeomPolygon$draw_panel(newdata, ...), quantile_grob))
-    }
-    else {
-      ggplot2:::ggname("geom_split_violin", GeomPolygon$draw_panel(newdata, ...))
-    }
-  }
-)
-
-# source: https://stackoverflow.com/a/45614547
-geom_split_violin <- function(mapping = NULL, data = NULL, stat = "ydensity", position = "identity", ...,
-                              draw_quantiles = NULL, trim = TRUE, scale = "area", na.rm = FALSE,
-                              show.legend = NA, inherit.aes = TRUE) {
-  layer(
-    data = data, mapping = mapping, stat = stat, geom = GeomSplitViolin,
-    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
-    params = list(trim = trim, scale = scale, draw_quantiles = draw_quantiles, na.rm = na.rm, ...)
-  )
-}
-
-
 plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
   # internal re-usable plot function
   internal_plot <- function() {
@@ -412,14 +376,17 @@ plot_shallow_deep_correlations <- function(input_glob) {
   collection$label <- as.factor(collection$label)
   # plot object
   g <- ggplot(collection, aes(x = label, y = value, fill = variable)) +
-    geom_split_violin(width = 0.7, alpha = 0.8, size = 1, color = "black") +
+    stat_boxplot(
+      geom = "errorbar", width = 0.5,
+      position = position_dodge(width = 1)
+    ) +
     geom_boxplot(
-      width = 0.1, fill = "white", size = 1,
-      outlier.shape = 1, outlier.size = 2.5
+      position = position_dodge(width = 1), outlier.shape = 1,
+      outlier.size = 2.5, outlier.alpha = 0.7
     ) +
     geom_text(aes(x, y, label = lab),
       data = data.frame(
-        x = 1.5, y = 0.93, lab = "$\\begin{gathered} r>0 \\\\ *** \\end{gathered}$",
+        x = 1.5, y = 0.97, lab = "***",
         variable = levels(collection$variable)
       ), size = 7
     ) +
@@ -436,7 +403,7 @@ plot_shallow_deep_correlations <- function(input_glob) {
       axis.ticks.length = unit(.15, "cm"),
       axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10))
     ) +
-    scale_fill_brewer(palette = "Set1", direction = -1) +
+    scale_fill_manual(values = c("lightblue", "#FF5733")) +
     facet_nested(. ~ model_name + data_name) +
     xlab("$S_L$") +
     ylab("$\\overline{\\text{chrF}_2}$")

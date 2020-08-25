@@ -63,7 +63,7 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
       geom_pointdensity(adjust = 0.1) +
       theme_bw() +
       theme(
-        text = element_text(size = 27),
+        text = element_text(size = 30),
         strip.background = element_blank(),
         ## legend.key.height = unit(3, "cm"),
         legend.key.width = unit(5, "cm"),
@@ -404,6 +404,7 @@ plot_shallow_deep_correlations <- function(input_glob) {
       text = element_text(size = 27),
       strip.background = element_blank(),
       legend.key.width = unit(0.8, "cm"),
+      legend.key.height = unit(1, "cm"),
       legend.spacing.y = unit(0.2, "cm"),
       legend.title = element_blank(),
       legend.position = "bottom",
@@ -412,7 +413,7 @@ plot_shallow_deep_correlations <- function(input_glob) {
       axis.ticks.length = unit(.15, "cm"),
       axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10))
     ) +
-    scale_fill_manual(values = c("lightblue", "#FF5733")) +
+    scale_fill_brewer(palette = "Reds") +
     facet_nested(. ~ model_name + data_name) +
     xlab("$S_L$") +
     ylab("$\\overline{\\text{chrF}_2}$")

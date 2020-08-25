@@ -1,7 +1,12 @@
 % load relevant packages
 \documentclass[11pt,a4paper]{article}
 \usepackage[hyperref]{acl2020}
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage{float}
+\usepackage{tabularx}
 \usepackage{times}
+\usepackage{multirow}
 \usepackage{lipsum}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -139,23 +144,21 @@ In this sense, the study of adversarial paraphrasing in machine translation coul
 
 \subsection{Data sets}
 
-Below we describe the key data sets that we were used in our research.
-
 \subsubsection{WMT19 en-de references and corresponding paraphrases}
 
 \citet{freitag-bleu-paraphrase-references-2020} builds on the premise that while automatic evaluation metrics, such as BLEU, are important for NMT model evaluation; the presence of diverse translation references is also critical. Motivated by the observation that typical references show poor diversity, \citet{freitag-bleu-paraphrase-references-2020} focuses on two goals; namely creating additional high quality WMT19 test references, as well as paraphrasing both existing (or legacy) and additional WMT19 test references in the \texttt{en$\rightarrow$de} translation direction.
 
 These services were ultimately rendered by a professional translation service using different sets of linguists for different tasks to reduce systematic bias. While these additional references serve the purpose of diversifying evaluation references, we see them as a source of high-quality semantically equivalent paraphrases with varied lexical and syntactical features. We therefore use these additional references as our input paraphrase sentences to investigate semantic isometry. Below are the key resulting data sets for \texttt{en$\rightarrow$de} that were used in our research.
 
-\paragraph{WMT19 legacy test references:} This refers to the existing \texttt{newstest2019} translation references without any additional references or paraphrasing. For abbrevation purposes, we refer to this data set as \texttt{WMT}. 
+\paragraph{WMT19 legacy test references:} This refers to the existing \texttt{newstest2019} translation references with 1997 sentences. For abbrevation purposes, we refer to this data set as \texttt{WMT}. 
 
-\paragraph{WMT19 additional test references:} This refers to additional references produced as a result of \citet{freitag-bleu-paraphrase-references-2020}. For abbrevation purposes, we refer to this data set as \texttt{AR}. 
+\paragraph{WMT19 additional test references:} This refers to additional references produced as a result of \citet{freitag-bleu-paraphrase-references-2020} with 1997 sentences. For abbrevation purposes, we refer to this data set as \texttt{AR}. 
 
-\paragraph{WMT19 legacy test paraphrased references:} This refers to the paraphrased version of the existing \texttt{newstest2019} translation references produced as a result of \citet{freitag-bleu-paraphrase-references-2020}. For abbrevation purposes, we refer to this data set as \texttt{WMT.p}. 
+\paragraph{WMT19 legacy test paraphrased references:} This refers to the paraphrased version of the existing \texttt{newstest2019} translation references produced as a result of \citet{freitag-bleu-paraphrase-references-2020} with 1997 sentences. For abbrevation purposes, we refer to this data set as \texttt{WMT.p}. 
 
-\paragraph{WMT19 additional test paraphrased references:}This refers to the paraphrased version of the additional translation references produced as a result of \citet{freitag-bleu-paraphrase-references-2020}. For abbrevation purposes, we refer to this data set as \texttt{AR.p}.
+\paragraph{WMT19 additional test paraphrased references:}This refers to the paraphrased version of the additional translation references produced as a result of \citet{freitag-bleu-paraphrase-references-2020} with 1997 sentences. For abbrevation purposes, we refer to this data set as \texttt{AR.p}.
 
-For brevity, we further simplify the aforementioned data sets as follows:
+For brevity, we concatenate the aforementioned data sets into WMT19 Legacy and WMT19 AR. Both data sets have 1997 pairs of semantically equivalent sentences or paraphrases.
 
 \vspace{-10pt}
 \begin{align}
@@ -195,8 +198,6 @@ For this, we use WMT16 \texttt{de$\rightarrow$en} training data with 4.5M senten
 % bring up actual examples of paraphrases and detection tasks -> to give some perspective
 
 \subsection{Models}
-
-Below we describe the key models that were used in our research.
 
 \subsubsection{FAIR WMT19 Transformer}
 
@@ -263,11 +264,9 @@ As seen in Table \ref{pawsx_score_breakdown}, all three models perform well espe
 
 \subsection{Evaluation protocols}
 
-Given our WMT19 Legacy and WMT19 AR paraphrase datasets defined in equations \ref{wmt19legacy} and \ref{wmt19ar}, we then translate all the aforementioned pairs of paraphrases using both the FAIR WMT19 Transformer and the Scaling NMT WMT16 Transformer. With this, we have the source paraphrases along with their target-side translations. We then use these samples for further investigation. 
+Given our WMT19 Legacy and WMT19 AR paraphrase datasets defined in equations \ref{wmt19legacy} and \ref{wmt19ar}, we then translate all pairs of paraphrases using both the FAIR WMT19 Transformer and the Scaling NMT WMT16 Transformer. With this, we have the source paraphrases along with their target-side translations. We then use these samples for further investigation. 
 
 \subsubsection{Isometry on binary semantic-equivalence spaces}
-
-Here we present our evaluation protocols for investigating the isometric properties of NMT models on binary semantic-equivalence spaces.
 
 \paragraph{Vector representation:} We modify our representation of the $S_L$ relations in equation \ref{exact_approx_isometry_eqn} in order to have a more concise vectorized form of the relationship. We assign the probability threshold $\epsilon$ from equation \ref{bounded_isometry_probability_eqn} a constant value of 0.5 for all computations of $S_L$ in this research.
 
@@ -281,14 +280,6 @@ Here we present our evaluation protocols for investigating the isometric propert
 
 \paragraph{Discrete possibilities:} Since the output of $S_L$ falls in the binary set of $\{0,1\}$, we can effectively compute all five possibilities of the consequent majority decision $\mathbf{M(S_{XY}^{\mathsf{T}}})$. We describe these below.
 
-\begin{enumerate}
-\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [0, 0]$: Both the source and target pairs of sentences were evaluated to not be paraphrases and are therefore not semantically equivalent on both sides. This qualifies as isometric behaviour.
-\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [1, 1]$: Both the source and target pairs of sentences were evaluated to be paraphrases and are therefore semantically equivalent on both sides. This qualifies as isometric behaviour. 
-\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [0, 1]$: The source sentences are evaluated to not be paraphrases while the target sentences are evaluated to be paraphrases. This implies that translation resulted in the sentence pair becoming semantically equivalent while they were not before. This qualifies as anisometric behaviour and could be an interesting scenario to investigate further.
-\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [1, 0]$: The source sentences are evaluated to be paraphrases while the target sentences are evaluated to not be paraphrases. This implies that translation resulted in the sentence pair becoming semantically inequivalent while they were not before. This qualifies as anisometric behaviour and could imply weak performance of the model on one of the sentences; or possibly some adversarial paraphrasing.
-\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = \emptyset$: This implies that all models had different decisions and therefore no majority decision was reached. 
-\end{enumerate}
-
 \begin{figure*}
   \centering 
   \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{paraphrase_detection_softmax_all.pdf}
@@ -296,19 +287,34 @@ Here we present our evaluation protocols for investigating the isometric propert
   \label{paraphrase_detection_softmax_all}
 \end{figure*}
 
+\begin{enumerate}
+\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [1, 1]$: Both the source and target pairs of sentences were evaluated to be paraphrases and are therefore semantically equivalent on both sides. We consider this as approximately \textit{isometric behaviour}.
+\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [0, 0]$: Both the source and target pairs of sentences were evaluated to not be paraphrases and are therefore not semantically equivalent on both sides. While this does qualify as approximate isometry according to equation \ref{exact_approx_isometry_eqn}, we also observe this scenario is less conclusive for determining isometry compared to $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [1, 1]$, because of a looser bound associated with $S_L=0$ as per equation \ref{bounded_isometry_eqn}. We therefore assume this behaviour to be \textit{ambiguous}.  
+\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [0, 1]$: The source sentences are evaluated to not be paraphrases while the target sentences are evaluated to be paraphrases. This implies that translation resulted in the sentence pair becoming semantically equivalent while they were not before. This qualifies as approximately anisometric behaviour and could be an interesting scenario to investigate further. We define this as \textit{type-1 anisometric behaviour}.
+\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = [1, 0]$: The source sentences are evaluated to be paraphrases while the target sentences are evaluated to not be paraphrases. This implies that translation resulted in the sentence pair becoming semantically inequivalent while they were not before. This qualifies as approximately anisometric behaviour and could imply weak performance of the model on one of the sentences; or possibly some adversarial paraphrasing. We define this as \textit{type-2 anisometric behaviour}.
+\item $\mathbf{M(S_{XY}^{\mathsf{T}}}) = \emptyset$: This implies that all models had different decisions and therefore no majority decision was reached. We assume this behaviour to be \textit{ambiguous}. 
+\end{enumerate}
+
 \paragraph{Frequency analysis:} Given the five aforementioned possibilties of $\mathbf{M(S_{XY}^{\mathsf{T}}})$, we measure the frequency of each possibility in each model's input and output sentences. This give us an insight into the isometric behaviour of each model and would also allow us to compare both models.
 
-\paragraph{Sentence-level analysis:} As mentioned before, some anisometric possibilities of $\mathbf{M(S_{XY}^{\mathsf{T}}})$, such as $[0,1]$ and $[1,0]$, could prove interesting for further investigation. For such cases, we probe further and analyze sentences individually.
+\paragraph{Sentence-level analysis:} Type-1 and type-2 anisometric behaviours could prove interesting for further investigation. For such cases, we probe further and analyze sentences individually.
 
 \subsubsection{Relationship between chrF$_2$ and semantic-equivalence}
 
-We return to one of the observations from \citet{michel2019evaluation}, specifically that the chrF$_2$ automatic evaluation metric \cite{popovic2015chrf} tends to correlate most positively with human judgment of semantic similarity compared to BLEU \cite{papineni2002bleu} and METEOR \cite{denkowski2014meteor}. We attempt to use our investigation of isometry on semantic-equivalence spaces to further investigate the relationship between semantic equality and the chrF$_2$ score. We replicate the chrF$_2$ setup from \citet{michel2019evaluation} by using the default \texttt{sacrebleu} implementation \cite{post-2018-call} with a $n$-gram upper limit of 6 and $\beta$ value of 2.
+We return to one of the observations from \citet{michel2019evaluation}, specifically that the chrF$_2$ automatic evaluation metric \cite{popovic2015chrf} tends to correlate most positively with human judgment of semantic similarity compared to BLEU \cite{papineni2002bleu} and METEOR \cite{denkowski2014meteor}. We attempt to use our investigation of isometry on semantic-equivalence spaces to further investigate the relationship between semantic equality and the chrF$_2$ score. We replicate the chrF$_2$ setup from \citet{michel2019evaluation} by using the default \texttt{sacrebleu} implementation \cite{post-2018-call} with a $n$-gram upper limit of 6 and $\beta$ value of 2
 
 \paragraph{Non-commutativity of chrF$_2$:} While replicating the chrF$_2$ setup of \citet{michel2019evaluation}, we observe that this particular formulation with $\beta = 2$ results in the chrF$_2$ metric being non-commutative:
 
 \begin{equation}
   \text{chrF}_{2}(s_1,s_2) \neq \text{chrF}_{2}(s_2,s_1)
 \end{equation}
+
+\begin{figure*}
+  \centering 
+  \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{paraphrase_detection_joint_decision.pdf}
+  \caption{Frequency distribution of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models (top) and input data sets (right); filling colors indicate finer details on the type of majority decision}
+  \label{paraphrase_detection_joint_decision}
+\end{figure*}
 
 Non-commutativity is an emergent property of chrF$_2$ with $\beta = 2$ since this would assign two times more weight to recall than precision \cite{popovic2015chrf}; which places an internal bias on input order. While this non-commutative formulation of chrF$_2$ would be useful for evaluating NMT models with explicit hypotheses and references, this would not be optimal as a semantic similarity metric since one would expect a semantic similarity metric to be commutative and unbiased towards input order.
 
@@ -321,13 +327,6 @@ Non-commutativity is an emergent property of chrF$_2$ with $\beta = 2$ since thi
 
 We see this as a more optimal alternative than changing $\beta$ to 1 since this might veer further away from the experimental setup of \citet{michel2019evaluation}. Such commutative variants of automatic similarity metrics have also been considered for BLEU and METEOR in \citet{wieting-etal-2019-beyond} and were termed \textit{symmetric} instead of commutative.
 
-\begin{figure*}
-  \centering 
-  \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{paraphrase_detection_joint_decision.pdf}
-  \caption{Overview of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ decisions and frequencies w.r.t. NMT models (top) and input data sets (right); filling colors indicate finer details on the type of majority decision}
-  \label{paraphrase_detection_joint_decision}
-\end{figure*}
-
 \paragraph{Mapping $\overline{\text{chrF}_2}$ to $S_L$:} In order to investigate the relationship between $\overline{\text{chrF}_2}$ and semantic-equivalence (or $S_L$), we start by assigning sentence pairs with respective paired $\overline{\text{chrF}_2}$ and $S_L$ values. In order to do this, we refer back to the majority decisions of the paraphrase detection models and remove all sentence pairs where $\mathbf{M(S_{XY}^{\mathsf{T}}}) = \emptyset$.
 
 We assume all remaining sentence pairs have been \textit{confidently} tagged by the paraphrase detection models and we correspondingly assign each sentence pair with respective $S_L$ and $\overline{\text{chrF}_2}$ values for source and target sides.
@@ -338,22 +337,78 @@ We assume all remaining sentence pairs have been \textit{confidently} tagged by 
 % 4.3.2. Correlation between chrF and semantic equality
 % TODO state expectations about outcomes, some basic ideas -> can be done post-paper
 % TODO consider refining and synchronizing model names as was done with data -> update plots
-% groups <- split(hold[c("label", "value")], f = list(hold$model_name, hold$data_name))
-% cor.test(as.numeric(as.character(groups[[4]]$label)), groups[[4]]$value, method="pearson", alternative="greater")
+% TODO change phrasing of sentence-level analysis to show interest in all possibilities instead of just some
 
-\subsection{Results}
+\section{Results}
+
+\subsection{Isometry on binary semantic-equivalence spaces}
+
+\paragraph{Paraphrase detection softmax scores:} Figure \ref{paraphrase_detection_softmax_all} shows a normalized contour density estimate for paraphrase detection softmax scores. These scores are grouped by NMT models, input data sets and paraphrase detection models. We can observe that mBERT\textsubscript{Base} generally shows more variance in softmax scores compared to the XLM-R models. We can also observe that all models show more variance for translation outputs from the Scaling NMT WMT16 Transformer compared to those from the FAIR WMT19 Transformer. The softmax distributions are generally similar between the WMT19 Legacy and WMT19 AR input data sets.
+
+\paragraph{Frequency analysis:} Figure \ref{paraphrase_detection_joint_decision} shows a visual breakdown of absolute frequencies of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models and input data sets. Table \ref{isometry_frequency} shows a tabular breakdown of relative frequencies of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models and input data sets. Below are the key observations pertaining to isometry.
+
+\begin{table*}[t!]
+  \centering
+  \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} cccccc}
+    \hline \\[-10pt]
+    \multirow{2}[3]{*}{$\mathbf{M(S_{XY}^{\mathsf{T}}})$} & \multicolumn{3}{c}{\textbf{FAIR WMT19 Transformer}} & \multicolumn{3}{c}{\textbf{Scaling NMT WMT16 Transformer}} \\
+    \cmidrule(lr){2-4} \cmidrule(lr){5-7}
+    & WMT19 Legacy & WMT19 AR & $\mu$ & WMT19 Legacy & WMT19 AR & $\mu$ \\[3pt]
+    \hline \hline \\[-10pt]
+    $[1,1]$ & \textbf{0.698} & \textbf{0.686} & \textbf{0.692} & 0.554 & 0.541 & 0.548 \\
+    $[0,0]$ & 0.091 & 0.104 & 0.097 & 0.153 & 0.154 & 0.153 \\
+    $[0,1]$ & \textbf{0.074} & \textbf{0.065} & \textbf{0.069} & 0.033 & 0.031 & 0.032 \\
+    $[1,0]$ & 0.018 & 0.030 & 0.024 & \textbf{0.133} & \textbf{0.130} & \textbf{0.131}\\
+    $\emptyset$ & 0.120 & 0.117 & 0.118 & 0.128 & 0.144 & 0.136 \\
+    \hline
+  \end{tabular*}
+  \caption{Relative frequency distribution for $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models (top) and input data sets (top); $\mu$ indicates the macro-average of the relative frequency over the input data sets given a single model}
+  \label{isometry_frequency}
+\end{table*}
+
+\begin{figure*}
+  \centering 
+  \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{chrf_nmt.pdf}
+  \caption{Distributions of source-side $\overline{\text{chrF}_2}$ for paraphrases in \texttt{de} and target-side $\overline{\text{chrF}_2}$ for paraphrases in \texttt{en} by NMT models (top) and input data sets (top)}
+  \label{chrf_paraphrase_detection_joint_boxplot}
+\end{figure*}
+
+\begin{enumerate}
+\item \textbf{Isometry:} We observe a higher proportion of isometric behaviour with the FAIR WMT19 Transformer (69.2$\%$) compared to the Scaling NMT WMT16 Transformer (54.8$\%$).
+\item \textbf{Type-1 anisometry:} We observe a higher proportion of type-1 anisometric behaviour with the FAIR WMT19 Transformer (6.9$\%$) compared to the Scaling NMT WMT16 Transformer (3.2$\%$).
+\item \textbf{Type-2 anisometry:} We observe a lower proportion of type-2 anisometric behaviour with the FAIR WMT19 Transformer (2.4$\%$) compared to the Scaling NMT WMT16 Transformer (13.1$\%$).  
+\item \textbf{Ambiguity:} We observe a lower proportion of ambiguous samples with the FAIR WMT19 Transformer (21.5$\%$) compared to the Scaling NMT WMT16 Transformer (28.9$\%$).
+\end{enumerate}
+
+\subsection{Correlation between $\overline{\text{chrF}_2}$ and $S_L$}
+
+% \begin{figure*}
+%   \centering 
+%   \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{chrf_paraphrase_detection_boxplot_joint_decision.pdf}
+%   \caption{Distribution of $\overline{\text{chrF}_2}$ against $S_L$ grouped by NMT models (top) and input data sets (top); *** indicates a statistically significant positive correlation between $\overline{\text{chrF}_2}$ and $S_L$ with $p \leq 0.001$ for a one-sided $t$-test}
+%   \label{chrf_paraphrase_detection_joint_boxplot}
+% \end{figure*}
 
 % 5. Results (facts)
-% TODO softmax chart, bar chart, frequency analysis, basic examples -> ensure de/en are lowercased in plots
-% TODO make boxplot with label vs chrf and see what this tells us
-% TODO try new plot for continuous softmax visualizations -> with ggpubr compare means
-% TODO make new plot with {0|1} split for chrF by 4 facets and find correlations -> use ggpubr -> update in readme and elsewhere
-% TODO use S_L as x-axis and can use bar plot with fancy sig diffs
-% bring in main charts and show results -> have hard results
-% show tables with chrF inter-comparisons and possibly BLEU -> try to enumerate as many results as possible -> mention why this was done to simulate commutivity of similarity metrics
+% 5.1. Isometry analysis
+% test <- aggregate(compressed_collection$Label,
+% by = compressed_collection[c("model_name", "data_name","Label")],
+% FUN=length)
+% test_1 <- test
+% test_1$x <- round(test_1$x/1997, 3)
+% test_2 <- test
+% test_2$x <- test_2$x/1997
+% test_2 <- aggregate(test_2$x, by = test_2[c("model_name","Label")], FUN=mean)
+% test_2$x <- round(test_2$x, 3)
+% 5.2. chrF correlations
+% TODO raw + boxplot with label vs chrf and see what this tells us
+% show table with chrF correlation coefficients, comment about significance and strength of correlation
+% groups <- split(hold[c("label", "value")], f = list(hold$model_name, hold$data_name))
+% cor.test(as.numeric(as.character(groups[[1]]$label)), groups[[1]]$value, method="pearson", alternative="greater")
 
 % 6. Discussion (interpretation & comparisons)
 % go into some examples for interpretations -> use examples of each category which can be interesting -> use actual examples instead of going into statistical tests
+% interpretation of [0,0] and possible bad paraphrases from source-side -> criticism of WMT19 paraphrases
 % look into statistical test between isometry and model performance in general
 % hard to prove this unless we re-train the SOTA model without backtranslation -> possible future task
 % contributions to Michel et al. 2019 analysis where possible

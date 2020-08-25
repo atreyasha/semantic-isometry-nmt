@@ -71,27 +71,31 @@
         paraphrases segment
 
     4.  **TODO** add final paper/presentation into repo with
-        link in readme
+        link in readme -\> add line to readme references that they can
+        check the report for more references
 
-    5.  segment readme into training, translation and others categories
+    5.  **TODO** after finishing paper, change terminology in
+        readme to reflect paper eg. datasets, model names etc.
+
+    6.  segment readme into training, translation and others categories
         with relevant usages
 
-    6.  replace relevant bash commands with sbatch in slurm-s3it branch
+    7.  replace relevant bash commands with sbatch in slurm-s3it branch
         after repository is completed
 
-    7.  update initial page of readme with overview/abstract of work
+    8.  update initial page of readme with overview/abstract of work
         including shallow metrics
 
-    8.  update TOC\'s in all readmes to reflect latest changes
+    9.  update TOC\'s in all readmes to reflect latest changes
 
-    9.  update R dependencies in readme once all visualizations are
+    10. update R dependencies in readme once all visualizations are
         finalized
 
-    10. add version numbers to R package dependencies for posterity
+    11. add version numbers to R package dependencies for posterity
 
-    11. add citations in readme as per general standard
+    12. add citations in readme as per general standard
 
-    12. add github repo to paperswithcode examples for relevant papers
+    13. add github repo to paperswithcode examples for relevant papers
 
 3.  Paraphrase detection
 

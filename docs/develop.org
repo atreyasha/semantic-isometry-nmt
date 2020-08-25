@@ -18,7 +18,8 @@
 ***** TODO change visualization variables to correct ones from P to S, depending on how this evolves in paper
 ***** TODO consider changing paraphrase detection terminology to something more semantic related -> or leave it as a practical alternative
 ***** TODO update readme math equation and nice visuals to reflect paper -> update title and related descriptions by emulating from paper -> update all details to be consistent with paper -> update overview segment on hand-crafted paraphrases segment
-***** TODO add final paper/presentation into repo with link in readme 
+***** TODO add final paper/presentation into repo with link in readme -> add line to readme references that they can check the report for more references
+***** TODO after finishing paper, change terminology in readme to reflect paper eg. datasets, model names etc.
 ***** segment readme into training, translation and others categories with relevant usages
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
 ***** update initial page of readme with overview/abstract of work including shallow metrics

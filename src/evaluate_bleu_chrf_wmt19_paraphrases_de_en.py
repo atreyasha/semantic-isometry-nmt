@@ -32,32 +32,32 @@ def main() -> None:
         with open(input_file, "r") as f:
             store = json.load(f)
         for key in tqdm(store.keys()):
-            src_orig_de = store[key]["sentence_original"]["src"]
-            src_para_de = store[key]["sentence_paraphrase"]["src"]
-            trans_orig_en = store[key]["sentence_original"]["translated"]
-            trans_para_en = store[key]["sentence_paraphrase"]["translated"]
-            chrf_src = (sacrebleu.sentence_chrf(src_orig_de,
-                                                [src_para_de]).score +
-                        sacrebleu.sentence_chrf(src_para_de,
-                                                [src_orig_de]).score)/2
-            chrf_trans = (sacrebleu.sentence_chrf(trans_orig_en,
-                                                  [trans_para_en]).score +
-                          sacrebleu.sentence_chrf(trans_para_en,
-                                                  [trans_orig_en]).score)/2
-            bleu_src = (sacrebleu.sentence_bleu(src_orig_de,
-                                                [src_para_de]).score +
-                        sacrebleu.sentence_bleu(src_para_de,
-                                                [src_orig_de]).score)/2
-            bleu_trans = (sacrebleu.sentence_bleu(trans_orig_en,
-                                                  [trans_para_en]).score +
-                          sacrebleu.sentence_bleu(trans_para_en,
-                                                  [trans_orig_en]).score)/2
-            store[key]["chrf_src"] = chrf_src
-            store[key]["chrf_translated"] = chrf_trans
-            store[key]["bleu_src"] = bleu_src
-            store[key]["bleu_translated"] = bleu_trans
-            store[key]["chrf_avg"] = (chrf_src + chrf_trans)/2
-            store[key]["bleu_avg"] = (bleu_src + bleu_trans)/2
+            source_orig_de = store[key]["sentence_original"]["source"]
+            source_para_de = store[key]["sentence_paraphrase"]["source"]
+            target_orig_en = store[key]["sentence_original"]["target"]
+            target_para_en = store[key]["sentence_paraphrase"]["target"]
+            chrf_source = (sacrebleu.sentence_chrf(source_orig_de,
+                                                   [source_para_de]).score +
+                           sacrebleu.sentence_chrf(source_para_de,
+                                                   [source_orig_de]).score) / 2
+            chrf_target = (sacrebleu.sentence_chrf(target_orig_en,
+                                                   [target_para_en]).score +
+                           sacrebleu.sentence_chrf(target_para_en,
+                                                   [target_orig_en]).score) / 2
+            bleu_source = (sacrebleu.sentence_bleu(source_orig_de,
+                                                   [source_para_de]).score +
+                           sacrebleu.sentence_bleu(source_para_de,
+                                                   [source_orig_de]).score) / 2
+            bleu_target = (sacrebleu.sentence_bleu(target_orig_en,
+                                                   [target_para_en]).score +
+                           sacrebleu.sentence_bleu(target_para_en,
+                                                   [target_orig_en]).score) / 2
+            store[key]["chrf_source"] = chrf_source
+            store[key]["chrf_target"] = chrf_target
+            store[key]["bleu_source"] = bleu_source
+            store[key]["bleu_target"] = bleu_target
+            store[key]["chrf_mean"] = (chrf_source + chrf_target) / 2
+            store[key]["bleu_mean"] = (bleu_source + bleu_target) / 2
         # write back json to disk
         with open(input_file, "w") as f:
             store = json.dump(store, f, ensure_ascii=False)

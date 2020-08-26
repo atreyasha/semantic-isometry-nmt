@@ -104,12 +104,12 @@ def translate_process(model: GeneratorHubInterface, input_data: List[str],
         for j, seg in enumerate(chunk):
             store[seg[0]] = {
                 "sentence_original": {
-                    "src": seg[1],
-                    "translated": original[j]
+                    "source": seg[1],
+                    "target": original[j]
                 },
                 "sentence_paraphrase": {
-                    "src": seg[2],
-                    "translated": paraphrase[j]
+                    "source": seg[2],
+                    "target": paraphrase[j]
                 },
                 "gold_label": seg[3]
             }

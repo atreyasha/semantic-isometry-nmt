@@ -60,24 +60,24 @@ def prepare_prediction_data(store: Dict, tokenizer: Union[XLMRobertaTokenizer,
         data_out (List[TensorDataset]): Prepared prediction data
     """
     examples_source = []
-    examples_trans = []
+    examples_target = []
     data_out = []
     for key in store.keys():
         examples_source.append(
             InputExample(guid=key,
-                         text_a=store[key]["sentence_original"]["src"],
-                         text_b=store[key]["sentence_paraphrase"]["src"],
+                         text_a=store[key]["sentence_original"]["source"],
+                         text_b=store[key]["sentence_paraphrase"]["source"],
                          language="de",
                          label=str(store[key]["gold_label"])))
-        examples_trans.append(
+        examples_target.append(
             InputExample(
                 guid=key,
-                text_a=store[key]["sentence_original"]["translated"],
-                text_b=store[key]["sentence_paraphrase"]["translated"],
+                text_a=store[key]["sentence_original"]["target"],
+                text_b=store[key]["sentence_paraphrase"]["target"],
                 language="en",
                 label=str(store[key]["gold_label"])))
     # loop over examples to get features
-    for examples in [examples_source, examples_trans]:
+    for examples in [examples_source, examples_target]:
         features = convert_examples_to_features(
             examples,
             tokenizer,
@@ -189,8 +189,8 @@ def main() -> None:
         model = model_class.from_pretrained(model_path)
         model.to(args.device)
         # start data loop
-        wmt_src_cache = None
-        ar_src_cache = None
+        wmt_source_cache = None
+        ar_source_cache = None
         for input_file in input_files:
             filename = os.path.basename(input_file)
             logger.info("Processing file: %s", input_file)
@@ -200,8 +200,8 @@ def main() -> None:
                                                     max_seq_length)
             for i, eval_dataset in enumerate(eval_datasets):
                 # step for caching results
-                if (i == 1 or ("arp" in filename and ar_src_cache is None)
-                        or ("wmtp" in filename and wmt_src_cache is None)):
+                if (i == 1 or ("arp" in filename and ar_source_cache is None)
+                        or ("wmtp" in filename and wmt_source_cache is None)):
                     logger.info("Initializing prediction")
                     eval_sampler = SequentialSampler(eval_dataset)
                     eval_dataloader = DataLoader(eval_dataset,
@@ -210,17 +210,17 @@ def main() -> None:
                     preds = predict(model, eval_dataloader, args).tolist()
                     if i == 0:
                         if "arp" in filename:
-                            ar_src_cache = preds
+                            ar_source_cache = preds
                         elif "wmtp" in filename:
-                            wmt_src_cache = preds
+                            wmt_source_cache = preds
                 else:
                     logger.info("Using cached results instead of re-computing")
                     if "arp" in filename:
-                        preds = ar_src_cache
+                        preds = ar_source_cache
                     elif "wmtp" in filename:
-                        preds = wmt_src_cache
+                        preds = wmt_source_cache
                 # step for gracefully writing results
-                entry = "src" if i == 0 else "translated"
+                entry = "source" if i == 0 else "target"
                 entry = "%s_%s" % (metadata, entry)
                 for j, key in enumerate(store.keys()):
                     store[key].update({entry: preds[j]})

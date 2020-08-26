@@ -44,8 +44,8 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
     model_name <- basename(dirname(files[i]))
     filtered <- data.frame(do.call(rbind, lapply(data, function(x) {
       unlist(x[c(
-        "chrf_src", "chrf_translated", "bleu_src",
-        "bleu_translated"
+        "chrf_source", "chrf_target", "bleu_source",
+        "bleu_target"
       )])
     })))
     if (grepl("ar", data_name)) {
@@ -64,11 +64,11 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
     return(filtered)
   })
   collection <- do.call(rbind, collection)
-  hold_out <- collection[-(which(names(collection) %in% c("chrf_src", "chrf_translated")))]
-  collection <- collection[-(which(names(collection) %in% c("bleu_src", "bleu_translated")))]
-  names(collection)[which(names(collection) %in% c("chrf_src", "chrf_translated"))] <- c("Source", "Target")
+  hold_out <- collection[-(which(names(collection) %in% c("chrf_source", "chrf_target")))]
+  collection <- collection[-(which(names(collection) %in% c("bleu_source", "bleu_target")))]
+  names(collection)[which(names(collection) %in% c("chrf_source", "chrf_target"))] <- c("Source", "Target")
   collection["Type"] <- "$\\overline{\\text{chrF}_2}$"
-  names(hold_out)[which(names(hold_out) %in% c("bleu_src", "bleu_translated"))] <- c("Source", "Target")
+  names(hold_out)[which(names(hold_out) %in% c("bleu_source", "bleu_target"))] <- c("Source", "Target")
   hold_out["Type"] <- "$\\overline{\\text{BLEU}}$"
   collection <- rbind(collection, hold_out)
   collection$data_name <- factor(collection$data_name,
@@ -163,12 +163,12 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
   long_collection["Type"] <- "mBERT\\textsubscript{Base}"
   bert_indices <- grep("bert\\.base", names(long_collection))
   # rename columns
-  names(long_collection)[grep("src", names(long_collection))] <- "Source"
-  names(long_collection)[grep("translated", names(long_collection))] <- "Target"
-  names(xlmr)[grep("src", names(xlmr))] <- "Source"
-  names(xlmr)[grep("translated", names(xlmr))] <- "Target"
-  names(xlmr_large)[grep("src", names(xlmr_large))] <- "Source"
-  names(xlmr_large)[grep("translated", names(xlmr_large))] <- "Target"
+  names(long_collection)[grep("source", names(long_collection))] <- "Source"
+  names(long_collection)[grep("target", names(long_collection))] <- "Target"
+  names(xlmr)[grep("source", names(xlmr))] <- "Source"
+  names(xlmr)[grep("target", names(xlmr))] <- "Target"
+  names(xlmr_large)[grep("source", names(xlmr_large))] <- "Source"
+  names(xlmr_large)[grep("target", names(xlmr_large))] <- "Target"
   # rbind everything together
   tmp_collection <- rbind(
     long_collection[-(which(names(long_collection)

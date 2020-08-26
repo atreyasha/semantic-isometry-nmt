@@ -20,6 +20,7 @@
 ***** TODO update readme math equation and nice visuals to reflect paper -> update title and related descriptions by emulating from paper -> update all details to be consistent with paper -> update overview segment on hand-crafted paraphrases segment
 ***** TODO add final paper/presentation into repo with link in readme -> add line to readme references that they can check the report for more references
 ***** TODO after finishing paper, change terminology in readme to reflect paper eg. datasets, model names etc.
+***** TODO add github repo to paperswithcode examples for relevant papers -> eg. WMT19, PAWSX, XTREME, Freitag, others that relate closely, etc.
 ***** segment readme into training, translation and others categories with relevant usages
 ***** replace relevant bash commands with sbatch in slurm-s3it branch after repository is completed
 ***** update initial page of readme with overview/abstract of work including shallow metrics
@@ -27,7 +28,6 @@
 ***** update R dependencies in readme once all visualizations are finalized
 ***** add version numbers to R package dependencies for posterity
 ***** add citations in readme as per general standard
-***** add github repo to paperswithcode examples for relevant papers
 
 **** Paraphrase detection
 ***** make formal analysis on lengths of WMT19 inputs vs. lengths of paws-x training data

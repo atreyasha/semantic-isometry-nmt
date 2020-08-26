@@ -36,60 +36,6 @@ post_process <- function(tex_file) {
 }
 
 plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
-  # internal re-usable plot function
-  internal_plot <- function() {
-    # compute summary statistics
-    means <- aggregate(subcollection[c("Source", "Target")],
-      by = subcollection[c("model_name", "data_name")], FUN = mean
-    )
-    groups <- split(subcollection[c("Source", "Target")],
-      f = list(subcollection$model_name, subcollection$data_name)
-    )
-    variance <- do.call(rbind, lapply(
-      1:length(groups),
-      function(i) {
-        x <- groups[[i]]
-        variance <- var(x)
-        name_split <- strsplit(names(groups)[i], "\\.")[[1]]
-        data.frame(
-          model_name = name_split[1], data_name = name_split[2],
-          Source = variance[1, 1], Target = variance[2, 2],
-          ST = variance[1, 2]
-        )
-      }
-    ))
-    # plot object
-    g <- ggplot(subcollection, aes(x = Source, y = Target)) +
-      geom_pointdensity(adjust = 0.1) +
-      theme_bw() +
-      theme(
-        text = element_text(size = 30),
-        strip.background = element_blank(),
-        ## legend.key.height = unit(3, "cm"),
-        legend.key.width = unit(5, "cm"),
-        legend.position = "bottom",
-        strip.text = element_text(face = "bold"),
-        panel.grid = element_line(size = 1),
-        axis.ticks.length = unit(.15, "cm"),
-        legend.margin = margin(c(1, 5, 5, 15)),
-        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
-        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 5))
-      ) +
-      facet_nested(~ model_name + data_name) +
-      ## scale_color_viridis(name="Density") +
-      scale_color_gradientn(
-        colours = tim.colors(24),
-        name = "Point Density"
-      ) +
-      guides(colour = guide_colourbar(
-        title.position = "left", title.hjust = 0.5,
-        title.vjust = 1.1
-      )) +
-      scale_x_continuous(breaks = c(0.25, 0.50, 0.75)) +
-      ylab(paste0("Target ", metric, " [en]")) +
-      xlab(paste0("Source ", metric, " [de]"))
-    return(g)
-  }
   files <- Sys.glob(input_glob)
   if (length(files) != 4) stop("Number of json inputs not equal to 4")
   collection <- lapply(1:length(files), function(i) {
@@ -135,7 +81,40 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
   metric <- "$\\overline{\\text{chrF}_2}$"
   tex_file <- "chrf_nmt.tex"
   subcollection <- subset(collection, Type == metric)
-  g <- internal_plot()
+  # plot object
+  g <- ggplot(subcollection, aes(x = Source, y = Target)) +
+    geom_pointdensity(adjust = 0.1) +
+    geom_abline(
+      intercept = 0, slope = 1, linetype = "dashed",
+      alpha = 0.8, size = 0.9
+    ) +
+    theme_bw() +
+    theme(
+      text = element_text(size = 30),
+      strip.background = element_blank(),
+      ## legend.key.height = unit(3, "cm"),
+      legend.key.width = unit(5, "cm"),
+      legend.position = "bottom",
+      strip.text = element_text(face = "bold"),
+      panel.grid = element_line(size = 1),
+      axis.ticks.length = unit(.15, "cm"),
+      legend.margin = margin(c(1, 5, 5, 15)),
+      axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+      axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 5))
+    ) +
+    facet_nested(~ model_name + data_name) +
+    ## scale_color_viridis(name="Density") +
+    scale_color_gradientn(
+      colours = tim.colors(24),
+      name = "Point Density"
+    ) +
+    guides(colour = guide_colourbar(
+      title.position = "left", title.hjust = 0.5,
+      title.vjust = 1.1
+    )) +
+    scale_x_continuous(breaks = c(0.25, 0.50, 0.75)) +
+    ylab(paste0("Target ", metric, " [en]")) +
+    xlab(paste0("Source ", metric, " [de]"))
   tikz(tex_file,
     width = 20, height = 7.5, standAlone = TRUE,
     packages = paste0(getOption("tikzLatexPackages"), "\\usepackage{amsmath}\n"), engine = "luatex"

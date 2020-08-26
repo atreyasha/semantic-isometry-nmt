@@ -44,8 +44,8 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
     model_name <- basename(dirname(files[i]))
     filtered <- data.frame(do.call(rbind, lapply(data, function(x) {
       unlist(x[c(
-        "chrf_source", "chrf_target", "bleu_source",
-        "bleu_target"
+        "chrf_bar_source", "chrf_bar_target", "bleu_bar_source",
+        "bleu_bar_target"
       )])
     })))
     if (grepl("ar", data_name)) {
@@ -64,11 +64,11 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
     return(filtered)
   })
   collection <- do.call(rbind, collection)
-  hold_out <- collection[-(which(names(collection) %in% c("chrf_source", "chrf_target")))]
-  collection <- collection[-(which(names(collection) %in% c("bleu_source", "bleu_target")))]
-  names(collection)[which(names(collection) %in% c("chrf_source", "chrf_target"))] <- c("Source", "Target")
+  hold_out <- collection[-(which(names(collection) %in% c("chrf_bar_source", "chrf_bar_target")))]
+  collection <- collection[-(which(names(collection) %in% c("bleu_bar_source", "bleu_bar_target")))]
+  names(collection)[which(names(collection) %in% c("chrf_bar_source", "chrf_bar_target"))] <- c("Source", "Target")
   collection["Type"] <- "$\\overline{\\text{chrF}_2}$"
-  names(hold_out)[which(names(hold_out) %in% c("bleu_source", "bleu_target"))] <- c("Source", "Target")
+  names(hold_out)[which(names(hold_out) %in% c("bleu_bar_source", "bleu_bar_target"))] <- c("Source", "Target")
   hold_out["Type"] <- "$\\overline{\\text{BLEU}}$"
   collection <- rbind(collection, hold_out)
   collection$data_name <- factor(collection$data_name,

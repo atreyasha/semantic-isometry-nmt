@@ -2,6 +2,7 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[hyperref]{acl2020}
 \usepackage{booktabs}
+\usepackage{xcolor}
 \usepackage{makecell}
 \usepackage{float}
 \usepackage{tabularx}
@@ -13,12 +14,14 @@
 \usepackage{mathtools}
 \usepackage{latexsym}
 \usepackage{graphicx}
-\graphicspath{{../../img/}}
-\renewcommand{\UrlFont}{\ttfamily\small}
 \usepackage{microtype}
+\usepackage{array}
 \aclfinalcopy
 %\setlength\titlebox{5cm}
 \newcommand\BibTeX{B\textsc{ib}\TeX}
+\renewcommand{\UrlFont}{\ttfamily\small}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\graphicspath{{../../img/}}
 
 % administrative details
 \title{Investigating the isometric properties of Neural Machine Translation models on binary semantic-equivalence spaces}
@@ -44,7 +47,7 @@
 
 \textit{Isometry} is defined mathematically as a distance-preserving transformation between two metric spaces \cite{coxeter1961introduction}. In this research, we view Neural Machine Translation (NMT) models from the perspective of semantic isometry and hypothesize that well-performing NMT models function approximately isometrically on semantic metric spaces. That is to say, if two sentences are semantically equivalent on the source side, they should remain semantically equivalent after translation on the target side given a well-performing NMT model. A simplified illustration of isometry in higher dimensional functional spaces can be seen in Figure \ref{isometry_visual}.
 
-In order to conduct our investigation, we start by acquiring semantically equivalent paraphrases of WMT19 legacy and additional test references from \citet{freitag-bleu-paraphrase-references-2020} for \texttt{en$\rightarrow$de}. Next, we utilize two NMT models of varying performance, specifically the SOTA FAIR's WMT19 winning single transformer \cite{ng2019facebook} and the non-SOTA Scaling NMT WMT16 Transformer \cite{ott2018scaling}, in order to translate the aforementioned paraphrases in the \texttt{de$\rightarrow$en} translation direction. We use the former model pre-trained from \texttt{fairseq} \cite{ott2019fairseq} and train the latter model from scratch.
+In order to conduct our investigation, we start by acquiring semantically equivalent paraphrases of WMT19 legacy and additional test references from \citet{freitag-bleu-paraphrase-references-2020} for \texttt{en$\rightarrow$de}. Next, we utilize two NMT models of varying performance, specifically the SOTA FAIR's WMT19 winning single transformer \cite{ng2019facebook} and the non-SOTA Scaling NMT WMT16 Transformer \cite{ott2018scaling}, in order to translate the aforementioned paraphrases in the opposite \texttt{de$\rightarrow$en} translation direction. We use the former model pre-trained from \texttt{fairseq} \cite{ott2019fairseq} and train the latter model from scratch.
 
 \begin{figure}
   \centering
@@ -143,7 +146,7 @@ In this sense, the study of adversarial paraphrasing in machine translation coul
 
 \paragraph{\citet{michel2019evaluation}:} This research lays out the framework for evaluating adversarial perturbations in sequence-to-sequence models. Additonally, this research compared three automatic sequence evaluation metrics, specifically BLEU \cite{papineni2002bleu}, METEOR \cite{denkowski2014meteor} and chrF$_2$ \cite{popovic2015chrf}, against human judgment for evaluating semantic similarity. Results from their experiments showed that chrF$_2$ correlates best out of the three similarity metrics with human judgment for semantic similarity detection. We utilize this finding in later parts of our study and attempt to compare the outputs of our paraphrase detection models with respective chrF$_2$ scores.
 
-\paragraph{\citet{fadaee2020unreasonable}:} This research lays out a simple framework for constructing adversarial paraphrases through logical operations such as word insertion/deletion and numerical/gender substitution. The research correspondingly showed that such minor modifications could lead to disproportionately larger changes in translation outputs; thereby showing an adversarial effect. This research ultimately claimed that modern NMT models are generally \textit{volatile}, or vulnerable, to targetted adversarial attacks. We attempt to compare this claim with our findings in later parts of this study. 
+\paragraph{\citet{fadaee2020unreasonable}:} This research lays out a simple framework for constructing adversarial paraphrases through logical operations such as word insertion/deletion and numerical/gender substitution. The research correspondingly showed that such minor modifications could lead to disproportionately larger changes in translation outputs; thereby showing an adversarial effect. This research ultimately claimed that modern NMT models are unexpectedly \textit{volatile}, or vulnerable, to targetted adversarial attacks. We attempt to compare this claim with our findings in later parts of this study. 
 
 % 3. Related work
 % TODO consider removing comparisons to own study at the end of related work descriptions
@@ -273,7 +276,7 @@ As seen in Table \ref{pawsx_score_breakdown}, all three models perform well espe
 
 \subsection{Evaluation protocols}
 
-Given our WMT19 Legacy and WMT19 AR \texttt{de} paraphrase datasets defined in equations \ref{wmt19legacy} and \ref{wmt19ar}, we translate all pairs of paraphrases using both the FAIR WMT19 and the Scaling NMT WMT16 Transformers in the \texttt{de$\rightarrow$en} translation direction. With this, we have the source \texttt{de} paraphrases along with their target-side \texttt{en} translations. We use these samples for further investigation. 
+Given our WMT19 Legacy and WMT19 AR \texttt{de} paraphrase datasets defined in equations \ref{wmt19legacy} and \ref{wmt19ar}, we translate all pairs of paraphrases using both the FAIR WMT19 and the Scaling NMT WMT16 Transformers in the \texttt{de$\rightarrow$en} translation direction using a beam width of 5. With this, we have the source \texttt{de} paraphrases along with their target-side \texttt{en} translations. We use these samples for further investigation. 
 
 \subsubsection{Isometry on binary semantic-equivalence spaces}
 
@@ -292,7 +295,7 @@ Given our WMT19 Legacy and WMT19 AR \texttt{de} paraphrase datasets defined in e
 \begin{figure*}
   \centering 
   \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{paraphrase_detection_softmax_all.pdf}
-  \caption{Normalized contour densities for target paraphrase softmax score against source paraphrase softmax score; grouped by NMT models (top), paraphrase detection models (top) and input data sets (right)}
+  \caption{Normalized contour densities for target paraphrase softmax score against source paraphrase softmax score; grouped by NMT models, paraphrase detection models and input data sets}
   \label{paraphrase_detection_softmax_all}
 \end{figure*}
 
@@ -321,9 +324,28 @@ We return to one of the observations from \citet{michel2019evaluation}, specific
 \begin{figure*}
   \centering 
   \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{paraphrase_detection_joint_decision.pdf}
-  \caption{Frequency distribution of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models (top) and input data sets (right); filling colors indicate finer details on the type of majority decision}
+  \caption{Frequency distribution of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models and input data sets; filling colors indicate finer details on the type of majority decision}
   \label{paraphrase_detection_joint_decision}
 \end{figure*}
+
+\begin{table*}[t!]
+  \centering
+  \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} cccccc}
+    \hline \\[-10pt]
+    \multirow{2}[3]{*}{$\mathbf{M(S_{XY}^{\mathsf{T}}})$} & \multicolumn{3}{c}{\textbf{FAIR WMT19 Transformer}} & \multicolumn{3}{c}{\textbf{Scaling NMT WMT16 Transformer}} \\
+    \cmidrule(lr){2-4} \cmidrule(lr){5-7}
+    & WMT19 Legacy & WMT19 AR & $\mu$ & WMT19 Legacy & WMT19 AR & $\mu$ \\[3pt]
+    \hline \hline \\[-10pt]
+    $[1,1]$ & \textbf{0.698} & \textbf{0.686} & \textbf{0.692} & 0.554 & 0.541 & 0.548 \\
+    $[0,0]$ & 0.091 & 0.104 & 0.097 & 0.153 & 0.154 & 0.153 \\
+    $[0,1]$ & \textbf{0.074} & \textbf{0.065} & \textbf{0.069} & 0.033 & 0.031 & 0.032 \\
+    $[1,0]$ & 0.018 & 0.030 & 0.024 & \textbf{0.133} & \textbf{0.130} & \textbf{0.131}\\
+    $\emptyset$ & 0.120 & 0.117 & 0.118 & 0.128 & 0.144 & 0.136 \\
+    \hline
+  \end{tabular*}
+  \caption{Relative frequency distribution for $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models and input data sets; $\mu$ indicates the macro-average of the relative frequency over the input data sets given a single model}
+  \label{isometry_frequency}
+\end{table*}
 
 Non-commutativity is an emergent property of chrF$_2$ with $\beta = 2$ since this would assign two times more weight to recall than precision \cite{popovic2015chrf}; which places an internal bias on input order. While this non-commutative formulation of chrF$_2$ would be useful for evaluating NMT models with explicit hypotheses and references, this would not be optimal as a semantic similarity metric since one would expect a semantic similarity metric to be commutative and unbiased towards input order.
 
@@ -343,9 +365,17 @@ We refer back to the majority decisions of the paraphrase detection models and r
 
 % 4.3. Evaluation protocols
 % 4.3.2. Correlation between chrF and semantic equality
+% TODO write out translation direction and make it as clear as possible
 % TODO state expectations about outcomes, some basic ideas -> can be done post-paper
 % TODO consider refining and synchronizing model names as was done with data -> update plots
 % TODO change phrasing of sentence-level analysis to show interest in all possibilities instead of just some
+
+\begin{figure*}
+  \centering 
+  \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{chrf_nmt.pdf}
+  \caption{Distributions of source-side $\overline{\text{chrF}_2}$ for paraphrases in \texttt{de} and target-side $\overline{\text{chrF}_2}$ for paraphrases in \texttt{en} by NMT models and input data sets}
+  \label{chrf_distribution}
+\end{figure*}
 
 \section{Results}
 
@@ -359,50 +389,24 @@ Figure \ref{paraphrase_detection_softmax_all} shows a normalized contour density
 
 Figure \ref{paraphrase_detection_joint_decision} shows a visual breakdown of absolute frequencies of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models and input data sets. Table \ref{isometry_frequency} shows a tabular breakdown of relative frequencies of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models and input data sets. Below are the key observations.
 
-\begin{table*}[t!]
-  \centering
-  \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} cccccc}
-    \hline \\[-10pt]
-    \multirow{2}[3]{*}{$\mathbf{M(S_{XY}^{\mathsf{T}}})$} & \multicolumn{3}{c}{\textbf{FAIR WMT19 Transformer}} & \multicolumn{3}{c}{\textbf{Scaling NMT WMT16 Transformer}} \\
-    \cmidrule(lr){2-4} \cmidrule(lr){5-7}
-    & WMT19 Legacy & WMT19 AR & $\mu$ & WMT19 Legacy & WMT19 AR & $\mu$ \\[3pt]
-    \hline \hline \\[-10pt]
-    $[1,1]$ & \textbf{0.698} & \textbf{0.686} & \textbf{0.692} & 0.554 & 0.541 & 0.548 \\
-    $[0,0]$ & 0.091 & 0.104 & 0.097 & 0.153 & 0.154 & 0.153 \\
-    $[0,1]$ & \textbf{0.074} & \textbf{0.065} & \textbf{0.069} & 0.033 & 0.031 & 0.032 \\
-    $[1,0]$ & 0.018 & 0.030 & 0.024 & \textbf{0.133} & \textbf{0.130} & \textbf{0.131}\\
-    $\emptyset$ & 0.120 & 0.117 & 0.118 & 0.128 & 0.144 & 0.136 \\
-    \hline
-  \end{tabular*}
-  \caption{Relative frequency distribution for $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models (top) and input data sets (top); $\mu$ indicates the macro-average of the relative frequency over the input data sets given a single model}
-  \label{isometry_frequency}
-\end{table*}
+\paragraph{Isometry:} We observe a higher proportion of isometric behaviour with the FAIR WMT19 Transformer (69.2$\%$) compared to the Scaling NMT WMT16 Transformer (54.8$\%$).
+\paragraph{Type-1 anisometry:} We observe a higher proportion of type-1 anisometric behaviour with the FAIR WMT19 Transformer (6.9$\%$) compared to the Scaling NMT WMT16 Transformer (3.2$\%$).
+\paragraph{Type-2 anisometry:} We observe a lower proportion of type-2 anisometric behaviour with the FAIR WMT19 Transformer (2.4$\%$) compared to the Scaling NMT WMT16 Transformer (13.1$\%$).  
+\paragraph{Ambiguity:} We observe a lower proportion of ambiguous samples with the FAIR WMT19 Transformer (21.5$\%$) compared to the Scaling NMT WMT16 Transformer (28.9$\%$).
+\paragraph{Model agreement:} Based on Figure \ref{paraphrase_detection_joint_decision}, we observe that the majority of agreements are full agreements, followed by XLM-R\textsubscript{Base} and XLM-R\textsubscript{Large} agreements, mBERT\textsubscript{Base} and XLM-R\textsubscript{Base} agreements and finally mBERT\textsubscript{Base} and XLM-R\textsubscript{Large} agreements.
 
-\begin{figure*}
-  \centering 
-  \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{chrf_nmt.pdf}
-  \caption{Distributions of source-side $\overline{\text{chrF}_2}$ for paraphrases in \texttt{de} and target-side $\overline{\text{chrF}_2}$ for paraphrases in \texttt{en} by NMT models (top) and input data sets (top)}
-  \label{chrf_distribution}
-\end{figure*}
-
-\begin{enumerate}
-\item \textbf{Isometry:} We observe a higher proportion of isometric behaviour with the FAIR WMT19 Transformer (69.2$\%$) compared to the Scaling NMT WMT16 Transformer (54.8$\%$).
-\item \textbf{Type-1 anisometry:} We observe a higher proportion of type-1 anisometric behaviour with the FAIR WMT19 Transformer (6.9$\%$) compared to the Scaling NMT WMT16 Transformer (3.2$\%$).
-\item \textbf{Type-2 anisometry:} We observe a lower proportion of type-2 anisometric behaviour with the FAIR WMT19 Transformer (2.4$\%$) compared to the Scaling NMT WMT16 Transformer (13.1$\%$).  
-\item \textbf{Ambiguity:} We observe a lower proportion of ambiguous samples with the FAIR WMT19 Transformer (21.5$\%$) compared to the Scaling NMT WMT16 Transformer (28.9$\%$).
-\item \textbf{Model agreement:} Based on Figure \ref{paraphrase_detection_joint_decision}, we observe that the majority of agreements are full agreements, followed by XLM-R\textsubscript{Base} and XLM-R\textsubscript{Large} agreements, mBERT\textsubscript{Base} and XLM-R\textsubscript{Base} agreements and finally mBERT\textsubscript{Base} and XLM-R\textsubscript{Large} agreements.
-\end{enumerate}
-
-\subsection{Correlation between $\overline{\text{chrF}_2}$ and $S_L$}
+\subsection{Correlation abetween $\overline{\text{chrF}_2}$ and $S_L$}
 
 \subsubsection{Source and target $\overline{\text{chrF}_2}$ distributions}
 
-Figure \ref{chrf_distribution} shows the distribution of $\overline{\text{chrF}_2}$ over the source (\texttt{de}) and target (\texttt{en}) sides, grouped over NMT models and input data sets. We can observe a larger variance of $\overline{\text{chrF}_2}$ points for the FAIR WMT19 Transformer outputs compared to those from the Scaling NMT WMT16 Transformer. Furthermore, we can observe a larger mean $\overline{\text{chrF}_2}$ value for the FAIR WMT19 Transformer compared to the Scaling NMT WMT16 Transformer. This can be inferred from the general distribution of points from the former being above the diagonal compared to those from the latter being centered near the diagonal.
+Figure \ref{chrf_distribution} shows the distribution of $\overline{\text{chrF}_2}$ over the source (\texttt{de}) and target (\texttt{en}) sides, grouped over NMT models and input data sets. We can observe a larger variance of $\overline{\text{chrF}_2}$ points for the FAIR WMT19 Transformer outputs compared to those from the Scaling NMT WMT16 Transformer.
+
+Furthermore, we can observe a larger mean $\overline{\text{chrF}_2}$ value for the FAIR WMT19 Transformer compared to the Scaling NMT WMT16 Transformer. This can be inferred from the general distribution of points from the former being above the diagonal compared to those from the latter being centered near the diagonal. We can also observe more cases where $\overline{\text{chrF}_2} = 1$ on the target side but $\overline{\text{chrF}_2} \neq 1$ on the source side for the FAIR WMT19 Transformer compared to the Scaling NMT WMT16 Transformer. 
 
 \begin{figure*}
   \centering 
   \includegraphics[trim={0.25cm 0cm 0cm 0cm},clip,width=\textwidth]{chrf_paraphrase_detection_boxplot_joint_decision.pdf}
-  \caption{Distribution of $\overline{\text{chrF}_2}$ against $S_L$ grouped by NMT models (top) and input data sets (top); *** indicates a statistically significant positive correlation between $\overline{\text{chrF}_2}$ and $S_L$ with $p \leq 0.001$ for the one-tailed $t$-test}
+  \caption{Distribution of $\overline{\text{chrF}_2}$ against $S_L$ grouped by NMT models and input data sets ; *** indicates a statistically significant positive correlation between $\overline{\text{chrF}_2}$ and $S_L$ with $p \leq 0.001$ for the one-tailed $t$-test}
   \label{chrf_paraphrase_detection_joint_boxplot}
 \end{figure*}
 
@@ -420,7 +424,7 @@ Figure \ref{chrf_distribution} shows the distribution of $\overline{\text{chrF}_
     Correlation & Weak & Weak & \textemdash & Weak & Weak & \textemdash \\[2pt]
     \hline
   \end{tabular*}
-  \caption{Tabular summary of Pearson correlation coefficients $r_{xy}$, $t$-test alternative hypothesis and correlation strength interpretation \cite{schober2018correlation} grouped by NMT models (top) and input data sets (top); *** indicates $p\leq0.001$ for the one-tailed $t$-test}
+  \caption{Tabular summary of Pearson correlation coefficients $r_{xy}$, $t$-test alternative hypothesis and correlation strength interpretation \cite{schober2018correlation} grouped by NMT models and input data sets; *** indicates $p\leq0.001$ for the one-tailed $t$-test}
   \label{chrf_correlation}
 \end{table*}
 
@@ -430,50 +434,101 @@ Figure \ref{chrf_paraphrase_detection_joint_boxplot} shows the distribution of $
 
 Overall, we observe a significant positive correlation between $\overline{\text{chrF}_2}$ and $S_L$ with mean Pearson correlation coefficient $r_{xy}$ values of $0.256$ and $0.250$ for the FAIR WMT19 Transformer and the Scaling NMT WMT16 Transformer respectively. The one-tailed $t$-test used to ascertain significance showed a strongly significant positive correlation with $p\leq0.001$. According to the interpretation guidelines from \citet{schober2018correlation}, this range of $r_{xy}$ would imply a weak correlation strength between $\overline{\text{chrF}_2}$ and $S_L$. 
 
-% 5. Results (facts)
-% 5.1. Isometry analysis
-% test <- aggregate(compressed_collection$Label,
-% by = compressed_collection[c("model_name", "data_name","Label")],
-% FUN=length)
-% test_1 <- test
-% test_1$x <- round(test_1$x/1997, 3)
-% test_2 <- test
-% test_2$x <- test_2$x/1997
-% test_2 <- aggregate(test_2$x, by = test_2[c("model_name","Label")], FUN=mean)
-% test_2$x <- round(test_2$x, 3)
-% aggregate(compressed_collection$Label, by=compressed_collection["Type"], FUN=length)
-% 5.2. chrF correlations
-% groups <- split(hold[c("label", "value")], f = list(hold$model_name, hold$data_name))
-% cor.test(as.numeric(as.character(groups[[1]]$label)), groups[[1]]$value, method="pearson", alternative="greater")
-
 \section{Discussion}
 
-% 6. Discussion (interpretation & comparisons)
-% chrF correlation is much weaker in these cases compared to Michel et al. 2019 -> rough 1/2
-% go into some examples for interpretations -> use examples of each category which can be interesting -> use actual examples instead of going into statistical tests
-% interpretation of [0,0] and possible bad paraphrases from source-side -> criticism of WMT19 paraphrases
-% look into statistical test between isometry and model performance in general
-% hard to prove this unless we re-train the SOTA model without backtranslation -> possible future task
-% contributions to Michel et al. 2019 analysis where possible
-% go into discussion regarding chrF and semantic equality -> try to make statistical claims where possible and use statistical tests to show that chrF is only useful for edge cases and otherwise not really -> use plots where possible and otherwise add abc annotations via ggplot if necessary
-% explain that papers like volatility one might be making claims based on weaker models that could be fixed by using larger models with better training -> hard to say exactly but based on our paraphrases which are non-adversarial and non-targetted, this seems to be the case but also no hard conclusion -> depends on also which model they used
-% we can say chrF is not a measure of semantic equality but might still be correlated to semantic similarity
-% list hypotheses and how some were refuted by results
-% make less confident conclusion on relationship between back-translation and translation consistency -> could also be linked to other differences between models
-% there are many possible contributions to better performance compared to non-SOTA -> could be langids to help prevent language mixing (observed in non-SOTA), could be backtranslation for syntactical and lexical diversity which contributes to paraphrase robustness
-% provide some minor criticisms where appropriate -> such as some sentences being over-paraphrased
+\subsection{Isometry on binary semantic-equivalence spaces}
+
+\subsubsection{Isometry and robustness to paraphrases}
+
+Generally, we observe that the SOTA FAIR WMT19 Transformer exhibits more frequent isometric behaviour (69.2$\%$) on semantic-equivalence spaces compared to the non-SOTA Scaling NMT WMT16 Transformer (54.8$\%$). From our perspective, this could imply that the FAIR WMT19 Transformer is more robust to lexically and syntactically diverse paraphrases; in the sense that it more often correctly and consistently transfers the original semantics of paraphrases compared to the Scaling NMT WMT16 Transformer.
+
+We predict that this robustness to semantically-equivalent lexical and syntactical variations arose largely because of heavy data augmentation from large-scale back translation, which ultimately introduced lexical and syntactical variations into the training data of the FAIR WMT19 Transformer. Large-scale back translation is purportedly also the process that led to the largest improvement in translation quality for the FAIR WMT19 Transformer's \texttt{de$\rightarrow$en} translation task \cite{ng2019facebook}.
+
+An effective way of testing the above hypothesis would be to train the FAIR WMT19 Transformer without back translation and observe the changes to the frequency of isometric behaviour. We were unable to conduct such a comparison and deem this as a possible subject of further study. 
+
+\begin{table*}[t!]
+  \centering
+  \begin{tabular*}{\textwidth}{ll p{5.9cm} p{5.9cm}}
+    \hline \\[-10pt]
+    $\mathbf{M(S_{XY}^{\mathsf{T}}})$ & Type & Sentence in \texttt{AR} & Paraphrase in \texttt{AR.p} \\[5pt]
+    \hline \hline \\[-10pt]
+    $[1,1]$ & \textcolor{red}{Source} & Glocken von St. Martin verstummen, da Kirchen in Harlem kämpfen &  St. Martin‘s Glocken läuten nicht mehr, weil in Harlem ein Kampf der Kirchen in Gang ist \\\\[-5pt]
+                                      & \textcolor{blue}{Target} & Bells of St. Martin fall silent as churches struggle in Harlem & St Martin's bells no longer ring as churches battle it out in Harlem \\\\[-10pt]
+    \hline \\[-10pt]
+    $[0,0]$ & \textcolor{red}{Source} & Davor empfangen die Rangers am Donnerstag in der Europa League Rapid Wien. & Rapid Wien steht am Donnerstag im Rahmen der Europa League den Rangers gegenüber. \\\\[-5pt]
+                                      & \textcolor{blue}{Target} & Rangers host Rapid Vienna in the Europa League on Thursday. & Rapid Vienna face Rangers in the Europa League on Thursday. \\\\[-10pt]
+    \hline \\[-10pt]
+    $[0,1]$ & \textcolor{red}{Source} & Das Tor fiel in der 29. Minute. & In der 29. Minute kam es zum Tor. \\\\[-5pt]
+                                      & \textcolor{blue}{Target} & The goal came in the 29th minute. & The goal came in the 29th minute. \\\\[-10pt]
+    \hline \\[-10pt]
+    $[1,0]$ & \textcolor{red}{Source} & Laut Berichten in Lokalmedien wurde auf einem Markt im Südwesten von China von einem Schwein angegriffen und getötet. & Aus Meldungen der lokalen Medien geht hervor, dass im Südwesten Chinas ein Mann auf einem Markt durch ein Schwein zu Tode gebissen wurde.  \\\\[-5pt]
+                                      & \textcolor{blue}{Target} & According to reports in local media, a pig was attacked and killed in a market in southwest China. & Local media reported that a man was bitten to death by a pig in a market in southwest China. \\\\[-10pt]
+    \hline
+  \end{tabular*}
+  \caption{Examples of \texttt{de} sentence pairs and their \texttt{en} translations corresponding to the meaningful values of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ which had full agreement across the three paraphrase detection models; translations were derived from the FAIR WMT19 Transformer outputs on the WMT19 AR input data set; top-down indices of the above sentence pairs are 22, 307, 527 and 178 respectively}
+  \label{isometry_examples_sentences}
+\end{table*}
+
+\subsubsection{Sentence-level analysis}
+
+In order to gain ground-level insight of the translation process and associated isometry on semantic-equivalence spaces, we analyze selected sentences individually. For brevity, we only analyze the outputs of the FAIR WMT19 Transformer on the WMT19 AR data set.
+
+Table \ref{isometry_examples_sentences} shows a breakdown of sentence pairs from four meaningful $\mathbf{M(S_{XY}^{\mathsf{T}}})$ categories which were predicted with full agreement from all three paraphrase detection models. We provide manual analyses of sentence pairs and their translations, and will attempt to rationalize the majority decisions made by the paraphrase detection models.
+
+\paragraph{$\mathbf{M(S_{XY}^{\mathsf{T}}}) = [1,1]$:} From manual assessment, both sentence pairs on the source and target side are grammatically well-formed and have the same meaning. They are correspondingly classified as paraphrases on both sides.
+\paragraph{$\mathbf{M(S_{XY}^{\mathsf{T}}}) = [0,0]$:} From manual assessment, we observe that the source sentences are not paraphrases because the sentence in \texttt{AR} has a critical time marker ``\textit{davor}'' which is not present in the paraphrase. Furthermore without sport-specific context, the verbs ``\textit{empfangen}'' and ``\textit{gegenüberstehen}'' would be interpreted as semantically inequivalent. This is also the case for the target sentences, where ``\textit{empfangen}'' was translated to be the verb ``host'' while ``\textit{gegenüberstehen}'' was translated to ``face''. Overall without sport-specific context, we would argue that the input sentences were not well paraphrased and resulted in the non-paraphrase classification. The target sentences were translated well, but still retained the semantic difference from the input sentences; resulting in them being classified as non-paraphrases.
+\paragraph{$\mathbf{M(S_{XY}^{\mathsf{T}}}) = [0,1]$:} From manual assessment and without sport-specific context, we observe that the source sentences are not paraphrases because the verbs ``\textit{fallen}'' and ``\textit{kommen}'' would be interpreted as semantically inequivalent; possibly leading to the non-paraphrase classification. Based on the target sentences, it appears the NMT model captured sport-specific context and translated both source sentences to the same target sentence. These were naturally classified as paraphrases on the target side.
+
+We interpret the behaviour observed here as context regularization from the NMT model, where two lexically and syntactically diverse paraphrases were translated to the same exact target sentence.
+
+\paragraph{$\mathbf{M(S_{XY}^{\mathsf{T}}}) = [1,0]$:} From manual assessment, we observe that the source sentence in \texttt{AR} was grammatically ill-formed as the passive subject of the verbs ``\textit{angreifen}'' and ``\textit{töten}'' was missing. The aforementioned sentence's paraphrase was however grammatically well-formed. It appears that the paraphrase detection models did not penalize the lack of a passive subject in the first sentence and still classified the source sentences as paraphrases. On the target side, the NMT model translated the paraphrases such that they had opposing semantic roles; where ``a pig was attacked and killed'' in the first sentence while ``a man was bitten to death by a pig'' in the paraphrase. This resulted in them being classified as non-paraphrases.
+
+We interpret that the NMT model mistranslated the source \texttt{AR} sentence. Despite the absence of a passive subject, ``\textit{von einem Schwein}'' clearly assigns the pig as the passive object. This was however not reflected in the translation, where the pig became the passive subject.
+
+% 6.1. Sentence-level isometry analysis
+% indices for examples: [1,1]: 22, [0,0]: 307, [0,1]: 527, [1,0]: 178
+
+\subsection{Correlation between $\overline{\text{chrF}_2}$ and $S_L$}
+
+Our results show that $\overline{\text{chrF}_2}$ and $S_L$ are weakly but significantly positively correlated. In general, this would support the claim from \citet{michel2019evaluation} that chrF\textsubscript{2} and semantic similarity are positively correlated. However, the Pearson correlation coefficients observed in our results are roughly half in size compared to those observed in \citet{michel2019evaluation} which had a range of $\sim$0.5-0.6.
+
+Our smaller correlation coefficients could be attributed to the lack of granularity in our semantic similarity measures; which were binary in our case but were distributed into 5 granular ordinal categories in \citet{michel2019evaluation}. 
+
+\citet{michel2019evaluation} further compared the correlation coefficients of chrF\textsubscript{2} with those from the BLEU \cite{papineni2002bleu} and METEOR \cite{denkowski2014meteor} automatic similarity metrics. We were unable to conduct such comparisons in our study and deem this as a possible subject of further research. 
+
+\subsection{Volatility of NMT models to paraphrases}
+
+\citet{fadaee2020unreasonable} claimed that NMT models are unexpectedly volatile to adversarial paraphrases created using logical operations such as word insertion/deletion and numerical/gender substitution. Their study showed changes in translation quality for 26$\%$ and 19$\%$ of sentence variations for their RNN and Transformer models respectively.
+
+While we did not conduct similar adversarial paraphrasing in our study, we still investigated the performance of NMT models when translating sentences that are non-trivial paraphrases of one another. Given the observations of \citet{fadaee2020unreasonable} on NMT model volatility, we would have expected the relative frequency of type-2 anisometry to also be in the range of $\sim$15-30$\%$ for both our models.
+
+Instead, we observed a relative frequency of type-2 anisometry to be 2.4$\%$ and 13.1$\%$ for the FAIR WMT19 and Scaling NMT WMT16 Transformers respectively. These relative frequencies are surprisingly low, even for the latter non-SOTA model.
+
+The differences in the ``rate of volatility'' can be attributed to many factors. In support of \citet{fadaee2020unreasonable}, our paraphrases originating from \citet{freitag-bleu-paraphrase-references-2020} were not targetted for adversarial purposes. It is therefore expected that the adversarial effect of such paraphrases would be lower than the paraphrases constructed by \citet{fadaee2020unreasonable} which were designed with an adversarial goal.
+
+On the other hand, \citet{fadaee2020unreasonable} used non-SOTA RNN and Transformer models in their experiments and the volatility observed could have been a result of these less performant models. It would be beneficial if \citet{fadaee2020unreasonable} would re-run their experiments estimating volatility on SOTA NMT models, such as the FAIR WMT19 Transformer. This could elucidate whether the volatility observed is endemic to all NMT models or just to non-SOTA models. 
+
+% 6.3. Volatility of NMT models
+% hard to say exactly but based on our paraphrases which are non-adversarial and non-targetted, this seems to be the case but also no hard conclusion
+
+\section{Conclusions}
 
 % 7. Conclusions
 % main conclusions from this on isometry -> could be linked either to test data better fitting to WMT19 or otherwise massive backtranslation which provides some regularizing effect for FAIR SOTA model
 % summarize everything and list contributions of this paper
 
-% 8. Recommendations
+\section{Recommendations}
+
+% 8. Further work
+% bad paraphrases in some cases -> mention this as limitation
+% hard to prove this unless we re-train the SOTA model without backtranslation -> possible future task
 % WMT16 transformer optimized for short sentences -> might make comparison also not good -> WMT16 vs. WMT19 issue which is a limitation of this research -> better to have used a WMT19 variant which was less performant
 % paraphrase detection models are not commutative -> not logical in that sense -> maybe cosine similarity comparisons could help but might affect performance
 % compare chrF correlation to BLEU to see if it is indeed better
 % describe processes that worked and did not work -> talk about all the hurdles and show some bad examples when they occurred -> summarized below in logs
 % limitation of system is that WMT19 might be more advantageous to FAIR model, which might have led to bad results in general for non-SOTA model
 % Criticism of using WMT19 model is that it may be biased towards the WMT19 test set compared to the model trained on WMT16
+% paraphrase detection value output is not exhaustive as it would flag consistent nonsense as isometric
 
 % Post-paper formatting:
 % make usage of colons consistent
@@ -487,3 +542,22 @@ Overall, we observe a significant positive correlation between $\overline{\text{
 
 % end document
 \end{document}
+
+% R code for checking isometry frequencies
+% test <- aggregate(compressed_collection$Label,
+% by = compressed_collection[c("model_name", "data_name","Label")],
+% FUN=length)
+% test_1 <- test
+% test_1$x <- round(test_1$x/1997, 3)
+% test_2 <- test
+% test_2$x <- test_2$x/1997
+% test_2 <- aggregate(test_2$x, by = test_2[c("model_name","Label")], FUN=mean)
+% test_2$x <- round(test_2$x, 3)
+
+% R code for checking model agreements:
+% aggregate(compressed_collection$Label, by=compressed_collection["Type"], FUN=length)
+% 5.2. chrF correlations
+
+% R code for correlation analysis:
+% groups <- split(collection[c("label", "value")], f = list(collection$model_name, collection$data_name))
+% cor.test(as.numeric(as.character(groups[[1]]$label)), groups[[1]]$value, method="pearson", alternative="greater")

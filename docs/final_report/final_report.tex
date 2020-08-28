@@ -24,7 +24,7 @@
 \graphicspath{{../../img/}}
 
 % administrative details
-\title{Investigating the isometric properties of Neural Machine Translation models on binary semantic equivalence spaces}
+\title{Investigating the isometric behaviour of Neural Machine Translation models on binary semantic equivalence spaces}
 \author{Atreya Shankar \\
   Cognitive Systems, University of Potsdam \\
   Department of Computational Linguistics, University of Zürich \\
@@ -261,7 +261,7 @@ Given our German WMT19 Legacy and WMT19 AR paraphrase data sets defined in equat
 
 \paragraph{Multi-model decisions:} Given this formulation of $\mathbf{S_{XY}^{\mathsf{T}}}$, it is worth noting that each of the three paraphrase detection models would compute a separate $\mathbf{S_{XY}^{\mathsf{T}}}$ term. Since our paraphrase detection models were evaluated to have a non-zero (albeit small and similar) error rates, we decide to use the $\mathbf{S_{XY}^{\mathsf{T}}}$ outputs of all three models and compute the statistical mode of the three outputs. Such a majority decision would provide more confidence in any particular decision from the models. For simplicity, we assign the statistical mode function with the symbol $\mathbf{M}$. We therefore compute $\mathbf{M(S_{XY}^{\mathsf{T}}})$ to check for a majority decision over the three paraphrase detection models. We assign the empty set $\emptyset$ in case no majority decision exists.
 
-\paragraph{Discrete possibilities:} Since the output of $S_L$ falls in the binary set of $\{0,1\}$, we can effectively compute all five possibilities of the consequent majority decision $\mathbf{M(S_{XY}^{\mathsf{T}}})$. We describe these below in the context of binary semantic equivalence.
+\paragraph{Discrete possibilities:} Since the output of $S_L$ falls in the binary set of $\{0,1\}$, we can effectively compute all five possibilities of the consequent majority decision $\mathbf{M(S_{XY}^{\mathsf{T}}})$. We describe these in the context of binary semantic equivalence spaces.
 
 \begin{figure*}
   \centering 
@@ -351,7 +351,7 @@ Figure \ref{paraphrase_detection_softmax_all} shows a normalized contour density
 
 \subsubsection{Frequency analysis}
 
-Figure \ref{paraphrase_detection_joint_decision} shows a visual breakdown of absolute frequencies of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models and input data sets. Table \ref{isometry_frequency} shows a tabular breakdown of relative frequencies of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models and input data sets. Below are the key observations.
+Figure \ref{paraphrase_detection_joint_decision} shows a visual breakdown of absolute frequencies of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models and input data sets. Table \ref{isometry_frequency} shows a tabular breakdown of relative frequencies of $\mathbf{M(S_{XY}^{\mathsf{T}}})$ by NMT models and input data sets. Below are the key observations in the context of binary semantic equivalence spaces.
 
 \paragraph{Isometry:} We observe a higher proportion of isometric behaviour with the FAIR WMT19 Transformer (69.2$\%$) compared to the Scaling NMT WMT16 Transformer (54.8$\%$).
 \paragraph{Type-1 anisometry:} We observe a higher proportion of type-1 anisometric behaviour with the FAIR WMT19 Transformer (6.9$\%$) compared to the Scaling NMT WMT16 Transformer (3.2$\%$).
@@ -471,7 +471,7 @@ On the other hand, \citet{fadaee2020unreasonable} used non-SOTA RNN and Transfor
 
 \section{Conclusions}
 
-Our research investigates the isometric properties of NMT models on binary semantic equivalence spaces. By using two NMT models of varying performance, we were able to confirm our initial hypothesis that the frequency of semantically isometric behaviour in NMT models correlates positively with general model performance, albeit with a small sample size of two models. 
+Our research investigates the isometric behaviour of NMT models on binary semantic equivalence spaces. By using two NMT models of varying performance, we were able to confirm our initial hypothesis that the frequency of semantically isometric behaviour in NMT models correlates positively with general model performance, albeit with a small sample size of two models. 
 
 Next, we provide evidence to support the claim of \citet{michel2019evaluation} that chrF\textsubscript{2} is significantly positively correlated with semantic similarity. Our experiments however show a correlation coefficient which is roughly half in size compared to those reported in \citet{michel2019evaluation}.
 
@@ -479,7 +479,7 @@ Finally, we provide light counter-evidence to the claim in \citet{fadaee2020unre
 
 \section{Further work}
 
-In this study, we compared the isometric properties of the SOTA FAIR WMT19 Transformer against the non-SOTA Scaling NMT WMT16 Transformer on binary semantic equivalence spaces. We would recommend comparing these isometric properties of the SOTA model with another better performing non-SOTA model; such as a freshly trained FAIR WMT19 Transformer without large-scale back translation. This might help to narrow down the main cause(s) of highly frequent semantically isometric behaviours in NMT models.
+In this study, we compared the isometric behaviour of the SOTA FAIR WMT19 Transformer against the non-SOTA Scaling NMT WMT16 Transformer on binary semantic equivalence spaces. We would recommend comparing this isometric behaviour of the SOTA model with another better performing non-SOTA model; such as a freshly trained FAIR WMT19 Transformer without large-scale back translation. This might help to narrow down the main cause(s) of the more frequent semantically isometric behaviour in the SOTA NMT model.
 
 While we made a case for utilizing commutative semantic similarity metrics in our research, one major logical limitation of our current paraphrase detection models is that they are themselves non-commutative; since they were trained with a specific sentence input order. We could recommend further research on commutative paraphrase detection models, such as those which compare cosine similarities of sentence embeddings.
 
@@ -491,8 +491,6 @@ Finally, we recommend computing the correlation coefficients of commutative BLEU
 
 % end document
 \end{document}
-
-% TODO think of title and how this links up with everything -> change it to reflect content of paper if necessary -> consider changing properties to behaviour instead
 
 % Minor checks:
 % check consistent spelling of "data sets" across paper
@@ -531,5 +529,4 @@ Finally, we recommend computing the correlation coefficients of commutative BLEU
 % LocalWords:  HuggingFace's llll ko zh warmup OOM GeForce GTX vectorized lr da
 % LocalWords:  softmax anisometric inequivalent cccccc chrf boxplot Atreya th
 % LocalWords:  RNN lexically inequivalence pre tokenized NLP sacrebleu Shankar
-% LocalWords:  Zürich performant behaviours embeddings
-% LocalWords:  behaviour
+% LocalWords:  Zürich performant embeddings behaviour

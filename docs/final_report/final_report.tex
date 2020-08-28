@@ -85,7 +85,7 @@ To address the first issue, we loosen the constraints of exact isometry to \text
   D_X(s_1,s_2) \approx D_Y(f(s_1),f(s_2)) 
 \end{equation}
 
-With this approximation, we can simplify the isometric relationship further into a binary semantic equivalence function $S_L: \mathbb{R}^{V \times 2N} \to \{0,1\}$, which compresses semantic distance metrics to semantic equivalence ($S_L=1$) or inequivalence ($S_L=0$) depending on some variable threshold $\delta_L \in \mathbb{R}_+$:
+With this approximation, we can simplify the isometric relationship further into a binary semantic equivalence function $S_L: \mathbb{R}^{V \times 2N} \to \{0,1\}$, which compresses semantic distance metrics to semantic equivalence ($S_L=1$) and inequivalence ($S_L=0$) depending on some variable threshold $\delta_L \in \mathbb{R}_+$:
 
 \begin{equation}
   \label{bounded_isometry_eqn}
@@ -198,7 +198,7 @@ We replicate the Scaling NMT WMT16 Transformer based on \citet{ott2018scaling} b
 \begin{figure*}
   \centering 
   \includegraphics[trim={0.7cm 0cm 0cm 0cm},clip,width=\textwidth]{paraphrase_detection_models_evolution.pdf}
-  \caption{Training loss and validation accuracy against training steps for paraphrase detection models}
+  \caption{Training cross-entropy loss and validation accuracy against training steps for paraphrase detection models}
   \label{paraphrase_detection_model_evolution}
 \end{figure*}
 
@@ -247,7 +247,7 @@ As seen in Table \ref{pawsx_score_breakdown}, all three models perform well; esp
 
 \subsection{Evaluation protocols}
 
-Given our German WMT19 Legacy and WMT19 AR paraphrase data sets defined in equations \ref{wmt19legacy} and \ref{wmt19ar}, we translate all pairs of paraphrases using both the FAIR WMT19 and the Scaling NMT WMT16 Transformers in the \texttt{de$\rightarrow$en} translation direction using a beam width of 5. With this, we have the source German paraphrases along with their target-side English translations. We use these samples for further investigation. 
+Given our German WMT19 Legacy and WMT19 AR paraphrase data sets defined in equations \ref{wmt19legacy} and \ref{wmt19ar}, we translate all pairs of paraphrases using both the FAIR WMT19 and the Scaling NMT WMT16 Transformers in the \texttt{de$\rightarrow$en} translation direction using a beam width of 5. With this, we utilize the source German paraphrases along with their target-side English translations for further investigation. 
 
 \subsubsection{Isometry on binary semantic equivalence spaces}
 
@@ -259,7 +259,7 @@ Given our German WMT19 Legacy and WMT19 AR paraphrase data sets defined in equat
   \mathbf{S_{XY}^{\mathsf{T}}} = \begin{bmatrix} S_X(s_1, s_2) & S_Y(f(s_1), f(s_2)) \end{bmatrix}
 \end{gather}
 
-\paragraph{Multi-model decisions:} Given this formulation of $\mathbf{S_{XY}^{\mathsf{T}}}$, it is worth noting that each of the three paraphrase detection models would compute a separate $\mathbf{S_{XY}^{\mathsf{T}}}$ term. Since our paraphrase detection models were evaluated to have a non-zero (albeit small and similar) error rates, we decide to use the $\mathbf{S_{XY}^{\mathsf{T}}}$ outputs of all three models and compute the statistical mode of the three outputs. Such a majority decision would provide more confidence in any particular decision from the models. For simplicity, we assign the statistical mode function with the symbol $\mathbf{M}$. We therefore compute $\mathbf{M(S_{XY}^{\mathsf{T}}})$ to check for a majority decision over the three paraphrase detection models. We assign the empty set $\emptyset$ in case no majority decision exists.
+\paragraph{Multi-model decisions:} Given this formulation of $\mathbf{S_{XY}^{\mathsf{T}}}$, it is worth noting that each of the three paraphrase detection models would compute a separate $\mathbf{S_{XY}^{\mathsf{T}}}$ term. Since our paraphrase detection models were evaluated to have non-zero (albeit small and similar) error rates, we decide to use the $\mathbf{S_{XY}^{\mathsf{T}}}$ outputs of all three models and compute the statistical mode of the three outputs. Such a majority decision would provide more confidence in any particular decision from the models. For simplicity, we assign the statistical mode function with the symbol $\mathbf{M}$. We therefore compute $\mathbf{M(S_{XY}^{\mathsf{T}}})$ to check for a majority decision over the three paraphrase detection models. We assign the empty set $\emptyset$ in case no majority decision exists.
 
 \paragraph{Discrete possibilities:} Since the output of $S_L$ falls in the binary set of $\{0,1\}$, we can effectively compute all five possibilities of the consequent majority decision $\mathbf{M(S_{XY}^{\mathsf{T}}})$. We describe these in the context of binary semantic equivalence spaces.
 
@@ -332,7 +332,7 @@ We see this as a more optimal alternative than changing $\beta$ to 1 since this 
 \paragraph{Mapping $\overline{\text{chrF}_2}$ to $S_L$:}
 We refer back to the majority decisions of the paraphrase detection models and remove all sentence pairs where $\mathbf{M(S_{XY}^{\mathsf{T}}}) = \emptyset$. We assume all remaining sentence pairs have been \textit{confidently} tagged by the paraphrase detection models. We assign the remaining sentence pairs with their respective $\overline{\text{chrF}_2}$ and $S_L$ values for the source and target sides. 
 
-\paragraph{Correlation between $\overline{\text{chrF}_2}$ and $S_L$:} Finally, we replicate a similar statistical procedure as per \citet{michel2019evaluation} and compute the Pearson correlation coefficient $r_{xy}$ and the corresponding statistical $t$-test. For the $t$-test, we set the null hypothesis $H_0$ to be that there exists a non-positive correlation between $\overline{\text{chrF}_2}$ and $S_L$; while the alternative hypothesis $H_1$ is that there exists a positive correlation between $\overline{\text{chrF}_2}$ and $S_L$. We interpret the strength of correlations using guidelines from \citet{schober2018correlation}.     
+\paragraph{Correlation between $\overline{\text{chrF}_2}$ and $S_L$:} Finally, we replicate a similar statistical procedure as per \citet{michel2019evaluation} and compute the Pearson correlation coefficient $r_{xy}$ and a corresponding statistical $t$-test. For the $t$-test, we set the null hypothesis $H_0$ to be that there exists a non-positive correlation between $\overline{\text{chrF}_2}$ and $S_L$; while the alternative hypothesis $H_1$ is that there exists a positive correlation between $\overline{\text{chrF}_2}$ and $S_L$. We interpret the strength of correlations using guidelines from \citet{schober2018correlation}.     
 
 \begin{figure*}
   \centering 
@@ -370,7 +370,7 @@ Furthermore, we can observe a larger mean $\overline{\text{chrF}_2}$ value for t
 \begin{figure*}
   \centering 
   \includegraphics[trim={0.25cm 0cm 0cm 0cm},clip,width=\textwidth]{chrf_paraphrase_detection_boxplot_joint_decision.pdf}
-  \caption{Distribution of $\overline{\text{chrF}_2}$ against $S_L$ grouped by NMT models and input data sets ; *** indicates a statistically significant positive correlation between $\overline{\text{chrF}_2}$ and $S_L$ with $p \leq 0.001$ for the one-tailed $t$-test}
+  \caption{Distributions of $\overline{\text{chrF}_2}$ against $S_L$ by NMT models and input data sets ; *** indicates a statistically significant positive correlation between $\overline{\text{chrF}_2}$ and $S_L$ with $p \leq 0.001$ for the one-tailed $t$-test}
   \label{chrf_paraphrase_detection_joint_boxplot}
 \end{figure*}
 
@@ -394,7 +394,7 @@ Furthermore, we can observe a larger mean $\overline{\text{chrF}_2}$ value for t
 
 \subsubsection{Correlation analysis}
 
-Figure \ref{chrf_paraphrase_detection_joint_boxplot} shows the distribution of $\overline{\text{chrF}_2}$ against $S_L$ by over NMT models, input data sets and source-target origins. Table \ref{chrf_correlation} shows a breakdown of Pearson correlation coefficients $r_{xy}$ for $\overline{\text{chrF}_2}$ and $S_L$ by NMT models and input data sets.
+Figure \ref{chrf_paraphrase_detection_joint_boxplot} shows the distribution of $\overline{\text{chrF}_2}$ against $S_L$ by over NMT models, input data sets and source-target origins. Table \ref{chrf_correlation} shows a breakdown of Pearson correlation coefficients $r_{xy}$ for $\overline{\text{chrF}_2}$ and $S_L$ and results of the statistical $t$-test by NMT models and input data sets.
 
 Overall, we observe a significant positive correlation between $\overline{\text{chrF}_2}$ and $S_L$ with mean Pearson correlation coefficient $r_{xy}$ values of $0.256$ and $0.250$ for the FAIR WMT19 Transformer and the Scaling NMT WMT16 Transformer respectively. The one-tailed $t$-test used to ascertain significance showed a strongly significant positive correlation with $p\leq0.001$. According to the interpretation guidelines from \citet{schober2018correlation}, this range of $r_{xy}$ would imply a weak correlation strength between $\overline{\text{chrF}_2}$ and $S_L$. 
 
@@ -440,7 +440,7 @@ In order to gain ground-level insight of the translation process and associated 
 Table \ref{isometry_examples_sentences} shows a breakdown of sentence pairs from four meaningful $\mathbf{M(S_{XY}^{\mathsf{T}}})$ categories which were predicted with full agreement from all three paraphrase detection models. We provide manual analyses of sentence pairs and their translations, and attempt to interpret the majority decisions made by the paraphrase detection models.
 
 \paragraph{$\mathbf{M(S_{XY}^{\mathsf{T}}}) = [1,1]$:} From manual assessment, both sentence pairs on the source and target side are grammatically well-formed and have the same meaning. They are correspondingly classified as paraphrases on both sides.
-\paragraph{$\mathbf{M(S_{XY}^{\mathsf{T}}}) = [0,0]$:} From manual assessment, we observe that the source sentences are non-paraphrases because the sentence in \texttt{AR} has a critical time marker ``\textit{davor}'' which is not present in the paraphrase. Furthermore without sport-specific context, the verbs ``\textit{empfangen}'' and ``\textit{gegenüberstehen}'' would be interpreted as semantically inequivalent. This is also the case for the target sentences, where ``\textit{empfangen}'' was translated to be the verb ``host'' while ``\textit{gegenüberstehen}'' was translated to ``face''. Overall without sport-specific context, we would argue that the input sentences were not well paraphrased and resulted in the non-paraphrase classification. The target sentences were translated well, but still retained the semantic difference from the input sentences; resulting in them being classified as non-paraphrases.
+\paragraph{$\mathbf{M(S_{XY}^{\mathsf{T}}}) = [0,0]$:} From manual assessment, we observe that the source sentences are non-paraphrases because the sentence in \texttt{AR} has a critical time marker ``\textit{davor}'' which is not present in the paraphrase. Furthermore without sport-specific context, the verbs ``\textit{empfangen}'' and ``\textit{gegenüberstehen}'' would be interpreted as semantically inequivalent. This is also the case for the target sentences, where ``\textit{empfangen}'' was translated to be the verb ``host'' while ``\textit{gegenüberstehen}'' was translated to ``face''. Overall without sport-specific context, we would argue that the source sentences were not well paraphrased and resulted in the non-paraphrase classification. The target sentences were translated well, but still retained the semantic difference from the source sentences; resulting in them being classified as non-paraphrases.
 \paragraph{$\mathbf{M(S_{XY}^{\mathsf{T}}}) = [0,1]$:} From manual assessment and without sport-specific context, we observe that the source sentences are non-paraphrases because the verbs ``\textit{fallen}'' and ``\textit{kommen}'' would be interpreted as semantically inequivalent; possibly leading to the non-paraphrase classification. Based on the target sentences, it appears the NMT model captured sport-specific context and translated both source sentences to the same target sentence. These were naturally classified as paraphrases on the target side.
 
 We interpret the behaviour observed here as \textit{context regularization} from the NMT model, where two lexically and syntactically diverse paraphrases were translated to the same exact target sentence because the NMT model incorporated the relevant context into its translation.
@@ -473,7 +473,7 @@ On the other hand, \citet{fadaee2020unreasonable} used non-SOTA RNN and Transfor
 
 Our research investigates the isometric behaviour of NMT models on binary semantic equivalence spaces. By using two NMT models of varying performance, we were able to confirm our initial hypothesis that the frequency of semantically isometric behaviour in NMT models correlates positively with general model performance, albeit with a small sample size of two models. 
 
-Next, we provide evidence to support the claim of \citet{michel2019evaluation} that chrF\textsubscript{2} is significantly positively correlated with semantic similarity. Our experiments however show a correlation coefficient which is roughly half in size compared to those reported in \citet{michel2019evaluation}.
+Next, we provide evidence to support the claim of \citet{michel2019evaluation} that chrF\textsubscript{2} is significantly positively correlated with semantic similarity. Our experiments however show correlation coefficients which are roughly half in size compared to those reported in \citet{michel2019evaluation}.
 
 Finally, we provide light counter-evidence to the claim in \citet{fadaee2020unreasonable} that NMT models exhibit high rates of volatile behaviour ($\sim$19-26$\%$) when provided paraphrased input sentences. While our input paraphrases were not adversarial in nature, they were still lexically and syntactically diverse and showed considerably smaller rates of volatile behaviour ($\sim$2-13$\%$) when translated with our NMT models. We suspect that the high rate of volatility observed by \citet{fadaee2020unreasonable} could be partially attributed to the utility of non-SOTA NMT models in their experiments. We would therefore recommend re-running the experiments with SOTA NMT models, such as the FAIR WMT19 Transformer. 
 

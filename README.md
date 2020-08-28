@@ -1,4 +1,4 @@
-## Investigating the isometric properties of Neural Machine Translation models on binary semantic-equivalence spaces
+## Investigating the isometric behaviour of Neural Machine Translation models on binary semantic-equivalence spaces
 
 1. [Overview](#Overview-book)
 2. [Dependencies](#Dependencies-neckbeard)
@@ -27,7 +27,7 @@ We then quantify (and simplify) the notion of a semantic distance metric into a 
 
 To realize this concept, we train large paraphrase detection models based off Google's [XTREME](https://github.com/google-research/xtreme) benchmarks on the [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task and apply these models on the aforementioned translations.
 
-A more detailed description of our methodologies and results can be found in our research paper. 
+A more detailed description of our methodologies and results can be found in our research [paper](./docs/final_report/final_report.pdf). 
 
 ### Dependencies :neckbeard:
 

@@ -167,7 +167,7 @@ Optional arguments:
                "./models/*/{train,train_inner,valid}"
 ```
 
-This script will aggregate/convert tensorboard event logs into `csv` files and produce tikz-based plots of model evolutions as `pdf` files in the `img` directory. To run this script, simply execute:
+This script will aggregate tensorboard event logs into `csv` files and produce tikz-based plots of model evolutions as `pdf` files in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_model_evolutions.sh

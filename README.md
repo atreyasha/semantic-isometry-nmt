@@ -1,4 +1,4 @@
-## Investigating the isometric behaviour of Neural Machine Translation models on binary semantic-equivalence spaces
+## Investigating the isometric behaviour of Neural Machine Translation models on binary semantic equivalence spaces
 
 1. [Overview](#Overview-book)
 2. [Dependencies](#Dependencies-neckbeard)

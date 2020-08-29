@@ -99,7 +99,7 @@ Optional arguments:
                checkpoint_best.pt"
 ```
 
-This script will run translation using Facebook FAIR's winning WMT19 model as the SOTA model and the previously downloaded NMT model as the non-SOTA model. Translation results will be saved as `json` files in the `predictions` directory. To run this script using our defaults, simply execute:
+This script will generate translations using the FAIR WMT19 and Scaling NMT WMT16 Transformers. Translation results will be saved as `json` files in the `predictions` directory. To run this script using our defaults, simply execute:
 
 
 ```shell

@@ -99,7 +99,7 @@ Optional arguments:
                checkpoint_best.pt"
 ```
 
-This script will generate translations using the FAIR WMT19 and Scaling NMT WMT16 Transformers. Translation results will be saved as `json` files in the `predictions` directory. To run this script using our defaults, simply execute:
+This script will generate translations using the SOTA FAIR WMT19 Transformer and the non-SOTA Scaling NMT WMT16 Transformer. Translation results will be saved as `json` files in the `predictions` directory. To run this script using our defaults, simply execute:
 
 
 ```shell

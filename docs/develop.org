@@ -1,7 +1,6 @@
 *** Development
 
 **** Clean-code and documentation
-***** TODO add github repo to paperswithcode examples for relevant papers -> eg. WMT19, PAWSX, XTREME, Freitag, others that relate closely, etc.
 ***** **extra:** add version numbers to R package dependencies for posterity
 
 **** Paraphrase detection

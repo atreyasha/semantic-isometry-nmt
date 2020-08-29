@@ -1,139 +1,38 @@
 ### Development
 
-1.  Evaluation
+1.  Clean-code and documentation
 
-    1.  **TODO** try to implement as many statistical tests
-        as possible given correct assumptions -\> use this in discussion
-        or results section of paper
-
-    2.  **TODO** correlate isometry and general model
-        performance -\> think of statistical tests for this
-
-    3.  **TODO** look into interesting cases in regards to
-        paraphrase output results, such as (0,1) and (1,0) etc. -\>
-        check what these outputs represent in terms of actual sentences
-        and what observations can be drawn from these -\> for eg. (0,1)
-        behaviour of FAIR model could point to some regularizing
-        capabilities acquired from good model training and/or
-        backtranslation -\> find and exclude cases of mixed languages
-
-    4.  **TODO** main source of errors seems to be wrong
-        language insertion in scaling NMT model while not really the
-        case in FAIR SOTA model -\> check test data performance to see
-        if this is also the case -\> perhaps this is a systematic error
-        for non-backtranslated model
-
-    5.  **TODO** check for possibly interesting statistical
-        correlations between XLM-R prediction and chrF/BLEU scores -\>
-        this could be of interest in making additional statements to
-        Michel et al. 2019\'s statements regarding chrF scores
-
-    6.  **TODO** consider error rates on isometric inference
-        comparisons related to paraphrase detection error
-
-    7.  **TODO** look into frequency of isometric vs
-        non-isometric behaviour -\> consider changing paraphrase
-        detection scores to semantic distance metric which would need
-        minor revision of symbols used
-
-    8.  in rare cases, can do manual analysis and include this inside
-        report
-
-    9.  early conclusions/hypotheses: hand-crafted adversarial
-        paraphrase robustness is handled well in SOTA models due to
-        backtranslation reguralization, main vulnerability will be
-        targetted adversarial samples
-
-    10. show that training with backtranslation helps for robustness to
-        paraphrases -\> through visualizations and perhaps some
-        statistical tests
-
-    11. ****extra:**** compute statistical tests for ascertaining
-        significance of relationships
-
-    12. ****extra:**** consider changing bleu to sacrebleu in json (read
-        more about differences) and figure out why stating this might be
-        important
-
-2.  Clean-code and documentation
-
-    1.  **TODO** change visualization variables to correct
-        ones from P to S, depending on how this evolves in paper
-
-    2.  **TODO** consider changing paraphrase detection
-        terminology to something more semantic related -\> or leave it
-        as a practical alternative
-
-    3.  **TODO** update readme math equation and nice visuals
-        to reflect paper -\> update title and related descriptions by
-        emulating from paper -\> update all details to be consistent
-        with paper -\> update overview segment on hand-crafted
-        paraphrases segment
-
-    4.  **TODO** add final paper/presentation into repo with
-        link in readme -\> add line to readme references that they can
-        check the report for more references
-
-    5.  **TODO** after finishing paper, change terminology in
-        readme to reflect paper eg. datasets, model names etc.
-
-    6.  **TODO** add github repo to paperswithcode examples
+    1.  **TODO** add github repo to paperswithcode examples
         for relevant papers -\> eg. WMT19, PAWSX, XTREME, Freitag,
         others that relate closely, etc.
 
-    7.  segment readme into training, translation and others categories
-        with relevant usages
+    2.  ****extra:**** add version numbers to R package dependencies for
+        posterity
 
-    8.  replace relevant bash commands with sbatch in slurm-s3it branch
-        after repository is completed
+2.  Paraphrase detection
 
-    9.  update initial page of readme with overview/abstract of work
-        including shallow metrics
+    1.  ****extra:**** consider roc and other evaluation metrics for
+        pawsx model -\> in case these might be of more help
 
-    10. update TOC\'s in all readmes to reflect latest changes
-
-    11. update R dependencies in readme once all visualizations are
-        finalized
-
-    12. add version numbers to R package dependencies for posterity
-
-    13. add citations in readme as per general standard
-
-3.  Paraphrase detection
-
-    1.  make formal analysis on lengths of WMT19 inputs vs. lengths of
-        paws-x training data
-
-    2.  consider roc and other evaluation metrics for pawsx model -\> in
-        case these might be of more help
-
-    3.  fine-tune models with English and ensure no or little machine
-        translated data is present in training set
-
-    4.  better to work with human-curated data than back-translated ones
-        due to many errors -\> advantage in PAWS and PAWS-X English
-        data + WMT19 AR paraphrases
-
-    5.  ****extra:**** fix and refine paws-x pipeline later on with
+    2.  ****extra:**** fix and refine paws-x pipeline later on with
         patience, typing, better documentation, clean-code and possibly
         continuation of training, add roc auc on pawsx test data
 
-4.  Translation
+3.  Translation
 
-    1.  strong model being WMT19 single and ensemble with back
-        translation (which adds robustness), while weak model being
-        transformer trained on WMT16 without back translation -\>
-        compare general performances and metrics
-
-    2.  consider also looking into extra references repo
-        \"evaluation-of-nmt-bt\"
-
-    3.  possibly keep backups of models at various development stages
-
-    4.  ****extra:**** train additional large model on wmt19
+    1.  ****extra:**** train additional large model on wmt19
         non-backtranslated data and similar transformer arch as fair
         paper -\> to get slightly better performance for comparison -\>
         this can also be done later
+
+4.  Evaluation
+
+    1.  ****extra:**** make formal analysis on lengths of WMT19 inputs
+        vs. lengths of paws-x training data
+
+    2.  ****extra:**** show that training with backtranslation helps for
+        robustness to paraphrases -\> through visualizations and perhaps
+        some statistical tests
 
 5.  Visualization
 

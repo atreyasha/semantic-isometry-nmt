@@ -2,7 +2,7 @@
 
 1. [Overview](#1-Overview)
 2. [Training Scaling NMT WMT16 Transformer on de-en](#2-Training-Scaling-NMT-WMT16-Transformer-on-de-en)
-3. [Fine-tuning multilingual transformer language model(s) on PAWS-X](#3-Fine-tuning-multilingual-transformer-language-model(s)-on-PAWS-X)
+3. [Fine-tuning multilingual transformer language models on PAWS-X](#3-Fine-tuning-multilingual-transformer-language-models-on-PAWS-X)
 4. [Exporting models](#4-Exporting-models)
 
 ### 1. Overview
@@ -155,7 +155,7 @@ bash scripts/postprocess_wmt16_de_en.sh \
 
 **Note:** Although we do provide a script for checkpoint averaging above; we observed no significant performance gain from checkpoint averaging and therefore did not use it for our final model. 
 
-### 3. Fine-tuning multilingual transformer language model(s) on PAWS-X
+### 3. Fine-tuning multilingual transformer language models on PAWS-X
 
 **i.** Fine-tune a large multilingual transformer language model on the `PAWS-X` paraphrase detection task using `train_evaluate_pawsx.sh`:
 

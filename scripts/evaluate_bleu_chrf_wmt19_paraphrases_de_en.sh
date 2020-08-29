@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # Script to shallowly evaluate WMT19 translations and paraphrases
-# with BLEU and chrF scores
+# with commutative BLEU-4 and chrF-2 scores
 set -e
 
 # usage function
 usage() {
   cat <<EOF
 Usage: evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
-Conduct shallow evaluation of WMT19 paraphrases with BLEU and
-chrF scores
+Conduct shallow evaluation of WMT19 paraphrases with commutative
+BLEU-4 and chrF-2 scores
 
 Optional arguments:
   -h, --help   Show this help message and exit

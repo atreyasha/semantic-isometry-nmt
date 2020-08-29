@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-# Script to plot chrf and paraphrase output detections of WMT19 paraphrase translations
+# Script to plot commutative chrF-2 and paraphrase output
+# detections of WMT19 paraphrase translations
 set -e
 
 # usage function
 usage() {
   cat <<EOF
 Usage: visualize_chrf_paraphrase_detection_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
-Visualize chrf and paraphrase detection predictions of WMT19 paraphrase translations
+Visualize commutative chrF-2 and paraphrase detection predictions of WMT19 paraphrase translations
 
 Optional arguments:
   -h, --help   Show this help message and exit

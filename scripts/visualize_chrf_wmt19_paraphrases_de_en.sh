@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Script to plot shallow evaluation scores of WMT19 paraphrase translations
+# Script to plot commutative chrF-2 scores of WMT19 paraphrase translations
 set -e
 
 # usage function
 usage() {
   cat <<EOF
 Usage: visualize_chrf_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
-Visualize shallow evaluation scores of WMT19 paraphrase translations
+Visualize commutative chrF-2 scores of WMT19 paraphrase translations
 
 Optional arguments:
   -h, --help   Show this help message and exit

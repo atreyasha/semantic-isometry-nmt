@@ -7,7 +7,7 @@
 
 ### 1. Overview
 
-This readme provides additional information on training/fine-tuning models used in this repository from (quasi) scratch. It is highly recommended to use the defaults as per the provided shell scripts, since there could be unforeseen issues related to using new model configurations.
+This readme provides additional information on training the non-SOTA Scaling NMT WMT16 Transformer and fine-tuning paraphrase detection models which were ultimately used in our research. It is highly recommended to use the defaults as per the provided shell scripts, since there could be unforeseen issues related to using new model configurations.
 
 ### 2. Training Scaling NMT WMT16 Transformer on de-en
 
@@ -167,7 +167,9 @@ language models on the PAWS-X paraphrase detection task
 Optional arguments:
   -h, --help     Show this help message and exit
   model <model>  Pre-trained language model to fine-tune,
-                 defaults to "xlm-roberta-large"
+                 possibilities are "bert-base-multilingual-cased",
+                 "xlm-roberta-base" and "xlm-roberta-large", defaults
+                 to "xlm-roberta-large"
 ```
 
 Our script allows for fine-tuning using the three following language models: `bert-base-multilingual-cased`, `xlm-roberta-base` and `xlm-roberta-large`. In order to use our default settings, simply execute:
@@ -218,5 +220,5 @@ bash scripts/export_tar_gz.sh \
 
 <!--  LocalWords:  NMT WMT de readme Preprocess pre BPE mBERT XLM GeForce GTX
  -->
-<!--  LocalWords:  ja ko zh
+<!--  LocalWords:  ja ko zh SOTA
  -->

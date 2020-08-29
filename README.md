@@ -82,7 +82,7 @@ A more detailed description of our methodologies and results can be found in our
 
 #### i. Training
 
-Since we already provide pre-trained models in this repository, we treat model training from scratch as an auxiliary procedure. If you would like to indeed train the non-SOTA Scaling NMT WMT16 Transformer and paraphrase detection models from scratch, refer to the instructions in [TRAINING.md](TRAINING.md).
+Since we already provide pre-trained models in this repository, we treat model training as an auxiliary procedure. If you would like to indeed train the non-SOTA Scaling NMT WMT16 Transformer and fine-tune paraphrase detection models, refer to the instructions in [TRAINING.md](TRAINING.md).
 
 #### ii. Translation
 

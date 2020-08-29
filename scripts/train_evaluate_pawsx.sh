@@ -24,7 +24,9 @@ language models on the PAWS-X paraphrase detection task
 Optional arguments:
   -h, --help     Show this help message and exit
   model <model>  Pre-trained language model to fine-tune,
-                 defaults to "xlm-roberta-large"
+                 possibilities are "bert-base-multilingual-cased",
+                 "xlm-roberta-base" and "xlm-roberta-large", defaults
+                 to "xlm-roberta-large"
 EOF
 }
 

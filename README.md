@@ -56,7 +56,7 @@ A more detailed description of our methodologies and results can be found in our
 2. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory (~480 MB download size).
 
 3. Manually download the following four pre-trained models and place all of the tarballs in the `models` directory (~9 GB total download size):
-    1. [Scaling NMT WMT16 Transformer](https://drive.google.com/uc?id=1IqoRGIqTv9MVbV7EiyAZ7Ol0y4xAy0th&export=download) for non-SOTA `de-en` translation. Model achieved `BLEU` score of `31.0` on the `newstest2014` test dataset.
+    1. [Scaling NMT WMT16 Transformer](https://drive.google.com/uc?id=1IqoRGIqTv9MVbV7EiyAZ7Ol0y4xAy0th&export=download) for non-SOTA `de-en` translation. Model achieved `BLEU-4` score of `31.0` on the `newstest2014` test dataset.
 
     2. [mBERT<sub>Base</sub>](https://drive.google.com/uc?id=18thE9bc-SVfwpAoeuOiZequp5YgckCA5&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.886`.
     3. [XLM-R<sub>Base</sub>](https://drive.google.com/uc?id=1jSeopFJwKly7uk57mxLpQ9I5C5Fl3P1v&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.890`. 
@@ -110,14 +110,14 @@ bash scripts/translate_wmt19_paraphrases_de_en.sh
 
 #### iii. Evaluation
 
-##### BLEU and chrF
+##### Commutative BLEU-4 and chrF<sub>2</sub>
 
-After translating the WMT19 paraphrases, we can conduct a *quick and dirty* evaluation of the paraphrases using the `BLEU` and `chrF` sequence similarity metrics. For this, we provide `evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh`:
+After translating the WMT19 paraphrases, we can conduct a *quick and dirty* evaluation of the paraphrases using commutative variants of the `BLEU-4` and `chrF-2` automatic sequence evaluation metrics, which were initialized with the default settings from `sacrebleu`. For this, we provide `evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh`:
 
 ```
 Usage: evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
-Conduct shallow evaluation of WMT19 paraphrases with BLEU and
-chrF scores
+Conduct shallow evaluation of WMT19 paraphrases with commutative
+BLEU-4 and chrF-2 scores
 
 Optional arguments:
   -h, --help   Show this help message and exit
@@ -125,7 +125,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will analyze the translation `json` outputs and append `BLEU` and `chrF` scores in-place. To run this script, simply execute:
+This script will analyze the translation `json` outputs and append commutative `BLEU-4` and `chrF-2` scores in-place. To run this script, simply execute:
 
 ```shell
 bash scripts/evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh
@@ -175,13 +175,13 @@ This script will aggregate/convert tensorboard event logs into `csv` files and p
 bash scripts/visualize_model_evolutions.sh
 ```
 
-##### chrF
+##### Commutative chrF<sub>2</sub>
 
-In order to visualize the previously processed `chrF` results, we provide `visualize_chrf_wmt19_paraphrases_de_en.sh`:
+In order to visualize the previously processed commutative `chrF-2` scores, we provide `visualize_chrf_wmt19_paraphrases_de_en.sh`:
 
 ```
 Usage: visualize_chrf_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
-Visualize shallow evaluation scores of WMT19 paraphrase translations
+Visualize commutative chrF-2 scores of WMT19 paraphrase translations
 
 Optional arguments:
   -h, --help   Show this help message and exit
@@ -189,7 +189,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will produce a tikz-based plot of the `chrF` scores and will save it as `pdf` file in the `img` directory. To run this script, simply execute:
+This script will produce a tikz-based plot of the commutative `chrF-2` scores and will save it as `pdf` file in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_chrf_wmt19_paraphrases_de_en.sh
@@ -209,19 +209,19 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will produce tikz-based plots of the respective paraphrase detection `softmax` scores and will save them as `pdf` files in the `img` directory. To run this script, simply execute:
+This script will produce tikz-based plots of the respective paraphrase detection `softmax` scores and joint decisions, and will save them as `pdf` files in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_paraphrase_detection_wmt19_paraphrases_de_en.sh
 ```
 
-##### Correlation between chrF and paraphrase detection predictions
+##### Correlation between commutative chrF<sub>2</sub> and paraphrase detection predictions
 
-In order to visualize correlations between `chrF` scores and paraphrase detection predictions, we provide `visualize_paraphrase_detection_wmt19_paraphrases_de_en.sh`:
+In order to visualize correlations between commutative `chrF-2` scores and paraphrase detection predictions, we provide `visualize_paraphrase_detection_wmt19_paraphrases_de_en.sh`:
 
 ```
 Usage: visualize_chrf_paraphrase_detection_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
-Visualize chrf and paraphrase detection predictions of WMT19 paraphrase translations
+Visualize commutative chrF-2 and paraphrase detection predictions of WMT19 paraphrase translations
 
 Optional arguments:
   -h, --help   Show this help message and exit
@@ -229,7 +229,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will produce tikz-based plots of correlations between `chrF` and paraphrase detection predictions and will save them as `pdf` files in the `img` directory. To run this script, simply execute:
+This script will produce tikz-based plots of correlations between commutative `chrF-2` and paraphrase detection predictions and will save them as `pdf` files in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_chrf_paraphrase_detection_wmt19_paraphrases_de_en.sh
@@ -237,7 +237,7 @@ bash scripts/visualize_chrf_paraphrase_detection_wmt19_paraphrases_de_en.sh
 
 ### References :sweat_drops:
 
-Below are the key references that were used in this research:
+Below are the key references that were used in this research. Additional references can be found in our dedicated bibtex [file](./docs/final_report/bibtex.bib).
 
 ```
 @inproceedings{ott2018scaling,

@@ -1,15 +1,15 @@
 ## Training models
 
 1. [Overview](#1-Overview)
-2. [Training fairseq NMT model on WMT16 de-en](#2-Training-fairseq-NMT-model-on-WMT16-de-en)
-3. [Fine-tuning multilingual transformer language model on PAWS-X](#3-Fine-tuning-multilingual-transformer-language-model-on-PAWS-X)
+2. [Training Scaling NMT WMT16 Transformer on de-en](#2-Training-Scaling-NMT-WMT16-Transformer-on-de-en)
+3. [Fine-tuning multilingual transformer language model(s) on PAWS-X](#3-Fine-tuning-multilingual-transformer-language-model(s)-on-PAWS-X)
 4. [Exporting models](#4-Exporting-models)
 
 ### 1. Overview
 
 This readme provides additional information on training/fine-tuning models used in this repository from (quasi) scratch. It is highly recommended to use the defaults as per the provided shell scripts, since there could be unforeseen issues related to using new model configurations.
 
-### 2. Training fairseq NMT model on WMT16 de-en
+### 2. Training Scaling NMT WMT16 Transformer on de-en
 
 **i.** Preprocess WMT16 with pre-computed BPE codes into an appropriate format using `preprocess_wmt16_de_en.sh`:
 
@@ -151,11 +151,11 @@ bash scripts/postprocess_wmt16_de_en.sh \
 "./models/transformer_vaswani_wmt_en_de_big.wmt16.de-en.1594228573"
 ```
 
-**viii.** We trained our model for ~1 week on a NVIDIA Tesla V100-16GB GPU, specifically up until ~285k updates. During training, we enabled checkpoint saving and used the best performing checkpoint on the validation set as our final model. The best checkpoint performs with a `BLEU` score of `31.0` when evaluated against the  `newstest2014` test set with the following `sacrebleu` signature: `BLEU+case.mixed+lang.de-en+numrefs.1+smooth.exp+test.wmt14/full+tok.13a+version.1.4.12`.
+**viii.** We trained our model for ~1 week on a NVIDIA Tesla V100-16GB GPU, specifically up until ~285k updates. During training, we enabled checkpoint saving and used the best performing checkpoint on the validation set as our final model. The best checkpoint performs with a `BLEU-4` score of `31.0` when evaluated against the  `newstest2014` test set with the following `sacrebleu` signature: `BLEU+case.mixed+lang.de-en+numrefs.1+smooth.exp+test.wmt14/full+tok.13a+version.1.4.12`.
 
 **Note:** Although we do provide a script for checkpoint averaging above; we observed no significant performance gain from checkpoint averaging and therefore did not use it for our final model. 
 
-### 3. Fine-tuning multilingual transformer language model on PAWS-X
+### 3. Fine-tuning multilingual transformer language model(s) on PAWS-X
 
 **i.** Fine-tune a large multilingual transformer language model on the `PAWS-X` paraphrase detection task using `train_evaluate_pawsx.sh`:
 

@@ -130,7 +130,7 @@ In this sense, the study of adversarial paraphrasing in machine translation coul
 
 \paragraph{\citet{michel2019evaluation}:} This study lays out the framework for evaluating adversarial perturbations in sequence-to-sequence models. Additionally, this study compared three automatic sequence evaluation metrics, specifically BLEU \cite{papineni2002bleu}, METEOR \cite{denkowski2014meteor} and chrF$_2$ \cite{popovic2015chrf}, against human judgment for evaluating semantic similarity. Results from their experiments showed that chrF$_2$ correlates best out of the three evaluation metrics with human judgment for semantic similarity detection. We utilize this finding in later parts of our research and attempt to compare the outputs of our paraphrase detection models with respective chrF$_2$ scores.
 
-\paragraph{\citet{fadaee2020unreasonable}:} This study lays out a simple framework for constructing adversarial paraphrases through logical operations such as word insertion/deletion and numerical/gender substitution. The study correspondingly showed that such minor modifications in translation inputs could lead to unexpected changes in translation quality; thereby showing an adversarial effect. This study ultimately claimed that modern NMT models are unexpectedly volatile, or vulnerable, to adversarial attacks. We attempt to compare this claim with our findings in later parts of our research. 
+\paragraph{\citet{fadaee2020unreasonable}:} This study lays out a simple framework for constructing adversarial paraphrases through logical operations such as word insertion/deletion and numerical/gender substitution. The study correspondingly showed that such minor modifications in translation inputs could lead to unexpected changes in translation quality; thereby showing an adversarial effect. This study ultimately claimed that modern NMT models are unexpectedly volatile, or vulnerable, towards adversarial attacks. We attempt to compare this claim with our findings in later parts of our research. 
 
 \section{Experimental setup}
 
@@ -459,7 +459,7 @@ Our smaller correlation coefficients could be attributed to the lack of granular
 
 \subsection{Volatility of NMT models to adversarial paraphrases}
 
-\citet{fadaee2020unreasonable} claimed that NMT models are unexpectedly volatile to adversarial paraphrases created using logical operations such as word insertion/deletion and numerical/gender substitution. Their study showed unexpected changes in translation quality for 26$\%$ and 19$\%$ of sentence variations for their RNN and Transformer models respectively.
+\citet{fadaee2020unreasonable} claimed that NMT models are unexpectedly volatile towards adversarial paraphrases created using logical operations such as word insertion/deletion and numerical/gender substitution. Their study showed unexpected changes in translation quality for 26$\%$ and 19$\%$ of sentence variations for their RNN and Transformer models respectively.
 
 While we did not conduct similar adversarial paraphrasing in our research, we still investigated the performance of NMT models when translating sentences that are non-trivial paraphrases of one another. Given the observations of \citet{fadaee2020unreasonable} on NMT model volatility, we would have expected the relative frequency of type-2 anisometry to also be in the range of $\sim$15-30$\%$ for both our models.
 

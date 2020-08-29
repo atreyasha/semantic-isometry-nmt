@@ -29,7 +29,7 @@ check_help() {
 # define function
 evaluate_wmt19_de_en() {
   # declare variables
-  local checkpoint_path="$1" subset="${2:-test}"
+  local checkpoint_path="$1" subset="test"
   local outfile="${checkpoint_path}.${subset}_wmt19.out"
   local datapath="data/wmt16_en_de_bpe32k"
   [ ! -f "$checkpoint_path" ] && usage && exit 1

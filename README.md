@@ -108,7 +108,7 @@ bash scripts/translate_wmt19_paraphrases_de_en.sh
 
 #### iii. Evaluation
 
-##### Commutative BLEU-4 and chrF<sub>2</sub>
+##### Commutative BLEU-4 and chrF-2
 
 After translating the WMT19 Legacy and WMT19 AR paraphrases, we can conduct a *quick and dirty* evaluation of source and target sentences using commutative variants of the `BLEU-4` and `chrF-2` automatic sequence evaluation metrics, which were initialized with the default settings from `sacrebleu`. For this, we provide `evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh`:
 
@@ -173,7 +173,7 @@ This script will aggregate tensorboard event logs into `csv` files and produce t
 bash scripts/visualize_model_evolutions.sh
 ```
 
-##### Commutative chrF<sub>2</sub>
+##### Commutative chrF-2
 
 In order to visualize the previously processed commutative `chrF-2` scores, we provide `visualize_chrf_wmt19_paraphrases_de_en.sh`:
 
@@ -213,7 +213,7 @@ This script will produce tikz-based plots of the respective paraphrase detection
 bash scripts/visualize_paraphrase_detection_wmt19_paraphrases_de_en.sh
 ```
 
-##### Correlation between commutative chrF<sub>2</sub> and paraphrase detection predictions
+##### Correlation between commutative chrF-2 and paraphrase detection predictions
 
 In order to visualize correlations between commutative `chrF-2` scores and paraphrase detection predictions, we provide `visualize_paraphrase_detection_wmt19_paraphrases_de_en.sh`:
 

@@ -35,7 +35,7 @@ A more detailed description of our methodologies and results can be found in our
     pip install -r requirements.txt
     ```
 
-2. In this repository, we use `R` (versions `3.6+`) and `lualatex` for efficient `TikZ` visualizations. Execute the following within your `R` console to get the dependencies:
+2. In this repository, we use `R` versions `3.6+` and `lualatex` for efficient `TikZ` visualizations. Execute the following within your `R` console to get the dependencies:
 
     ```r
     install.packages(c("ggplot2","optparse","tikzDevice","rjson","ggpointdensity",
@@ -60,7 +60,7 @@ A more detailed description of our methodologies and results can be found in our
     3. [XLM-R<sub>Base</sub>](https://drive.google.com/uc?id=1jSeopFJwKly7uk57mxLpQ9I5C5Fl3P1v&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.890`. 
     4. [XLM-R<sub>Large</sub>](https://drive.google.com/uc?id=1h6DUEpm173w_4aznMOdRFGtr6hi1bfdT&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.906`.
 
-3. To download/prepare `PAWS-X` and `WMT19` original + additional references + paraphrased test data, as well as prepare the previously downloaded `WMT16` data and pre-trained models, run the command below:
+3. Download `PAWS-X` and `WMT19` original + additional references + paraphrased test data, as well as prepare the previously downloaded `WMT16` data and pre-trained models by running the command below:
 
     ```shell
     bash scripts/prepare_data_models.sh
@@ -82,11 +82,11 @@ A more detailed description of our methodologies and results can be found in our
 
 #### i. Training
 
-Since we already provide pre-trained models in this repository, we treat model training from scratch as an auxiliary procedure. If you would like to indeed train non-SOTA NMT and paraphrase detection models from scratch, refer to the instructions in [TRAINING.md](TRAINING.md).
+Since we already provide pre-trained models in this repository, we treat model training from scratch as an auxiliary procedure. If you would like to indeed train the non-SOTA Scaling NMT WMT16 Transformer and paraphrase detection models from scratch, refer to the instructions in [TRAINING.md](TRAINING.md).
 
 #### ii. Translation
 
-In order to translate WMT19 legacy and additional references with corresponding paraphrases, we provide a script `translate_wmt19_paraphrases_de_en.sh`: 
+In order to translate WMT19 Legacy and WMT19 AR German paraphrases to English, utilize our script `translate_wmt19_paraphrases_de_en.sh`: 
 
 ```
 Usage: translate_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
@@ -110,7 +110,7 @@ bash scripts/translate_wmt19_paraphrases_de_en.sh
 
 ##### Commutative BLEU-4 and chrF<sub>2</sub>
 
-After translating the WMT19 paraphrases, we can conduct a *quick and dirty* evaluation of the paraphrases using commutative variants of the `BLEU-4` and `chrF-2` automatic sequence evaluation metrics, which were initialized with the default settings from `sacrebleu`. For this, we provide `evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh`:
+After translating the WMT19 Legacy and WMT19 AR paraphrases, we can conduct a *quick and dirty* evaluation of source and target sentences using commutative variants of the `BLEU-4` and `chrF-2` automatic sequence evaluation metrics, which were initialized with the default settings from `sacrebleu`. For this, we provide `evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh`:
 
 ```
 Usage: evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
@@ -123,7 +123,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will analyze the translation `json` outputs and append commutative `BLEU-4` and `chrF-2` scores in-place. To run this script, simply execute:
+This script will analyze source and target sentences in the aforementioned `json` files and will append commutative `BLEU-4` and `chrF-2` scores in-place. To run this script, simply execute:
 
 ```shell
 bash scripts/evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh
@@ -131,7 +131,7 @@ bash scripts/evaluate_bleu_chrf_wmt19_paraphrases_de_en.sh
 
 ##### Paraphrase detection
 
-Next, we can run our pre-trained paraphrase detection models on the translations. For this, we provide `evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh`:
+Next, we can run our fine-tuned paraphrase detection models on our source and target sentences. For this, we provide `evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh`:
 
 ```
 Usage: evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh [-h|--help] [glob]
@@ -144,7 +144,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will analyze the translation `json` outputs and append the paraphrase detection models' `softmax` scores for the paraphrase (or positive) label. The input `json` files will also be updated with these scores in-place. To run this script, simply execute:
+This script will analyze source and target sentences in the aforementioned `json` files and will append the paraphrase detection models' `softmax` scores for the paraphrase (or positive) label in-place. To run this script, simply execute:
 
 ```shell
 bash scripts/evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh
@@ -154,7 +154,7 @@ bash scripts/evaluate_paraphrase_detection_wmt19_paraphrases_de_en.sh
 
 ##### Model evolutions
 
-In order to plot the evolutions of model training parameters, we provide `visualize_model_evolutions.sh`:
+In order to plot the evolutions of model-related training parameters, we provide `visualize_model_evolutions.sh`:
 
 ```
 Usage: visualize_model_evolutions.sh [-h|--help] [glob]
@@ -207,7 +207,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will produce tikz-based plots of the respective paraphrase detection `softmax` scores and joint decisions, and will save them as `pdf` files in the `img` directory. To run this script, simply execute:
+This script will produce tikz-based plots of the respective paraphrase detection `softmax` scores and joint model decisions, and will save them as `pdf` files in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_paraphrase_detection_wmt19_paraphrases_de_en.sh
@@ -227,7 +227,7 @@ Optional arguments:
                "./predictions/*/*.json"
 ```
 
-This script will produce tikz-based plots of correlations between commutative `chrF-2` and paraphrase detection predictions and will save them as `pdf` files in the `img` directory. To run this script, simply execute:
+This script will produce tikz-based plots of correlations between commutative `chrF-2` scores and paraphrase detection predictions and will save them as `pdf` files in the `img` directory. To run this script, simply execute:
 
 ```shell
 bash scripts/visualize_chrf_paraphrase_detection_wmt19_paraphrases_de_en.sh

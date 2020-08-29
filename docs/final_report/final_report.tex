@@ -508,8 +508,7 @@ Finally, we recommend computing the correlation coefficients of commutative BLEU
 % 5.2. chrF correlations
 % R code for correlation analysis:
 % groups <- split(collection[c("label", "value")], f = list(collection$model_name, collection$data_name))
-% i <- c(1:4)
-% sapply(i, function(j) cor.test(as.numeric(as.character(groups[[j]]$label)), groups[[j]]$value, method="pearson", alternative="greater"))
+% sapply(1:4, function(i) cor.test(as.numeric(as.character(groups[[i]]$label)), groups[[i]]$value, method="pearson", alternative="greater"))
 
 % LocalWords:  NMT WMT Isometry isometry SOTA FAIR's mBERT XLM anisometry BLEU
 % LocalWords:  chrF de newstest nmt pdf Quora adversarially typologically BPE

@@ -13,19 +13,17 @@
 
 ### Overview :book:
 
-Isometry is defined mathematically as a distance-preserving transformation between two metric spaces. This repository investigates the isometric properties of Neural Machine Translation (NMT) models on binary semantic-equivalence spaces.
-
-To motivate this investigation, we postulate that well-performing NMT models produce isometric outputs on semantic metric spaces. That is to say; if two sentences are semantically equivalent on the source side, they should also be semantically equivalent after translation on the target side. This concept of isometry in semantic metric spaces can be stated more explicitly with the following mathematical description:
+Isometry is defined mathematically as a distance-preserving transformation between two metric spaces. A simplified [illustration](https://slideplayer.com/slide/4659099/) of isometry in higher dimensional functional spaces can be seen below. In this research, we view Neural Machine Translation (NMT) models from the perspective of semantic isometry and assume that well-performing NMT models function approximately isometrically on semantic metric spaces. That is to say, if two sentences are semantically equivalent on the source side, they should remain semantically equivalent after translation on the target side given a well-performing NMT model. We hypothesize that the frequency of such semantically isometric behaviour correlates positively with general model performance. 
 
 <p align="center">
-<img src="./img/basic_eqn.svg" width="400">
+<img src="./img/isometry_visualized.png" width="400">
 </p>
 
-To approach this objective, we start by gathering hand-crafted (semantically equivalent) [paraphrases](https://github.com/google/wmt19-paraphrased-references) of WMT19 `en-de` test data's legacy and additional references. We then translate these paraphrases in the reverse direction ie. `de-en` using both SOTA and non-SOTA NMT models to introduce performance-dependent variance into translation samples. We use Facebook's FAIR WMT19 winning (single) model from [Ng. et al., 2019](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based on the Scaling NMT methodology from [Ott et al., 2018](https://arxiv.org/abs/1806.00187) on WMT16 data and utilize this model as our non-SOTA model.
+We conduct our investigation by using two NMT models of varying performance to translate semantically-equivalent German paraphrases, based off diverse WMT19 test data [references](https://github.com/google/wmt19-paraphrased-references), to English. We use Facebook's FAIR WMT19 winning single model from [Ng. et al., 2019](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based on the Scaling NMT methodology from [Ott et al., 2018](https://arxiv.org/abs/1806.00187) on WMT16 data and utilize this model as our non-SOTA model.
 
-We then quantify (and simplify) the notion of a semantic distance metric into a discrete binary-decision problem, specifically between semantic equality and inequality. For this, we train and utilize paraphrase detection models; where a positive result for paraphrase detection corresponds to semantic equality while a negative result corresponds to semantic inequality.
+We simplify the notion of semantic metric spaces into probabilistic binary semantic equivalence spaces and compute these using three transformer language models fine-tuned on Google's [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task. We adapt our workflow from Google's [XTREME](https://github.com/google-research/xtreme) benchmark system.
 
-To realize this concept, we train large paraphrase detection models based off Google's [XTREME](https://github.com/google-research/xtreme) benchmarks on the [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task and apply these models on the aforementioned translations.
+By analyzing the paraphrase detection outputs, we show that the frequency of semantically isometric behaviour indeed correlates positively with general model performance. With our final results, we provide evidence both for and against claims made by other studies on automatic sequence evaluation metrics and NMT models' robustness to adversarial paraphrases.
 
 A more detailed description of our methodologies and results can be found in our research [paper](./docs/final_report/final_report.pdf). 
 
@@ -56,7 +54,7 @@ A more detailed description of our methodologies and results can be found in our
 2. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory (~480 MB download size).
 
 3. Manually download the following four pre-trained models and place all of the tarballs in the `models` directory (~9 GB total download size):
-    1. [Scaling NMT WMT16 Transformer](https://drive.google.com/uc?id=1IqoRGIqTv9MVbV7EiyAZ7Ol0y4xAy0th&export=download) for non-SOTA `de-en` translation. Model achieved `BLEU-4` score of `31.0` on the `newstest2014` test dataset.
+    1. [Scaling NMT WMT16 Transformer](https://drive.google.com/uc?id=1IqoRGIqTv9MVbV7EiyAZ7Ol0y4xAy0th&export=download) for non-SOTA `de-en` translation. Model achieved `BLEU-4` score of `31.0` on the `newstest2014` test data set.
 
     2. [mBERT<sub>Base</sub>](https://drive.google.com/uc?id=18thE9bc-SVfwpAoeuOiZequp5YgckCA5&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.886`.
     3. [XLM-R<sub>Base</sub>](https://drive.google.com/uc?id=1jSeopFJwKly7uk57mxLpQ9I5C5Fl3P1v&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.890`. 
@@ -277,4 +275,11 @@ Below are the key references that were used in this research. Additional referen
 
 ### Development :snail:
 
-Check our development [log](./docs/develop.md) for information on prospective changes.
+Check our development [log](./docs/develop.md) for information on past developments.
+
+<!--  LocalWords:  behaviour Isometry isometry NMT img src png WMT Ng et al Ott
+ -->
+<!--  LocalWords:  SOTA neckbeard submodule preprocessed De pre eg FAIR's BLEU
+ -->
+<!--  LocalWords:  chrF evolutions tensorboard tikz bibtex xtreme pawsx
+ -->

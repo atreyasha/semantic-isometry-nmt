@@ -280,7 +280,7 @@ Given our German WMT19 Legacy and WMT19 AR paraphrase data sets defined in equat
 
 \paragraph{Frequency analysis:} Given the five aforementioned possibilities of $\mathbf{M(S_{XY}^{\mathsf{T}}})$, we measure the frequency of each possibility for each model. This give us an insight into the semantically isometric behaviour of the models and would allow us to conduct comparisons across them.
 
-\paragraph{Sentence-level analysis:} In order to check the veracity of the $\mathbf{M(S_{XY}^{\mathsf{T}}})$ outputs, we analyze selected individual sentence pairs and their target translations and attempt to interpret these results.
+\paragraph{Sentence-level analysis:} In order to check the veracity of the $\mathbf{M(S_{XY}^{\mathsf{T}}})$ outputs, we analyze selected individual sentence pairs and their target translations, and attempt to interpret these results.
 
 \subsubsection{Relationship between chrF$_2$ and semantic equivalence}
 
@@ -463,9 +463,7 @@ Our smaller correlation coefficients could be attributed to the lack of granular
 
 While we did not conduct similar adversarial paraphrasing in our study, we still investigated the performance of NMT models when translating sentences that are non-trivial paraphrases of one another. Given the observations of \citet{fadaee2020unreasonable} on NMT model volatility, we would have expected the relative frequency of type-2 anisometry to also be in the range of $\sim$15-30$\%$ for both our models.
 
-Instead, we observed a relative frequency of type-2 anisometry to be 2.4$\%$ and 13.1$\%$ for the FAIR WMT19 and Scaling NMT WMT16 Transformers respectively. These relative frequencies are surprisingly low, even for the latter non-SOTA model.
-
-The differences in the ``rate of volatility'' can be attributed to many factors. In support of \citet{fadaee2020unreasonable}, our paraphrases originating from \citet{freitag-bleu-paraphrase-references-2020} were not targeted for adversarial purposes. It is therefore expected that the adversarial effect of such paraphrases would be lower than the paraphrases constructed by \citet{fadaee2020unreasonable} which were designed with an adversarial goal.
+Instead, we observed a relative frequency of type-2 anisometry to be 2.4$\%$ and 13.1$\%$ for the FAIR WMT19 and Scaling NMT WMT16 Transformers respectively. These relative frequencies are surprisingly low, even for the latter non-SOTA model. The differences in the ``rate of volatility'' can be attributed to many factors. In support of \citet{fadaee2020unreasonable}, our paraphrases originating from \citet{freitag-bleu-paraphrase-references-2020} were not targeted for adversarial purposes. It is therefore expected that the adversarial effect of such paraphrases would be lower than the paraphrases constructed by \citet{fadaee2020unreasonable} which were designed with an adversarial goal.
 
 On the other hand, \citet{fadaee2020unreasonable} used non-SOTA RNN and Transformer models in their experiments and the volatility observed could have been a result of these less performant models. It would be beneficial if \citet{fadaee2020unreasonable} would re-run their experiments estimating volatility on SOTA NMT models, such as the FAIR WMT19 Transformer. This could elucidate whether the volatility observed is endemic to all NMT models or just to non-SOTA models. 
 
@@ -491,16 +489,6 @@ Finally, we recommend computing the correlation coefficients of commutative BLEU
 
 % end document
 \end{document}
-
-% Minor checks:
-% check consistent spelling of "data sets" across paper
-% check and refine GPU naming scheme
-% fix "based off" and change to something else to get diversity
-% look up fairseq API and whether this is correct usage
-% add machine translation to descriptions of isometry
-% change phrasing of sentence-level analysis to show interest in all possibilities instead of just some
-% make usage of colons consistent
-% consistent usage of isometry and approximately
 
 % Generic comments:
 % R code for checking isometry relative frequencies

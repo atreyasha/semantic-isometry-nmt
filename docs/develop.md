@@ -141,7 +141,7 @@
 22. **DONE** set up data downloading for all wmt sets with
     SacreBLEU
 
-### Brainstorming and logs
+### Brainstorming logs
 
 1.  NMT training on S3IT GPUs
 

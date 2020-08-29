@@ -73,7 +73,7 @@
 ***** DONE set up data downloading for all wmt sets with SacreBLEU
       CLOSED: [2020-05-17 Sun 21:58]
 
-*** Brainstorming and logs
+*** Brainstorming logs
 **** NMT training on S3IT GPUs
 ***** V100-16GB safest option for fp16 fast training, tested with 3584:16 and now testing out 7168:8
 ***** V100-32GB works great but many times slurms allocates it when it has ~100s MB left

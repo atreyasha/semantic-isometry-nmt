@@ -7,7 +7,7 @@
 
 ### 1. Overview
 
-This readme provides additional information on training the non-SOTA Scaling NMT WMT16 Transformer and fine-tuning paraphrase detection models which were ultimately used in our research. It is highly recommended to use the defaults as per the provided shell scripts, since there could be unforeseen issues related to using new model configurations.
+This readme provides additional information on training the non-SOTA Scaling NMT WMT16 Transformer and fine-tuning paraphrase detection models which were ultimately used in our research. It is highly recommended to use the default configurations as per the provided shell scripts, since there could be unforeseen issues related to using new model configurations.
 
 ### 2. Training Scaling NMT WMT16 Transformer on de-en
 

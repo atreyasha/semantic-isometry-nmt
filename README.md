@@ -60,7 +60,7 @@ A more detailed description of our methodologies and results can be found in our
     3. [XLM-R<sub>Base</sub>](https://drive.google.com/uc?id=1jSeopFJwKly7uk57mxLpQ9I5C5Fl3P1v&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.890`. 
     4. [XLM-R<sub>Large</sub>](https://drive.google.com/uc?id=1h6DUEpm173w_4aznMOdRFGtr6hi1bfdT&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.906`.
 
-3. Download `PAWS-X`, `WMT19` Legacy German and `WMT19` AR German paraphrases, as well as prepare the previously downloaded `WMT16` data and pre-trained models by running the command below:
+3. Download `PAWS-X`, `WMT19` Legacy German paraphrases and `WMT19` AR German paraphrases, as well as prepare the previously downloaded `WMT16` data and pre-trained models by running the command below:
 
     ```shell
     bash scripts/prepare_data_models.sh

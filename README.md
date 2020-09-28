@@ -25,7 +25,7 @@ We simplify the notion of semantic metric spaces into probabilistic binary seman
 
 By analyzing the paraphrase detection outputs, we show that the frequency of semantically isometric behaviour indeed correlates positively with general model performance. With our final results, we provide evidence both for and against claims made by other studies on automatic sequence evaluation metrics and NMT models' robustness to adversarial paraphrases.
 
-A more detailed description of our methodologies and results can be found in our research [paper](./docs/final_report/final_report.pdf). 
+A more detailed description of our methodologies and results can be found in our research paper, which will be made public shortly hereafter. 
 
 ### Dependencies :neckbeard:
 

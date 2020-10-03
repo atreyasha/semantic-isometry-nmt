@@ -362,6 +362,7 @@ plot_shallow_deep_correlations <- function(input_glob) {
     melt(collection_2, measure.vars = "Target")
   )
   collection$label <- as.factor(collection$label)
+  levels(collection$variable) <- c("Source [de]", "Target [en]")
   # plot object
   g <- ggplot(collection, aes(x = label, y = value, fill = variable)) +
     stat_boxplot(

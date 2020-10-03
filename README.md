@@ -16,7 +16,7 @@
 Isometry is defined mathematically as a distance-preserving transformation between two metric spaces. A simplified [illustration](https://slideplayer.com/slide/4659099/) of isometry in higher dimensional functional spaces can be seen below. In this research, we view Neural Machine Translation (NMT) models from the perspective of semantic isometry and assume that well-performing NMT models function approximately isometrically on semantic metric spaces. That is to say, if two sentences are semantically equivalent on the source side, they should remain semantically equivalent after translation on the target side given a well-performing NMT model. We hypothesize that the frequency of such semantically isometric behaviour correlates positively with general model performance. 
 
 <p align="center">
-<img src="./img/isometry_visualized.png" width="400">
+<img src="./img/isometry_visualized_modified.png" width="400">
 </p>
 
 We conduct our investigation by using two NMT models of varying performance to translate semantically-equivalent German paraphrases, based off diverse WMT19 test data [references](https://github.com/google/wmt19-paraphrased-references), to English. We use Facebook's FAIR WMT19 winning single model from [Ng. et al. (2019)](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based on the Scaling NMT methodology from [Ott et al. (2018)](https://arxiv.org/abs/1806.00187) on WMT16 data and utilize this model as our non-SOTA model.

@@ -235,43 +235,7 @@ bash scripts/visualize_chrf_paraphrase_detection_wmt19_paraphrases_de_en.sh
 
 ### References :sweat_drops:
 
-Below are the key references that were used in this research. Additional references can be found in our dedicated bibtex [file](./docs/final_report/bibtex.bib).
-
-```
-@inproceedings{ott2018scaling,
-  title = {Scaling Neural Machine Translation},
-  author = {Ott, Myle and Edunov, Sergey and Grangier, David and Auli, Michael},
-  booktitle = {Proceedings of the Third Conference on Machine Translation (WMT)},
-  year = 2018,
-}
-
-@InProceedings{pawsx2019emnlp,
-  title = {PAWS-X: A Cross-lingual Adversarial Dataset for Paraphrase Identification},
-  author = {Yang, Yinfei and Zhang, Yuan and Tar, Chris and Baldridge, Jason},
-  booktitle = {Proc. of EMNLP},
-  year = {2019}
-}
-
-@article{hu2020xtreme,
-  author = {Junjie Hu and Sebastian Ruder and Aditya Siddhant and Graham Neubig and Orhan Firat
-  and Melvin Johnson},
-  title = {XTREME: A Massively Multilingual Multi-task Benchmark for Evaluating Cross-lingual 
-  Generalization},
-  journal = {CoRR},
-  volume = {abs/2003.11080},
-  year = {2020},
-  archivePrefix = {arXiv},
-  eprint = {2003.11080}
-}
-
-@article{freitag-bleu-paraphrase-references-2020,
-  title = {BLEU might be Guilty but References are not Innocent},
-  author = {Markus Freitag and David Grangier and Isaac Caswell},
-  journal = {ArXiv},
-  year = {2020},
-  volume = {abs/2004.06063}
-}
-```
+All references can be found in our dedicated bibtex [file](./docs/bibtex.bib).
 
 ### Development :snail:
 

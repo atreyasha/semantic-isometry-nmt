@@ -1,7 +1,7 @@
 ## Training models
 
 1. [Overview](#1-Overview)
-2. [Training STANDARD-WMT16 on de-en](#2-Training-STANDARD-WMT16-Transformer-on-de-en)
+2. [Training STANDARD-WMT16 on de-en](#2-Training-STANDARD-WMT16-on-de-en)
 3. [Fine-tuning multilingual transformer language models on PAWS-X](#3-Fine-tuning-multilingual-transformer-language-models-on-PAWS-X)
 4. [Exporting models](#4-Exporting-models)
 

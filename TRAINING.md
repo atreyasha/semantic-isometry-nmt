@@ -1,15 +1,15 @@
 ## Training models
 
 1. [Overview](#1-Overview)
-2. [Training Scaling NMT WMT16 Transformer on de-en](#2-Training-Scaling-NMT-WMT16-Transformer-on-de-en)
+2. [Training STANDARD-WMT16 on de-en](#2-Training-STANDARD-WMT16-Transformer-on-de-en)
 3. [Fine-tuning multilingual transformer language models on PAWS-X](#3-Fine-tuning-multilingual-transformer-language-models-on-PAWS-X)
 4. [Exporting models](#4-Exporting-models)
 
 ### 1. Overview
 
-This readme provides additional information on training the non-SOTA Scaling NMT WMT16 Transformer and fine-tuning paraphrase detection models which were ultimately used in our research. It is highly recommended to use the default configurations as per the provided shell scripts, since there could be unforeseen issues related to using new model configurations.
+This readme provides additional information on training the non-SOTA STANDARD-WMT16 model and fine-tuning paraphrase detection models which were ultimately used in our research. It is highly recommended to use the default configurations as per the provided shell scripts, since there could be unforeseen issues related to using new model configurations.
 
-### 2. Training Scaling NMT WMT16 Transformer on de-en
+### 2. Training STANDARD-WMT16 on de-en
 
 **i.** Preprocess WMT16 with pre-computed BPE codes into an appropriate format using `preprocess_wmt16_de_en.sh`:
 

@@ -19,9 +19,9 @@ Isometry is defined mathematically as a distance-preserving transformation betwe
 <img src="./img/isometry_visualized_modified.png" width="400">
 </p>
 
-We conduct our investigation by using two NMT models of varying performance to translate semantically-equivalent German paraphrases, based off diverse WMT19 test data [references](https://github.com/google/wmt19-paraphrased-references), to English. We use Facebook's FAIR WMT19 winning single model from [Ng. et al. (2019)](https://arxiv.org/abs/1907.06616) as our SOTA model. We train a large transformer model based on the Scaling NMT methodology from [Ott et al. (2018)](https://arxiv.org/abs/1806.00187) on WMT16 data and utilize this model as our non-SOTA model.
+We conduct our investigation by using two NMT models of varying performance to translate semantically-equivalent German paraphrases, based off diverse WMT19 test data [references](https://github.com/google/wmt19-paraphrased-references), to English. We use Facebook's AI Research's (FAIR) WMT19 winning single model from [Ng. et al. (2019)](https://arxiv.org/abs/1907.06616) as our SOTA model and abbreviate this as FAIR-WMT19. We train a large Transformer model based on the Scaling NMT methodology from [Ott et al. (2018)](https://arxiv.org/abs/1806.00187) on WMT16 data and utilize this model as our non-SOTA model. We abbreviate this model as STANDARD-WMT16.
 
-We simplify the notion of semantic metric spaces into probabilistic binary semantic equivalence spaces and compute these using three transformer language models fine-tuned on Google's [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task. We adapt our workflow from Google's [XTREME](https://github.com/google-research/xtreme) benchmark system.
+We simplify the notion of semantic metric spaces into probabilistic binary semantic equivalence spaces and compute these using three Transformer language models fine-tuned on Google's [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task. We adapt our workflow from Google's [XTREME](https://github.com/google-research/xtreme) benchmark system.
 
 By analyzing the paraphrase detection outputs, we show that the frequency of semantically isometric behaviour indeed correlates positively with general model performance. With our final results, we provide evidence both for and against claims made by other studies on automatic sequence evaluation metrics and NMT models' robustness to adversarial paraphrases.
 
@@ -54,7 +54,7 @@ A more detailed description of our methodologies and results can be found in our
 2. Manually download [preprocessed WMT'16 En-De data](https://drive.google.com/uc?export=download&id=0B_bZck-ksdkpM25jRUN2X2UxMm8) provided by Google and place the tarball in the `data` directory (~480 MB download size).
 
 3. Manually download the following four pre-trained models and place all of the tarballs in the `models` directory (~9 GB total download size):
-    1. [Scaling NMT WMT16 Transformer](https://drive.google.com/uc?id=1IqoRGIqTv9MVbV7EiyAZ7Ol0y4xAy0th&export=download) for non-SOTA `de-en` translation. Model achieved `BLEU-4` score of `31.0` on the `newstest2014` test data set.
+    1. [STANDARD-WMT16](https://drive.google.com/uc?id=1IqoRGIqTv9MVbV7EiyAZ7Ol0y4xAy0th&export=download) for non-SOTA `de-en` translation. Model achieved `BLEU-4` score of `31.0` on the `newstest2014` test data set.
 
     2. [mBERT<sub>Base</sub>](https://drive.google.com/uc?id=18thE9bc-SVfwpAoeuOiZequp5YgckCA5&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.886`.
     3. [XLM-R<sub>Base</sub>](https://drive.google.com/uc?id=1jSeopFJwKly7uk57mxLpQ9I5C5Fl3P1v&export=download) for multilingual paraphrase detection. Model fine-tuned on `en,de,es,fr,ja,ko,zh` languages with macro-F<sub>1</sub> score of `0.890`. 
@@ -82,7 +82,7 @@ A more detailed description of our methodologies and results can be found in our
 
 #### i. Training
 
-Since we already provide pre-trained models in this repository, we treat model training as an auxiliary procedure. If you would like to indeed train the non-SOTA Scaling NMT WMT16 Transformer and fine-tune paraphrase detection models, refer to the instructions in [TRAINING.md](TRAINING.md).
+Since we already provide pre-trained models in this repository, we treat model training as an auxiliary procedure. If you would like to indeed train the non-SOTA STANDARD-WMT16 model and fine-tune paraphrase detection models, refer to the instructions in [TRAINING.md](TRAINING.md).
 
 #### ii. Translation
 
@@ -99,7 +99,7 @@ Optional arguments:
                checkpoint_best.pt"
 ```
 
-This script will generate translations using the SOTA FAIR WMT19 Transformer and the non-SOTA Scaling NMT WMT16 Transformer. Translation results will be saved as `json` files in the `predictions` directory. To run this script using our defaults, simply execute:
+This script will generate translations using the SOTA FAIR-WMT19 and the non-SOTA STANDARD-WMT16 models. Translation results will be saved as `json` files in the `predictions` directory. To run this script using our defaults, simply execute:
 
 
 ```shell

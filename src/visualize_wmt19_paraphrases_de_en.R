@@ -55,10 +55,10 @@ plot_shallow_metrics <- function(input_glob, return_early = FALSE) {
       data_name <- "WMT19 Legacy"
     }
     if (grepl("torch_hub", model_name)) {
-      model_name <- "FAIR WMT19 Transformer"
+      model_name <- "FAIR-WMT19"
     }
     else {
-      model_name <- "Scaling NMT WMT16 Transformer"
+      model_name <- "STANDARD-WMT16"
     }
     filtered <- cbind(model_name, data_name, filtered)
     return(filtered)
@@ -142,10 +142,10 @@ plot_paraphrase_detector_outputs <- function(input_glob, return_early = FALSE) {
       data_name <- "WMT19 Legacy"
     }
     if (grepl("hub", model_name)) {
-      model_name <- "FAIR WMT19 Transformer"
+      model_name <- "FAIR-WMT19"
     }
     else {
-      model_name <- "Scaling NMT WMT16 Transformer"
+      model_name <- "STANDARD-WMT16"
     }
     filtered <- cbind(model_name, data_name, filtered)
     return(filtered)

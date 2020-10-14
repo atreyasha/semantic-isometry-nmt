@@ -23,7 +23,7 @@ We conduct our investigation by using two NMT models of varying performance to t
 
 We simplify the notion of semantic metric spaces into probabilistic binary semantic equivalence spaces and compute these using three Transformer language models fine-tuned on Google's [PAWS-X](https://github.com/google-research-datasets/paws/tree/master/pawsx) paraphrase detection task. We adapt our workflow from Google's [XTREME](https://github.com/google-research/xtreme) benchmark system.
 
-By analyzing the paraphrase detection outputs, we show that the frequency of semantically isometric behaviour indeed correlates positively with general model performance. With our final results, we provide evidence both for and against claims made by other studies on automatic sequence evaluation metrics and NMT models' robustness to adversarial paraphrases.
+By analyzing the paraphrase detection outputs, we show that the frequency of semantically isometric behaviour indeed correlates positively with general model performance. Our findings have interesting implications for automatic sequence evaluation metrics and vulnerabilities of NMT models towards adversarial paraphrases.
 
 A more detailed description of our methodologies and results can be found in our research paper, which will be made public shortly hereafter. 
 

@@ -32,6 +32,10 @@ mirror_branch() {
   fi
 }
 
-# main call to function
-# NOTE: user edits go here
-mirror_branch "master" "slurm-s3it"
+main() {
+  # main call to function
+  # NOTE: user edits go here
+  mirror_branch "master" "slurm-s3it"
+}
+
+main

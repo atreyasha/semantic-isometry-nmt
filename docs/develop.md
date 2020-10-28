@@ -1,43 +1,49 @@
+## Table of Contents
+-   [Development](#development)
+-   [Completed](#completed)
+-   [Brainstorming logs](#brainstorming-logs)
+
 ### Development
 
 1.  Clean-code and documentation
 
-    1.  ****extra:**** add version numbers to R package dependencies for
-        posterity
+    1.  \*\*\*\*extra:\*\*\*\* add version numbers to R package
+        dependencies for posterity -\> perhaps with session info
 
 2.  Paraphrase detection
 
-    1.  ****extra:**** consider roc and other evaluation metrics for
-        pawsx model -\> in case these might be of more help
+    1.  \*\*\*\*extra:\*\*\*\* consider roc and other evaluation metrics
+        for pawsx model -\> in case these might be of more help
 
-    2.  ****extra:**** fix and refine paws-x pipeline later on with
-        patience, typing, better documentation, clean-code and possibly
-        continuation of training, add roc auc on pawsx test data
+    2.  \*\*\*\*extra:\*\*\*\* fix and refine paws-x pipeline later on
+        with patience, typing, better documentation, clean-code and
+        possibly continuation of training, add roc auc on pawsx test
+        data
 
 3.  Translation
 
-    1.  ****extra:**** train additional large model on wmt19
+    1.  \*\*\*\*extra:\*\*\*\* train additional large model on wmt19
         non-backtranslated data and similar transformer arch as fair
         paper -\> to get slightly better performance for comparison -\>
         this can also be done later
 
 4.  Evaluation
 
-    1.  ****extra:**** make formal analysis on lengths of WMT19 inputs
-        vs. lengths of paws-x training data
+    1.  \*\*\*\*extra:\*\*\*\* make formal analysis on lengths of WMT19
+        inputs vs. lengths of paws-x training data
 
-    2.  ****extra:**** show that training with backtranslation helps for
-        robustness to paraphrases -\> through visualizations and perhaps
-        some statistical tests
+    2.  \*\*\*\*extra:\*\*\*\* show that training with backtranslation
+        helps for robustness to paraphrases -\> through visualizations
+        and perhaps some statistical tests
 
 5.  Visualization
 
-    1.  ****extra:**** consider plotting out agreement statistics
-        sampled from uniform distribution within bar chart and if this
-        would be of use
+    1.  \*\*\*\*extra:\*\*\*\* consider plotting out agreement
+        statistics sampled from uniform distribution within bar chart
+        and if this would be of use
 
-    2.  ****extra:**** check if chord or tree mapping plot could be
-        possible to see dependencies and functional mappings
+    2.  \*\*\*\*extra:\*\*\*\* check if chord or tree mapping plot could
+        be possible to see dependencies and functional mappings
 
 ### Completed
 
@@ -171,7 +177,7 @@
     3.  perhaps some combination of edit distance with wordnet metrics
 
     4.  or NN technique using sentence BERT and other encoders -\> more
-        quantitative and continuous, can apply Michel et al. 2019
+        quantitative and continuous, can apply Michel et al. 2019
         techniques for robustness comparisons
 
     5.  semantic parsing to graph, role labelling, wordnet concepts

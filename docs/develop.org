@@ -1,7 +1,7 @@
 *** Development
 
 **** Clean-code and documentation
-***** **extra:** add version numbers to R package dependencies for posterity
+***** **extra:** add version numbers to R package dependencies for posterity -> perhaps with session info
 
 **** Paraphrase detection
 ***** **extra:** consider roc and other evaluation metrics for pawsx model -> in case these might be of more help

@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 # -*- coding: utf-8 -*-
+# R script for relevant plots
 
 library(tools)
 library(ggh4x)

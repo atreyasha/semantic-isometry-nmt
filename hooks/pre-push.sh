@@ -34,4 +34,4 @@ mirror_branch() {
 
 # main call to function
 # NOTE: user edits go here
-mirror_branch "main" "mirror"
+mirror_branch "master" "slurm-s3it"

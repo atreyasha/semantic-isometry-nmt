@@ -8,8 +8,7 @@
     2. [Translation](#ii-Translation)
     3. [Evaluation](#iii-Evaluation)
     4. [Visualization](#iv-Visualization)
-5. [References](#References-sweat_drops)
-6. [Development](#Development-snail)
+5. [Development](#Development-snail)
 
 ### Overview :book:
 
@@ -232,10 +231,6 @@ This script will produce tikz-based plots of correlations between commutative `c
 ```shell
 bash scripts/visualize_chrf_paraphrase_detection_wmt19_paraphrases_de_en.sh
 ```
-
-### References :sweat_drops:
-
-All references can be found in our dedicated bibtex [file](./docs/bibtex.bib).
 
 ### Development :snail:
 

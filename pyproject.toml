@@ -5,7 +5,7 @@ description = ""
 authors = ["Atreya Shankar <35427332+atreyasha@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.7.0"
+python = "^3.7"
 torch = "1.4.0"
 sacrebleu = "1.4.12"
 requests = "^2.24.0"

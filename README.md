@@ -28,13 +28,13 @@ A more detailed description of our methodologies and results can be found in our
 
 ### Dependencies :neckbeard:
 
-1. This repository's code was tested with Python versions `3.7+`. To sync dependencies, we recommend creating a virtual environment and installing the relevant packages via `pip`:
+1. This repository's code was tested with Python versions `3.7.*`. To sync dependencies, we recommend creating a virtual environment and installing the relevant packages via `pip`:
 
     ```shell
     pip install -r requirements.txt
     ```
 
-2. In this repository, we use `R` versions `3.6+` and `lualatex` for efficient `TikZ` visualizations. Execute the following within your `R` console to get the dependencies:
+2. In this repository, we use `R` versions `3.6.*` and `lualatex` for efficient `TikZ` visualizations. Execute the following within your `R` console to get the dependencies:
 
     ```r
     install.packages(c("ggplot2","optparse","tikzDevice","rjson","ggpointdensity",

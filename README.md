@@ -24,7 +24,7 @@ We simplify the notion of semantic metric spaces into probabilistic binary seman
 
 By analyzing the paraphrase detection outputs, we show that the frequency of semantically isometric behaviour indeed correlates positively with general model performance. Our findings have interesting implications for automatic sequence evaluation metrics and vulnerabilities of NMT models towards adversarial paraphrases.
 
-**Note:** A more detailed description of our methodologies and results can be found in our research paper, which will be made public shortly hereafter. 
+A more detailed description of our methodologies and results can be found in this [paper](./docs/final_report/main.pdf).
 
 ### Dependencies :neckbeard:
 
@@ -231,10 +231,6 @@ This script will produce tikz-based plots of correlations between commutative `c
 ```shell
 bash scripts/visualize_chrf_paraphrase_detection_wmt19_paraphrases_de_en.sh
 ```
-
-### Development :snail:
-
-Check our development [log](./docs/develop.md) for information on past developments.
 
 <!--  LocalWords:  behaviour Isometry isometry NMT img src png WMT Ng et al Ott
  -->

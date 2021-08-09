@@ -26,6 +26,8 @@ By analyzing the paraphrase detection outputs, we show that the frequency of sem
 
 A more detailed description of our methodologies and results can be found in this [paper](./docs/final_report/main.pdf).
 
+**Note:** `fairseq` and `XTREME` are used as third-party extensions in this repository with licensing details found [here](./THIRD_PARTY_NOTICES.txt).
+
 ### Dependencies :neckbeard:
 
 1. This repository's code was tested with Python versions `3.7.*`. To sync dependencies, we recommend creating a virtual environment and installing the relevant packages via `pip`:

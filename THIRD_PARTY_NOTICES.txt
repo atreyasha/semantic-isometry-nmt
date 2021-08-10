@@ -35,6 +35,7 @@ SOFTWARE.
 %% Third-party license, applicable for
 %% substantial portions of the following:
 %% 1. scripts/train_evaluate_pawsx.sh
+%% 2. submodules/xtreme-pawsx/*
 =============================================
 
                                  Apache License

@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
-# Pre-push hook to mirror branch with main
+# Pre-push hook to rebase secondary branch with primary
 
-mirror_branch() {
-  local main mirror local_hash
+rebase_branch() {
+  local primary secondary local_hash
   local current_branch stash_entry
-  main="$1"
-  mirror="$2"
-  # exit if main and mirror are undefined
-  [[ -z "$main" || -z "$mirror" ]] && exit 0
-  # check existence of mirror branch
-  git show-ref --verify --quiet "refs/heads/$mirror" || exit 0
+  primary="$1"
+  secondary="$2"
+  # exit if primary and secondary are undefined
+  [[ -z "$primary" || -z "$secondary" ]] && exit 0
+  # check existence of secondary branch
+  git show-ref --verify --quiet "refs/heads/$secondary" || exit 0
   # check current branch
   current_branch="$(git rev-parse --abbrev-ref HEAD)"
-  # start mirroring
-  if [ "$current_branch" == "$main" ]; then
-    printf "%s\n" "Syncing $mirror with $main"
+  # start rebasing
+  if [ "$current_branch" == "$primary" ]; then
+    printf "%s\n" "Rebasing $secondary with $primary"
     local_hash=$(
       date +%s | sha256sum | base64 | head -c 32
       echo
     )
     git stash push -u -m "$local_hash"
-    git checkout "$mirror"
-    git rebase master
-    git push --force origin "$mirror"
-    git checkout master
+    git checkout "$secondary"
+    git rebase "$primary"
+    git push --force origin "$secondary"
+    git checkout "$primary"
     stash_entry=$(git stash list | grep "$local_hash" | grep -Eo "stash@{[0-9]+}")
     if [ -n "$stash_entry" ]; then
       git stash apply "$stash_entry"
@@ -35,7 +35,7 @@ mirror_branch() {
 main() {
   # main call to function
   # NOTE: user edits go here
-  mirror_branch "master" "slurm-s3it"
+  rebase_branch "master" "slurm-s3it"
 }
 
 main

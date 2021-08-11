@@ -67,7 +67,7 @@ A more detailed description of our methodologies and results can be found in thi
     bash scripts/prepare_data_models.sh
     ```
 
-4. **Optional:** We provide a mirror branch `slurm-s3it` for executing computationally heavy workflows (eg. training, evaluating) on the `s3it` server with `slurm`. To use this branch, simply execute:
+4. **Optional:** We provide a secondary branch `slurm-s3it` for executing computationally heavy workflows (eg. training, evaluating) on the `s3it` server with `slurm`. To use this branch, simply execute:
 
     ```
     git checkout slurm-s3it
